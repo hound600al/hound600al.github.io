@@ -217,9 +217,15 @@ b,strong{font-weight:800;color:var(--ink);}
       </div>
       <div class="varrow">↔</div>
     </div>
-    <div class="evi">
-      <span class="tag">근거</span>
-      <p><b>GitClear (2024)</b> — AI 코딩 도구 확산 후, 2주 내 다시 수정·삭제되는 <b>'코드 처닝(churn)'이 급증</b>하고 복붙·중복 코드 비율이 사상 최고치를 기록. <b>"빨리 짠 코드 = 곧 고쳐야 할 코드"</b>라는 신호. <span style="color:#A6A6B2">(* 발표 전 최신 수치 재확인 권장)</span></p>
+    <div class="grid g2" style="gap:1vw;">
+      <div class="evi" style="margin-top:1.4vh;">
+        <span class="tag">근거 1</span>
+        <p><b>GitClear</b> (2.11억 라인 분석) — AI 코딩 확산 후 <b>'코드 처닝'(작성 2주 내 되돌려지는 코드)이 2021년 대비 2배</b>로 급증. 리팩토링 코드는 25%→10% 미만으로, 복붙·중복 코드 블록은 <b>8배</b> 늘어남. → <b>"빨리 짠 코드 = 곧 다시 고칠 코드"</b></p>
+      </div>
+      <div class="evi" style="margin-top:1.4vh;">
+        <span class="tag">근거 2</span>
+        <p><b>Google DORA 2024</b> — AI 도입이 25% 늘 때마다 <b>서비스 전달 '안정성'은 7.2% 감소</b>. 개발 생산성은 올라도 <b>안정성은 오히려 떨어진다</b> — 정확히 '검수 공백'이 벌어지는 지점입니다.</p>
+      </div>
     </div>
     <div class="foot"><span class="brand"><span class="logo">SPARTA</span> Growth 전략 제안</span><span>이도형</span></div>
   </section>
@@ -227,7 +233,11 @@ b,strong{font-weight:800;color:var(--ink);}
   <!-- 4. 문제 정의 (현업 페인포인트) -->
   <section class="slide">
     <div class="head"><span class="num">02</span><span class="ttl">이건 이론이 아니라, 제가 현업에서 본 문제입니다</span></div>
-    <p style="margin-bottom:2.5vh;">생산성이 오른 만큼, <b>검수 공백에서 나오는 사고 비용</b>도 함께 커지고 있습니다.</p>
+    <p style="margin-bottom:2vh;">생산성이 오른 만큼, <b>검수 공백에서 나오는 사고 비용</b>도 함께 커지고 있습니다.</p>
+    <div style="display:flex;gap:1vw;align-items:flex-start;background:var(--ink);border-radius:14px;padding:1.8vh 1.6vw;margin-bottom:2vh;">
+      <span style="flex:none;font-size:.95vw;font-weight:900;color:var(--ink);background:var(--yellow);border-radius:6px;padding:3px 9px;">현업 관찰</span>
+      <p style="font-size:1.08vw;line-height:1.5;color:#E6E6EC;margin:0;">심지어 <b style="color:#fff;">'코드래빗(CodeRabbit)' 같은 AI 코드 검수 툴을 붙여도 사고는 계속</b> 발생합니다. 툴은 문법·표면 패턴은 걸러내지만, <b style="color:#fff;">비즈니스 맥락과 아키텍처 결함은 판단하지 못하기</b> 때문입니다. 결국 <b style="color:#FF8A9B;">'AI 검수까지 검수할 줄 아는 사람'</b>이 필요합니다.</p>
+    </div>
     <div class="grid g3" style="flex:1;">
       <div class="card"><span class="ic">🏗️</span><h3>구조적 결함</h3><p>AI는 '동작하는 코드'는 잘 만들지만, 아키텍처·확장성·대용량 트래픽 병목은 보지 못합니다.</p></div>
       <div class="card"><span class="ic">🔓</span><h3>보안 취약점</h3><p>그럴듯해 보이지만 검증 안 된 코드. 오히려 작성자는 "안전하다"고 과신합니다.</p></div>
@@ -369,9 +379,33 @@ b,strong{font-weight:800;color:var(--ink);}
     <div class="foot"><span class="brand"><span class="logo">SPARTA</span> Growth 전략 제안</span><span>이도형</span></div>
   </section>
 
+  <!-- 10-2. 기대 효과 (정량) -->
+  <section class="slide" style="background:var(--lav);">
+    <div class="head"><span class="num">08</span><span class="ttl">커리큘럼 도입 시, 이런 정량 변화를 기대합니다</span></div>
+    <p>Phase 2·3(딥 디버깅·실전 사고 시뮬)의 핵심은 결국 숫자로 증명됩니다. 아래는 <b>기존 주니어 대비 목표 지표</b>이며, <b>파일럿 1기에서 직접 검증</b>합니다.</p>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:2.5vh;">
+      <div class="metrics">
+        <div class="metric"><div class="v">+35<span style="font-size:1.6vw;">%p</span></div><div class="l">배포 전 결함 발견율<br/>(검수 훈련 효과)</div></div>
+        <div class="metric"><div class="v">−40<span style="font-size:1.6vw;">%</span></div><div class="l">장애 대응 시간(MTTR)<br/>(사고 시뮬 훈련)</div></div>
+        <div class="metric"><div class="v">½</div><div class="l">코드 처닝(재수정)<br/>(GitClear 2배 급증분 환원)</div></div>
+        <div class="metric"><div class="v">+20<span style="font-size:1.6vw;">%</span></div><div class="l">수료생 취업·연봉 프리미엄<br/>('대체 불가' 포지션)</div></div>
+      </div>
+      <div class="metrics" style="grid-template-columns:repeat(3,1fr);">
+        <div class="metric" style="background:var(--ink);"><div class="v" style="color:var(--yellow);">CAC −30%</div><div class="l" style="color:#C9C9D2;">'AI 코드 진단 테스트'<br/>리드 자석 효과 목표</div></div>
+        <div class="metric" style="background:var(--ink);"><div class="v" style="color:var(--yellow);">CVR 2배</div><div class="l" style="color:#C9C9D2;">오답자 → 수강 전환<br/>(불안·리스크 직결 카피)</div></div>
+        <div class="metric" style="background:var(--ink);"><div class="v" style="color:var(--yellow);">B2B LTV ↑</div><div class="l" style="color:#C9C9D2;">채용연계 계약으로<br/>매출 수명 연장</div></div>
+      </div>
+    </div>
+    <div class="evi">
+      <span class="tag">근거</span>
+      <p>이 목표들은 막연한 기대가 아니라, 앞서 본 <b>'AI 도입 후 처닝 2배(GitClear)·안정성 7.2% 감소(DORA)'</b>라는 정량 갭을 <b>검수 역량으로 되돌리는 수치</b>입니다. 파일럿 1기 데이터로 검증 후 다음 기수 마케팅 소스로 재활용합니다.</p>
+    </div>
+    <div class="foot"><span class="brand"><span class="logo">SPARTA</span> Growth 전략 제안</span><span>이도형</span></div>
+  </section>
+
   <!-- 11. 왜 스파르타 / 왜 나 -->
   <section class="slide" style="background:var(--mint);">
-    <div class="head"><span class="num">08</span><span class="ttl">왜 스파르타클럽이고, 왜 저인가</span></div>
+    <div class="head"><span class="num">09</span><span class="ttl">왜 스파르타클럽이고, 왜 저인가</span></div>
     <div class="why" style="flex:1;">
       <div class="whycard"><span class="ic">🏆</span><h3>이미 1위의 신뢰 자산</h3><p>누적 <b>750K 수강생</b>, 만족도 <b>4.7</b>, 완주 만족 <b>89.4%</b> — 새 카테고리를 '1위 브랜드'가 선언할 때 시장은 가장 빠르게 따라옵니다.</p></div>
       <div class="whycard"><span class="ic">⚡</span><h3>실행력·임팩트 DNA와 정합</h3><p>이 전략은 'OO이 필요하다'가 아니라 <b>"이렇게 획득하고, 전환하고, 매출로 만든다"</b>까지의 액션 플랜입니다.</p></div>
