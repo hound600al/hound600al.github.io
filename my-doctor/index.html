@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>나만의닥터 · Marketing Lead 전략 제안</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+  :root{
+    --blue:#2C6BFF;          /* my-doctor primary cobalt */
+    --blue-600:#1E54E6;
+    --blue-050:#EAF1FF;
+    --blue-100:#D9E5FF;
+    --navy:#161B2B;          /* dark section */
+    --navy-2:#1F2740;
+    --ink:#1C2230;
+    --muted:#5C6577;
+    --muted-2:#8A93A6;
+    --line:#E6ECF6;
+    --bg:#F4F7FC;
+    --white:#FFFFFF;
+    --warn:#FF6A4D;          /* Don't */
+    --warn-bg:#FFF1ED;
+    --go:#0FB36B;            /* Do */
+    --go-bg:#E7F8F0;
+    --amber:#F5A623;
+    --shadow:0 18px 48px -18px rgba(22,27,43,.28);
+    --shadow-sm:0 8px 24px -12px rgba(22,27,43,.22);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:'Pretendard',-apple-system,system-ui,sans-serif;
+    background:#0c1018;color:var(--ink);
+    -webkit-font-smoothing:antialiased;overflow:hidden;
+  }
+  /* ===== Deck frame ===== */
+  .deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+  .stage{
+    position:relative;width:100vw;height:100vh;max-width:177.78vh;max-height:56.25vw;
+    background:var(--white);overflow:hidden;
+  }
+  .slide{
+    position:absolute;inset:0;padding:6.2% 7.2%;
+    display:none;flex-direction:column;
+    animation:fade .5s ease;
+  }
+  .slide.active{display:flex}
+  @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+  /* ===== Typography ===== */
+  .kicker{display:inline-flex;align-items:center;gap:7px;font-size:1.05vw;font-weight:700;
+    color:var(--blue);background:var(--blue-050);padding:.5em 1em;border-radius:100px;letter-spacing:-.01em;width:fit-content}
+  .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--blue)}
+  h1{font-size:4.6vw;font-weight:800;letter-spacing:-.035em;line-height:1.08}
+  h2{font-size:2.95vw;font-weight:800;letter-spacing:-.03em;line-height:1.16;color:var(--ink)}
+  h2 .hl{color:var(--blue)}
+  .sub{font-size:1.32vw;color:var(--muted);font-weight:500;line-height:1.55;letter-spacing:-.01em}
+  .slide-head{margin-bottom:2.6vh}
+  .slide-head h2{margin-top:1.1vh}
+  p{line-height:1.6}
+  b,strong{font-weight:700}
+
+  /* ===== Footer ===== */
+  .foot{position:absolute;left:7.2%;right:7.2%;bottom:3.2vh;display:flex;justify-content:space-between;
+    align-items:center;font-size:.92vw;color:var(--muted-2);font-weight:600;letter-spacing:-.01em}
+  .foot .brand{color:var(--blue);font-weight:800}
+  .pageno{font-variant-numeric:tabular-nums}
+
+  /* ===== Cards / grids ===== */
+  .grid{display:grid;gap:1.4vw}
+  .g2{grid-template-columns:1fr 1fr}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:1.7vw;box-shadow:var(--shadow-sm)}
+  .card.soft{background:var(--bg);box-shadow:none}
+  .card .ci{font-size:1.6vw;margin-bottom:.6vw}
+  .card h3{font-size:1.42vw;font-weight:800;letter-spacing:-.02em;margin-bottom:.5vw;line-height:1.25}
+  .card p{font-size:1.04vw;color:var(--muted);font-weight:500;letter-spacing:-.01em}
+  .tag{display:inline-block;font-size:.86vw;font-weight:700;padding:.28em .7em;border-radius:7px;letter-spacing:-.01em}
+
+  /* ===== Cover ===== */
+  .cover{background:linear-gradient(135deg,#0F1730 0%,#172554 55%,#1E54E6 130%);color:#fff;justify-content:center}
+  .cover .kicker{background:rgba(255,255,255,.12);color:#cfe0ff}
+  .cover .kicker .dot{background:#7aa6ff}
+  .cover h1{color:#fff;margin:2.4vh 0}
+  .cover h1 .hl{background:linear-gradient(90deg,#8fb6ff,#cfe0ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .cover .lead{font-size:1.5vw;color:#b9c6e6;font-weight:500;line-height:1.6;max-width:62%}
+  .cover .meta{margin-top:5vh;display:flex;gap:2.4vw;font-size:1.02vw;color:#8ea2cf;font-weight:600}
+  .cover .meta b{color:#fff;font-weight:700;display:block;font-size:1.18vw;margin-top:.3vw}
+  .glow{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5}
+  .glow.a{width:30vw;height:30vw;background:#2C6BFF;right:-8vw;top:-8vw}
+  .glow.b{width:22vw;height:22vw;background:#1E54E6;right:14vw;bottom:-10vw;opacity:.35}
+
+  /* ===== Stat row ===== */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4vw;margin-top:.6vh}
+  .stat{background:var(--bg);border-radius:16px;padding:1.5vw 1.6vw;border:1px solid var(--line)}
+  .stat .n{font-size:2.7vw;font-weight:800;letter-spacing:-.03em;color:var(--blue);line-height:1;font-variant-numeric:tabular-nums}
+  .stat .n.dark{color:var(--ink)}
+  .stat .l{font-size:1vw;color:var(--muted);font-weight:600;margin-top:.7vw;line-height:1.4}
+
+  /* ===== List items ===== */
+  .rows{display:flex;flex-direction:column;gap:1.05vw}
+  .row{display:flex;gap:1.1vw;align-items:flex-start;background:var(--bg);border:1px solid var(--line);
+    border-radius:14px;padding:1.25vw 1.5vw}
+  .row .ix{flex:none;width:2.1vw;height:2.1vw;border-radius:9px;display:grid;place-items:center;
+    font-weight:800;font-size:1.05vw;color:#fff;background:var(--blue)}
+  .row .tx h4{font-size:1.24vw;font-weight:800;letter-spacing:-.02em;margin-bottom:.25vw}
+  .row .tx p{font-size:1.02vw;color:var(--muted);font-weight:500}
+
+  /* Don't / Do split */
+  .dd{display:grid;grid-template-columns:1fr 1fr;gap:1.6vw;flex:1;min-height:0}
+  .panel{border-radius:20px;padding:1.9vw 2.4vw;display:flex;flex-direction:column;justify-content:center}
+  .panel .pitem{margin-bottom:1.7vw}
+  .panel.dont{background:var(--warn-bg);border:1px solid #ffd9cf}
+  .panel.do{background:var(--go-bg);border:1px solid #c3eed8}
+  .panel .ph{display:flex;align-items:center;gap:.7vw;font-size:1.5vw;font-weight:800;letter-spacing:-.02em;margin-bottom:1.2vw}
+  .panel.dont .ph{color:#D6452B}
+  .panel.do .ph{color:#0a8a52}
+  .panel .ph .badge{width:2.2vw;height:2.2vw;border-radius:10px;display:grid;place-items:center;font-size:1.3vw}
+  .panel.dont .badge{background:var(--warn);color:#fff}
+  .panel.do .badge{background:var(--go);color:#fff}
+  .pitem{display:flex;gap:.75vw;align-items:flex-start;margin-bottom:1.05vw}
+  .pitem:last-child{margin-bottom:0}
+  .pitem .mk{flex:none;font-weight:800;font-size:1.1vw;line-height:1.5}
+  .panel.dont .mk{color:var(--warn)}
+  .panel.do .mk{color:var(--go)}
+  .pitem .pt{font-size:1.07vw;line-height:1.5;font-weight:600;letter-spacing:-.01em}
+  .pitem .pt span{display:block;font-size:.95vw;color:var(--muted);font-weight:500;margin-top:.2vw}
+
+  /* Timeline */
+  .tl{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5vw;flex:1;align-content:stretch}
+  .phase{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:1.7vw;display:flex;flex-direction:column}
+  .phase .ph-top{display:flex;align-items:baseline;gap:.6vw;margin-bottom:1vw}
+  .phase .wk{font-size:.92vw;font-weight:800;color:#fff;background:var(--blue);padding:.35em .8em;border-radius:8px}
+  .phase h3{font-size:1.4vw;font-weight:800;letter-spacing:-.02em}
+  .phase ul{list-style:none;display:flex;flex-direction:column;gap:.7vw}
+  .phase li{font-size:1.0vw;color:var(--muted);font-weight:500;line-height:1.45;padding-left:1.1vw;position:relative}
+  .phase li:before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--blue)}
+  .phase .goal{margin-top:auto;padding-top:1vw;font-size:.98vw;font-weight:700;color:var(--blue);border-top:1px dashed var(--line)}
+
+  /* Insight callout */
+  .callout{background:var(--navy);color:#fff;border-radius:20px;padding:2.2vw 2.4vw;display:flex;gap:1.6vw;align-items:center}
+  .callout .big{font-size:3.4vw;font-weight:800;color:#7aa6ff;line-height:1;flex:none}
+  .callout p{font-size:1.4vw;font-weight:600;line-height:1.5;letter-spacing:-.01em}
+  .callout p b{color:#a9c5ff}
+
+  .twocol{display:grid;grid-template-columns:1.05fr .95fr;gap:2vw;flex:1;min-height:0;align-items:center}
+
+  /* funnel diagram (slide 6/9) */
+  .flow{display:flex;align-items:stretch;gap:.9vw;margin-top:1vh}
+  .flow .node{flex:1;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:1.3vw;text-align:center;display:flex;flex-direction:column;justify-content:center}
+  .flow .node .nt{font-size:1.18vw;font-weight:800;letter-spacing:-.02em}
+  .flow .node .nd{font-size:.92vw;color:var(--muted);font-weight:500;margin-top:.4vw;line-height:1.4}
+  .flow .node.hot{background:var(--blue-050);border-color:var(--blue-100)}
+  .flow .node.hot .nt{color:var(--blue)}
+  .flow .arr{flex:none;display:grid;place-items:center;color:var(--muted-2);font-size:1.6vw;font-weight:800}
+
+  .pill-list{display:flex;flex-wrap:wrap;gap:.7vw;margin-top:1.4vh}
+  .pill{font-size:1.02vw;font-weight:700;color:var(--blue-600);background:var(--blue-050);border:1px solid var(--blue-100);padding:.55em 1em;border-radius:100px;letter-spacing:-.01em}
+
+  .note{font-size:.84vw;color:var(--muted-2);font-weight:500;margin-top:1.2vh;line-height:1.5}
+
+  /* NSM metric board */
+  .nsm{background:linear-gradient(135deg,#0F1730,#1E54E6);color:#fff;border-radius:20px;padding:2vw 2.3vw;display:flex;align-items:center;gap:2vw;margin-bottom:1.6vh}
+  .nsm .lab{font-size:1.05vw;color:#aac3ff;font-weight:700}
+  .nsm .val{font-size:2.0vw;font-weight:800;letter-spacing:-.02em;line-height:1.2}
+  .metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2vw}
+  .metric{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:1.4vw}
+  .metric .mh{font-size:1.06vw;font-weight:800;letter-spacing:-.02em;margin-bottom:.45vw}
+  .metric .md{font-size:.92vw;color:var(--muted);font-weight:500;line-height:1.45}
+  .metric .mk2{font-size:.82vw;font-weight:700;color:var(--blue);margin-top:.6vw}
+
+  /* closing */
+  .closing{background:linear-gradient(135deg,#0F1730 0%,#172554 60%,#1E54E6 130%);color:#fff;justify-content:center}
+  .closing h2{color:#fff;font-size:3.1vw}
+  .closing .lead{font-size:1.45vw;color:#c2d2f2;font-weight:500;line-height:1.65;margin-top:2.4vh;max-width:74%}
+  .closing .sign{margin-top:5vh;font-size:1.1vw;color:#8ea2cf;font-weight:600}
+  .closing .sign b{color:#fff}
+
+  /* ===== Nav ===== */
+  .nav{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;
+    background:rgba(15,19,30,.78);backdrop-filter:blur(10px);padding:9px 16px;border-radius:100px;z-index:50}
+  .nav button{background:none;border:none;color:#fff;font-size:15px;cursor:pointer;opacity:.85;display:grid;place-items:center;padding:2px 4px}
+  .nav button:hover{opacity:1}
+  .nav .ind{color:#fff;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:.02em;min-width:46px;text-align:center}
+  .progress{position:fixed;top:0;left:0;height:3px;background:var(--blue);z-index:60;transition:width .4s ease}
+  .hint{position:fixed;bottom:22px;right:22px;font-size:12px;color:rgba(255,255,255,.5);z-index:50}
+  @media(max-width:760px){.hint{display:none}}
+</style>
+</head>
+<body>
+<div class="progress" id="bar"></div>
+<div class="deck">
+  <div class="stage">
+
+    <!-- 1. COVER -->
+    <section class="slide active cover">
+      <span class="glow a"></span><span class="glow b"></span>
+      <div style="position:relative;z-index:2">
+        <span class="kicker"><span class="dot"></span>Marketing Lead 지원 · 전략 제안</span>
+        <h1>다음 성장은 <span class="hl">'사오는 유저'가 아니라<br>'찾아오는 신뢰'</span>에서 나옵니다</h1>
+        <p class="lead">규제 전환기를 맞은 비대면 진료 시장에서, 나만의닥터가 CAC 의존과 단발성 유입을 넘어 '신뢰 기반 자연 유입 + 리텐션' 구조로 도약하기 위한 마케팅 전략.</p>
+        <div class="meta">
+          <div>대상<b>나만의닥터 (메라키플레이스)</b></div>
+          <div>포지션<b>Marketing Lead</b></div>
+          <div>구성<b>진단 → 돌파구 → 실행 14p</b></div>
+        </div>
+      </div>
+      <div class="foot"><span class="brand">나만의닥터 · Growth Strategy</span><span class="pageno">01 / 14</span></div>
+    </section>
+
+    <!-- 2. 현 위치 진단 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>진단 1 · 우리가 선 자리</span>
+        <h2>지표는 좋습니다. 그런데 <span class="hl">'2등의 방식'</span>으로 1등을 이길 수 있나요?</h2>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="n">MAU 100만<span style="font-size:1.3vw">+</span></div><div class="l">월간 활성 사용자 돌파 · 매출 약 7배 성장 · BEP 근접</div></div>
+        <div class="stat"><div class="n dark">DAU 1위</div><div class="l">만보기·출석체크 등 게이미피케이션으로 방문 빈도 선도</div></div>
+        <div class="stat"><div class="n dark">MAU 2위</div><div class="l">다운로드·MAU는 1위 닥터나우의 약 절반 수준 (업계 추정)</div></div>
+      </div>
+      <div class="callout" style="margin-top:3vh">
+        <div class="big">＂</div>
+        <p>닥터나우는 <b>'진료 1위 브랜드'</b>로 굳어졌고, 우리는 <b>'리워드로 자주 여는 앱'</b>으로 인식됩니다. 방문은 많지만, 그 방문이 <b>의료 신뢰와 매출</b>로 이어지는 비율이 다음 과제입니다.</p>
+      </div>
+      <p class="note">출처: Wanted 채용공고(MAU·매출·BEP), 테크M·메디칼타임즈·나무위키(점유율·DAU 게이미피케이션) — 공개자료 기반 추정으로, 내부 지표로 보정 필요.</p>
+      <div class="foot"><span class="brand">나만의닥터 · Growth Strategy</span><span class="pageno">02 / 14</span></div>
+    </section>
+
+    <!-- 3. 성장엔진의 위기 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>진단 2 · 성장 엔진의 구조적 위기</span>
+        <h2>지금까지의 3개 성장 엔진이 <span class="hl">동시에 식어가고</span> 있습니다</h2>
+      </div>
+      <div class="rows" style="flex:1;justify-content:center">
+        <div class="row"><div class="ix">1</div><div class="tx"><h4>퍼포먼스 CAC 상승 — '돈으로 산 성장'의 한계</h4><p>네이버·구글·메타 입찰 경쟁 심화로 신규 획득 단가 상승. 채용공고가 직접 "CAC를 낮추고 스스로 찾아오는 구조 설계"를 1순위 과제로 명시 — 유료 매체 의존이 이미 부담.</p></div></div>
+        <div class="row"><div class="ix">2</div><div class="tx"><h4>'마운자로·위고비 비대면 처방' 유입로의 규제 폐쇄</h4><p>2024.12 비만치료제 비대면 처방 금지 → 2026.12 제도화로 재진 중심·오남용우려약 처방 시스템상 제한. 검색 트래픽을 곧장 비대면 처방 매출로 바꾸던 funnel이 닫힘.</p></div></div>
+        <div class="row"><div class="ix">3</div><div class="tx"><h4>캐시 미끼로 부풀린 '허수 DAU'</h4><p>닥터캐시·만보기 보상으로 끌어온 방문 중 상당수가 진료 전환 없이 이탈. 빈도 지표는 높지만 LTV·의료 신뢰로 환산되지 않는 구조적 누수.</p></div></div>
+      </div>
+      <p class="note">출처: 보건복지부 의료법 개정안(2025.12 통과, 2026.12 시행)·경향신문·메디칼타임즈(비만약 규제), Wanted 채용공고(CAC 과제).</p>
+      <div class="foot"><span class="brand">나만의닥터 · Growth Strategy</span><span class="pageno">03 / 14</span></div>
+    </section>
+
+    <!-- 4. 돌파구 정의 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>돌파구 정의</span>
+        <h2>돌파구는 '더 싸게 더 많이 사오기'가 아니라<br><span class="hl">'획득 의존을 끊는 구조'</span> 입니다</h2>
+      </div>
+      <div class="g2 grid" style="flex:1;align-content:center">
+        <div class="card soft" style="border-left:4px solid var(--warn)">
+          <span class="tag" style="background:var(--warn-bg);color:#D6452B">FROM · 지금</span>
+          <h3 style="margin-top:1vw">유료 매체로 사온 단발성 트래픽</h3>
+          <p>퍼포먼스 + 비급여 처방 검색 유입 + 캐시 보상.<br>규제·입찰가에 성장이 휘둘리고, 진료 한 번 받고 떠나는 구조.</p>
+        </div>
+        <div class="card" style="border-left:4px solid var(--blue)">
+          <span class="tag" style="background:var(--blue-050);color:var(--blue-600)">TO · 지향</span>
+          <h3 style="margin-top:1vw">신뢰가 만드는 자연 유입 + 재방문</h3>
+          <p>'의사가 만든 의료 서비스'라는 신뢰 자산으로 오가닉 유입을 키우고, 만성질환·재진으로 한 유저를 오래 머물게 하는 구조.</p>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="big">≠</div>
+        <p>핵심 전환: <b>CAC를 낮추는 일 = 매체 단가 후려치기</b>가 아니라, <b>오가닉 비중과 재방문율을 올려 'CAC를 낼 필요가 없는 유저'를 늘리는 일</b>.</p>
+      </div>
+      <div class="foot"><span class="brand">나만의닥터 · Growth Strategy</span><span class="pageno">04 / 14</span></div>
+    </section>
+
+    <!-- 5. 규제 인사이트 = 기회 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>시장 인사이트 · 2026.12 제도화</span>
+        <h2>제도화는 위기가 아니라, <span class="hl">'비대면↔대면 연결' 강자에게 열리는 문</span></h2>
+      </div>
+      <div class="twocol">
+        <div class="rows">
+          <div class="row"><div class="ix" style="background:var(--navy)">!</div><div class="tx"><h4>제도화 4대 원칙</h4><p>① 대면진료 원칙 · 비대면은 보완 ② 의원급 중심 ③ <b>재진환자 중심</b> ④ 전담기관 금지 · 마약류 등 처방 제한.</p></div></div>
+          <div class="row"><div class="ix">→</div><div class="tx"><h4>해석 1 · '재진 중심'은 리텐션 게임</h4><p>한 번 온 환자를 대면으로 연결하고 다시 부르는 곳이 이긴다. 단발 비대면 처방 의존 플레이어는 불리.</p></div></div>
+          <div class="row"><div class="ix">→</div><div class="tx"><h4>해석 2 · 회사 방향과 정확히 일치</h4><p>채용공고의 "비대면↔대면 연결 통합 플랫폼 / PHR 헬스케어"는 규제가 강제하는 방향. 먼저 잘하면 규제가 해자(垓子)가 된다.</p></div></div>
+        </div>
+        <div>
+          <div class="callout" style="flex-direction:column;align-items:flex-start;gap:1vw">
+            <p style="font-size:1.5vw">＂규제를 피하려 하지 말고, <b>규제가 가리키는 방향으로 먼저 달려</b> 신뢰 브랜드를 선점한다.＂</p>
+            <p style="font-size:1.05vw;color:#8ea2cf;font-weight:500">— 비만약 검색으로 들어온 유저를 '안전·정직한 안내'로 받아내는 곳이, 제도화 이후 표준이 됩니다.</p>
+          </div>
+        </div>
+      </div>
+      <p class="note">출처: 보건복지부 보도자료(의료법 개정안 본회의 통과, 2025.12), 데일리팜·정책브리핑(2026.12 시행), 한국의약통신(개정안 vs 시범사업).</p>
+      <div class="foot"><span class="brand">나만의닥터 · Growth Strategy</span><span class="pageno">05 / 14</span></div>
+    </section>
+
+    <!-- 6. 마운자로 검색어 해부 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>핵심 자산 분석 · '나만의닥터 마운자로'</span>
+        <h2>'마운자로' 연관 검색어는 <span class="hl">최강의 오가닉 자산이자, 가장 위험한 양날의 검</span></h2>
+      </div>
+      <div class="flow">
+        <div class="node hot"><div class="nt">'마운자로 최저가'<br>검색 폭증</div><div class="nd">비만약 수요 + 가격 민감 유저의 강력한 오가닉 트래픽</div></div>
+        <div class="arr">→</div>
+        <div class="node"><div class="nt">나만의닥터<br>'비급여 최저가 비교'</div><div class="nd">전국 최저가 비교 = 검색 의도와 완벽히 매칭되는 진입점</div></div>
+        <div class="arr">→</div>
+        <div class="node hot"><div class="nt">선택지 분기</div><div class="nd">① 안전한 대면 연결 → 신뢰·재방문<br>② 처방 미끼 유입 → 규제·이탈</div></div>
+      </div>
+      <div class="g2 grid" style="margin-top:2.4vh">
+        <div class="card" style="border-top:3px solid var(--go)"><div class="ci">💎</div><h3>자산으로 쓰면</h3><p>'정직한 가격·안전한 안내'의 대명사가 되어 CAC 없이 유입되는 거대한 깔때기 + 브랜드 신뢰의 원천.</p></div>
+        <div class="card" style="border-top:3px solid var(--warn)"><div class="ci">⚠️</div><h3>미끼로 쓰면</h3><p>규제 직격탄 + '다이어트약 앱' 낙인 + 처방만 받고 떠나는 단발 유저. 단기 매출, 장기 자살골.</p></div>
+      </div>
+      <p class="note">참고: 사용자 제공 커뮤니티(네이버 카페) '나만의닥터 마운자로' 연관 검색 사례 + 닥터나우 '마운자로 성지/최저가' 콘텐츠 경쟁 정황.</p>
+      <div class="foot"><span class="brand">나만의닥터 · Growth Strategy</span><span class="pageno">06 / 14</span></div>
+    </section>
+
+    <!-- 7. 지양 (DON'T) -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>지양해야 할 액션 · DON'T</span>
+        <h2>이 4가지는 단기 숫자를 올리고 <span class="hl">중기 성장을 갉아먹습니다</span></h2>
+      </div>
+      <div class="panel dont" style="flex:1">
+        <div class="pitem"><span class="mk">✕</span><div class="pt">'비대면 비만약 처방'을 핵심 훅으로 한 어뷰징성 유입<span>2026.12 제도화로 funnel이 닫힘 — 규제 리스크를 마케팅 KPI에 묶는 자충수.</span></div></div>
+        <div class="pitem"><span class="mk">✕</span><div class="pt">캐시·리워드 미끼로 '허수 DAU' 더 부풀리기<span>방문 빈도는 오르지만 진료 전환·LTV로 환산 안 됨. 보상비만 늘고 단가 왜곡.</span></div></div>
+        <div class="pitem"><span class="mk">✕</span><div class="pt">닥터나우와 동일 키워드로 퍼포먼스 정면 출혈 경쟁<span>예산 2배인 1등과 같은 운동장에서 입찰가 싸움 = 지는 게임. CAC만 상승.</span></div></div>
+        <div class="pitem"><span class="mk">✕</span><div class="pt">'전국민·모든 진료' 식의 무차별 메시지로 브랜드 희석<span>1등이 선점한 포지션 추격이 아니라, 우리만의 각(角)이 필요.</span></div></div>
+      </div>
+      <div class="foot"><span class="brand">나만의닥터 · Growth Strategy</span><span class="pageno">07 / 14</span></div>
+    </section>
+
+    <!-- 8. 전략 3축 (DO 개요) -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>가속해야 할 액션 · 전략 3축</span>
+        <h2>'신뢰로 끌어오고 → 콘텐츠로 못 떠나게 → 리텐션으로 키운다'</h2>
+      </div>
+      <div class="g3 grid" style="flex:1;align-content:center">
+        <div class="card" style="border-top:4px solid var(--blue)"><span class="tag" style="background:var(--blue-050);color:var(--blue-600)">전략 1 · 신뢰 전환</span><h3 style="margin-top:1vw">마운자로 트래픽을<br>'안전·최저가·대면연결'로</h3><p>규제에 순응하는 정직한 안내로 검색 자산을 신뢰 브랜드로 전환.</p></div>
+        <div class="card" style="border-top:4px solid var(--blue)"><span class="tag" style="background:var(--blue-050);color:var(--blue-600)">전략 2 · 오가닉 엔진</span><h3 style="margin-top:1vw">온드미디어·콘텐츠로<br>CAC 의존 탈피</h3><p>'의사가 만든' 신뢰형 콘텐츠 SEO·CRM으로 유료 매체 비중 축소.</p></div>
+        <div class="card" style="border-top:4px solid var(--blue)"><span class="tag" style="background:var(--blue-050);color:var(--blue-600)">전략 3 · 리텐션 전환</span><h3 style="margin-top:1vw">게이미피케이션 DAU를<br>'재진·만성질환 관리'로</h3><p>허수 방문을 의료 행동으로 연결 — 제도화(재진중심)와 정합.</p></div>
+      </div>
+      <div class="callout"><div class="big">→</div><p>세 축은 모두 <b>'CAC↓ · 오가닉↑ · LTV↑'</b> 한 방향을 가리키며, 회사가 선언한 <b>'PHR 기반 통합 헬스케어'</b> 비전으로 수렴합니다.</p></div>
+      <div class="foot"><span class="brand">나만의닥터 · Growth Strategy</span><span class="pageno">08 / 14</span></div>
+    </section>
+
+    <!-- 9. 전략 1 상세 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>전략 1 · 신뢰 전환</span>
+        <h2>마운자로 검색 트래픽을 <span class="hl">'정직한 안내'로 받아 신뢰로 환전</span>한다</h2>
+      </div>
+      <div class="twocol">
+        <div class="rows">
+          <div class="row"><div class="ix">A</div><div class="tx"><h4>'최저가 비교 + 안전 가이드' 콘텐츠 허브</h4><p>"마운자로 안전하게 맞는 법 / 부작용 / 정직한 가격" — 처방 유도가 아닌 정보 신뢰로 SEO 1면 선점.</p></div></div>
+          <div class="row"><div class="ix">B</div><div class="tx"><h4>비대면→대면 연결 동선 설계</h4><p>규제로 비대면 불가 시 '근처 대면 병원·약국 최저가'로 자연 연결 = 이탈 대신 전환. 제도화 정합.</p></div></div>
+          <div class="row"><div class="ix">C</div><div class="tx"><h4>'의사가 만든' 신뢰 시그널 전면화</h4><p>오남용 경고·자가진단을 브랜드 보이스로. 경쟁사가 '성지·최저가'를 외칠 때 우리는 '안전'을 선점.</p></div></div>
+        </div>
+        <div>
+          <div class="card soft"><h3 style="color:var(--blue)">왜 이깁니까?</h3><p style="margin-top:.8vw">닥터나우도 '마운자로 최저가' 콘텐츠로 경쟁 중. 가격은 따라잡혀도 <b>'안전·정직'이라는 신뢰 포지션</b>은 의료 브랜드에서 가장 강력한 해자입니다. 규제가 셀수록 이 포지션의 가치는 올라갑니다.</p></div>
+          <div class="pill-list"><span class="pill">규제 정합</span><span class="pill">SEO 선점</span><span class="pill">대면 연결 전환</span><span class="pill">신뢰 = 해자</span></div>
+        </div>
+      </div>
+      <div class="foot"><span class="brand">나만의닥터 · Growth Strategy</span><span class="pageno">09 / 14</span></div>
+    </section>
+
+    <!-- 10. 전략 2 상세 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>전략 2 · 오가닉 엔진</span>
+        <h2>유료 매체가 아니라 <span class="hl">'콘텐츠와 CRM'이 신규를 데려오게</span> 한다</h2>
+      </div>
+      <div class="g3 grid" style="flex:1;align-content:center">
+        <div class="card"><div class="ci">🔍</div><h3>질환 콘텐츠 SEO</h3><p>이미 운영 중인 '나에게 딱 맞는 건강 꿀팁' 허브를 증상·질환 롱테일 키워드로 확장 → 검색 진입을 무료 신규로.</p></div>
+        <div class="card"><div class="ci">▶️</div><h3>SNS·숏폼 시리즈</h3><p>유튜브·인스타·커뮤니티에 '의사가 답하는' 콘텐츠 시리즈·브랜드 캠페인. 신뢰 콘텐츠로 인지+자연 유입.</p></div>
+        <div class="card"><div class="ci">🔁</div><h3>CRM·앱푸시 재활성화</h3><p>닥터캐시로 모인 대규모 유저 베이스에 질환 맞춤 알림·재진 리마인드 → '신규 구매' 대신 '보유자산 깨우기'.</p></div>
+      </div>
+      <div class="callout"><div class="big">%</div><p>목표는 명확한 한 줄: <b>전체 신규 유입 중 오가닉(논페이드) 비중 단계적 상향</b>. 이것이 곧 블렌디드 CAC 하락으로 직결됩니다.</p></div>
+      <p class="note">근거: 채용공고의 "온드미디어(블로그·SNS·앱내·CRM)로 유료 매체 의존도 감소" + my-doctor.io 내 healthLab 콘텐츠 자산 기확보.</p>
+      <div class="foot"><span class="brand">나만의닥터 · Growth Strategy</span><span class="pageno">10 / 14</span></div>
+    </section>
+
+    <!-- 11. 전략 3 상세 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>전략 3 · 리텐션 전환</span>
+        <h2>1등인 DAU를 <span class="hl">'허수'에서 '의료 LTV'로</span> 바꾼다</h2>
+      </div>
+      <div class="flow">
+        <div class="node"><div class="nt">현재</div><div class="nd">만보기·출석으로 캐시 적립<br>→ 진료 전환 없이 이탈</div></div>
+        <div class="arr">→</div>
+        <div class="node hot"><div class="nt">연결 고리 설계</div><div class="nd">건강기록(혈압·혈당·만보기)을<br>질환 시그널로 전환</div></div>
+        <div class="arr">→</div>
+        <div class="node hot"><div class="nt">목표</div><div class="nd">만성질환 관리·재진 리마인드<br>→ 반복 진료 = LTV·재진</div></div>
+      </div>
+      <div class="g2 grid" style="margin-top:2.4vh">
+        <div class="card"><h3 style="color:var(--blue)">실행 예시</h3><p style="margin-top:.6vw">혈압·혈당 기록 유저에게 "이번 달 혈압 관리 리포트 + 재진 제안" → 게임 보상을 '건강 행동 보상'으로 재설계. 캐시 ROI를 진료 전환으로 측정.</p></div>
+        <div class="card"><h3 style="color:var(--blue)">왜 지금?</h3><p style="margin-top:.6vw">제도화가 '재진 중심'을 강제 → 재진 유저 풀을 미리 쌓아둔 곳이 절대 유리. PHR 비전의 첫 실현이자 닥터나우와의 차별화 축.</p></div>
+      </div>
+      <div class="foot"><span class="brand">나만의닥터 · Growth Strategy</span><span class="pageno">11 / 14</span></div>
+    </section>
+
+    <!-- 12. 90일 로드맵 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>실행 로드맵 · First 90 Days</span>
+        <h2>'빠른 실험과 반복'으로 <span class="hl">90일 안에 신호를 만든다</span></h2>
+      </div>
+      <div class="tl">
+        <div class="phase"><div class="ph-top"><span class="wk">0–30d</span><h3>진단·정렬</h3></div>
+          <ul><li>채널별 CAC·오가닉 비중·진료전환율 분해 (퍼널 가시화)</li><li>'마운자로/비만약' 검색·랜딩 데이터 감사</li><li>퀵윈 실험 2종: 안전가이드 LP / 재진 리마인드 푸시</li></ul>
+          <div class="goal">→ 새는 곳·기회 키워드 특정</div></div>
+        <div class="phase"><div class="ph-top"><span class="wk">30–60d</span><h3>엔진 가동</h3></div>
+          <ul><li>신뢰형 콘텐츠 허브 + 숏폼 시리즈 런칭</li><li>비대면→대면 연결 동선 A/B 테스트</li><li>닥터나우 출혈 키워드에서 롱테일·오가닉으로 예산 이동</li></ul>
+          <div class="goal">→ 오가닉 유입·재진 전환 첫 상승</div></div>
+        <div class="phase"><div class="ph-top"><span class="wk">60–90d</span><h3>증명·확장</h3></div>
+          <ul><li>승리한 실험 스케일업 · 실패 정리</li><li>건강기록→재진 리텐션 루프 정식화</li><li>블렌디드 CAC·오가닉 비중 개선치 리포트</li></ul>
+          <div class="goal">→ 반복 가능한 성장 공식 확보</div></div>
+      </div>
+      <div class="foot"><span class="brand">나만의닥터 · Growth Strategy</span><span class="pageno">12 / 14</span></div>
+    </section>
+
+    <!-- 13. 측정 체계 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>측정 체계 · 무엇으로 판단하나</span>
+        <h2>방문 수가 아니라 <span class="hl">'신뢰가 매출로 환전되는 비율'</span>을 봅니다</h2>
+      </div>
+      <div class="nsm">
+        <div><div class="lab">North Star Metric</div><div class="val">진료로 전환되는 재방문 유저 수 (Retained Active Patient)</div></div>
+      </div>
+      <div class="metric-grid">
+        <div class="metric"><div class="mh">블렌디드 CAC</div><div class="md">유료 의존 탈피의 직접 증거</div><div class="mk2">↓ 하락</div></div>
+        <div class="metric"><div class="mh">오가닉 신규 비중</div><div class="md">논페이드 유입 / 전체 신규</div><div class="mk2">↑ 상향</div></div>
+        <div class="metric"><div class="mh">방문→진료 전환율</div><div class="md">허수 DAU 정화의 핵심</div><div class="mk2">↑ 상향</div></div>
+        <div class="metric"><div class="mh">재진·재방문율</div><div class="md">제도화 정합 · LTV 선행지표</div><div class="mk2">↑ 상향</div></div>
+      </div>
+      <div class="callout" style="margin-top:2.4vh"><div class="big">＝</div><p>이 4개 지표가 같이 움직이면, <b>'사오는 성장'이 '찾아오는 성장'으로 바뀌고 있다</b>는 뜻입니다. 그것이 이 전략의 성공 정의입니다.</p></div>
+      <div class="foot"><span class="brand">나만의닥터 · Growth Strategy</span><span class="pageno">13 / 14</span></div>
+    </section>
+
+    <!-- 14. 클로징 -->
+    <section class="slide closing">
+      <span class="glow a"></span>
+      <div style="position:relative;z-index:2">
+        <span class="kicker" style="background:rgba(255,255,255,.12);color:#cfe0ff"><span class="dot" style="background:#7aa6ff"></span>맺음말</span>
+        <h2>규제가 강해질수록,<br><span style="color:#a9c5ff">'정직한 의료 브랜드'의 값은 올라갑니다</span></h2>
+        <p class="lead">닥터나우를 입찰가로 따라잡는 대신, 나만의닥터는 <b style="color:#fff">'안전·정직·연결'</b>이라는 규제가 가리키는 방향으로 먼저 달려, 사오지 않아도 찾아오는 신뢰 브랜드가 되어야 합니다. 그 전환을 마케팅 리드로서 데이터로 증명하고 싶습니다.</p>
+        <div class="sign">제안 · Marketing Lead 지원자 &nbsp;|&nbsp; <b>이도형</b> &nbsp;·&nbsp; 5년차 그로스 마케터</div>
+      </div>
+      <div class="foot"><span class="brand">나만의닥터 · Growth Strategy</span><span class="pageno">14 / 14</span></div>
+    </section>
+
+  </div>
+</div>
+
+<div class="nav">
+  <button id="prev" aria-label="이전">◀</button>
+  <span class="ind"><span id="cur">1</span> / 14</span>
+  <button id="next" aria-label="다음">▶</button>
+</div>
+<div class="hint">← → 또는 클릭으로 이동 · F 전체화면</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  const bar=document.getElementById('bar');
+  const cur=document.getElementById('cur');
+  let i=0;
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+    bar.style.width=((i+1)/slides.length*100)+'%';
+    cur.textContent=i+1;
+  }
+  document.getElementById('next').onclick=()=>show(i+1);
+  document.getElementById('prev').onclick=()=>show(i-1);
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' ')show(i+1);
+    else if(e.key==='ArrowLeft'||e.key==='PageUp')show(i-1);
+    else if(e.key==='Home')show(0);
+    else if(e.key==='End')show(slides.length-1);
+    else if(e.key==='f'||e.key==='F'){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen();}
+  });
+  // click right/left half of stage to navigate (ignore nav bar)
+  document.querySelector('.stage').addEventListener('click',e=>{
+    if(e.target.closest('.nav'))return;
+    const x=e.clientX/window.innerWidth;
+    if(x>0.5)show(i+1);else show(i-1);
+  });
+  show(0);
+</script>
+</body>
+</html>
