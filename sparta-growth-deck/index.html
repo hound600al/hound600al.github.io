@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI 검수 전문가 양성 전략 | 스파르타클럽 Growth Marketer 면접 — 이도형</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+:root{
+  --red:#E8344E;        /* 스파르타 시그니처 레드 */
+  --red-dark:#C7203A;
+  --ink:#17171C;        /* 잉크 블랙 */
+  --gray:#5B5B66;
+  --line:#ECECF1;
+  --bg:#FFFFFF;
+  --pink:#FDE8EC;       /* 파스텔 핑크 섹션 */
+  --mint:#DAF4EF;       /* 민트 섹션 */
+  --lav:#ECE9FB;        /* 라벤더 섹션 */
+  --yellow:#FFE45C;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;}
+html,body{height:100%;}
+body{
+  font-family:'Pretendard',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:#0E0E12;color:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+#deck{width:100vw;height:100vh;position:relative;}
+.slide{
+  position:absolute;inset:0;
+  display:none;
+  flex-direction:column;
+  padding:6.2vh 7vw;
+  background:var(--bg);
+  overflow:hidden;
+}
+.slide.active{display:flex;animation:fade .45s ease;}
+@keyframes fade{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+
+/* 공통 타이포 */
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:1.05vw;font-weight:800;letter-spacing:.04em;color:var(--red);text-transform:uppercase;}
+.kicker .dot{width:9px;height:9px;border-radius:50%;background:var(--red);}
+h1{font-size:4.6vw;font-weight:900;line-height:1.12;letter-spacing:-.02em;}
+h2{font-size:3vw;font-weight:900;line-height:1.18;letter-spacing:-.02em;margin-top:1.4vh;}
+h3{font-size:1.5vw;font-weight:800;letter-spacing:-.01em;}
+p{font-size:1.32vw;font-weight:500;line-height:1.6;color:var(--gray);}
+.hl{color:var(--red);}
+.ink{color:var(--ink);}
+.under{background:linear-gradient(transparent 62%, var(--yellow) 62%);padding:0 .1em;}
+b,strong{font-weight:800;color:var(--ink);}
+
+/* 슬라이드 헤더 라인 */
+.head{display:flex;align-items:baseline;gap:14px;margin-bottom:3vh;}
+.head .num{font-size:1.05vw;font-weight:900;color:var(--red);}
+.head .ttl{font-size:2.3vw;font-weight:900;letter-spacing:-.02em;}
+
+/* 근거 칩 */
+.evi{
+  margin-top:1.6vh;display:flex;gap:10px;align-items:flex-start;
+  background:#FBFBFD;border:1px solid var(--line);border-left:4px solid var(--red);
+  border-radius:12px;padding:1.3vh 1.3vw;
+}
+.evi .tag{flex:none;font-size:.95vw;font-weight:900;color:#fff;background:var(--red);border-radius:6px;padding:3px 9px;letter-spacing:.02em;}
+.evi p{font-size:1.02vw;line-height:1.5;color:var(--gray);margin:0;}
+.evi p b{color:var(--ink);}
+
+/* 그리드 카드 */
+.grid{display:grid;gap:1.4vw;}
+.g2{grid-template-columns:1fr 1fr;}
+.g3{grid-template-columns:1fr 1fr 1fr;}
+.card{background:#FBFBFD;border:1px solid var(--line);border-radius:18px;padding:2.4vh 1.8vw;display:flex;flex-direction:column;gap:1vh;}
+.card .ic{font-size:2vw;}
+.card h3{font-size:1.45vw;}
+.card p{font-size:1.05vw;line-height:1.5;}
+
+/* footer */
+.foot{position:absolute;left:7vw;right:7vw;bottom:3.2vh;display:flex;justify-content:space-between;align-items:center;font-size:.92vw;color:#A6A6B2;font-weight:600;}
+.foot .brand{display:flex;align-items:center;gap:8px;}
+.logo{font-weight:900;color:var(--red);letter-spacing:-.02em;}
+
+/* 진행 바 */
+#bar{position:fixed;top:0;left:0;height:5px;background:var(--red);z-index:50;transition:width .3s ease;}
+#cnt{position:fixed;bottom:18px;right:22px;z-index:50;font-size:13px;font-weight:800;color:#fff;background:rgba(0,0,0,.35);border-radius:20px;padding:5px 13px;backdrop-filter:blur(4px);}
+.nav{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:50;display:flex;gap:8px;}
+.nav button{border:none;background:rgba(255,255,255,.18);color:#fff;font-weight:800;border-radius:10px;width:40px;height:34px;font-size:16px;cursor:pointer;backdrop-filter:blur(4px);}
+.nav button:hover{background:var(--red);}
+
+/* 표지 */
+.cover{background:linear-gradient(135deg,#17171C 0%,#2A1117 55%,#5A0F1E 100%);color:#fff;justify-content:center;}
+.cover h1{font-size:5.2vw;color:#fff;}
+.cover .kicker{color:#FF8A9B;}
+.cover .kicker .dot{background:#FF8A9B;}
+.cover .sub{font-size:1.5vw;color:#E6C9D0;margin-top:3vh;font-weight:600;line-height:1.5;}
+.cover .who{margin-top:5vh;display:flex;align-items:center;gap:16px;font-size:1.15vw;color:#fff;}
+.cover .who .line{width:40px;height:3px;background:var(--red);}
+.cover .pill{display:inline-block;background:rgba(232,52,78,.22);border:1px solid rgba(255,138,155,.45);color:#FF8A9B;font-weight:800;font-size:1.05vw;border-radius:30px;padding:8px 18px;margin-bottom:2.5vh;}
+
+/* 큰 인용 */
+.quote{justify-content:center;align-items:flex-start;}
+.quote .big{font-size:3.6vw;font-weight:900;line-height:1.25;letter-spacing:-.02em;}
+.quote .big .hl{color:var(--red);}
+.quote .src{margin-top:3.5vh;font-size:1.15vw;color:var(--gray);font-weight:600;}
+
+/* 통념 vs 반전 */
+.versus{display:grid;grid-template-columns:1fr 1fr;gap:1.6vw;align-items:stretch;}
+.vbox{border-radius:20px;padding:3vh 2vw;display:flex;flex-direction:column;gap:1.2vh;}
+.vbox.old{background:#F3F3F6;}
+.vbox.old .lab{color:#9A9AA6;}
+.vbox.new{background:var(--ink);color:#fff;}
+.vbox.new .lab{color:#FF8A9B;}
+.vbox .lab{font-size:1.05vw;font-weight:900;letter-spacing:.03em;}
+.vbox .txt{font-size:1.7vw;font-weight:800;line-height:1.3;}
+.vbox.old .txt{color:#6E6E78;}
+.varrow{position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);z-index:3;background:var(--red);color:#fff;width:4vw;height:4vw;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8vw;font-weight:900;box-shadow:0 8px 24px rgba(232,52,78,.4);}
+
+/* 타겟 표 */
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:1.5vw;}
+.segcard{border-radius:18px;overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column;}
+.segcard .top{padding:1.8vh 1.6vw;font-weight:900;font-size:1.4vw;color:#fff;}
+.segcard.b2c .top{background:var(--red);}
+.segcard.b2b .top{background:var(--ink);}
+.segcard .body{padding:2vh 1.6vw;display:flex;flex-direction:column;justify-content:center;gap:2vh;flex:1;}
+.segcard .pain{font-size:1.05vw;color:var(--gray);}
+.segcard .pain b{color:var(--ink);}
+.segcard .copy{font-size:1.25vw;font-weight:800;line-height:1.4;color:var(--ink);background:var(--pink);border-radius:12px;padding:1.4vh 1.2vw;}
+.segcard.b2b .copy{background:var(--mint);}
+
+/* phase / funnel steps */
+.steps{display:flex;gap:1.2vw;align-items:stretch;}
+.step{flex:1;background:#FBFBFD;border:1px solid var(--line);border-radius:18px;padding:2.4vh 1.4vw;display:flex;flex-direction:column;gap:1vh;position:relative;}
+.step .ph{font-size:.95vw;font-weight:900;color:var(--red);letter-spacing:.03em;}
+.step h3{font-size:1.3vw;}
+.step p{font-size:1vw;line-height:1.45;}
+.step.key{background:var(--ink);}
+.step.key h3,.step.key .ph{color:#fff;}
+.step.key .ph{color:var(--yellow);}
+.step.key p{color:#C9C9D2;}
+.step .chev{position:absolute;right:-1.05vw;top:50%;transform:translateY(-50%);color:var(--red);font-size:1.4vw;font-weight:900;z-index:2;}
+
+/* funnel metrics */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4vw;margin-top:1vh;}
+.metric{text-align:center;background:#FBFBFD;border:1px solid var(--line);border-radius:18px;padding:3vh 1vw;}
+.metric .v{font-size:3.4vw;font-weight:900;color:var(--red);letter-spacing:-.02em;line-height:1;}
+.metric .l{font-size:1vw;font-weight:700;color:var(--gray);margin-top:1.2vh;line-height:1.4;}
+
+/* roadmap */
+.road{display:flex;flex-direction:column;gap:1.4vh;margin-top:1vh;}
+.rrow{display:flex;align-items:center;gap:1.4vw;background:#FBFBFD;border:1px solid var(--line);border-left:5px solid var(--red);border-radius:14px;padding:2vh 1.6vw;}
+.rrow .q{font-size:1.2vw;font-weight:900;color:#fff;background:var(--red);border-radius:10px;padding:.6vh 1vw;flex:none;}
+.rrow .c h3{font-size:1.35vw;}
+.rrow .c p{font-size:1.02vw;margin-top:.4vh;}
+
+/* why me */
+.why{display:grid;grid-template-columns:1fr 1fr;gap:1.5vw;}
+.whycard{background:#FBFBFD;border:1px solid var(--line);border-radius:18px;padding:2.4vh 1.8vw;display:flex;flex-direction:column;justify-content:center;gap:1.2vh;}
+.whycard .ic{font-size:1.9vw;}
+.whycard h3{font-size:1.3vw;}
+.whycard p{font-size:1.05vw;line-height:1.5;}
+
+/* closing speech */
+.speech{background:linear-gradient(135deg,#17171C,#3A0D17);color:#fff;justify-content:center;}
+.speech .kicker{color:#FF8A9B;}.speech .kicker .dot{background:#FF8A9B;}
+.speech .talk{font-size:2vw;font-weight:800;line-height:1.5;letter-spacing:-.01em;margin-top:2vh;}
+.speech .talk .hl{color:#FF8A9B;}
+.speech .sign{margin-top:4vh;font-size:1.2vw;color:#E6C9D0;font-weight:700;}
+
+@media print{
+  body{overflow:visible;background:#fff;}
+  #deck{width:100%;height:auto;}
+  .slide{display:flex!important;position:relative;page-break-after:always;height:100vh;}
+  #bar,#cnt,.nav{display:none;}
+}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="cnt"></div>
+<div class="nav"><button id="prev">‹</button><button id="next">›</button></div>
+
+<div id="deck">
+
+  <!-- 1. 표지 -->
+  <section class="slide cover active">
+    <div class="pill">스파르타클럽 · Growth Marketer 직무 제안</div>
+    <div class="kicker"><span class="dot"></span> AI 시대, 미래를 돌파하는 힘</div>
+    <h1>Writing의 시대에서,<br/><span style="color:#FF8A9B">Reviewing의 시대로.</span></h1>
+    <p class="sub">AI가 코드를 쓸수록 — 검수의 몸값은 오릅니다.<br/>스파르타클럽이 선점할 새로운 카테고리, <b style="color:#fff">'AI 코드 검수 전문가'</b> 양성 전략.</p>
+    <div class="who"><span class="line"></span><span>이도형 &nbsp;|&nbsp; 5년차 그로스 마케터 &nbsp;|&nbsp; 면접 제안 발표</span></div>
+  </section>
+
+  <!-- 2. 한 줄 가설 (Hook) -->
+  <section class="slide quote">
+    <div class="kicker"><span class="dot"></span> 오늘 제안의 한 줄</div>
+    <div class="big" style="margin-top:2.5vh;">
+      “AI가 코딩을 <span class="hl">대신</span> 해주는 시대 —<br/>
+      진짜 부족해지는 건 <span class="hl">코드를 쓰는 사람</span>이 아니라,<br/>
+      AI가 쓴 코드를 <span class="hl">제대로 검수하는 사람</span>입니다.”
+    </div>
+    <div class="src">스파르타클럽이 '코딩 교육 1위'를 넘어, <b>AI 검수 교육 카테고리</b>를 선점해야 하는 이유.</div>
+  </section>
+
+  <!-- 3. 시장의 통념 vs 반전 -->
+  <section class="slide">
+    <div class="head"><span class="num">01</span><span class="ttl">시장은 한 방향만 보고 있습니다</span></div>
+    <div class="versus" style="flex:1;position:relative;">
+      <div class="vbox old">
+        <span class="lab">시장의 통념</span>
+        <div class="txt">"AI가 코딩을 다 해주니<br/>개발자 교육 수요는 끝났다"</div>
+        <p style="margin-top:auto;">→ 그래서 다들 'AI 활용법' 강의로만 몰려갑니다. (레드오션)</p>
+      </div>
+      <div class="vbox new">
+        <span class="lab">우리의 관점 (The Blind Spot)</span>
+        <div class="txt" style="color:#fff;">AI 코드가 쏟아질수록<br/><span style="color:#FF8A9B;">'검수되지 않은 날것의 코드'</span>가<br/>서비스에 폭증한다</div>
+        <p style="margin-top:auto;color:#C9C9D2;">→ 장애·보안사고 비용이 커지고, '검수 인재' 수요가 열립니다. (블루오션)</p>
+      </div>
+      <div class="varrow">↔</div>
+    </div>
+    <div class="evi">
+      <span class="tag">근거</span>
+      <p><b>GitClear (2024)</b> — AI 코딩 도구 확산 후, 2주 내 다시 수정·삭제되는 <b>'코드 처닝(churn)'이 급증</b>하고 복붙·중복 코드 비율이 사상 최고치를 기록. <b>"빨리 짠 코드 = 곧 고쳐야 할 코드"</b>라는 신호. <span style="color:#A6A6B2">(* 발표 전 최신 수치 재확인 권장)</span></p>
+    </div>
+    <div class="foot"><span class="brand"><span class="logo">SPARTA</span> Growth 전략 제안</span><span>이도형</span></div>
+  </section>
+
+  <!-- 4. 문제 정의 (현업 페인포인트) -->
+  <section class="slide">
+    <div class="head"><span class="num">02</span><span class="ttl">이건 이론이 아니라, 제가 현업에서 본 문제입니다</span></div>
+    <p style="margin-bottom:2.5vh;">생산성이 오른 만큼, <b>검수 공백에서 나오는 사고 비용</b>도 함께 커지고 있습니다.</p>
+    <div class="grid g3" style="flex:1;">
+      <div class="card"><span class="ic">🏗️</span><h3>구조적 결함</h3><p>AI는 '동작하는 코드'는 잘 만들지만, 아키텍처·확장성·대용량 트래픽 병목은 보지 못합니다.</p></div>
+      <div class="card"><span class="ic">🔓</span><h3>보안 취약점</h3><p>그럴듯해 보이지만 검증 안 된 코드. 오히려 작성자는 "안전하다"고 과신합니다.</p></div>
+      <div class="card"><span class="ic">🧨</span><h3>엣지 케이스 · 장애</h3><p>예외 처리 누락이 실제 서비스 장애로 이어집니다. 제 현업에서도 QA 공백이 사고로 직결됐습니다.</p></div>
+    </div>
+    <div class="evi">
+      <span class="tag">근거</span>
+      <p><b>Stanford/NYU 연구 (Perry et al., 2023)</b> — AI 코딩 보조를 쓴 개발자가 <b>더 취약한 코드를 작성하면서도, 스스로는 더 안전하다고 과신</b>했다. → '검수하는 눈'이 없으면 사고는 보이지 않게 쌓입니다.</p>
+    </div>
+    <div class="foot"><span class="brand"><span class="logo">SPARTA</span> Growth 전략 제안</span><span>이도형</span></div>
+  </section>
+
+  <!-- 5. 핵심 컨셉 -->
+  <section class="slide" style="background:var(--lav);">
+    <div class="kicker"><span class="dot"></span> Concept</div>
+    <h2 style="font-size:3.4vw;">코드를 <span style="color:#9A9AA6;">'잘 짜는'</span> 개발자가 아니라,<br/>AI 코드를 <span class="hl">'잘 검수하는'</span> 개발자.</h2>
+    <p style="font-size:1.5vw;margin-top:3vh;max-width:62vw;">단순 타이핑은 AI에게 맡기되, <b>AI 결과물의 신뢰성을 검증하고 시스템 안정성을 책임지는</b> — 스파르타클럽의 새 커리큘럼 카테고리.</p>
+    <div style="margin-top:auto;display:flex;gap:1.5vw;">
+      <div style="background:#fff;border-radius:16px;padding:2.4vh 2vw;flex:1;text-align:center;border:1px solid var(--line);">
+        <div style="font-size:1.1vw;color:#9A9AA6;font-weight:800;">AS-IS</div>
+        <div style="font-size:1.9vw;font-weight:900;margin-top:1vh;color:#6E6E78;">기초 문법 → 웹 구현</div>
+      </div>
+      <div style="display:flex;align-items:center;font-size:2.4vw;color:var(--red);font-weight:900;">→</div>
+      <div style="background:var(--ink);border-radius:16px;padding:2.4vh 2vw;flex:1;text-align:center;">
+        <div style="font-size:1.1vw;color:var(--yellow);font-weight:800;">TO-BE</div>
+        <div style="font-size:1.9vw;font-weight:900;margin-top:1vh;color:#fff;">AI 디버깅 · 코드 검수 전문가</div>
+      </div>
+    </div>
+    <div class="foot"><span class="brand"><span class="logo">SPARTA</span> Growth 전략 제안</span><span>이도형</span></div>
+  </section>
+
+  <!-- 6. 타겟 & 메시지 -->
+  <section class="slide">
+    <div class="head"><span class="num">03</span><span class="ttl">누구에게, 어떻게 팔 것인가</span></div>
+    <div class="seg" style="flex:1;">
+      <div class="segcard b2c">
+        <div class="top">B2C · 취업 준비생 (신입)</div>
+        <div class="body">
+          <p class="pain"><b>페인포인트</b><br/>"AI 때문에 취업 문이 닫히면 어쩌지?" — 막연한 대체 불안.</p>
+          <div class="copy">"단순 코더는 대체돼도,<br/>AI의 실수를 잡아내는 개발자는<br/>몸값이 2배가 됩니다."</div>
+        </div>
+      </div>
+      <div class="segcard b2b">
+        <div class="top">B2B · 기업 / 채용연계</div>
+        <div class="body">
+          <p class="pain"><b>페인포인트</b><br/>AI 도입 후 속도는 빨라졌지만, 서비스 장애·QA 리스크가 급증.</p>
+          <div class="copy">"AI 코드 부작용으로 인한<br/>리스크 비용 0원.<br/>검수 특화 개발자로 해결하세요."</div>
+        </div>
+      </div>
+    </div>
+    <div class="evi">
+      <span class="tag">근거</span>
+      <p>두 타겟의 페인이 <b>'불안(B2C)'과 '리스크 비용(B2B)'</b>으로 명확 → 카피가 곧바로 전환 동기가 됩니다. B2B는 <b>국비지원(내일배움카드)·채용연계</b>로 결제 장벽까지 낮출 수 있습니다.</p>
+    </div>
+    <div class="foot"><span class="brand"><span class="logo">SPARTA</span> Growth 전략 제안</span><span>이도형</span></div>
+  </section>
+
+  <!-- 7. 커리큘럼 피보팅 -->
+  <section class="slide">
+    <div class="head"><span class="num">04</span><span class="ttl">커리큘럼 피보팅 — 3단계 설계</span></div>
+    <div class="steps" style="flex:1;align-items:stretch;">
+      <div class="step">
+        <span class="ph">PHASE 1</span><h3>AI 활용 극대화</h3>
+        <p>생성형 AI로 뼈대 코드를 초고속 빌드. '노가다'는 AI에 위임하는 효율화 단계.</p>
+        <span class="chev">›</span>
+      </div>
+      <div class="step key">
+        <span class="ph">PHASE 2 · 핵심 차별점</span><h3>딥 디버깅 & 코드 리뷰</h3>
+        <p>AI가 놓치는 보안 취약점, 트래픽 병목, 예외 처리를 집중 훈련. <b style="color:#fff">우리만의 무기.</b></p>
+        <span class="chev">›</span>
+      </div>
+      <div class="step">
+        <span class="ph">PHASE 3</span><h3>실전 사고 시뮬레이션</h3>
+        <p>실제 장애 상황을 던지고, AI 코드의 어디가 틀렸는지 찾아 고치는 하드코어 QA 프로젝트.</p>
+      </div>
+    </div>
+    <div class="evi">
+      <span class="tag">근거</span>
+      <p>경쟁사 'AI 활용법' 강의는 대부분 <b>Phase 1에서 멈춥니다.</b> Phase 2·3가 곧 <b>차별화 포인트이자 가격 프리미엄</b>의 근거 — "남들이 안 가르치는 걸 가르친다"가 마케팅 메시지가 됩니다.</p>
+    </div>
+    <div class="foot"><span class="brand"><span class="logo">SPARTA</span> Growth 전략 제안</span><span>이도형</span></div>
+  </section>
+
+  <!-- 8. 그로스 전략 (3 Actions) -->
+  <section class="slide" style="background:var(--pink);">
+    <div class="head"><span class="num">05</span><span class="ttl">그로스 전략 — 지표로 움직이는 3가지 액션</span></div>
+    <div class="grid g3" style="flex:1;">
+      <div class="card" style="background:#fff;">
+        <span class="ic">🧲</span>
+        <h3>① 리드 자석</h3>
+        <p><b>'AI 코드 진단 테스트'</b><br/>"AI가 짠 이 코드의 치명적 오류를 찾을 수 있나요?" 퀴즈형 랜딩페이지로 잠재고객 확보.</p>
+        <p style="margin-top:auto;color:var(--red);font-weight:800;">→ CAC↓ · 수강전환 CVR↑</p>
+      </div>
+      <div class="card" style="background:#fff;">
+        <span class="ic">🤝</span>
+        <h3>② B2B 채용연계</h3>
+        <p>기업의 'AI 도입 후 QA 공백'을 메우는 채용연계형으로 확장.<br/>"검수 잘하는 인재 키워놨으니 데려가세요."</p>
+        <p style="margin-top:auto;color:var(--red);font-weight:800;">→ 객단가↑ · 안정적 매출원</p>
+      </div>
+      <div class="card" style="background:#fff;">
+        <span class="ic">📊</span>
+        <h3>③ 데이터 증명</h3>
+        <p>수료생의 <b>'배포 전 버그 발견율 +X%', '장애 대응시간 −Y%'</b>를 정량 지표화 → 다음 기수 마케팅 소스로 재활용.</p>
+        <p style="margin-top:auto;color:var(--red);font-weight:800;">→ 신뢰 루프 · 재투자 효율↑</p>
+      </div>
+    </div>
+    <div class="foot"><span class="brand"><span class="logo">SPARTA</span> Growth 전략 제안</span><span>이도형</span></div>
+  </section>
+
+  <!-- 9. 퍼널 -->
+  <section class="slide">
+    <div class="head"><span class="num">06</span><span class="ttl">그로스 마케터의 퍼널 — 인지에서 매출까지</span></div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:2.5vh;">
+    <div class="steps">
+      <div class="step"><span class="ph">인지</span><h3>진단 테스트 바이럴</h3><p>"나 이거 못 풀었어" 공유 → 자발적 확산</p><span class="chev">›</span></div>
+      <div class="step"><span class="ph">획득</span><h3>무료 진단 → 리드 DB</h3><p>오답자에게 검수 역량 필요성 인지</p><span class="chev">›</span></div>
+      <div class="step"><span class="ph">전환</span><h3>수강 신청 (CVR)</h3><p>불안·리스크를 해결책으로 전환</p><span class="chev">›</span></div>
+      <div class="step key"><span class="ph">확장</span><h3>B2B·채용연계 매출</h3><p>수료 → 기업 공급 → 재투자</p></div>
+    </div>
+    <div class="metrics">
+      <div class="metric"><div class="v">CAC ↓</div><div class="l">진단 테스트 바이럴로<br/>획득 비용 절감</div></div>
+      <div class="metric"><div class="v">CVR ↑</div><div class="l">명확한 페인-카피 매칭으로<br/>수강 전환율 상승</div></div>
+      <div class="metric"><div class="v">AOV ↑</div><div class="l">차별화 커리큘럼으로<br/>객단가·프리미엄 확보</div></div>
+      <div class="metric"><div class="v">LTV ↑</div><div class="l">B2B 채용연계로<br/>매출 수명 연장</div></div>
+    </div>
+    </div>
+    <div class="foot"><span class="brand"><span class="logo">SPARTA</span> Growth 전략 제안</span><span>이도형</span></div>
+  </section>
+
+  <!-- 10. 비즈니스 임팩트 / 로드맵 -->
+  <section class="slide">
+    <div class="head"><span class="num">07</span><span class="ttl">실행 로드맵 — 작게 검증하고, 크게 키운다</span></div>
+    <div class="road" style="flex:1;justify-content:center;">
+      <div class="rrow"><span class="q">Q1</span><div class="c"><h3>리드 자석 출시 & 가설 검증</h3><p>'AI 코드 진단 테스트' LP 배포 → 진단 참여율·오답자 전환율로 시장 수요 검증.</p></div></div>
+      <div class="rrow"><span class="q">Q2</span><div class="c"><h3>파일럿 기수 운영</h3><p>Phase 1~3 단기 과정 1기 오픈 → 수료생 정량 성과(버그 발견율 등) 1차 확보.</p></div></div>
+      <div class="rrow"><span class="q">Q3</span><div class="c"><h3>B2B 파트너십 확장</h3><p>성과 데이터를 무기로 기업 채용연계 계약 → 안정적 매출원 + 채용연계 마케팅 강화.</p></div></div>
+      <div class="rrow"><span class="q">Q4</span><div class="c"><h3>카테고리 선점 & 스케일업</h3><p>'AI 검수 교육 = 스파르타클럽' 포지셔닝 확립. 후발주자 진입 전 표준 선점.</p></div></div>
+    </div>
+    <div class="foot"><span class="brand"><span class="logo">SPARTA</span> Growth 전략 제안</span><span>이도형</span></div>
+  </section>
+
+  <!-- 11. 왜 스파르타 / 왜 나 -->
+  <section class="slide" style="background:var(--mint);">
+    <div class="head"><span class="num">08</span><span class="ttl">왜 스파르타클럽이고, 왜 저인가</span></div>
+    <div class="why" style="flex:1;">
+      <div class="whycard"><span class="ic">🏆</span><h3>이미 1위의 신뢰 자산</h3><p>누적 <b>750K 수강생</b>, 만족도 <b>4.7</b>, 완주 만족 <b>89.4%</b> — 새 카테고리를 '1위 브랜드'가 선언할 때 시장은 가장 빠르게 따라옵니다.</p></div>
+      <div class="whycard"><span class="ic">⚡</span><h3>실행력·임팩트 DNA와 정합</h3><p>이 전략은 'OO이 필요하다'가 아니라 <b>"이렇게 획득하고, 전환하고, 매출로 만든다"</b>까지의 액션 플랜입니다.</p></div>
+      <div class="whycard"><span class="ic">🔍</span><h3>현업에서 본 진짜 문제</h3><p>저는 현업 마케터·팀장으로서 <b>QA 공백이 실제 사고와 비용으로 이어지는 현장</b>을 직접 봤습니다. 데이터가 아니라 경험에서 나온 가설입니다.</p></div>
+      <div class="whycard"><span class="ic">📈</span><h3>지표로 증명하는 마케터</h3><p>가설을 리드 자석으로 검증하고, 퍼널 지표(CAC·CVR·LTV)로 의사결정하는 것 — 제가 5년간 해온 일입니다.</p></div>
+    </div>
+    <div class="foot"><span class="brand"><span class="logo">SPARTA</span> Growth 전략 제안</span><span>이도형</span></div>
+  </section>
+
+  <!-- 12. 면접 스피치 -->
+  <section class="slide speech">
+    <div class="kicker"><span class="dot"></span> 마무리 한마디</div>
+    <div class="talk">
+      "AI가 코딩을 해주면서 생산성은 분명 올랐습니다.<br/>
+      하지만 그건 <span class="hl">검수되지 않은 코드</span>가 그만큼 쏟아진다는 뜻이기도 합니다.<br/><br/>
+      스파르타클럽이 <span class="hl">'AI 검수 전문가'</span>라는 카테고리를 선점한다면 —<br/>
+      취준생에게는 <b style="color:#fff">대체 불가능한 무기</b>를,<br/>
+      기업에게는 <b style="color:#fff">리스크를 줄여주는 인재</b>를 공급하는<br/>
+      새로운 성장 엔진을 만들 수 있습니다."
+    </div>
+    <div class="sign">— 그 첫 번째 가설 검증을, 그로스 마케터로서 제가 만들겠습니다.</div>
+  </section>
+
+  <!-- 13. 감사 -->
+  <section class="slide cover" style="background:linear-gradient(135deg,#E8344E,#C7203A);">
+    <div class="kicker" style="color:#FFE45C;"><span class="dot" style="background:#FFE45C;"></span> Thank You</div>
+    <h1 style="font-size:5.4vw;">감사합니다.</h1>
+    <p class="sub" style="color:#FFE0E6;">AI 시대, 미래를 돌파하는 힘 — 그 검수의 표준을 스파르타클럽과 함께 만들고 싶습니다.</p>
+    <div class="who"><span class="line" style="background:#fff;"></span><span>이도형 &nbsp;|&nbsp; Growth Marketer 지원</span></div>
+  </section>
+
+</div>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let i=0;
+const bar=document.getElementById('bar'),cnt=document.getElementById('cnt');
+function show(n){
+  i=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,idx)=>s.classList.toggle('active',idx===i));
+  bar.style.width=((i+1)/slides.length*100)+'%';
+  cnt.textContent=(i+1)+' / '+slides.length;
+}
+function next(){show(i+1);}function prev(){show(i-1);}
+document.getElementById('next').onclick=next;
+document.getElementById('prev').onclick=prev;
+document.addEventListener('keydown',e=>{
+  if(['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)){e.preventDefault();next();}
+  if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev();}
+  if(e.key==='Home')show(0);if(e.key==='End')show(slides.length-1);
+});
+let sx=0;
+document.addEventListener('touchstart',e=>sx=e.touches[0].clientX);
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50){dx<0?next():prev();}});
+show(0);
+</script>
+</body>
+</html>
