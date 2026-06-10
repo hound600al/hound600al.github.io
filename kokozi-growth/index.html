@@ -3,366 +3,575 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>코코지 Platform Growth 전략 제안</title>
+<title>코코지 · Platform Growth 전략 제안</title>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
 <style>
   :root{
-    --green:#5BA82C; --green-deep:#3E7A1A; --green-soft:#EAF4DD;
-    --yellow:#FBD24E; --yblock:#FEF1C9; --yblock-2:#FDE7B0; --yellow-deep:#B5860B;
-    --navy:#27344C; --navy-soft:#54607A;
-    --ink:#27344C; --ink-soft:#5E6A82; --muted:#9AA2B2;
-    --cream:#FFFDF7; --warm:#FFF8E6; --line:#EFEADD;
-    --white:#FFFFFF;
-    --shadow:0 14px 38px -22px rgba(39,52,76,.30);
-    --shadow-sm:0 6px 18px -12px rgba(39,52,76,.30);
+    --green:#57A92C;--green-600:#46901F;--green-050:#EEF7E3;--green-100:#D7ECC4;
+    --navy:#1E2A45;--navy-2:#27344C;--ink:#222A38;--muted:#5E6577;--muted-2:#8A93A6;
+    --line:#ECE7D9;--bg:#FAF7EF;--white:#FFFFFF;
+    --yellow:#FBD24E;--yellow-bg:#FEF4CF;--yellow-deep:#B5860B;
+    --warn:#FF6A4D;--warn-bg:#FFF1ED;--go:#0FB36B;--go-bg:#E7F8F0;--amber:#F5A623;
+    --shadow:0 18px 48px -18px rgba(30,42,69,.26);--shadow-sm:0 8px 24px -12px rgba(30,42,69,.18);
   }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html,body{height:100%;}
-  body{font-family:'Pretendard',-apple-system,sans-serif;background:#e7e2d4;color:var(--ink);overflow:hidden;-webkit-font-smoothing:antialiased;}
-  #deck{position:fixed;inset:0;}
-  .slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;padding:8vh 8.5vw;background:var(--cream);opacity:0;transition:opacity .4s ease;}
-  .slide.active{display:flex;opacity:1;}
-  .slide.warm{background:var(--warm);}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{font-family:'Pretendard',-apple-system,system-ui,sans-serif;background:#0d130c;color:var(--ink);-webkit-font-smoothing:antialiased;overflow:hidden}
+  .deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+  .stage{position:relative;width:100vw;height:100vh;max-width:177.78vh;max-height:56.25vw;background:var(--white);overflow:hidden}
+  .slide{position:absolute;inset:0;padding:5.6% 6.6%;display:none;flex-direction:column;animation:fade .5s ease}
+  .slide.active{display:flex}
+  @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
-  #bar{position:fixed;top:0;left:0;height:5px;background:linear-gradient(90deg,var(--green),var(--yellow));z-index:50;transition:width .35s ease;border-radius:0 4px 4px 0;}
-  #counter{position:fixed;bottom:22px;right:30px;z-index:50;font-size:13px;font-weight:700;color:var(--muted);}
-  #hint{position:fixed;bottom:22px;left:30px;z-index:50;font-size:12px;color:var(--muted);}
+  .kicker{display:inline-flex;align-items:center;gap:7px;font-size:1.02vw;font-weight:700;color:var(--green-600);background:var(--green-050);padding:.5em 1em;border-radius:100px;letter-spacing:-.01em;width:fit-content}
+  .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--green)}
+  h1{font-size:4.3vw;font-weight:800;letter-spacing:-.035em;line-height:1.1}
+  h2{font-size:2.75vw;font-weight:800;letter-spacing:-.03em;line-height:1.18;color:var(--ink)}
+  h2 .hl{color:var(--green-600);position:relative}
+  h2 .hly{background:linear-gradient(transparent 55%,var(--yellow-bg) 55%);padding:0 .12em}
+  .sub{font-size:1.28vw;color:var(--muted);font-weight:500;line-height:1.55;letter-spacing:-.01em}
+  .slide-head{margin-bottom:2.2vh}
+  .slide-head h2{margin-top:1vh}
+  p{line-height:1.6}
+  b,strong{font-weight:700}
 
-  /* house-mark kicker */
-  .kicker{display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:800;color:var(--green);margin-bottom:22px;}
-  .kicker::before{content:"";width:17px;height:19px;background:var(--green);border-radius:5px;clip-path:polygon(50% 0,100% 30%,100% 100%,0 100%,0 30%);}
+  .foot{position:absolute;left:6.6%;right:6.6%;bottom:3vh;display:flex;justify-content:space-between;align-items:center;font-size:.9vw;color:var(--muted-2);font-weight:600;letter-spacing:-.01em}
+  .foot .brand{color:var(--green-600);font-weight:800}
+  .pageno{font-variant-numeric:tabular-nums}
 
-  h1{font-size:clamp(34px,4.8vw,62px);line-height:1.18;font-weight:800;letter-spacing:-.02em;color:var(--navy);}
-  h2{font-size:clamp(27px,3.5vw,46px);line-height:1.22;font-weight:800;letter-spacing:-.02em;color:var(--navy);margin-bottom:8px;}
-  .sub{font-size:clamp(16px,1.6vw,21px);color:var(--ink-soft);font-weight:500;line-height:1.7;}
-  .lead{font-size:clamp(17px,1.7vw,22px);color:var(--ink-soft);line-height:1.7;}
-  .muted{color:var(--muted);} .accent{color:var(--green);}
-  b,strong{font-weight:800;color:var(--navy);}
-  .hl{background:linear-gradient(transparent 55%,var(--yblock-2) 55%);padding:0 4px;}
-  .hl-g{background:linear-gradient(transparent 55%,var(--green-soft) 55%);padding:0 4px;}
+  .term{position:relative;border-bottom:1.6px dotted var(--green);cursor:help;white-space:nowrap;color:inherit}
+  .term .tip{position:absolute;bottom:142%;left:50%;transform:translateX(-50%) translateY(5px);background:var(--navy);color:#fff;padding:.8em 1em;border-radius:11px;font-size:.82vw;font-weight:500;line-height:1.5;width:max-content;max-width:24vw;white-space:normal;opacity:0;visibility:hidden;transition:.16s;z-index:40;box-shadow:0 14px 34px -10px rgba(0,0,0,.45);text-align:left;letter-spacing:-.01em;border:1px solid rgba(255,255,255,.08)}
+  .term .tip b{color:#a8e08a}
+  .term .tip:after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:7px solid transparent;border-top-color:var(--navy)}
+  .term.down .tip{bottom:auto;top:142%;transform:translateX(-50%) translateY(-5px)}
+  .term.down .tip:after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--navy)}
+  .term:hover .tip,.term.show .tip{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+  .cover .term,.closing .term{border-bottom-color:#9bdc78}
 
-  .head{margin-bottom:4vh;}
+  .grid{display:grid;gap:1.3vw}
+  .g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:1.6vw;box-shadow:var(--shadow-sm)}
+  .card.soft{background:var(--bg);box-shadow:none}
+  .card .ci{font-size:1.5vw;margin-bottom:.5vw}
+  .card h3{font-size:1.34vw;font-weight:800;letter-spacing:-.02em;margin-bottom:.45vw;line-height:1.25}
+  .card p{font-size:1.0vw;color:var(--muted);font-weight:500;letter-spacing:-.01em}
+  .tag{display:inline-block;font-size:.84vw;font-weight:700;padding:.28em .7em;border-radius:7px;letter-spacing:-.01em}
 
-  /* point pill */
-  .pill{display:inline-block;background:var(--green);color:#fff;font-size:13px;font-weight:800;padding:6px 14px;border-radius:999px;letter-spacing:.02em;margin-bottom:14px;}
-  .pill.y{background:var(--yellow);color:var(--navy);}
+  .cover{background:linear-gradient(135deg,#16331A 0%,#225C24 52%,#57A92C 130%);color:#fff;justify-content:center}
+  .cover .kicker{background:rgba(255,255,255,.14);color:#dff0d0}.cover .kicker .dot{background:#bfe89e}
+  .cover h1{color:#fff;margin:2.2vh 0}
+  .cover h1 .hl{background:linear-gradient(90deg,#FBD24E,#FCE9A8);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .cover .lead{font-size:1.45vw;color:#cfe6c0;font-weight:500;line-height:1.6;max-width:70%}
+  .cover .lead b{color:#fff}
+  .cover .meta{margin-top:4.4vh;display:flex;gap:2.2vw;font-size:1vw;color:#a7c79a;font-weight:600}
+  .cover .meta b{color:#fff;font-weight:700;display:block;font-size:1.14vw;margin-top:.3vw}
+  .glow{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5}
+  .glow.a{width:30vw;height:30vw;background:#57A92C;right:-8vw;top:-8vw}
+  .glow.b{width:22vw;height:22vw;background:#FBD24E;right:14vw;bottom:-10vw;opacity:.28}
 
-  /* yellow signature block */
-  .yb{background:var(--yblock);border-radius:28px;padding:34px 36px;box-shadow:var(--shadow);}
-  .yb .yt{font-size:clamp(20px,2.2vw,28px);font-weight:800;color:var(--navy);line-height:1.3;}
-  .yb .yd{font-size:16px;color:var(--ink-soft);line-height:1.65;margin-top:10px;}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1vw}
+  .stat{background:var(--bg);border-radius:16px;padding:1.4vw 1.4vw;border:1px solid var(--line)}
+  .stat .n{font-size:2.2vw;font-weight:800;letter-spacing:-.03em;color:var(--green-600);line-height:1;font-variant-numeric:tabular-nums}
+  .stat .n.dark{color:var(--ink)}
+  .stat .l{font-size:.92vw;color:var(--muted);font-weight:600;margin-top:.6vw;line-height:1.4}
 
-  .grid{display:grid;gap:22px;} .g2{grid-template-columns:repeat(2,1fr);} .g3{grid-template-columns:repeat(3,1fr);} .g4{grid-template-columns:repeat(4,1fr);} .g5{grid-template-columns:repeat(5,1fr);}
+  .rows{display:flex;flex-direction:column;gap:.95vw}
+  .row{display:flex;gap:1.05vw;align-items:flex-start;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:1.15vw 1.4vw}
+  .row .ix{flex:none;width:2vw;height:2vw;border-radius:9px;display:grid;place-items:center;font-weight:800;font-size:1vw;color:#fff;background:var(--green)}
+  .row .tx h4{font-size:1.18vw;font-weight:800;letter-spacing:-.02em;margin-bottom:.22vw}
+  .row .tx p{font-size:.98vw;color:var(--muted);font-weight:500;line-height:1.5}
 
-  .card{background:var(--white);border:1px solid var(--line);border-radius:24px;padding:28px 26px;box-shadow:var(--shadow);}
-  .card .t{font-size:18px;font-weight:800;color:var(--navy);margin-bottom:9px;}
-  .card .d{font-size:15px;color:var(--ink-soft);line-height:1.62;}
+  .dd{display:grid;grid-template-columns:1fr 1fr;gap:1.6vw;flex:1;min-height:0}
+  .panel{border-radius:20px;padding:1.7vw 2.2vw;display:flex;flex-direction:column;justify-content:center}
+  .panel.dont{background:var(--warn-bg);border:1px solid #ffd9cf}
+  .panel .ph{display:flex;align-items:center;gap:.7vw;font-size:1.4vw;font-weight:800;letter-spacing:-.02em;margin-bottom:1vw}
+  .pitem{display:flex;gap:.75vw;align-items:flex-start;margin-bottom:1.5vw}
+  .pitem:last-child{margin-bottom:0}
+  .pitem .mk{flex:none;font-weight:800;font-size:1.05vw;line-height:1.5;color:var(--warn)}
+  .pitem .pt{font-size:1.04vw;line-height:1.5;font-weight:700;letter-spacing:-.01em}
+  .pitem .pt span{display:block;font-size:.92vw;color:var(--muted);font-weight:500;margin-top:.2vw}
 
-  /* big stats — airy, no heavy boxes */
-  .stats{display:flex;justify-content:space-between;gap:24px;text-align:center;}
-  .stat .v{font-size:clamp(36px,4.6vw,60px);font-weight:800;color:var(--green);letter-spacing:-.02em;line-height:1;}
-  .stat .v small{font-size:.42em;color:var(--muted);font-weight:700;}
-  .stat .l{font-size:15px;color:var(--ink-soft);margin-top:12px;font-weight:600;}
+  .tl{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4vw;flex:1;align-content:stretch}
+  .phase{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:1.5vw;display:flex;flex-direction:column}
+  .phase .ph-top{display:flex;align-items:baseline;gap:.6vw;margin-bottom:.9vw}
+  .phase .wk{font-size:.88vw;font-weight:800;color:#fff;background:var(--green);padding:.35em .8em;border-radius:8px}
+  .phase h3{font-size:1.3vw;font-weight:800;letter-spacing:-.02em}
+  .phase ul{list-style:none;display:flex;flex-direction:column;gap:.6vw}
+  .phase li{font-size:.96vw;color:var(--muted);font-weight:500;line-height:1.45;padding-left:1vw;position:relative}
+  .phase li:before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--green)}
+  .phase .goal{margin-top:auto;padding-top:.9vw;font-size:.94vw;font-weight:700;color:var(--green-600);border-top:1px dashed var(--line)}
 
-  /* reason */
-  .reason{background:var(--white);border:1px solid var(--line);border-radius:24px;padding:26px 18px;box-shadow:var(--shadow);text-align:center;}
-  .reason .emoji{font-size:38px;} .reason .rt{font-size:17px;font-weight:800;color:var(--navy);margin:12px 0 8px;line-height:1.25;} .reason .rd{font-size:13.5px;color:var(--ink-soft);line-height:1.55;}
+  .callout{background:var(--navy);color:#fff;border-radius:20px;padding:1.9vw 2.2vw;display:flex;gap:1.5vw;align-items:center}
+  .callout .big{font-size:3.2vw;font-weight:800;color:var(--yellow);line-height:1;flex:none}
+  .callout p{font-size:1.3vw;font-weight:600;line-height:1.5;letter-spacing:-.01em}
+  .callout p b{color:#a8e08a}
 
-  /* diagnosis contrast */
-  .contrast{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
-  .cbox{border-radius:24px;padding:30px 30px;}
-  .cbox.a{background:#F3F1EA;}
-  .cbox.b{background:var(--yblock);box-shadow:var(--shadow);}
-  .cbox .cl{font-size:14px;font-weight:800;margin-bottom:12px;color:var(--muted);}
-  .cbox.b .cl{color:var(--yellow-deep);}
-  .cbox .cm{font-size:clamp(17px,1.7vw,21px);line-height:1.55;color:var(--ink-soft);} .cbox .cm b{color:var(--navy);}
+  .twocol{display:grid;grid-template-columns:1.05fr .95fr;gap:1.9vw;flex:1;min-height:0;align-items:center}
 
-  /* symptom */
-  .symptom{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:24px 22px;box-shadow:var(--shadow);}
-  .symptom .st{font-size:17px;font-weight:800;color:var(--green-deep);margin-bottom:8px;} .symptom .sd{font-size:14.5px;color:var(--ink-soft);line-height:1.55;}
-  .root{background:var(--green);color:#fff;border-radius:22px;padding:22px 28px;text-align:center;box-shadow:var(--shadow);}
-  .root .rt{font-size:21px;font-weight:800;} .root .rd{font-size:15px;opacity:.95;margin-top:5px;}
-  .branch{text-align:center;color:var(--muted);font-weight:800;font-size:24px;margin:14px 0;}
+  .flow{display:flex;align-items:stretch;gap:.85vw}
+  .flow .node{flex:1;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:1.2vw;text-align:center;display:flex;flex-direction:column;justify-content:center}
+  .flow .node .nt{font-size:1.12vw;font-weight:800;letter-spacing:-.02em}
+  .flow .node .nd{font-size:.9vw;color:var(--muted);font-weight:500;margin-top:.4vw;line-height:1.4}
+  .flow .node.hot{background:var(--green-050);border-color:var(--green-100)}.flow .node.hot .nt{color:var(--green-600)}
+  .flow .arr{flex:none;display:grid;place-items:center;color:var(--muted-2);font-size:1.5vw;font-weight:800}
 
-  /* numbered list */
-  .list{display:flex;flex-direction:column;gap:18px;}
-  .li{display:flex;gap:16px;align-items:flex-start;}
-  .li .n{flex:0 0 34px;height:34px;border-radius:11px;background:var(--green-soft);color:var(--green-deep);font-weight:800;font-size:16px;display:flex;align-items:center;justify-content:center;}
-  .li .tx{font-size:17px;line-height:1.55;color:var(--ink-soft);padding-top:3px;} .li .tx b{color:var(--navy);}
+  .pill-list{display:flex;flex-wrap:wrap;gap:.6vw;margin-top:1.2vh}
+  .pill{font-size:.98vw;font-weight:700;color:var(--green-600);background:var(--green-050);border:1px solid var(--green-100);padding:.5em 1em;border-radius:100px;letter-spacing:-.01em}
+  .note{font-size:.82vw;color:var(--muted-2);font-weight:500;margin-top:1vh;line-height:1.5}
+  .note b{color:var(--muted)}
 
-  /* funnel */
-  .flow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
-  .flow .step{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:14px 22px;font-weight:800;font-size:17px;color:var(--navy);box-shadow:var(--shadow-sm);}
-  .flow .step.on{background:var(--green);color:#fff;border-color:var(--green);}
-  .flow .gt{color:var(--green);font-weight:800;font-size:20px;}
-
-  /* evidence — single light bar */
-  .evi{margin-top:26px;background:var(--warm);border:1px solid var(--line);border-left:5px solid var(--green);border-radius:16px;padding:18px 22px;display:grid;grid-template-columns:1fr 1fr;gap:22px;}
-  .evi .ei{font-size:14px;line-height:1.55;color:var(--ink-soft);} .evi .ei b{color:var(--navy);}
-  .evi .el{font-size:13px;font-weight:800;color:var(--green-deep);display:block;margin-bottom:5px;}
-
-  /* phone mockup */
-  .phone{width:230px;border:10px solid var(--navy);border-radius:38px;background:#fff;padding:20px 16px 22px;box-shadow:var(--shadow);}
-  .phone .pq{font-size:16px;font-weight:800;color:var(--navy);line-height:1.3;margin-bottom:14px;}
-  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;}
-  .chips span{font-size:13px;font-weight:700;padding:7px 13px;border-radius:999px;background:var(--cream);color:var(--ink-soft);border:1px solid var(--line);}
-  .chips span.on{background:var(--green);color:#fff;border-color:var(--green);}
-  .precom{background:var(--yblock);border-radius:16px;padding:14px 14px;}
-  .precom .pt{font-size:12px;font-weight:800;color:var(--yellow-deep);margin-bottom:4px;}
-  .precom .pm{font-size:14px;font-weight:700;color:var(--navy);line-height:1.4;}
+  .phone{height:46vh;aspect-ratio:9/19;border-radius:26px;overflow:hidden;border:7px solid var(--navy);box-shadow:var(--shadow);background:#fff;flex:none;padding:1.1vw .9vw;display:flex;flex-direction:column}
+  .phq{font-size:1.05vw;font-weight:800;color:var(--ink);line-height:1.3;margin-bottom:1vw}
+  .chips{display:flex;flex-wrap:wrap;gap:.45vw;margin-bottom:1.1vw}
+  .chips span{font-size:.82vw;font-weight:700;padding:.42em .8em;border-radius:100px;background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+  .chips span.on{background:var(--green);color:#fff;border-color:var(--green)}
+  .precom{margin-top:auto;background:var(--green-050);border:1px solid var(--green-100);border-radius:14px;padding:.9vw}
+  .precom .pt{font-size:.78vw;font-weight:800;color:var(--green-600);margin-bottom:.25vw}
+  .precom .pm{font-size:.92vw;font-weight:700;color:var(--ink);line-height:1.35}
+  .vcap{font-size:.94vw;font-weight:700;text-align:center;color:var(--ink);line-height:1.4;letter-spacing:-.01em}
+  .vcap span{display:block;font-size:.82vw;color:var(--muted);font-weight:500;margin-top:.3vw}
 
   /* report mockup */
-  .report{background:var(--white);border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:var(--shadow);width:300px;}
-  .report .rh{font-size:16px;font-weight:800;color:var(--navy);margin-bottom:18px;}
-  .rrow{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
-  .rrow .rk{font-size:14.5px;color:var(--ink-soft);font-weight:600;} .rrow .rv{font-size:17px;font-weight:800;color:var(--green-deep);}
-  .streak{display:flex;gap:7px;margin-top:8px;} .streak i{width:26px;height:26px;border-radius:8px;background:var(--green-soft);} .streak i.on{background:var(--green);}
+  .report{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:1.5vw;box-shadow:var(--shadow);width:100%}
+  .report .rh{font-size:1.04vw;font-weight:800;color:var(--ink);margin-bottom:1vw}
+  .rrow{display:flex;justify-content:space-between;align-items:center;margin-bottom:.7vw}
+  .rrow .rk{font-size:.92vw;color:var(--muted);font-weight:600}.rrow .rv{font-size:1.05vw;font-weight:800;color:var(--green-600)}
+  .streak{display:flex;gap:.35vw;margin-top:.4vw}.streak i{width:1.5vw;height:1.5vw;border-radius:6px;background:var(--green-050)}.streak i.on{background:var(--green)}
 
-  /* roadmap */
-  .road{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:var(--shadow);background:var(--white);}
-  .phase{padding:28px 26px;border-right:1px solid var(--line);} .phase:last-child{border-right:none;}
-  .phase .ph{font-size:13px;font-weight:800;color:var(--muted);letter-spacing:.04em;}
-  .phase .pt{font-size:20px;font-weight:800;color:var(--navy);margin:8px 0 16px;}
-  .phase ul{list-style:none;display:flex;flex-direction:column;gap:11px;}
-  .phase li{font-size:14.5px;color:var(--ink-soft);line-height:1.45;padding-left:18px;position:relative;}
-  .phase li::before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:50%;background:var(--green);}
-  .kpibar{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap;justify-content:center;}
-  .kpi{background:var(--yblock);color:var(--navy);border-radius:14px;padding:13px 20px;font-size:15px;font-weight:800;}
-  .kpi span{color:var(--green-deep);}
+  /* lever/formula */
+  .formula{background:var(--navy);color:#fff;border-radius:18px;padding:1.5vw 1.7vw;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:.7vw;margin-bottom:1.7vh}
+  .formula .fx{font-size:1.12vw;font-weight:800;letter-spacing:-.02em}
+  .formula .fx.lever{background:rgba(168,224,138,.18);color:#cfeeb8;padding:.4em .7em;border-radius:9px;border:1px solid rgba(168,224,138,.4)}
+  .formula .op{color:var(--yellow);font-size:1.3vw;font-weight:800}
+  .lever-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1vw}
+  .lever{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:1.2vw;text-align:center;display:flex;flex-direction:column}
+  .lever .ln{font-size:.86vw;font-weight:800;color:var(--green-600);background:var(--green-050);width:fit-content;margin:0 auto;padding:.2em .6em;border-radius:7px}
+  .lever .lt{font-size:1.08vw;font-weight:800;letter-spacing:-.02em;margin:.6vw 0 .35vw;line-height:1.25}
+  .lever .ld{font-size:.84vw;color:var(--muted);font-weight:500;line-height:1.4}
+  .lever .badge{margin-top:.7vw;font-size:.78vw;font-weight:800;padding:.28em .5em;border-radius:6px}
+  .lever .badge.ok{background:var(--go-bg);color:#0a8a52}
+  .lever .badge.hyp{background:#FFF6E6;color:#B47800}
 
-  .footer-name{font-size:16px;color:var(--muted);font-weight:600;margin-top:48px;}
+  /* impact */
+  .imp{display:grid;grid-template-columns:1fr 1fr;gap:1.4vw}
+  .ba{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:1.4vw 1.6vw}
+  .ba .bt{font-size:1.05vw;font-weight:800;margin-bottom:1vw}
+  .barline{display:flex;align-items:center;gap:.8vw;margin-bottom:.7vw}
+  .barline .bl{font-size:.84vw;font-weight:700;color:var(--muted-2);width:3.4vw}
+  .bar{flex:1;height:1.5vw;border-radius:7px;background:#E7E0CF;position:relative;overflow:hidden}
+  .bar i{position:absolute;left:0;top:0;bottom:0;border-radius:7px}
+  .bar.now i{background:var(--muted-2);width:50%}
+  .bar.goal i{background:var(--green);width:72%}
+  .barline .bv{font-size:.92vw;font-weight:800;width:3vw;text-align:right;font-variant-numeric:tabular-nums}
+  .resultcard{background:linear-gradient(135deg,#225C24,#57A92C);color:#fff;border-radius:16px;padding:1.5vw 1.7vw;display:flex;flex-direction:column;justify-content:center;box-shadow:var(--shadow)}
+  .resultcard .rl{font-size:1vw;color:#d7eecb;font-weight:700}
+  .resultcard .rb{font-size:2.6vw;font-weight:800;letter-spacing:-.03em;line-height:1.1;margin:.4vw 0}
+  .resultcard .rd{font-size:.92vw;color:#e3f3da;font-weight:500;line-height:1.45}
+
+  .nsm{background:linear-gradient(135deg,#16331A,#46901F);color:#fff;border-radius:18px;padding:1.5vw 2vw;display:flex;align-items:center;gap:1.6vw;margin-bottom:1.4vh}
+  .nsm .lab{font-size:.95vw;color:#bfe89e;font-weight:700}
+  .nsm .val{font-size:1.7vw;font-weight:800;letter-spacing:-.02em;line-height:1.2}
+  .metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1vw}
+  .metric{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:1.2vw}
+  .metric .mh{font-size:1.0vw;font-weight:800;letter-spacing:-.02em;margin-bottom:.4vw}
+  .metric .md{font-size:.84vw;color:var(--muted);font-weight:500;line-height:1.4}
+  .metric .mk2{font-size:.8vw;font-weight:800;color:var(--green-600);margin-top:.5vw}
+
+  .closing{background:linear-gradient(135deg,#16331A 0%,#225C24 60%,#57A92C 130%);color:#fff;justify-content:center}
+  .closing h2{color:#fff;font-size:2.9vw}
+  .closing h2 .hl{color:var(--yellow)}
+  .closing .lead{font-size:1.4vw;color:#d2e8c6;font-weight:500;line-height:1.65;margin-top:2.2vh;max-width:78%}
+  .closing .lead b{color:#fff}
+  .closing .sign{margin-top:4.4vh;font-size:1.05vw;color:#a7c79a;font-weight:600}
+  .closing .sign b{color:#fff}
+
+  .nav{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;background:rgba(20,30,15,.8);backdrop-filter:blur(10px);padding:9px 16px;border-radius:100px;z-index:50}
+  .nav button{background:none;border:none;color:#fff;font-size:15px;cursor:pointer;opacity:.85;display:grid;place-items:center;padding:2px 4px}
+  .nav button:hover{opacity:1}
+  .nav .ind{color:#fff;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:.02em;min-width:46px;text-align:center}
+  .progress{position:fixed;top:0;left:0;height:3px;background:var(--green);z-index:60;transition:width .4s ease}
+  .hint{position:fixed;bottom:22px;right:22px;font-size:12px;color:rgba(255,255,255,.5);z-index:50}
+  @media(max-width:760px){.hint{display:none}.term .tip{max-width:62vw;font-size:11px}}
 </style>
 </head>
 <body>
-<div id="bar"></div>
-<div id="deck">
+<div class="progress" id="bar"></div>
+<div class="deck">
+  <div class="stage">
 
-  <!-- 1 COVER -->
-  <section class="slide warm active">
-    <div class="kicker">코코지 · Platform Growth 전략 제안</div>
-    <h1 style="max-width:20ch;">우리 아이의 <span class="hl">'매일'</span>을<br>키우는 성장 전략</h1>
-    <p class="lead" style="margin-top:26px;max-width:42ch;">잘 팔리는 키즈 브랜드 코코지를,<br><b>매일 열리는 구독 플랫폼</b>으로.</p>
-    <div class="footer-name">Platform Growth Marketer 지원 과제 · 2026.06</div>
-  </section>
-
-  <!-- 2 UNDERSTAND -->
-  <section class="slide">
-    <div class="head">
-      <div class="kicker">코코지 이해</div>
-      <h2>이미 사랑받는 브랜드예요</h2>
-    </div>
-    <div class="stats">
-      <div class="stat"><div class="v">13만<small>+</small></div><div class="l">이용 가구 (한·대만)</div></div>
-      <div class="stat"><div class="v">55만<small>+</small></div><div class="l">'아띠' 누적 판매</div></div>
-      <div class="stat"><div class="v">+104%</div><div class="l">2024 4Q 매출 성장</div></div>
-      <div class="stat"><div class="v">60.5억</div><div class="l">프리시리즈A 투자</div></div>
-    </div>
-    <p class="lead" style="margin-top:42px;text-align:center;max-width:60ch;align-self:center;">하우스 · 아띠 · 앱 · 올데이 구독으로 이어지는 생태계. 대만 momo 1위로 글로벌 가능성까지. <b class="accent">그런데 —</b></p>
-  </section>
-
-  <!-- 3 PIVOT -->
-  <section class="slide">
-    <div class="head">
-      <div class="kicker">지금의 전환점</div>
-      <h2>다음 무대는 <span class="hl">'한 번 판매'가 아니라 '매일 구독'</span></h2>
-    </div>
-    <div class="grid g2">
-      <div class="yb"><span class="pill y">2025.08 출시</span><div class="yt">코코지 올데이<br>(월 12,900원)</div><div class="yd">1만 편 이상을 마음껏. 일회성 하드웨어 매출을 <b>반복 구독 매출</b>로 바꾸는 결정적 한 수.</div></div>
-      <div class="yb"><span class="pill">가장 빠른 성장축</span><div class="yt">모바일 콘텐츠 매출<br><span class="accent">+124%</span> YoY</div><div class="yd">전체 매출(+104%)보다 빠름 = 미래는 디바이스가 아니라 <b>'앱·구독'</b>에 있다는 신호.</div></div>
-    </div>
-    <p class="lead" style="margin-top:30px;"><b>그래서 이 전략의 목표는 하나 — 올데이 구독을 코코지 성장의 엔진으로.</b></p>
-  </section>
-
-  <!-- 4 DIAGNOSIS -->
-  <section class="slide">
-    <div class="head">
-      <div class="kicker">핵심 진단</div>
-      <h2>앱을 열면 <span class="hl">"꼭 코코지여야 할 이유"</span>가<br>잘 보이지 않아요</h2>
-    </div>
-    <div class="contrast">
-      <div class="cbox a"><div class="cl">앱이 먼저 보여주는 것</div><div class="cm"><b>콘텐츠 목록</b>의 나열.<br>"무엇이 들어있는가(What)"가 첫 화면.</div></div>
-      <div class="cbox b"><div class="cl">부모의 첫 반응</div><div class="cm">"이거 <b>다른 데서도 볼 수 있는데?</b><br>기기 + 월 구독을 굳이 왜?"</div></div>
-    </div>
-    <p class="lead" style="margin-top:30px;">가치가 <b>'What(콘텐츠)'에 머물고 'Why(고르는 이유)'로 올라가지 못한 것</b> — 그로스의 가장 깊은 병목입니다.</p>
-  </section>
-
-  <!-- 5 STRUCTURE -->
-  <section class="slide">
-    <div class="head">
-      <div class="kicker">진단 구조화</div>
-      <h2>약한 'Why'가 <span class="hl">세 가지 증상</span>을 만들어요</h2>
-    </div>
-    <div class="root"><div class="rt">🌱 근본 원인 — "왜 코코지여야 하는가"가 약하다</div><div class="rd">차별화된 가치가 제품 표면에서 또렷이 전달되지 않음</div></div>
-    <div class="branch">▼</div>
-    <div class="grid g3">
-      <div class="symptom"><div class="st">① 전환 병목</div><div class="sd">7일 체험 → 유료 전환율 낮음. 가치 체감 전에 이탈.</div></div>
-      <div class="symptom"><div class="st">② 낮은 발견성</div><div class="sd">"뭘 들려주지?" 막막함 → 산 콘텐츠도 안 들음.</div></div>
-      <div class="symptom"><div class="st">③ 공유 마찰</div><div class="sd">"기기 1인만 등록" 등 불편(앱 리뷰) → 확산 저해.</div></div>
-    </div>
-  </section>
-
-  <!-- 6 WHY 5 -->
-  <section class="slide">
-    <div class="head">
-      <div class="kicker">전략의 출발점 · 가치 재정의</div>
-      <h2>사는 이유는 '콘텐츠'가 아니라 <span class="hl">이 다섯</span></h2>
-    </div>
-    <div class="grid g5">
-      <div class="reason"><div class="emoji">👂</div><div class="rt">눈 대신 귀로</div><div class="rd">화면에서 멀어져 소리로 노는 시간.</div></div>
-      <div class="reason"><div class="emoji">🛡️</div><div class="rt">안심 울타리</div><div class="rd">광고·유해영상 없는 큐레이션.</div></div>
-      <div class="reason"><div class="emoji">🗣️</div><div class="rt">자라는 언어</div><div class="rd">"말이 빨리 늘었다"는 후기처럼.</div></div>
-      <div class="reason"><div class="emoji">🧩</div><div class="rt">아이가 스스로</div><div class="rd">아띠 올리면 스스로 고르는 놀이.</div></div>
-      <div class="reason"><div class="emoji">🌙</div><div class="rt">육아의 숨통</div><div class="rd">잠들기·밥먹기·이동을 채워줘요.</div></div>
-    </div>
-    <p class="lead" style="margin-top:28px;text-align:center;"><b>이 다섯 'Why'를 콘텐츠 목록보다 먼저 보이게 만드는 것</b> — 전략의 본질.</p>
-  </section>
-
-  <!-- 7 LEVER 1 -->
-  <section class="slide">
-    <div class="head">
-      <div class="kicker">해결 ① · 가치를 제품 표면으로</div>
-      <h2>"콘텐츠 목록"이 아니라 <span class="hl">"우리 아이의 Why"</span>를 먼저</h2>
-    </div>
-    <div class="grid" style="grid-template-columns:1.3fr 1fr;align-items:center;gap:40px;">
-      <div class="list">
-        <div class="li"><div class="n">1</div><div class="tx"><b>콘텐츠 수로 경쟁하지 않기.</b> "화면 대신 무엇을 줄까?"의 답으로 포지셔닝.</div></div>
-        <div class="li"><div class="n">2</div><div class="tx">온보딩 첫 화면 = 카탈로그 ❌ → <b>"우리 아이는 몇 살, 뭘 좋아하나요?"</b> 질문 먼저.</div></div>
-        <div class="li"><div class="n">3</div><div class="tx">답에 맞춰 베네핏 + <b>오늘 들을 한 편</b> 추천. '많다'가 아니라 <b>'맞다'</b>를 경험.</div></div>
-      </div>
-      <div style="display:flex;justify-content:center;">
-        <div class="phone">
-          <div class="pq">우리 아이는<br>몇 살인가요? 🐣</div>
-          <div class="chips"><span>12개월</span><span class="on">2세</span><span>3세</span><span>4세+</span></div>
-          <div class="precom"><div class="pt">오늘 우리 아이에게</div><div class="pm">🎵 「동물 친구들의 잠자리 노래」</div></div>
+    <!-- 1. COVER -->
+    <section class="slide active cover">
+      <span class="glow a"></span><span class="glow b"></span>
+      <div style="position:relative;z-index:2">
+        <span class="kicker"><span class="dot"></span>Platform Growth Marketer · 전략 제안</span>
+        <h1>기기는 팔립니다.<br><span class="hl">구독은, 아직입니다</span></h1>
+        <p class="lead">코코지는 콘텐츠가 많아서 사는 게 아닙니다. <b>'우리 아이의 매일'이 달라져서</b> 삽니다. 잘 팔리는 키즈 브랜드를 <b>매일 열리는 구독 플랫폼</b>으로 바꾸는 그로스 전략을 제안합니다.</p>
+        <div class="meta">
+          <div>대상<b>코코지 (코코지 올데이)</b></div>
+          <div>포지션<b>Platform Growth Marketer</b></div>
+          <div>구성<b>BM 진단 → 본질 문제 → 전략 → 기대 증분 16p</b></div>
         </div>
       </div>
-    </div>
-    <div class="evi">
-      <div class="ei"><span class="el">📎 레퍼런스</span>Yoto·Toniebox는 콘텐츠 수가 아닌 <b>'스크린프리'</b>를 헤드라인으로. Netflix·Disney+는 가입 직후 취향질문→첫 추천.</div>
-      <div class="ei"><span class="el">💡 근거</span>신규 유저는 <b>'나에게 왜 좋은지'를 먼저 경험할 때</b> 활성화·전환율이 오름(Activation 원칙).</div>
-    </div>
-  </section>
+      <div class="foot"><span class="brand">코코지 · Growth Strategy</span><span class="pageno">01 / 16</span></div>
+    </section>
 
-  <!-- 8 LEVER 2 -->
-  <section class="slide">
-    <div class="head">
-      <div class="kicker">해결 ② · 전환</div>
-      <h2>체험 7일 안에 <span class="hl">'아하 모먼트'</span>를 설계해요</h2>
-    </div>
-    <div class="flow" style="margin-bottom:30px;">
-      <span class="step">📦 언박싱</span><span class="gt">→</span>
-      <span class="step">7일 무료체험</span><span class="gt">→</span>
-      <span class="step on">유료 전환</span>
-    </div>
-    <div class="list">
-      <div class="li"><div class="n">1</div><div class="tx">기기 개봉 순간을 <b>구독 온보딩의 시작점</b>으로 — 지금은 하드웨어 구매자가 올데이로 이어지지 않는 누수 구간.</div></div>
-      <div class="li"><div class="n">2</div><div class="tx">체험 7일 안에 <b>첫 성공 경험</b>(첫 잠자리 동화, 아이가 스스로 아띠 올리기)으로 "이래서 필요하구나"를 체감.</div></div>
-      <div class="li"><div class="n">3</div><div class="tx">체험 종료 전 <b>'우리 아이가 이만큼 들었어요'</b> 요약으로 전환 시점에 가치를 다시 보여줌.</div></div>
-    </div>
-    <div class="evi">
-      <div class="ei"><span class="el">📎 레퍼런스</span>Aha Moment — Facebook '10일 내 친구 7명', Slack '2,000개 메시지'. 첫 핵심 경험 도달이 잔존·전환을 가름.</div>
-      <div class="ei"><span class="el">💡 근거</span>무료체험 전환은 기간이 아니라 <b>'첫 가치 경험 완료 여부'</b>가 결정 → 7일 내 아하모먼트가 핵심 레버.</div>
-    </div>
-  </section>
-
-  <!-- 9 LEVER 3 -->
-  <section class="slide">
-    <div class="head">
-      <div class="kicker">해결 ③ · 리텐션</div>
-      <h2>매일 여는 이유를 만들고, <span class="hl">떠날 이유를 없애요</span></h2>
-    </div>
-    <div class="grid" style="grid-template-columns:1.3fr 1fr;align-items:center;gap:40px;">
-      <div class="grid g2">
-        <div class="card"><div class="t">"오늘 우리 아이에게"</div><div class="d">연령·관심 기반 추천으로 "뭘 들려주지?" 고민 제거.</div></div>
-        <div class="card" style="border-color:var(--green);"><div class="t">'우리 아이 듣기 기록' ★</div><div class="d">들은 시간·새 이야기를 보여줌 → 가치 체감 = 해지 방어.</div></div>
-        <div class="card"><div class="t">데일리 루틴 훅</div><div class="d">잠들기·밥먹기·이동 시간대 콘텐츠 = 매일 여는 이유.</div></div>
-        <div class="card"><div class="t">신선함 유지</div><div class="d">"이번 주 새 이야기"로 매주 재방문 유도.</div></div>
+    <!-- 2. 성과 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>코코지 이해 · 이미 증명된 것</span>
+        <h2>제품도, 브랜드도, 글로벌도 <span class="hl">이미 사랑받고</span> 있습니다</h2>
       </div>
-      <div style="display:flex;justify-content:center;">
-        <div class="report">
-          <div class="rh">📊 이번 주 우리 아이</div>
-          <div class="rrow"><span class="rk">들은 시간</span><span class="rv">2시간 40분</span></div>
-          <div class="rrow"><span class="rk">새로 만난 이야기</span><span class="rv">7편</span></div>
-          <div class="rrow"><span class="rk">좋아한 주제</span><span class="rv">동물 🐰</span></div>
-          <div class="rk" style="font-size:13px;color:var(--ink-soft);font-weight:600;margin-top:6px;">매일 듣기</div>
-          <div class="streak"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+      <div class="stats">
+        <div class="stat"><div class="n">13만+</div><div class="l">이용 가구 (한국·대만)</div></div>
+        <div class="stat"><div class="n dark">55만+</div><div class="l">캐릭터 '아띠' 누적 판매</div></div>
+        <div class="stat"><div class="n">+104%</div><div class="l">2024 4Q 매출 성장 (YoY)</div></div>
+        <div class="stat"><div class="n dark">60.5억</div><div class="l">프리시리즈A 투자 (한·일·독·중)</div></div>
+      </div>
+      <div class="callout" style="margin-top:2.6vh"><div class="big">＂</div><p>하우스 · 아띠 · 앱 · <span class="term">올데이<span class="tip"><b>코코지 올데이</b> · 2025.8 출시한 월 12,900원 오디오 콘텐츠 구독. 1만 편 이상 무제한.</span></span> 구독으로 이어지는 생태계. 대만 momo·zeczec 카테고리 1위로 글로벌 가능성까지. <b>그런데 — 다음 성장은 '제품'이 아니라 '구독'에서 나옵니다.</b></p></div>
+      <p class="note">출처: 와우테일·플래텀(2024 4Q 매출 +104%·아띠 55만·13만 가구), THE VC(프리시리즈A 60.5억). ※ 공개자료 기반.</p>
+      <div class="foot"><span class="brand">코코지 · Growth Strategy</span><span class="pageno">02 / 16</span></div>
+    </section>
+
+    <!-- 3. BM -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>BM 분석 1 · 어떻게 돈을 버는가</span>
+        <h2>'한 번 파는 하드웨어'에서 <span class="hl">'매일 버는 구독'</span>으로 무게중심이 옮겨가고 있습니다</h2>
+      </div>
+      <div class="flow">
+        <div class="node"><div class="nt">하드웨어 (일회성)</div><div class="nd">하우스 9.5만~ · 아띠 세트<br>한 번 팔면 끝 — 성장이 신규 구매에 의존</div></div>
+        <div class="arr">→</div>
+        <div class="node hot"><div class="nt">구독 · 올데이 (반복)</div><div class="nd">월 12,900원 · 1만 편 무제한<br>매달 자동 발생하는 <span class="term">반복 매출<span class="tip"><b>반복 매출 (Recurring)</b> · 매달 자동으로 발생하는 구독 매출. 한 번 팔고 끝나는 하드웨어와 달리 쌓인다.</span></span></div></div>
+        <div class="arr">+</div>
+        <div class="node"><div class="nt">IP·콜라보 (확장)</div><div class="nd">핑크퐁·뽀로로 등 IP 패키지<br>객단가·선물 수요 확장</div></div>
+      </div>
+      <div class="g2 grid" style="margin-top:2.4vh">
+        <div class="card"><h3 style="color:var(--green-600)">왜 구독이 핵심인가</h3><p style="margin-top:.5vw">하드웨어는 한 번 팔면 끝이라 매번 새 고객을 사와야 한다. 구독은 <span class="term">LTV<span class="tip"><b>LTV (고객 생애 가치)</b> · 한 고객이 떠날 때까지 주는 총수익. 구독은 잔존할수록 쌓인다.</span></span>가 시간에 비례해 쌓여 '자생하는 성장 엔진'이 된다.</p></div>
+        <div class="card" style="border-left:4px solid var(--green)"><h3 style="color:var(--green-600)">이미 신호가 보인다</h3><p style="margin-top:.5vw"><b>2024 4Q 모바일 콘텐츠 매출 +124% YoY</b> — 전체 매출(+104%)보다 빠르게 성장. 미래가 어디 있는지 데이터가 가리키고 있다.</p></div>
+      </div>
+      <p class="note">출처: 와우테일(모바일 콘텐츠 매출 +124% YoY), 플래텀(올데이 출시·가격). 매출 구성비는 내부 데이터로 보정 필요.</p>
+      <div class="foot"><span class="brand">코코지 · Growth Strategy</span><span class="pageno">03 / 16</span></div>
+    </section>
+
+    <!-- 4. 레버 공식 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>BM 분석 2 · 구독을 움직이는 4개 레버</span>
+        <h2>구독 매출은 이 <span class="hl">4개의 곱(×)</span>으로 결정됩니다</h2>
+      </div>
+      <div class="formula">
+        <span class="fx">구독 매출</span><span class="op">≈</span>
+        <span class="fx lever">① 신규 체험 유입</span><span class="op">×</span>
+        <span class="fx lever">② 체험→유료 전환율</span><span class="op">×</span>
+        <span class="fx lever">③ 잔존(리텐션)</span><span class="op">×</span>
+        <span class="fx lever">④ ARPU</span>
+      </div>
+      <div class="lever-grid">
+        <div class="lever"><span class="ln">레버 ①</span><div class="lt">신규 체험 유입</div><div class="ld">기기·아띠 구매자(55만+)·13만 가구라는 강력한 유입 자산</div><div class="badge ok">🟢 강함 · 자산 보유</div></div>
+        <div class="lever"><span class="ln">레버 ②</span><div class="lt">체험→유료 전환</div><div class="ld">7일 무료체험에서 유료로 넘어가는 비율 (<span class="term down">전환율<span class="tip"><b>전환율 (Conversion)</b> · 체험 사용자 중 유료 결제로 넘어간 비율.</span></span>)</div><div class="badge hyp">🟡 약함 추정 · 본질 문제</div></div>
+        <div class="lever"><span class="ln">레버 ③</span><div class="lt">잔존(리텐션)</div><div class="ld">유료 후 얼마나 오래 남는가 (<span class="term down">처닝<span class="tip"><b>처닝/이탈 (Churn)</b> · 구독을 해지하는 것. 잔존(리텐션)의 반대. 구독 비즈니스의 생사를 가른다.</span></span> 방어)</div><div class="badge hyp">🟡 핵심 · 미검증</div></div>
+        <div class="lever"><span class="ln">레버 ④</span><div class="lt">ARPU</div><div class="ld">구독자 1인당 매출 (<span class="term down">ARPU<span class="tip"><b>ARPU</b> · 사용자 1인당 평균 매출. 업셀·콜라보·연간권으로 키운다.</span></span>·업셀·콜라보)</div><div class="badge hyp">🟡 미개척 추정</div></div>
+      </div>
+      <div class="callout" style="margin-top:1.8vh"><div class="big">!</div><p>강점은 <b>레버 ①(유입 자산)</b>. 막힌 곳은 <b>②전환과 ③잔존</b>입니다. 다음 성장은 ①을 더 사오는 게 아니라, <b>들어온 사람을 유료로 바꾸고(②) 오래 남기는(③)</b> 데서 나옵니다.</p></div>
+      <p class="note">※ 근거 등급 — 🟢 사실: 공개 판매·가구 수로 확인 / 🟡 가설: 신규 구독(2025.8 출시)이라 전환·잔존 데이터는 미공개 → <b>입사 후 0순위 검증 대상</b>.</p>
+      <div class="foot"><span class="brand">코코지 · Growth Strategy</span><span class="pageno">04 / 16</span></div>
+    </section>
+
+    <!-- 5. 본질 문제 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>본질 문제 정의</span>
+        <h2>앱을 열면 <span class="hly">"꼭 코코지여야 할 이유"</span>가 잘 보이지 않습니다</h2>
+      </div>
+      <div class="twocol">
+        <div class="rows">
+          <div class="row"><div class="ix" style="background:var(--muted-2)">현상</div><div class="tx"><h4>앱이 먼저 보여주는 것 = '콘텐츠 목록'</h4><p>핑크퐁·뽀로로·동화의 나열. "무엇이 들어있나(What)"가 첫 화면.</p></div></div>
+          <div class="row" style="background:var(--warn-bg);border-color:#ffd9cf"><div class="ix" style="background:var(--warn)">반응</div><div class="tx"><h4>부모의 첫 생각 = "이거 다른 데서도 보는데?"</h4><p>유사 콘텐츠 대체재가 많은 시장. 기기값 + 월 구독을 더할 이유가 약하게 느껴짐.</p></div></div>
+          <div class="row" style="background:var(--green-050);border-color:var(--green-100)"><div class="ix">병</div><div class="tx"><h4>진짜 병 = 가치가 'Why'로 못 올라감</h4><p>'What(콘텐츠)'에 머물러 'Why(고르는 이유)'를 못 보여줌 → 전환(②)·잔존(③)이 동시에 샌다.</p></div></div>
+        </div>
+        <div>
+          <div class="callout" style="flex-direction:column;align-items:flex-start;gap:.9vw">
+            <p style="font-size:1.42vw">＂콘텐츠를 더 늘리는 싸움이 아니라, <b>'왜 코코지인가'를 제품 표면에서 또렷이 만드는 일</b>이 모든 레버의 뿌리입니다.＂</p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="evi">
-      <div class="ei"><span class="el">📎 레퍼런스</span><b>Spotify Wrapped</b>(청취 데이터 → 공유·재방문 폭발), <b>Duolingo Streak</b>(습관 루프 → 최고 리텐션).</div>
-      <div class="ei"><span class="el">💡 근거</span><b>Hook Model</b>(계기→행동→보상→투자) — 루틴과 쌓이는 기록이 습관·애착을 만들어 해지를 막음.</div>
-    </div>
-  </section>
+      <p class="note">출처: 코코지 앱스토어 리뷰(4.8★ / 5,400여 건) — "기기 1인만 등록" 등 실제 사용성 의견 포함. 진단은 외부 관점 가설로, 입사 후 데이터로 검증.</p>
+      <div class="foot"><span class="brand">코코지 · Growth Strategy</span><span class="pageno">05 / 16</span></div>
+    </section>
 
-  <!-- 10 LEVER 4 -->
-  <section class="slide">
-    <div class="head">
-      <div class="kicker">해결 ④ · 획득 & 확장</div>
-      <h2>이미 가진 <span class="hl">자산</span>으로 효율적으로 키워요</h2>
-    </div>
-    <div class="list">
-      <div class="li"><div class="n">1</div><div class="tx"><b>하드웨어를 구독 획득 채널로.</b> 누적 55만+ 구매자를 올데이 체험으로 연결 → 새는 전환을 회수.</div></div>
-      <div class="li"><div class="n">2</div><div class="tx"><b>선물·다자녀 확산.</b> 아띠의 선물성을 추천 리워드로 + 둘째·조카 자동 확장 → 자연 획득으로 CAC ↓.</div></div>
-      <div class="li"><div class="n">3</div><div class="tx"><b>대만 성공의 복제.</b> momo·zeczec 1위 모델을 글로벌 구독으로 이식 → 신규 가구 풀 확대.</div></div>
-      <div class="li"><div class="n">4</div><div class="tx"><b>가치 기반 퍼포먼스.</b> "콘텐츠 많아요"가 아니라 "화면 대신 귀로" 같은 <b>Why 메시지</b>로 획득 효율 개선.</div></div>
-    </div>
-    <div class="evi">
-      <div class="ei"><span class="el">📎 레퍼런스</span><b>Dropbox</b>(추천 리워드로 광고 없이 성장), <b>Toniebox</b>(선물 시장이 핵심 획득 채널).</div>
-      <div class="ei"><span class="el">💡 근거 (자사)</span>대만 <b>카테고리 1위</b> + 아띠 <b>55만 개</b> = 검증된 획득 자산. 구독 전환만 연결하면 됨.</div>
-    </div>
-  </section>
+    <!-- 6. 왜 사는가 5 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>가치 재정의 · 전략의 출발점</span>
+        <h2>사는 이유는 '콘텐츠'가 아니라 <span class="hl">이 다섯 가지</span></h2>
+      </div>
+      <div class="grid" style="grid-template-columns:repeat(5,1fr);flex:1;align-content:center">
+        <div class="card soft" style="text-align:center"><div class="ci">👂</div><h3 style="font-size:1.15vw">눈 대신 귀로</h3><p style="font-size:.9vw">화면에서 멀어져 소리로 노는 시간.</p></div>
+        <div class="card soft" style="text-align:center"><div class="ci">🛡️</div><h3 style="font-size:1.15vw">안심 울타리</h3><p style="font-size:.9vw">광고·유해영상 없는 큐레이션.</p></div>
+        <div class="card soft" style="text-align:center"><div class="ci">🗣️</div><h3 style="font-size:1.15vw">자라는 언어</h3><p style="font-size:.9vw">"말이 빨리 늘었다"는 후기처럼.</p></div>
+        <div class="card soft" style="text-align:center"><div class="ci">🧩</div><h3 style="font-size:1.15vw">아이가 스스로</h3><p style="font-size:.9vw">아띠 올리면 스스로 고르는 놀이.</p></div>
+        <div class="card soft" style="text-align:center"><div class="ci">🌙</div><h3 style="font-size:1.15vw">육아의 숨통</h3><p style="font-size:.9vw">잠들기·밥먹기·이동을 채워줘요.</p></div>
+      </div>
+      <div class="callout"><div class="big">→</div><p><b>이 다섯 'Why'를 콘텐츠 목록보다 먼저 보이게 만드는 것</b> — 전환·잔존·획득 세 축이 모두 여기서 출발합니다.</p></div>
+      <div class="foot"><span class="brand">코코지 · Growth Strategy</span><span class="pageno">06 / 16</span></div>
+    </section>
 
-  <!-- 11 ROADMAP -->
-  <section class="slide">
-    <div class="head">
-      <div class="kicker">실행 · 6개월 로드맵</div>
-      <h2>진단 → 전환 → 리텐션·확장</h2>
-    </div>
-    <div class="road">
-      <div class="phase"><div class="ph">MONTH 0–2</div><div class="pt">진단 & 정비</div><ul><li>체험→유료·D30/D90 코호트 분석</li><li>'왜 코코지' 메시지 정의·검증</li><li>온보딩 누수 지점 진단</li></ul></div>
-      <div class="phase"><div class="ph">MONTH 2–4</div><div class="pt">전환 끌어올리기</div><ul><li>언박싱→체험→유료 퍼널 재설계</li><li>온보딩 'Why-first' A/B</li><li>'듣기 기록' MVP</li></ul></div>
-      <div class="phase"><div class="ph">MONTH 4–6</div><div class="pt">리텐션 & 확장</div><ul><li>데일리 루틴·신선함 강화</li><li>선물·다자녀 확산 구조화</li><li>대만 모델 구독 이식</li></ul></div>
-    </div>
-    <div class="kpibar">
-      <div class="kpi">북극성 <span>유료 구독 MAU</span></div>
-      <div class="kpi">체험→유료 <span>전환율</span></div>
-      <div class="kpi">D30·D90 <span>잔존율</span></div>
-      <div class="kpi"><span>ARPU·LTV</span></div>
-      <div class="kpi">획득 <span>CAC</span></div>
-    </div>
-  </section>
+    <!-- 7. 시장 인사이트 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>시장 인사이트 · 스크린프리</span>
+        <h2>글로벌 1위들은 <span class="hl">'콘텐츠 수'가 아니라 '스크린프리'</span>로 팝니다</h2>
+      </div>
+      <div class="twocol">
+        <div class="rows">
+          <div class="row"><div class="ix">📎</div><div class="tx"><h4>Toniebox·Yoto (글로벌 키즈 오디오 1위)</h4><p>Toniebox 누적 1,000만 가구+. 헤드라인은 콘텐츠 목록이 아니라 <b>"Screen-free"</b> — '화면 대신'이라는 가치를 판다.</p></div></div>
+          <div class="row"><div class="ix">📊</div><div class="tx"><h4>부모 수요는 이미 '미디어 노출 줄이기'</h4><p>미 소아과학회(AAP)는 18~24개월 미만 미디어를 권장하지 않음. '화면을 대체할 무언가'를 찾는 부모가 코코지의 핵심 시장.</p></div></div>
+          <div class="row"><div class="ix">🌏</div><div class="tx"><h4>대만에서 이미 검증된 모델</h4><p>대만 momo·zeczec 카테고리 1위 — '스크린프리 가치'가 국경을 넘어 통한다는 증거.</p></div></div>
+        </div>
+        <div>
+          <div class="callout" style="flex-direction:column;align-items:flex-start;gap:.9vw">
+            <p style="font-size:1.4vw">＂경쟁 상대를 '오디오 앱들'이 아니라 <b>'유튜브·스크린타임'</b>으로 재설정할 때, 코코지의 가치가 또렷해집니다.＂</p>
+          </div>
+        </div>
+      </div>
+      <p class="note">레퍼런스: tonies(Toniebox, 1,000만+ 가구·"screen-free" 포지셔닝), Yoto, 미국소아과학회(AAP) 미디어 가이드라인. ※ 공개자료.</p>
+      <div class="foot"><span class="brand">코코지 · Growth Strategy</span><span class="pageno">07 / 16</span></div>
+    </section>
 
-  <!-- 12 CLOSING -->
-  <section class="slide warm">
-    <div class="kicker">맺음말</div>
-    <h1 style="max-width:24ch;">코코지를 고르는 이유를<br><span class="muted" style="font-weight:800;">'콘텐츠가 많아서'</span>가 아니라<br><span class="hl">'우리 아이의 매일이 달라져서'</span>로.</h1>
-    <p class="lead" style="margin-top:28px;max-width:48ch;">잘 듣는 아이, 매일 커지는 세상 — 그 <b>'매일'을 데이터로 키우는</b> 구독 플랫폼으로 만들겠습니다.</p>
-    <div class="footer-name">감사합니다</div>
-  </section>
+    <!-- 8. 돌파구 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>돌파구 정의</span>
+        <h2>돌파구 = <span class="hl">콘텐츠를 늘리는 게 아니라, 'Why'를 매출로 환전</span>하는 것</h2>
+      </div>
+      <div class="g2 grid" style="flex:1;align-content:center">
+        <div class="card soft" style="border-left:4px solid var(--warn)">
+          <span class="tag" style="background:var(--warn-bg);color:#D6452B">FROM · 지금</span>
+          <h3 style="margin-top:.9vw">콘텐츠 목록을 보여주고, 기기를 더 판다</h3>
+          <p>'무엇이 많은지'로 경쟁 → 대체재와 비교당하고, 성장이 신규 하드웨어 판매에 묶임.</p>
+        </div>
+        <div class="card" style="border-left:4px solid var(--green)">
+          <span class="tag" style="background:var(--green-050);color:var(--green-600)">TO · 지향</span>
+          <h3 style="margin-top:.9vw">'우리 아이의 Why'를 먼저 보여주고, 구독으로 잇는다</h3>
+          <p>가치를 먼저 경험시켜 전환(②)·잔존(③)을 키움. 한 명의 <span class="term">LTV<span class="tip"><b>LTV</b> · 고객 생애 가치. 잔존이 길수록 커진다.</span></span>를 높여 자생하는 성장.</p>
+        </div>
+      </div>
+      <div class="callout"><div class="big">＝</div><p>같은 트래픽·같은 콘텐츠라도, <b>'왜 좋은지'를 먼저 보이게 하면</b> 전환과 잔존이 함께 오릅니다. 이를 <b>전환 · 리텐션 · 획득</b> 세 축으로 실행합니다.</p></div>
+      <div class="foot"><span class="brand">코코지 · Growth Strategy</span><span class="pageno">08 / 16</span></div>
+    </section>
 
+    <!-- 9. DON'T -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>지양해야 할 액션 · DON'T</span>
+        <h2>이 3가지는 단기 숫자를 올리고 <span class="hly">구독 레버를 망가뜨립니다</span></h2>
+      </div>
+      <div class="panel dont" style="flex:1">
+        <div class="pitem"><span class="mk">✕</span><div class="pt">'콘텐츠 수'와 '할인'으로만 경쟁하기<span>유튜브·무료 대체재와 같은 운동장의 가격싸움 → 차별화는 사라지고 객단가만 깎인다.</span></div></div>
+        <div class="pitem"><span class="mk">✕</span><div class="pt">기기 판매 KPI만 좇아 구독 전환을 방치하기<span>하드웨어는 일회성. 구매자를 올데이로 잇지 않으면 가장 값싼 유입 자산(①)을 흘려보낸다.</span></div></div>
+        <div class="pitem"><span class="mk">✕</span><div class="pt">리워드·체험 미끼로 '쓰지 않는 가입'만 늘리기<span>체험 수는 오르지만 가치 경험 없는 가입은 <span class="term up">처닝<span class="tip"><b>처닝</b> · 해지·이탈. 가치를 못 느낀 가입은 결국 떠난다.</span></span>으로 직결 → 잔존(③)이 무너진다.</span></div></div>
+      </div>
+      <div class="foot"><span class="brand">코코지 · Growth Strategy</span><span class="pageno">09 / 16</span></div>
+    </section>
+
+    <!-- 10. DO 개요 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>가속할 액션 · 전략 3축</span>
+        <h2>막힌 레버를 <span class="hl">전환 · 리텐션 · 획득</span> 세 축으로 동시에 푼다</h2>
+      </div>
+      <div class="g3 grid" style="flex:1;align-content:center">
+        <div class="card" style="border-top:4px solid var(--green)"><span class="tag" style="background:var(--green-050);color:var(--green-600)">전략 1 · 전환 엔진</span><h3 style="margin-top:.9vw">체험을<br>유료로 (②)</h3><p>온보딩을 'Why-first'로 재설계하고, 7일 안에 '아하 모먼트'를 만들어 전환.</p><div class="pill-list"><span class="pill">레버 ②</span></div></div>
+        <div class="card" style="border-top:4px solid var(--green)"><span class="tag" style="background:var(--green-050);color:var(--green-600)">전략 2 · 리텐션</span><h3 style="margin-top:.9vw">매일 열고<br>오래 남게 (③)</h3><p>가치 가시화(듣기 기록) + 데일리 루틴으로 습관을 만들어 잔존을 방어.</p><div class="pill-list"><span class="pill">레버 ③</span></div></div>
+        <div class="card" style="border-top:4px solid var(--green)"><span class="tag" style="background:var(--green-050);color:var(--green-600)">전략 3 · 획득·확장</span><h3 style="margin-top:.9vw">가진 자산으로<br>싸게 (①④)</h3><p>하드웨어→구독 채널화 + 선물·다자녀 + 대만 복제로 저비용 확장.</p><div class="pill-list"><span class="pill">레버 ①④</span></div></div>
+      </div>
+      <div class="callout"><div class="big">→</div><p>세 축은 모두 <b>'Why를 매출로 환전한다'</b>는 한 방향을 향하고, 회사의 <b>'잘 듣는 아이, 매일 커지는 세상'</b> 비전으로 수렴합니다.</p></div>
+      <div class="foot"><span class="brand">코코지 · Growth Strategy</span><span class="pageno">10 / 16</span></div>
+    </section>
+
+    <!-- 11. 전략 1 전환 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>전략 1 · 전환 엔진 (레버 ②)</span>
+        <h2>체험 7일 안에 <span class="hl">'우리 아이의 Why'</span>를 경험시킨다</h2>
+      </div>
+      <div class="twocol" style="grid-template-columns:1.25fr .75fr">
+        <div class="rows">
+          <div class="row" style="background:var(--green-050);border-color:var(--green-100)"><div class="ix">A</div><div class="tx"><h4>⭐ 온보딩을 카탈로그 → 'Why-first'로</h4><p>첫 화면을 콘텐츠 목록 대신 <b>"우리 아이는 몇 살, 뭘 좋아하나요?"</b>로. 답에 맞춰 베네핏 + <b>오늘 들을 한 편</b>을 추천 — '많다'가 아니라 '맞다'를 경험.</p></div></div>
+          <div class="row"><div class="ix">B</div><div class="tx"><h4>개봉(언박싱)을 구독 시작점으로</h4><p>기기 구매자가 올데이로 이어지지 않는 누수 구간. 개봉 → 7일 체험 → 유료 동선을 끊김 없이 잇는다.</p></div></div>
+          <div class="row"><div class="ix">C</div><div class="tx"><h4>7일 안에 '<span class="term">아하 모먼트<span class="tip"><b>아하 모먼트 (Aha Moment)</b> · 사용자가 제품의 핵심 가치를 처음 체감하는 순간. 도달하면 전환·잔존이 급등한다.</span></span>' 설계</h4><p>첫 잠자리 동화 성공·아이가 스스로 아띠 올리기 같은 첫 성공 경험을 만들고, 체험 종료 전 '이만큼 들었어요'로 가치를 다시 보여줌.</p></div></div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1vw">
+          <div class="phone">
+            <div class="phq">우리 아이는<br>몇 살인가요? 🐣</div>
+            <div class="chips"><span>12개월</span><span class="on">2세</span><span>3세</span><span>4세+</span></div>
+            <div class="phq" style="font-size:.92vw">무엇을 좋아하나요?</div>
+            <div class="chips"><span class="on">동물</span><span>자동차</span><span class="on">노래</span></div>
+            <div class="precom"><div class="pt">오늘 우리 아이에게</div><div class="pm">🎵 「동물 친구들의 잠자리 노래」</div></div>
+          </div>
+          <div class="vcap">온보딩 'Why-first' 예시<span>콘텐츠 목록보다 '우리 아이 맞춤'을 먼저</span></div>
+        </div>
+      </div>
+      <p class="note">📎 레퍼런스: Netflix·Disney+(취향 질문→첫 추천 온보딩), Toniebox('screen-free' 헤드라인). 💡 근거: Aha Moment 도달이 무료체험→유료 전환을 가른다(Activation 원칙).</p>
+      <div class="foot"><span class="brand">코코지 · Growth Strategy</span><span class="pageno">11 / 16</span></div>
+    </section>
+
+    <!-- 12. 전략 2 리텐션 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>전략 2 · 리텐션 (레버 ③)</span>
+        <h2>매일 여는 이유를 만들고, <span class="hl">떠날 이유를 없앤다</span></h2>
+      </div>
+      <div class="twocol" style="grid-template-columns:1.25fr .75fr">
+        <div class="rows">
+          <div class="row"><div class="ix">A</div><div class="tx"><h4>"오늘 우리 아이에게" 개인화 추천</h4><p>연령·관심·청취 데이터 기반으로 "뭘 들려주지?" 고민을 제거 — 발견성이 곧 활용도.</p></div></div>
+          <div class="row" style="background:var(--green-050);border-color:var(--green-100)"><div class="ix">B</div><div class="tx"><h4>⭐ '우리 아이 듣기 기록'으로 가치 가시화</h4><p>들은 시간·새 이야기·관심사를 보여줘 부모가 <b>가치를 눈으로 확인</b> → 해지 방어. 구독을 '쌓이는 기록'으로.</p></div></div>
+          <div class="row"><div class="ix">C</div><div class="tx"><h4>데일리 루틴 훅 + 신선함</h4><p>잠들기·밥먹기·이동 시간대 루틴 콘텐츠 = 매일 여는 이유. '이번 주 새 이야기'로 재방문 유도.</p></div></div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1vw">
+          <div class="report">
+            <div class="rh">📊 이번 주 우리 아이</div>
+            <div class="rrow"><span class="rk">들은 시간</span><span class="rv">2시간 40분</span></div>
+            <div class="rrow"><span class="rk">새로 만난 이야기</span><span class="rv">7편</span></div>
+            <div class="rrow"><span class="rk">좋아한 주제</span><span class="rv">동물 🐰</span></div>
+            <div class="rrow" style="margin-bottom:.3vw"><span class="rk">매일 듣기</span></div>
+            <div class="streak"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+          </div>
+          <div class="vcap">듣기 기록 가시화 예시<span>가치를 보여주면 해지가 줄어든다</span></div>
+        </div>
+      </div>
+      <p class="note">📎 레퍼런스: Spotify Wrapped(청취 데이터 → 공유·재방문 폭발), Duolingo Streak(습관 루프 → 최고 리텐션). 💡 근거: Hook Model(계기→행동→보상→투자)이 습관·애착을 만들어 처닝을 막음.</p>
+      <div class="foot"><span class="brand">코코지 · Growth Strategy</span><span class="pageno">12 / 16</span></div>
+    </section>
+
+    <!-- 13. 전략 3 획득·확장 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>전략 3 · 획득·확장 (레버 ①④)</span>
+        <h2>이미 가진 <span class="hl">자산</span>으로 새 광고비 없이 키운다</h2>
+      </div>
+      <div class="g2 grid" style="flex:1;align-content:center">
+        <div class="card"><div class="ci">📦</div><h3>하드웨어를 구독 획득 채널로</h3><p>누적 55만+ 구매자·13만 가구를 올데이 체험으로 연결 → 가장 값싼 유입(①)의 누수 회수.</p></div>
+        <div class="card"><div class="ci">🎁</div><h3>선물·다자녀 확산</h3><p>아띠의 선물성을 추천 리워드로 제품화 + 둘째·조카 자동 확장 → 자연 획득으로 <span class="term">CAC<span class="tip"><b>CAC (고객 획득 비용)</b> · 신규 고객 1명을 데려오는 비용. 추천·선물은 CAC가 매우 낮다.</span></span> ↓.</p></div>
+        <div class="card"><div class="ci">🌏</div><h3>대만 성공의 복제</h3><p>momo·zeczec 1위로 검증된 모델을 글로벌 구독으로 이식 → 신규 가구 풀 확대.</p></div>
+        <div class="card"><div class="ci">💬</div><h3>가치 기반 퍼포먼스 (④)</h3><p>"콘텐츠 많아요"가 아니라 "화면 대신 귀로" 같은 <b>Why 메시지</b> + 연간권·콜라보 업셀로 ARPU↑.</p></div>
+      </div>
+      <p class="note">📎 레퍼런스: Dropbox(추천 리워드로 광고 없이 폭발 성장), Toniebox(선물 시장이 핵심 획득 채널). 💡 근거(자사): 대만 카테고리 1위 + 아띠 55만 = 검증된 획득 자산.</p>
+      <div class="foot"><span class="brand">코코지 · Growth Strategy</span><span class="pageno">13 / 16</span></div>
+    </section>
+
+    <!-- 14. 증분 기대치 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>기대 증분 · 레버는 '곱(×)'으로 작동한다</span>
+        <h2>전환·잔존을 조금씩만 올려도 <span class="hl">구독 가치는 ~2배</span>가 됩니다</h2>
+      </div>
+      <div class="formula" style="margin-bottom:1.4vh"><span class="fx">구독 가치(LTV)</span><span class="op">≈</span><span class="fx lever">체험→유료 전환율</span><span class="op">×</span><span class="fx lever">평균 잔존 개월</span><span class="op">×</span><span class="fx lever">월 구독료</span></div>
+      <div class="imp">
+        <div class="ba">
+          <div class="bt">② 체험→유료 전환율</div>
+          <div class="barline"><span class="bl">현재</span><div class="bar now"><i></i></div><span class="bv">25%</span></div>
+          <div class="barline"><span class="bl">목표</span><div class="bar goal"><i></i></div><span class="bv" style="color:var(--green-600)">35%</span></div>
+          <div class="bt" style="margin-top:1.2vw">③ 평균 잔존 기간</div>
+          <div class="barline"><span class="bl">현재</span><div class="bar now"><i></i></div><span class="bv">6개월</span></div>
+          <div class="barline"><span class="bl">목표</span><div class="bar goal"><i></i></div><span class="bv" style="color:var(--green-600)">9개월</span></div>
+        </div>
+        <div class="resultcard">
+          <div class="rl">전환 ×1.4 &nbsp;×&nbsp; 잔존 ×1.5</div>
+          <div class="rb">≈ 구독 LTV 2.1배</div>
+          <div class="rd">신규 광고비 <b>0원 추가</b> 없이, 들어온 사람을 더 잘 전환·유지하기만 해도 한 명의 가치가 2배. 여기에 하드웨어→체험 연결률(①)을 높이면 유입 풀까지 무료로 확대됩니다.</div>
+        </div>
+      </div>
+      <p class="note">※ 위 수치는 <b>레버가 곱셈으로 작동함</b>을 보여주는 <b>예시값</b>입니다(실제는 내부 데이터로 보정). 핵심 메시지: '더 사오기'보다 '환전율 개선'이 자본 효율이 압도적으로 높다.</p>
+      <div class="foot"><span class="brand">코코지 · Growth Strategy</span><span class="pageno">14 / 16</span></div>
+    </section>
+
+    <!-- 15. 로드맵 + 측정 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>향후 액션 · First 90 Days & 측정</span>
+        <h2>입사 후 <span class="hl">90일 안에 전환·잔존 레버를 검증</span>합니다</h2>
+      </div>
+      <div class="nsm">
+        <div><div class="lab"><span class="term up">North Star Metric<span class="tip"><b>북극성 지표 (NSM)</b> · 사업 성공을 가장 잘 대표하는 단 하나의 지표.</span></span></div><div class="val">유료 구독 잔존 사용자 (Retained Paid Subscribers)</div></div>
+      </div>
+      <div class="tl" style="flex:none">
+        <div class="phase"><div class="ph-top"><span class="wk">0–30d</span><h3>진단</h3></div>
+          <ul><li>체험→유료·D30/D90 <span class="term">코호트<span class="tip"><b>코호트 분석</b> · 같은 시기에 시작한 사용자 그룹의 잔존을 추적하는 분석.</span></span> 분해</li><li>온보딩 누수 지점 특정</li><li>'왜 코코지' 메시지 정의</li></ul>
+          <div class="goal">→ 새는 레버 특정</div></div>
+        <div class="phase"><div class="ph-top"><span class="wk">30–60d</span><h3>실험</h3></div>
+          <ul><li>온보딩 'Why-first' <span class="term">A/B<span class="tip"><b>A/B 테스트</b> · 두 안을 나눠 보여주고 이긴 쪽을 채택.</span></span></li><li>'듣기 기록' 가시화 MVP</li><li>하드웨어→체험 연결 동선</li></ul>
+          <div class="goal">→ 전환·잔존 첫 개선</div></div>
+        <div class="phase"><div class="ph-top"><span class="wk">60–90d</span><h3>확장</h3></div>
+          <ul><li>이긴 실험 스케일업</li><li>데일리 루틴·선물 확산</li><li>대만 구독 이식 검토</li></ul>
+          <div class="goal">→ 반복 가능한 성장 공식</div></div>
+      </div>
+      <div class="metric-grid" style="margin-top:1.6vh">
+        <div class="metric"><div class="mh">체험→유료 전환율</div><div class="md">레버 ② · 가치 환전의 핵심</div><div class="mk2">↑ 상향</div></div>
+        <div class="metric"><div class="mh">D30·D90 잔존율</div><div class="md">레버 ③ · LTV 선행지표</div><div class="mk2">↑ 상향</div></div>
+        <div class="metric"><div class="mh"><span class="term up">LTV / CAC<span class="tip"><b>LTV/CAC</b> · 생애가치 ÷ 획득비용. 보통 3 이상이면 건강.</span></span></div><div class="md">획득 효율 판정</div><div class="mk2">↑ 상향</div></div>
+        <div class="metric"><div class="mh">구독 ARPU</div><div class="md">레버 ④ · 업셀·콜라보 두께</div><div class="mk2">↑ 상향</div></div>
+      </div>
+      <div class="foot"><span class="brand">코코지 · Growth Strategy</span><span class="pageno">15 / 16</span></div>
+    </section>
+
+    <!-- 16. 클로징 -->
+    <section class="slide closing">
+      <span class="glow a"></span>
+      <div style="position:relative;z-index:2">
+        <span class="kicker" style="background:rgba(255,255,255,.14);color:#dff0d0"><span class="dot" style="background:#bfe89e"></span>맺음말 · 저의 포부</span>
+        <h2>코코지는 이미 사랑받습니다.<br><span class="hl">이제 그 사랑을 '매일의 구독'으로 만들 차례입니다</span></h2>
+        <p class="lead">콘텐츠를 더 늘리는 싸움이 아니라 <b>'왜 코코지인가'를 또렷이 만들어</b>, 들어온 한 명을 더 잘 전환하고 더 오래 머물게 하겠습니다. 새 광고비 없이도 한 명의 가치를 두 배로 키우는 <b>'환전되는 성장'</b> — 그 엔진을 데이터로 증명하고, 코코지를 <b>'잘 듣는 아이, 매일 커지는 세상'</b>의 글로벌 1등 플랫폼으로 함께 만들고 싶습니다.</p>
+        <div class="sign">제안 · Platform Growth Marketer 지원자 &nbsp;|&nbsp; <b>이도형</b> &nbsp;·&nbsp; 5년차 그로스 마케터</div>
+      </div>
+      <div class="foot"><span class="brand">코코지 · Growth Strategy</span><span class="pageno">16 / 16</span></div>
+    </section>
+
+  </div>
 </div>
 
-<div id="counter">01 / 12</div>
-<div id="hint">← → 또는 클릭으로 이동</div>
+<div class="nav">
+  <button id="prev" aria-label="이전">◀</button>
+  <span class="ind"><span id="cur">1</span> / 16</span>
+  <button id="next" aria-label="다음">▶</button>
+</div>
+<div class="hint">← → 또는 클릭으로 이동 · 점선 단어에 마우스/탭하면 뜻이 나옵니다 · F 전체화면</div>
 
 <script>
   const slides=[...document.querySelectorAll('.slide')];
-  let i=0; const bar=document.getElementById('bar'); const counter=document.getElementById('counter');
+  const bar=document.getElementById('bar');
+  const cur=document.getElementById('cur');
+  const terms=[...document.querySelectorAll('.term')];
+  let i=0;
+  function closeTips(){terms.forEach(t=>t.classList.remove('show'))}
   function show(n){
     i=Math.max(0,Math.min(slides.length-1,n));
     slides.forEach((s,k)=>s.classList.toggle('active',k===i));
     bar.style.width=((i+1)/slides.length*100)+'%';
-    counter.textContent=String(i+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');
+    cur.textContent=i+1;
+    closeTips();
   }
-  function next(){show(i+1);} function prev(){show(i-1);}
+  document.getElementById('next').onclick=e=>{e.stopPropagation();show(i+1)};
+  document.getElementById('prev').onclick=e=>{e.stopPropagation();show(i-1)};
+  terms.forEach(t=>t.addEventListener('click',e=>{
+    e.stopPropagation();
+    const open=t.classList.contains('show');
+    closeTips();
+    if(!open)t.classList.add('show');
+  }));
   document.addEventListener('keydown',e=>{
-    if(['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)){e.preventDefault();next();}
-    else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev();}
-    else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(slides.length-1);}
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' ')show(i+1);
+    else if(e.key==='ArrowLeft'||e.key==='PageUp')show(i-1);
+    else if(e.key==='Home')show(0);
+    else if(e.key==='End')show(slides.length-1);
+    else if(e.key==='f'||e.key==='F'){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen();}
   });
-  document.getElementById('deck').addEventListener('click',e=>{const x=e.clientX/window.innerWidth;if(x<0.25)prev();else next();});
+  document.querySelector('.stage').addEventListener('click',e=>{
+    if(e.target.closest('.nav')||e.target.closest('.term')||e.target.closest('.phone'))return;
+    const x=e.clientX/window.innerWidth;
+    if(x>0.5)show(i+1);else show(i-1);
+  });
   show(0);
 </script>
 </body>
