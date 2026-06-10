@@ -147,6 +147,7 @@
   .lever .badge{margin-top:.6vw;font-size:.76vw;font-weight:800;padding:.25em .5em;border-radius:6px}
   .lever .badge.ok{background:var(--go-bg);color:#0a8a52}
   .lever .badge.weak{background:var(--warn-bg);color:#D6452B}
+  .lever .badge.hyp{background:#FFF6E6;color:#B47800}
 
   .nsm{background:linear-gradient(135deg,#0F1730,#1E54E6);color:#fff;border-radius:20px;padding:1.8vw 2.2vw;display:flex;align-items:center;gap:1.8vw;margin-bottom:1.5vh}
   .nsm .lab{font-size:1vw;color:#aac3ff;font-weight:700}
@@ -237,13 +238,14 @@
         <span class="fx lever">⑤ 공급 밀도</span>
       </div>
       <div class="lever-grid">
-        <div class="lever"><span class="ln">레버 ①</span><div class="lt">활성 환자 수</div><div class="ld">앱을 쓰는 유저 규모 (<span class="term">MAU/DAU<span class="tip"><b>MAU/DAU</b> · 한 달(M)·하루(D) 동안 앱을 쓴 순수 이용자 수. Monthly/Daily Active Users.</span></span>)</div><div class="badge ok">강함 · 1위권</div></div>
-        <div class="lever"><span class="ln">레버 ②</span><div class="lt">진료·연결 전환율</div><div class="ld">방문 중 실제 진료·병원연결로 이어진 비율 (<span class="term down">전환율<span class="tip"><b>전환율 (Conversion)</b> · 방문자 중 목표 행동(진료·예약·연결)까지 도달한 비율.</span></span>)</div><div class="badge weak">약함 · 누수</div></div>
-        <div class="lever"><span class="ln">레버 ③</span><div class="lt">건당 수익</div><div class="ld">연결 1건당 플랫폼이 버는 돈 (<span class="term down">Take rate<span class="tip"><b>Take rate (테이크레이트)</b> · 거래액·진료비 중 플랫폼이 광고·수수료로 가져가는 비율. 비급여 고단가일수록 큼.</span></span>·광고단가)</div><div class="badge weak">규제 노출</div></div>
-        <div class="lever"><span class="ln">레버 ④</span><div class="lt">재방문 빈도</div><div class="ld">한 환자가 다시 진료받는 횟수 (<span class="term down">리텐션<span class="tip"><b>리텐션 (Retention)</b> · 유저가 떠나지 않고 다시 돌아와 쓰는 정도. 매출을 키우는 가장 효율적인 레버.</span></span>·재진)</div><div class="badge weak">약함</div></div>
-        <div class="lever"><span class="ln">레버 ⑤</span><div class="lt">공급 밀도</div><div class="ld">입점 병원·약국·광고주 수와 <span class="term down">ARPU<span class="tip"><b>ARPU</b> · 광고주(공급자) 1곳당 평균 매출. Average Revenue Per User. 공급 측 과금이 두꺼울수록 큼.</span></span></div><div class="badge weak">미개척</div></div>
+        <div class="lever"><span class="ln">레버 ①</span><div class="lt">활성 환자 수</div><div class="ld">앱을 쓰는 유저 규모 (<span class="term">MAU/DAU<span class="tip"><b>MAU/DAU</b> · 한 달(M)·하루(D) 동안 앱을 쓴 순수 이용자 수. Monthly/Daily Active Users.</span></span>)</div><div class="badge ok">🟢 강함 · 사실</div></div>
+        <div class="lever"><span class="ln">레버 ②</span><div class="lt">진료·연결 전환율</div><div class="ld">방문 중 실제 진료·병원연결로 이어진 비율 (<span class="term down">전환율<span class="tip"><b>전환율 (Conversion)</b> · 방문자 중 목표 행동(진료·예약·연결)까지 도달한 비율.</span></span>)</div><div class="badge hyp">🟡 약함 추정 · 가설</div></div>
+        <div class="lever"><span class="ln">레버 ③</span><div class="lt">건당 수익</div><div class="ld">연결 1건당 플랫폼이 버는 돈 (<span class="term down">Take rate<span class="tip"><b>Take rate (테이크레이트)</b> · 거래액·진료비 중 플랫폼이 광고·수수료로 가져가는 비율. 비급여 고단가일수록 큼.</span></span>·광고단가)</div><div class="badge weak">🔴 규제 노출 · 사실</div></div>
+        <div class="lever"><span class="ln">레버 ④</span><div class="lt">재방문 빈도</div><div class="ld">잦은 방문은 강함(DAU 1위) — 단, 의료적 <span class="term down">재진<span class="tip"><b>재진(의료적 재방문)</b> · 같은 질환으로 다시 진료받는 것. 리워드 방문이 많아도 '진료 재방문'으로 이어졌는지는 별개 — 미검증.</span></span>은 별개</div><div class="badge hyp">🟡 재진 미검증 · 가설</div></div>
+        <div class="lever"><span class="ln">레버 ⑤</span><div class="lt">공급 밀도</div><div class="ld">입점 병원·약국·광고주 수와 <span class="term down">ARPU<span class="tip"><b>ARPU</b> · 광고주(공급자) 1곳당 평균 매출. Average Revenue Per User. 공급 측 과금이 두꺼울수록 큼.</span></span></div><div class="badge hyp">🟡 미개척 추정 · 가설</div></div>
       </div>
-      <div class="callout" style="margin-top:1.8vh"><div class="big">!</div><p>나만의닥터는 <b>레버 ①(트래픽)만 강하고, 그 트래픽을 매출로 바꾸는 ②③④⑤가 약합니다.</b> 다음 성장은 ①을 더 키우는 게 아니라, <b>②~⑤를 푸는 데서</b> 나옵니다.</p></div>
+      <div class="callout" style="margin-top:1.8vh"><div class="big">!</div><p>검증된 사실은 <b>레버 ①(트래픽)은 강점, ③은 규제 노출</b>. ②④⑤는 공개 신호 기반 <b>가설</b>입니다. 가설이 맞다면 다음 성장은 ①을 더 키우기보다 <b>뒷단 ②~⑤를 검증·확보</b>하는 데서 나옵니다.</p></div>
+      <p class="note">※ 근거 등급 — 🟢 사실: 공개 지표·규제로 확인 / 🟡 가설: DAU 1위↔MAU 2위 괴리 + 게이미피케이션 기반 방문 + 채용공고가 'CAC↓·자생 구조'를 1순위 과제로 명시한 점에서 추론. <b>입사 후 0순위 검증 대상.</b></p>
       <div class="foot"><span class="brand">나만의닥터 · Growth Strategy</span><span class="pageno">03 / 15</span></div>
     </section>
 
