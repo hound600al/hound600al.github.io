@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>트웨니스 · 더 잘 팔리는 제품으로 — 웹 · Pre-PMF 성장 전략</title>
+<title>트웨니스 도쿄 · 새로운 USP를 찾아서 — 차이와 신뢰의 전략</title>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,14 +11,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --gold:#C5A572;--gold-2:#D9BE8E;--gold-soft:rgba(197,165,114,.13);--gold-line:rgba(197,165,114,.5);
-    --ink:#F3EFE8;--cream:#EDE7DB;--body:#BFBCB4;--muted:#8C887F;--muted-2:#6E6A62;
-    --bg:#0B0B0D;--bg2:#141318;--bg3:#1A191F;--line:rgba(255,255,255,.11);--line-2:rgba(255,255,255,.06);
-    --shadow:0 22px 60px -22px rgba(0,0,0,.7);--shadow-sm:0 10px 30px -16px rgba(0,0,0,.6);
+    --mint:#7CBDB7;--mint-2:#9AD0CB;--mint-deep:#2F8F88;--mint-ink:#1F6F69;
+    --mint-soft:#EAF5F4;--mint-soft-2:#F2F9F8;--mint-line:#CBE6E2;
+    --ink:#223331;--cream:#2E403E;--body:#5C6B69;--muted:#8E9C9A;--muted-2:#A9B5B3;
+    --bg:#F5FAF9;--bg2:#FFFFFF;--bg3:#F0F7F6;--line:#E2ECEA;--line-2:#EDF3F2;
+    --shadow:0 22px 50px -24px rgba(31,111,105,.28);--shadow-sm:0 10px 26px -16px rgba(31,111,105,.2);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
-  body{font-family:'Pretendard',-apple-system,system-ui,sans-serif;background:#000;color:var(--body);-webkit-font-smoothing:antialiased;overflow:hidden}
+  body{font-family:'Pretendard',-apple-system,system-ui,sans-serif;background:#0c1413;color:var(--body);-webkit-font-smoothing:antialiased;overflow:hidden}
   .serif{font-family:'Nanum Myeongjo',serif}
   .deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
   .stage{position:relative;width:100vw;height:100vh;max-width:177.78vh;max-height:56.25vw;background:var(--bg);overflow:hidden}
@@ -26,28 +27,27 @@
   .slide.active{display:flex}
   @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
-  .kicker{display:inline-flex;align-items:center;gap:7px;font-size:1vw;font-weight:600;color:var(--gold-2);background:var(--gold-soft);padding:.5em 1.1em;border-radius:100px;letter-spacing:.02em;width:fit-content;border:1px solid var(--gold-line)}
-  .kicker .dot{width:6px;height:6px;border-radius:50%;background:var(--gold-2)}
+  .kicker{display:inline-flex;align-items:center;gap:7px;font-size:1vw;font-weight:700;color:var(--mint-deep);background:var(--mint-soft);padding:.5em 1.1em;border-radius:100px;letter-spacing:.01em;width:fit-content;border:1px solid var(--mint-line)}
+  .kicker .dot{width:6px;height:6px;border-radius:50%;background:var(--mint)}
   h1{font-family:'Nanum Myeongjo',serif;font-size:4vw;font-weight:800;letter-spacing:-.02em;line-height:1.22;color:var(--ink)}
   h2{font-family:'Nanum Myeongjo',serif;font-size:2.5vw;font-weight:800;letter-spacing:-.015em;line-height:1.28;color:var(--ink)}
-  h2 .hl{color:var(--gold-2)}
-  h1 .hl{color:var(--gold-2)}
+  h2 .hl,h1 .hl{color:var(--mint-deep)}
   .sub{font-size:1.26vw;color:var(--muted);font-weight:500;line-height:1.55;letter-spacing:-.01em}
   .slide-head{margin-bottom:2vh}
   .slide-head h2{margin-top:1.1vh}
   p{line-height:1.6}
   b,strong{font-weight:700;color:var(--cream)}
 
-  .foot{position:absolute;left:6.2%;right:6.2%;bottom:3vh;display:flex;justify-content:space-between;align-items:center;font-size:.86vw;color:var(--muted-2);font-weight:500;letter-spacing:.01em}
-  .foot .brand{color:var(--gold);font-weight:700;letter-spacing:.06em}
+  .foot{position:absolute;left:6.2%;right:6.2%;bottom:3vh;display:flex;justify-content:space-between;align-items:center;font-size:.86vw;color:var(--muted-2);font-weight:600;letter-spacing:.01em}
+  .foot .brand{color:var(--mint-deep);font-weight:800;letter-spacing:.05em}
   .pageno{font-variant-numeric:tabular-nums}
 
-  .term{position:relative;border-bottom:1.4px dotted var(--gold);cursor:help;white-space:nowrap;color:inherit}
-  .term .tip{position:absolute;bottom:142%;left:50%;transform:translateX(-50%) translateY(5px);background:#000;color:var(--cream);padding:.8em 1em;border-radius:11px;font-size:.82vw;font-weight:500;line-height:1.5;width:max-content;max-width:24vw;white-space:normal;opacity:0;visibility:hidden;transition:.16s;z-index:40;box-shadow:0 14px 34px -10px rgba(0,0,0,.7);text-align:left;letter-spacing:-.01em;border:1px solid var(--gold-line)}
-  .term .tip b{color:var(--gold-2)}
-  .term .tip:after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:7px solid transparent;border-top-color:#000}
+  .term{position:relative;border-bottom:1.4px dotted var(--mint-deep);cursor:help;white-space:nowrap;color:inherit}
+  .term .tip{position:absolute;bottom:142%;left:50%;transform:translateX(-50%) translateY(5px);background:var(--ink);color:#EAF5F4;padding:.8em 1em;border-radius:11px;font-size:.82vw;font-weight:500;line-height:1.5;width:max-content;max-width:24vw;white-space:normal;opacity:0;visibility:hidden;transition:.16s;z-index:40;box-shadow:0 14px 34px -10px rgba(0,0,0,.4);text-align:left;letter-spacing:-.01em;border:1px solid rgba(255,255,255,.1)}
+  .term .tip b{color:var(--mint-2)}
+  .term .tip:after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:7px solid transparent;border-top-color:var(--ink)}
   .term.down .tip{bottom:auto;top:142%;transform:translateX(-50%) translateY(-5px)}
-  .term.down .tip:after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:#000}
+  .term.down .tip:after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--ink)}
   .term:hover .tip,.term.show .tip{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
 
   .grid{display:grid;gap:1.3vw}
@@ -55,130 +55,113 @@
   .card{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:1.5vw;box-shadow:var(--shadow-sm)}
   .card.soft{background:var(--bg3);box-shadow:none}
   .card .ci{font-size:1.5vw;margin-bottom:.5vw}
-  .card h3{font-size:1.28vw;font-weight:800;letter-spacing:-.02em;margin-bottom:.45vw;line-height:1.25;color:var(--cream)}
+  .card h3{font-size:1.28vw;font-weight:800;letter-spacing:-.02em;margin-bottom:.45vw;line-height:1.25;color:var(--ink)}
   .card p{font-size:.96vw;color:var(--muted);font-weight:500;letter-spacing:-.01em}
-  .card p b{color:var(--gold-2);font-weight:700}
-  .tag{display:inline-block;font-size:.82vw;font-weight:700;padding:.3em .8em;border-radius:7px;letter-spacing:.01em;background:var(--gold-soft);color:var(--gold-2);border:1px solid var(--gold-line)}
+  .card p b{color:var(--mint-deep);font-weight:700}
+  .tag{display:inline-block;font-size:.82vw;font-weight:700;padding:.3em .8em;border-radius:7px;letter-spacing:.01em;background:var(--mint-soft);color:var(--mint-deep);border:1px solid var(--mint-line)}
 
-  .cover{background:radial-gradient(120% 90% at 80% 10%,rgba(197,165,114,.16),transparent 55%),linear-gradient(180deg,#0E0D10,#070708);color:#fff;justify-content:center}
-  .cover h1{color:#fff;margin:2.4vh 0}
+  .cover{background:radial-gradient(120% 90% at 82% 8%,var(--mint-soft),transparent 55%),linear-gradient(180deg,#FBFEFD,#EFF7F6);color:var(--ink);justify-content:center}
   .cover .lead{font-size:1.36vw;color:var(--body);font-weight:500;line-height:1.7;max-width:74%}
-  .cover .meta{margin-top:4vh;display:flex;gap:2.4vw;font-size:.96vw;color:var(--muted);font-weight:500}
+  .cover .meta{margin-top:4vh;display:flex;gap:2.4vw;font-size:.96vw;color:var(--muted);font-weight:600}
   .cover .meta b{color:var(--cream);font-weight:700;display:block;font-size:1.08vw;margin-top:.35vw}
+  .cover h1{margin:2.4vh 0}
   .glow{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;pointer-events:none}
-  .glow.a{width:32vw;height:32vw;background:rgba(197,165,114,.4);right:-8vw;top:-10vw;opacity:.28}
-  .glow.b{width:24vw;height:24vw;background:rgba(197,165,114,.3);right:16vw;bottom:-12vw;opacity:.18}
+  .glow.a{width:34vw;height:34vw;background:var(--mint-2);right:-10vw;top:-12vw;opacity:.4}
+  .glow.b{width:24vw;height:24vw;background:var(--mint);right:18vw;bottom:-14vw;opacity:.22}
+  .spark{position:absolute;color:var(--mint);font-size:1.6vw;opacity:.8}
 
   .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3vw}
-  .stat{background:var(--bg2);border-radius:16px;padding:1.4vw 1.5vw;border:1px solid var(--line)}
-  .stat .n{font-size:2.5vw;font-weight:800;letter-spacing:-.03em;color:var(--gold-2);line-height:1;font-variant-numeric:tabular-nums}
-  .stat .n.dark{color:var(--cream)}
-  .stat .l{font-size:.92vw;color:var(--muted);font-weight:500;margin-top:.7vw;line-height:1.45}
+  .stat{background:var(--bg2);border-radius:16px;padding:1.4vw 1.5vw;border:1px solid var(--line);box-shadow:var(--shadow-sm)}
+  .stat .n{font-size:2.5vw;font-weight:800;letter-spacing:-.03em;color:var(--mint-deep);line-height:1;font-variant-numeric:tabular-nums}
+  .stat .n.dark{color:var(--ink)}
+  .stat .l{font-size:.92vw;color:var(--muted);font-weight:600;margin-top:.7vw;line-height:1.45}
   .stat .l b{color:var(--cream)}
 
   .rows{display:flex;flex-direction:column;gap:.9vw}
-  .row{display:flex;gap:1.05vw;align-items:flex-start;background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:1.05vw 1.3vw}
-  .row .ix{flex:none;width:2vw;height:2vw;border-radius:9px;display:grid;place-items:center;font-weight:800;font-size:.96vw;color:#0B0B0D;background:var(--gold-2)}
-  .row .ix.ghost{background:transparent;border:1.5px solid var(--gold-line);color:var(--gold-2)}
-  .row .tx h4{font-size:1.14vw;font-weight:800;letter-spacing:-.02em;margin-bottom:.24vw;color:var(--cream)}
+  .row{display:flex;gap:1.05vw;align-items:flex-start;background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:1.05vw 1.3vw;box-shadow:var(--shadow-sm)}
+  .row .ix{flex:none;width:2vw;height:2vw;border-radius:9px;display:grid;place-items:center;font-weight:800;font-size:.96vw;color:#fff;background:var(--mint-deep)}
+  .row .ix.ghost{background:var(--mint-soft);border:1.5px solid var(--mint-line);color:var(--mint-deep)}
+  .row .tx h4{font-size:1.14vw;font-weight:800;letter-spacing:-.02em;margin-bottom:.24vw;color:var(--ink)}
   .row .tx p{font-size:.94vw;color:var(--muted);font-weight:500;line-height:1.5}
-  .row .tx p b{color:var(--gold-2)}
-  .row.hot{background:var(--gold-soft);border-color:var(--gold-line)}
+  .row .tx p b{color:var(--mint-deep)}
+  .row.hot{background:var(--mint-soft);border-color:var(--mint-line);box-shadow:none}
 
   .twocol{display:grid;grid-template-columns:1.05fr .95fr;gap:1.8vw;flex:1;min-height:0;align-items:center}
 
-  .callout{background:linear-gradient(120deg,#15131A,#1B1820);color:#fff;border:1px solid var(--gold-line);border-radius:18px;padding:1.7vw 2.1vw;display:flex;gap:1.4vw;align-items:center}
-  .callout .big{font-family:'Nanum Myeongjo',serif;font-size:3vw;font-weight:800;color:var(--gold-2);line-height:1;flex:none}
-  .callout p{font-size:1.24vw;font-weight:600;line-height:1.5;letter-spacing:-.01em;color:var(--cream)}
-  .callout p b{color:var(--gold-2)}
-
-  /* myth vs truth */
-  .dd{display:grid;grid-template-columns:1fr 1fr;gap:1.6vw;flex:1;min-height:0}
-  .panel{border-radius:18px;padding:1.7vw 1.9vw;display:flex;flex-direction:column;justify-content:center}
-  .panel.myth{background:var(--bg2);border:1px solid var(--line)}
-  .panel.truth{background:var(--gold-soft);border:1px solid var(--gold-line)}
-  .panel .ph{display:flex;align-items:center;gap:.6vw;font-size:1.28vw;font-weight:800;letter-spacing:-.02em;margin-bottom:1.2vw;font-family:'Nanum Myeongjo',serif}
-  .panel.myth .ph{color:var(--muted)}.panel.truth .ph{color:var(--gold-2)}
-  .pitem{display:flex;gap:.7vw;align-items:flex-start;margin-bottom:1.25vw}
-  .pitem:last-child{margin-bottom:0}
-  .pitem .mk{flex:none;font-weight:800;font-size:1vw;line-height:1.5}
-  .panel.myth .mk{color:var(--muted-2)}.panel.truth .mk{color:var(--gold-2)}
-  .pitem .pt{font-size:1vw;line-height:1.5;font-weight:600;letter-spacing:-.01em;color:var(--cream)}
-  .panel.myth .pt{color:var(--muted)}
+  .callout{background:linear-gradient(120deg,var(--mint-deep),#3AA59D);color:#fff;border-radius:18px;padding:1.7vw 2.1vw;display:flex;gap:1.4vw;align-items:center;box-shadow:var(--shadow)}
+  .callout .big{font-family:'Nanum Myeongjo',serif;font-size:3vw;font-weight:800;color:#EAF5F4;line-height:1;flex:none}
+  .callout p{font-size:1.24vw;font-weight:600;line-height:1.5;letter-spacing:-.01em;color:#fff}
+  .callout p b{color:#EAF5F4;font-weight:800}
 
   /* funnel flow */
   .flow{display:flex;align-items:stretch;gap:.7vw}
-  .flow .node{flex:1;background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:1.1vw .9vw;text-align:center;display:flex;flex-direction:column;justify-content:center}
-  .flow .node .nt{font-size:1.04vw;font-weight:800;letter-spacing:-.02em;color:var(--cream)}
+  .flow .node{flex:1;background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:1.1vw .9vw;text-align:center;display:flex;flex-direction:column;justify-content:center;box-shadow:var(--shadow-sm)}
+  .flow .node .nt{font-size:1.04vw;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
   .flow .node .nd{font-size:.82vw;color:var(--muted);font-weight:500;margin-top:.4vw;line-height:1.4}
-  .flow .node.hot{background:var(--gold-soft);border-color:var(--gold-line)}.flow .node.hot .nt{color:var(--gold-2)}
-  .flow .arr{flex:none;display:grid;place-items:center;color:var(--muted-2);font-size:1.3vw;font-weight:400}
+  .flow .node.hot{background:var(--mint-soft);border-color:var(--mint-line)}.flow .node.hot .nt{color:var(--mint-deep)}
+  .flow .arr{flex:none;display:grid;place-items:center;color:var(--mint);font-size:1.3vw;font-weight:700}
 
   /* positioning map */
-  .posmap{position:relative;flex:1;min-height:0;border:1px solid var(--line);border-radius:18px;background:var(--bg2);margin:.6vh 0 1vh}
-  .posmap:before{content:"";position:absolute;left:6%;right:6%;top:50%;height:1px;background:rgba(255,255,255,.14)}
-  .posmap:after{content:"";position:absolute;top:8%;bottom:8%;left:50%;width:1px;background:rgba(255,255,255,.14)}
+  .posmap{position:relative;flex:1;min-height:0;border:1px solid var(--line);border-radius:18px;background:var(--bg2);margin:.6vh 0 1vh;box-shadow:var(--shadow-sm)}
+  .posmap:before{content:"";position:absolute;left:6%;right:6%;top:50%;height:1px;background:var(--line)}
+  .posmap:after{content:"";position:absolute;top:8%;bottom:8%;left:50%;width:1px;background:var(--line)}
   .axlab{position:absolute;font-size:.8vw;font-weight:700;color:var(--muted);background:var(--bg3);padding:.22em .7em;border-radius:6px;border:1px solid var(--line)}
   .axlab.l{left:1vw;top:50%;transform:translateY(-50%)}
   .axlab.r{right:1vw;top:50%;transform:translateY(-50%)}
   .axlab.t{top:.8vw;left:50%;transform:translateX(-50%)}
   .axlab.b{bottom:.8vw;left:50%;transform:translateX(-50%)}
   .pin{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:.3vw;z-index:3}
-  .pin .pd{width:.85vw;height:.85vw;border-radius:50%;background:#5A5650;border:2px solid #2A2820;box-shadow:var(--shadow-sm)}
-  .pin .pl{font-size:.78vw;font-weight:600;color:var(--muted);white-space:nowrap}
+  .pin .pd{width:.85vw;height:.85vw;border-radius:50%;background:#B7C6C4;border:2px solid #fff;box-shadow:var(--shadow-sm)}
+  .pin .pl{font-size:.78vw;font-weight:700;color:var(--muted);white-space:nowrap}
   .pin.own{z-index:5}
-  .pin.own .pd{width:1.6vw;height:1.6vw;background:var(--gold-2);border:3px solid #0B0B0D;box-shadow:0 0 0 6px rgba(197,165,114,.2)}
-  .pin.own .pl{color:var(--gold-2);font-weight:800;font-size:1vw}
-  .whitezone{position:absolute;border:1.5px dashed var(--gold-line);background:rgba(197,165,114,.07);border-radius:16px;z-index:1}
+  .pin.own .pd{width:1.6vw;height:1.6vw;background:var(--mint-deep);border:3px solid #fff;box-shadow:0 0 0 6px rgba(124,189,183,.28)}
+  .pin.own .pl{color:var(--mint-deep);font-weight:800;font-size:1vw}
+  .whitezone{position:absolute;border:1.5px dashed var(--mint);background:rgba(124,189,183,.1);border-radius:16px;z-index:1}
 
   /* comparison table */
   .ctable{width:100%;border-collapse:collapse;font-size:.9vw;flex:1}
   .ctable th,.ctable td{padding:.6vw .7vw;text-align:left;border-bottom:1px solid var(--line);letter-spacing:-.012em;vertical-align:top}
-  .ctable thead th{font-size:.9vw;font-weight:800;color:var(--cream);border-bottom:1.5px solid rgba(255,255,255,.2);background:var(--bg3)}
-  .ctable thead th.own{background:var(--gold-2);color:#0B0B0D;border-radius:10px 10px 0 0}
+  .ctable thead th{font-size:.9vw;font-weight:800;color:var(--ink);border-bottom:1.5px solid var(--mint-line);background:var(--bg3)}
+  .ctable thead th.own{background:var(--mint-deep);color:#fff;border-radius:10px 10px 0 0}
   .ctable tbody th{font-weight:700;color:var(--muted);font-size:.85vw;white-space:nowrap}
   .ctable td{font-weight:600;color:var(--body)}
-  .ctable td.own{background:var(--gold-soft);color:var(--gold-2);font-weight:700}
+  .ctable td.own{background:var(--mint-soft);color:var(--mint-ink);font-weight:700}
   .ctable td small{display:block;font-size:.74vw;color:var(--muted-2);font-weight:500;margin-top:.15vw}
-  .ctable td.own small{color:#a98f5f}
+  .ctable td.own small{color:#5fa39c}
 
   /* roadmap */
   .tl{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3vw;flex:1;align-content:stretch}
-  .phase{position:relative;background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:1.4vw;display:flex;flex-direction:column}
-  .phase.hot{background:var(--gold-soft);border-color:var(--gold-line)}
+  .phase{position:relative;background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:1.4vw;display:flex;flex-direction:column;box-shadow:var(--shadow-sm)}
+  .phase.hot{background:var(--mint-soft);border-color:var(--mint-line)}
   .phase .ph-top{display:flex;align-items:baseline;gap:.6vw;margin-bottom:.9vw}
-  .phase .wk{font-size:.82vw;font-weight:800;color:#0B0B0D;background:var(--gold-2);padding:.35em .8em;border-radius:8px;letter-spacing:.02em}
-  .phase h3{font-size:1.22vw;font-weight:800;letter-spacing:-.02em;color:var(--cream);font-family:'Nanum Myeongjo',serif}
+  .phase .wk{font-size:.82vw;font-weight:800;color:#fff;background:var(--mint-deep);padding:.35em .8em;border-radius:8px;letter-spacing:.02em}
+  .phase h3{font-size:1.22vw;font-weight:800;letter-spacing:-.02em;color:var(--ink);font-family:'Nanum Myeongjo',serif}
   .phase ul{list-style:none;display:flex;flex-direction:column;gap:.55vw}
   .phase li{font-size:.92vw;color:var(--muted);font-weight:500;line-height:1.45;padding-left:1vw;position:relative}
-  .phase li:before{content:"";position:absolute;left:0;top:.5em;width:5px;height:5px;border-radius:50%;background:var(--gold)}
-  .phase .goal{margin-top:auto;padding-top:.9vw;font-size:.9vw;font-weight:700;color:var(--gold-2);border-top:1px dashed var(--line)}
+  .phase li:before{content:"";position:absolute;left:0;top:.5em;width:5px;height:5px;border-radius:50%;background:var(--mint)}
+  .phase .goal{margin-top:auto;padding-top:.9vw;font-size:.9vw;font-weight:700;color:var(--mint-deep);border-top:1px dashed var(--mint-line)}
 
-  /* NSM */
-  .nsm{background:linear-gradient(120deg,#15131A,#1B1820);color:#fff;border:1px solid var(--gold-line);border-radius:18px;padding:1.6vw 2vw;display:flex;align-items:center;gap:1.6vw;margin-bottom:1.4vh}
-  .nsm .lab{font-size:.92vw;color:var(--gold);font-weight:700;letter-spacing:.02em}
-  .nsm .val{font-size:1.7vw;font-weight:800;letter-spacing:-.02em;line-height:1.2;color:var(--cream);font-family:'Nanum Myeongjo',serif}
-  .metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1vw}
-  .metric{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:1.2vw}
-  .metric .mh{font-size:.98vw;font-weight:800;letter-spacing:-.02em;margin-bottom:.4vw;color:var(--cream)}
-  .metric .md{font-size:.84vw;color:var(--muted);font-weight:500;line-height:1.45}
-  .metric .mk2{font-size:.78vw;font-weight:700;color:var(--gold-2);margin-top:.5vw}
+  /* USP pillars */
+  .pillar{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:1.5vw;box-shadow:var(--shadow-sm);border-top:4px solid var(--mint)}
+  .pillar h3{font-size:1.24vw;font-weight:800;color:var(--ink);margin:.5vw 0 .5vw;letter-spacing:-.02em}
+  .pillar p{font-size:.94vw;color:var(--muted);font-weight:500;line-height:1.5}
+  .pillar p b{color:var(--mint-deep)}
 
   .note{font-size:.78vw;color:var(--muted-2);font-weight:500;margin-top:1vh;line-height:1.5}
 
-  .closing{background:radial-gradient(120% 90% at 75% 15%,rgba(197,165,114,.18),transparent 55%),linear-gradient(180deg,#0E0D10,#070708);color:#fff;justify-content:center}
-  .closing h2{color:#fff;font-size:2.6vw;line-height:1.32}
+  .closing{background:radial-gradient(120% 90% at 78% 12%,var(--mint-soft),transparent 55%),linear-gradient(180deg,#FBFEFD,#EAF5F4);color:var(--ink);justify-content:center}
+  .closing h2{font-size:2.6vw;line-height:1.32}
   .closing .lead{font-size:1.32vw;color:var(--body);font-weight:500;line-height:1.7;margin-top:2.4vh;max-width:80%}
-  .closing .lead b{color:var(--gold-2)}
-  .closing .sign{margin-top:4vh;font-size:1vw;color:var(--muted);font-weight:500}
+  .closing .lead b{color:var(--mint-deep)}
+  .closing .sign{margin-top:4vh;font-size:1vw;color:var(--muted);font-weight:600}
   .closing .sign b{color:var(--cream)}
 
-  .nav{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;background:rgba(20,19,24,.85);backdrop-filter:blur(10px);padding:9px 16px;border-radius:100px;z-index:50;border:1px solid var(--line)}
-  .nav button{background:none;border:none;color:#fff;font-size:15px;cursor:pointer;opacity:.8;display:grid;place-items:center;padding:2px 4px}
+  .nav{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;background:rgba(34,51,49,.9);backdrop-filter:blur(10px);padding:9px 16px;border-radius:100px;z-index:50}
+  .nav button{background:none;border:none;color:#fff;font-size:15px;cursor:pointer;opacity:.85;display:grid;place-items:center;padding:2px 4px}
   .nav button:hover{opacity:1}
   .nav .ind{color:#fff;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:.02em;min-width:46px;text-align:center}
-  .progress{position:fixed;top:0;left:0;height:3px;background:var(--gold-2);z-index:60;transition:width .4s ease}
-  .hint{position:fixed;bottom:22px;right:22px;font-size:12px;color:rgba(255,255,255,.4);z-index:50}
+  .progress{position:fixed;top:0;left:0;height:3px;background:var(--mint);z-index:60;transition:width .4s ease}
+  .hint{position:fixed;bottom:22px;right:22px;font-size:12px;color:rgba(34,51,49,.4);z-index:50}
   @media(max-width:760px){.hint{display:none}.term .tip{max-width:62vw;font-size:11px}}
 </style>
 </head>
@@ -190,89 +173,67 @@
     <!-- 1. COVER -->
     <section class="slide active cover">
       <span class="glow a"></span><span class="glow b"></span>
+      <span class="spark" style="left:14%;top:24%">✦</span>
       <div style="position:relative;z-index:2">
-        <span class="kicker"><span class="dot"></span>트웨니스 · 제품 성장 전략</span>
-        <h1>웹이라서, PMF 전이라서 —<br><span class="hl">오히려 더 잘 팔리는 제품을 만듭니다</span></h1>
-        <p class="lead">트웨니스는 앱이 아니라 <b>웹 서비스</b>이고, 아직 <b>제품–시장 적합(PMF)</b>을 찾는 단계입니다. 이 두 조건은 약점이 아니라, '광고로 메우는 성장'이 아닌 <b>'팔리는 제품을 설계하는 성장'</b>을 할 수 있는 최적의 출발점입니다.</p>
+        <span class="kicker"><span class="dot"></span>트웨니스 도쿄 · 성장 전략</span>
+        <h1>매칭은 시작일 뿐입니다 —<br><span class="hl">이기려면 새로운 USP가 필요합니다</span></h1>
+        <p class="lead">트웨니스 도쿄는 한국 남성과 일본 여성의 만남에 집중합니다. 하지만 진짜 승부는 '매칭'이 아니라 <b>언어·문화의 차이를 넘어 신뢰를 주는 일</b>에서 갈립니다. 지금의 약점을 짚고, 경쟁사가 따라올 수 없는 USP를 제안합니다.</p>
         <div class="meta">
-          <div>대상<b>큐피스트 · 트웨니스 / 트웨니스 도쿄</b></div>
-          <div>관점<b>Product-Led Growth · 웹 · Pre-PMF</b></div>
-          <div>구성<b>통념 전환 → 기회 → 실행 14p</b></div>
+          <div>대상<b>큐피스트 · 트웨니스 도쿄</b></div>
+          <div>관점<b>차별화 · 신뢰 · 새 USP</b></div>
+          <div>구성<b>약점 진단 → USP → 실행 14p</b></div>
         </div>
       </div>
-      <div class="foot"><span class="brand">TWENNIES · GROWTH</span><span class="pageno">01 / 14</span></div>
+      <div class="foot"><span class="brand">twennies TOKYO · GROWTH</span><span class="pageno">01 / 14</span></div>
     </section>
 
     <!-- 2. 전제 -->
     <section class="slide">
       <div class="slide-head">
-        <span class="kicker"><span class="dot"></span>출발점 · 두 가지 사실</span>
-        <h2>트웨니스는 <span class="hl">웹 서비스</span>이고, 아직 <span class="hl">PMF 전</span>입니다</h2>
+        <span class="kicker"><span class="dot"></span>출발점 · 무엇에 집중하나</span>
+        <h2>트웨니스 도쿄는 <span class="hl">한국 남성 × 일본 여성</span> 국제결혼에 집중합니다</h2>
       </div>
       <div class="twocol" style="grid-template-columns:1fr 1fr">
         <div class="rows">
-          <div class="row"><div class="ix ghost">웹</div><div class="tx"><h4>설치가 없는 웹 서비스 (twennies.us)</h4><p>광고 → 랜딩 → <b>'상담 신청'</b>까지 한 흐름. 결혼정보는 평생 한 번의 고관여·저빈도 결정이라 '매일 여는 앱'이 필요 없는 카테고리.</p></div></div>
-          <div class="row"><div class="ix ghost">PMF</div><div class="tx"><h4>출시 초기 · 공식을 찾는 단계</h4><p>트웨니스 도쿄 2025.11 출시. 아직 <b>반복 가능한 성공 공식(PMF)</b>을 찾는 중 — 광고를 크게 태우기 이전 구간.</p></div></div>
-          <div class="row"><div class="ix ghost">자산</div><div class="tx"><h4>글램 680만 데이터 + 정착 패키지</h4><p>10년치 매칭 알고리즘과, 도쿄의 비자·혼인·정착 원스톱이라는 남다른 출발 자산을 이미 보유.</p></div></div>
+          <div class="row"><div class="ix ghost">타깃</div><div class="tx"><h4>한국 남성 ↔ 20대 일본 여성</h4><p>현지 에이전트가 대면 검증한 일본 여성 풀과 한국 남성을 잇는 <b>국제결혼</b> 매칭.</p></div></div>
+          <div class="row"><div class="ix ghost">범위</div><div class="tx"><h4>매칭 + 비자·혼인·정착 패키지</h4><p>만남을 넘어 혼인신고·비자·생활 인프라까지 잇는 '초국경 결혼 인프라'를 표방.</p></div></div>
+          <div class="row"><div class="ix ghost">자산</div><div class="tx"><h4>글램 680만 데이터</h4><p>10년치 매칭 알고리즘·데이터라는 남다른 출발 자산을 보유.</p></div></div>
         </div>
         <div class="callout" style="flex-direction:column;align-items:flex-start;gap:.9vw">
-          <p style="font-size:1.34vw">＂대부분은 이 둘을 '약점'으로 봅니다. 저는 반대로 봅니다 — <b>마케팅을 더하기 전에, 팔리는 제품을 먼저 만들 수 있는 조건.</b>＂</p>
-          <p style="font-size:.96vw;color:var(--muted);font-weight:500">이 덱은 '경쟁사 대비 약점'이 아니라, 그 조건을 무기로 바꾸는 방법을 다룹니다.</p>
+          <p style="font-size:1.34vw">＂집중은 강점입니다. 그런데 트웨니스가 집중한 그 지점 — 국제결혼 — 이 <b>가장 어려운 문제(언어·문화·신뢰)</b>를 끌어안고 있습니다.＂</p>
+          <p style="font-size:.96vw;color:#dff1ef;font-weight:500">그래서 매칭 능력만으로는 이기기 어렵습니다.</p>
         </div>
       </div>
-      <p class="note">출처: 트웨니스 공식(twennies.us), 머니투데이·한경(2025.11), 글램 680만은 한경·네이트 보도 기준. ※ 국내판 가입·과금 조건은 공개 출처 미확인 — 일부 내용은 과제 전제 기반.</p>
-      <div class="foot"><span class="brand">TWENNIES · GROWTH</span><span class="pageno">02 / 14</span></div>
+      <p class="note">출처: 트웨니스 공식(twennies.us), 머니투데이·한경·유니콘팩토리(2025.11). 글램 680만은 한경·네이트 보도 기준.</p>
+      <div class="foot"><span class="brand">twennies TOKYO · GROWTH</span><span class="pageno">02 / 14</span></div>
     </section>
 
-    <!-- 3. 통념 뒤집기 -->
+    <!-- 3. 시장 기회 -->
     <section class="slide">
       <div class="slide-head">
-        <span class="kicker"><span class="dot"></span>통념 전환</span>
-        <h2>"웹이라 약하고, PMF 전이라 이르다" — <span class="hl">오해입니다</span></h2>
+        <span class="kicker"><span class="dot"></span>시장 기회 · 방향은 맞다</span>
+        <h2>한국 남성 × 일본 여성 결혼은 <span class="hl">3년 새 약 2배</span></h2>
       </div>
-      <div class="dd">
-        <div class="panel myth">
-          <div class="ph">흔한 오해</div>
-          <div class="pitem"><span class="mk">✕</span><div class="pt">"앱이 있어야 리텐션·락인이 생긴다"</div></div>
-          <div class="pitem"><span class="mk">✕</span><div class="pt">"PMF 전엔 마케터가 할 게 별로 없다"</div></div>
-          <div class="pitem"><span class="mk">✕</span><div class="pt">"웹은 광고 효율이 앱보다 낮다"</div></div>
-        </div>
-        <div class="panel truth">
-          <div class="ph">실제</div>
-          <div class="pitem"><span class="mk">→</span><div class="pt">결혼은 <b>한 번 성사로 끝</b> — 매일 쓰는 락인이 본질적으로 불필요한 카테고리</div></div>
-          <div class="pitem"><span class="mk">→</span><div class="pt">Pre-PMF야말로 <b>'팔리는 오퍼·메시지·퍼널'</b>을 만드는 마케터의 핵심 구간</div></div>
-          <div class="pitem"><span class="mk">→</span><div class="pt">웹은 <b>설치 마찰 0</b> → 광고에서 상담신청까지 퍼널이 가장 짧다</div></div>
-        </div>
+      <div class="stats">
+        <div class="stat"><div class="n">+96%</div><div class="l">한국 남성 × 일본 여성 혼인<br>599건(2021) → <b>1,176건(2024)</b> · 통계청</div></div>
+        <div class="stat"><div class="n dark">약 8배</div><div class="l">역방향(한국 여성×일본 남성 147건) 대비<br>한국 남성 → 일본 여성 방향의 비대칭</div></div>
+        <div class="stat"><div class="n dark">1,023억엔</div><div class="l">일본 매칭앱 시장(2025)<br>'한일 특화 진지 매칭'은 <b>빈 세그먼트</b></div></div>
       </div>
-      <div class="foot"><span class="brand">TWENNIES · GROWTH</span><span class="pageno">03 / 14</span></div>
+      <div class="callout" style="margin-top:2.4vh"><div class="big">✓</div><p>시장 방향과 타깃 설정은 데이터로 뒷받침됩니다. 문제는 <b>'그 수요를 신뢰로 전환하는 일'</b>에 있습니다.</p></div>
+      <p class="note">출처: 통계청 혼인통계(조선일보 2024.3·MBP 컬럼 인용), マッチングアプリ白書2026(PR TIMES). 후생노동성 기준은 집계 방식 차이로 연 1,500건대.</p>
+      <div class="foot"><span class="brand">twennies TOKYO · GROWTH</span><span class="pageno">03 / 14</span></div>
     </section>
 
-    <!-- 4. 왜 웹이 결혼정보에 더 맞나 -->
+    <!-- 4. 경쟁 지형도 -->
     <section class="slide">
       <div class="slide-head">
-        <span class="kicker"><span class="dot"></span>웹의 구조적 이점</span>
-        <h2>결혼정보는 <span class="hl">웹에서 더 잘 팔립니다</span></h2>
-      </div>
-      <div class="g4 grid" style="flex:1;align-content:center">
-        <div class="card"><div class="ci">⚡</div><h3>짧은 퍼널</h3><p>앱 설치 단계 제거 → 광고 클릭 → 랜딩 → <b>상담 신청 직행</b>. 전환 누수 지점이 줄어든다.</p></div>
-        <div class="card"><div class="ci">💍</div><h3>고관여·저빈도</h3><p>평생 한 번의 결정. 매일 여는 앱이 아니라 <b>'확신을 주는 한 페이지'</b>가 승부처.</p></div>
-        <div class="card"><div class="ci">🔍</div><h3>검색·콘텐츠 자산</h3><p>'국제결혼·결혼정보' 검색 의도를 <span class="term">SEO<span class="tip"><b>SEO</b> · 검색엔진 최적화. 광고비 없이 검색 유입을 만드는 콘텐츠 자산. 웹에서만 누적된다.</span></span> 콘텐츠로 흡수 — 광고비 없이 신뢰·유입 축적.</p></div>
-        <div class="card"><div class="ci">🔁</div><h3>빠른 이터레이션</h3><p>앱 배포 심사 주기 없이 랜딩·오퍼를 <b>매일 A/B</b> → PMF 탐색 속도가 빠르다.</p></div>
-      </div>
-      <div class="callout"><div class="big">＝</div><p>웹은 '약한 앱'이 아니라, <b>고관여·저빈도·리드형 서비스에 더 알맞은 그릇</b>입니다.</p></div>
-      <div class="foot"><span class="brand">TWENNIES · GROWTH</span><span class="pageno">04 / 14</span></div>
-    </section>
-
-    <!-- 5. 경쟁 지형도 -->
-    <section class="slide">
-      <div class="slide-head">
-        <span class="kicker"><span class="dot"></span>경쟁 지형 · 어디서 이기나</span>
-        <h2>제품으로 차별화할 <span class="hl">빈 자리</span>는 분명합니다</h2>
+        <span class="kicker"><span class="dot"></span>경쟁 지형 · 무엇이 흔한가</span>
+        <h2>'인증'도 '매칭'도 <span class="hl">이미 흔합니다</span></h2>
       </div>
       <div class="posmap">
         <div class="whitezone" style="left:54%;right:8%;top:52%;bottom:12%"></div>
         <span class="axlab t">고가 · 휴먼 매니저</span>
-        <span class="axlab b">저가 · 웹 · 셀프</span>
+        <span class="axlab b">저가 · 셀프</span>
         <span class="axlab l">캐주얼 만남</span>
         <span class="axlab r">결혼 · 진지</span>
         <div class="pin" style="left:16%;top:80%"><span class="pd"></span><span class="pl">글램 · 틴더</span></div>
@@ -284,172 +245,187 @@
         <div class="pin" style="left:90%;top:11%"><span class="pd"></span><span class="pl">노블레스수현</span></div>
         <div class="pin own" style="left:71%;top:72%"><span class="pd"></span><span class="pl">트웨니스</span></div>
       </div>
-      <p class="note">골드 영역 = '진지한 결혼 × 웹 효율' 구간. 골드스푼·다이아매치가 가깝게 겹치지만, 이긴다면 그건 가격이나 인증이 아니라 <b>제품 경험</b>으로다. 위치는 공개 정보 기반 정성 추정.</p>
-      <div class="foot"><span class="brand">TWENNIES · GROWTH</span><span class="pageno">05 / 14</span></div>
+      <p class="note">민트 영역(진지한 결혼 × 효율) 안에서도 골드스푼·다이아매치가 '소득 인증'으로 이미 자리. 트웨니스가 이기려면 인증·매칭이 아닌 <b>'아무도 안 푼 문제'</b>가 필요. 위치는 공개 정보 기반 정성 추정.</p>
+      <div class="foot"><span class="brand">twennies TOKYO · GROWTH</span><span class="pageno">04 / 14</span></div>
     </section>
 
-    <!-- 6. 경쟁사 비교표 -->
+    <!-- 5. 약점 진단 개요 -->
     <section class="slide">
       <div class="slide-head">
-        <span class="kicker"><span class="dot"></span>경쟁사 비교 · 국내 직접 경쟁군</span>
-        <h2>'고소득 인증'은 흔합니다 — 이기는 건 <span class="hl">'제품 경험'</span></h2>
-      </div>
-      <table class="ctable">
-        <thead><tr><th style="width:13%"></th><th class="own" style="width:23%">트웨니스</th><th>골드스푼</th><th>다이아매치</th><th>스카이피플</th><th>듀오 (결정사)</th></tr></thead>
-        <tbody>
-          <tr><th>핵심 타깃</th><td class="own">20대 여성 + 고소득 남성<small>연령 큐레이션</small></td><td>고소득·자산가 남성</td><td>최상위 자산가 남성<small>연1억·자산20억</small></td><td>직장·대학 인증 일반층</td><td>30대+ 초·재혼</td></tr>
-          <tr><th>검증 방식</th><td class="own">대면 검증 + 글램 데이터</td><td>소득·자산 서류</td><td>소득·자산 서류<small>문턱 최상</small></td><td>재직·학교 인증</td><td>신원 + 휴먼매니저</td></tr>
-          <tr><th>채널 · 형태</th><td class="own">웹 · 알고리즘 매칭</td><td>앱 · 회원제</td><td>앱 · 회원제</td><td>앱 + 커뮤니티</td><td>오프라인 · 2인 매니저</td></tr>
-          <tr><th>가격대</th><td class="own">미공개</td><td>무료 + 인앱결제</td><td>미공개</td><td>무료 + 인앱결제</td><td>150만~1,500만원+</td></tr>
-          <tr><th>결혼 지향성</th><td class="own">높음 (정조준)</td><td>중간</td><td>중간~높음</td><td>낮음 (연애)</td><td>매우 높음 (성혼)</td></tr>
-        </tbody>
-      </table>
-      <p class="note">출처: 각사 공식·머니투데이·한경·duo.co.kr. 일부 가격·규모 비공개(미확인). 회원 규모 참고: 골드스푼 약 14만·스카이피플 약 60만(누적 인증) — 공식 표현 기준.</p>
-      <div class="foot"><span class="brand">TWENNIES · GROWTH</span><span class="pageno">06 / 14</span></div>
-    </section>
-
-    <!-- 7. 시장 기회 -->
-    <section class="slide">
-      <div class="slide-head">
-        <span class="kicker"><span class="dot"></span>시장 기회 · 트웨니스 도쿄</span>
-        <h2>시장은 이미 <span class="hl">밀어주고 있습니다</span></h2>
-      </div>
-      <div class="stats">
-        <div class="stat"><div class="n">+96%</div><div class="l">한국 남성 × 일본 여성 혼인<br>599건(2021) → <b>1,176건(2024)</b> · 통계청</div></div>
-        <div class="stat"><div class="n dark">약 8배</div><div class="l">역방향(한국 여성×일본 남성 147건) 대비<br>한국 남성 → 일본 여성 방향의 비대칭</div></div>
-        <div class="stat"><div class="n dark">1,023억엔</div><div class="l">일본 매칭앱 시장(2025)<br>'한일 특화 진지 매칭'은 <b>빈 세그먼트</b></div></div>
-      </div>
-      <div class="callout" style="margin-top:2.4vh"><div class="big">✓</div><p>타깃 방향이 통계로 뒷받침되는 시장에서, 남은 일은 <b>그 수요를 받아낼 '잘 팔리는 제품'을 만드는 것</b>뿐입니다.</p></div>
-      <p class="note">출처: 통계청 혼인통계(조선일보 2024.3·MBP 컬럼 인용), マッチングアプリ白書2026(PR TIMES). 후생노동성 기준(일본 신고)은 집계 방식 차이로 연 1,500건대.</p>
-      <div class="foot"><span class="brand">TWENNIES · GROWTH</span><span class="pageno">07 / 14</span></div>
-    </section>
-
-    <!-- 8. Pre-PMF의 진짜 의미 -->
-    <section class="slide">
-      <div class="slide-head">
-        <span class="kicker"><span class="dot"></span>Pre-PMF의 진짜 의미</span>
-        <h2>PMF 전에 광고를 키우는 건 <span class="hl">밑 빠진 독</span>입니다</h2>
-      </div>
-      <div class="twocol" style="grid-template-columns:1.1fr .9fr">
-        <div class="rows">
-          <div class="row"><div class="ix">1</div><div class="tx"><h4>제품이 안 팔리는데 광고만 키우면 CAC만 탄다</h4><p>전환되지 않는 랜딩에 트래픽을 부으면 <span class="term">CAC<span class="tip"><b>CAC</b> · 고객 1명(상담신청·성혼)을 얻는 데 드는 비용. 제품이 안 팔리면 광고비만 오른다.</span></span>만 상승. Pre-PMF에서 스케일은 손실을 키운다.</p></div></div>
-          <div class="row"><div class="ix">2</div><div class="tx"><h4>먼저 '팔리는 제품'을 찾고, 그 다음 광고로 증폭</h4><p>전환되는 <b>오퍼·메시지·퍼널</b>을 웹에서 빠르게 찾는 게 우선. 공식이 잡히면 같은 광고비가 몇 배로 일한다.</p></div></div>
-          <div class="row hot"><div class="ix">3</div><div class="tx"><h4>PMF는 '느낌'이 아니라 '신호'로 판단</h4><p>상담신청 전환율, 상담→성혼 전환, <b>리퍼럴·재추천</b>, 코호트 — 숫자가 PMF 도달을 말해준다.</p></div></div>
-        </div>
-        <div class="callout" style="flex-direction:column;align-items:flex-start;gap:.9vw">
-          <p style="font-size:1.32vw">＂'더 잘 팔리는 제품' = <b>같은 트래픽에서 더 많은 상담신청과 성혼</b>을 만드는 제품.＂</p>
-          <p style="font-size:.96vw;color:var(--muted);font-weight:500">마케터의 일은 광고 송출이 아니라, 그 전환율 자체를 끌어올리는 것.</p>
-        </div>
-      </div>
-      <div class="foot"><span class="brand">TWENNIES · GROWTH</span><span class="pageno">08 / 14</span></div>
-    </section>
-
-    <!-- 9. 퍼널 전체를 제품으로 -->
-    <section class="slide">
-      <div class="slide-head">
-        <span class="kicker"><span class="dot"></span>관점 · 무엇을 '제품'으로 보나</span>
-        <h2>광고가 아니라 <span class="hl">퍼널 전체</span>를 제품으로 설계합니다</h2>
-      </div>
-      <div class="flow">
-        <div class="node"><div class="nt">광고·콘텐츠</div><div class="nd">검색·소구점으로 의도 높은 유입</div></div>
-        <div class="arr">→</div>
-        <div class="node hot"><div class="nt">랜딩</div><div class="nd">'확신'을 주는 한 페이지</div></div>
-        <div class="arr">→</div>
-        <div class="node hot"><div class="nt">상담 신청</div><div class="nd">저마찰 리드 전환 (핵심 KPI)</div></div>
-        <div class="arr">→</div>
-        <div class="node"><div class="nt">상담·매칭</div><div class="nd">검증 경험 = 신뢰</div></div>
-        <div class="arr">→</div>
-        <div class="node"><div class="nt">성혼·리퍼럴</div><div class="nd">최종 전환 + 재추천</div></div>
-      </div>
-      <div class="g3 grid" style="margin-top:2.4vh">
-        <div class="card soft"><h3 style="color:var(--gold-2)">웹이라 가능한 것</h3><p style="margin-top:.5vw">각 구간을 페이지·폼·콘텐츠로 <b>즉시 바꾸고 측정</b>. 앱 배포 대기 없이 매일 개선.</p></div>
-        <div class="card soft"><h3 style="color:var(--gold-2)">가장 큰 누수 지점</h3><p style="margin-top:.5vw"><b>랜딩 → 상담 신청</b>. 여기 전환율이 곧 제품이 '팔리는 정도'.</p></div>
-        <div class="card soft"><h3 style="color:var(--gold-2)">마케터의 역할</h3><p style="margin-top:.5vw">트래픽 송출이 아니라 <b>퍼널 각 단계의 전환을 제품으로 설계·실험</b>.</p></div>
-      </div>
-      <div class="foot"><span class="brand">TWENNIES · GROWTH</span><span class="pageno">09 / 14</span></div>
-    </section>
-
-    <!-- 10. 실행 1 -->
-    <section class="slide">
-      <div class="slide-head">
-        <span class="kicker"><span class="dot"></span>실행 1 · 팔리는 상담신청 (CVR)</span>
-        <h2>같은 유입에서 <span class="hl">더 많은 상담신청</span>을 만든다</h2>
-      </div>
-      <div class="rows" style="flex:1;justify-content:center">
-        <div class="row"><div class="ix">A</div><div class="tx"><h4>메시지 매치 — 광고 후킹을 랜딩 첫 화면에 그대로</h4><p>광고에서 약속한 소구점과 랜딩이 어긋나면 즉시 이탈. 소재별 랜딩 1:1 매칭으로 <span class="term">전환율<span class="tip"><b>전환율(CVR)</b> · 방문자 중 상담신청까지 도달한 비율. 같은 광고비로 더 많이 전환되면 실질 CAC가 내려간다.</span></span> 누수 차단.</p></div></div>
-        <div class="row"><div class="ix">B</div><div class="tx"><h4>신뢰 요소 — 성혼·검증을 페이지에서 즉시 증명</h4><p>결혼은 고신뢰 결정. 대면 검증 절차·성혼 사례·후기를 랜딩에 노출해 '진짜 되나?'라는 망설임을 제거.</p></div></div>
-        <div class="row"><div class="ix">C</div><div class="tx"><h4>저마찰 폼 — 스텝폼 + 개인정보 안심 설계</h4><p>긴 폼은 작성 직전 이탈을 만든다. <b>스텝폼</b>으로 부담을 쪼개고, 즉시 인센티브(무료 매칭 1회 등)로 신청 이유를 제공.</p></div></div>
-        <div class="row hot"><div class="ix">D</div><div class="tx"><h4>매일 A/B — 웹이라 가능한 실험 속도</h4><p>오퍼·헤드라인·CTA를 매일 실험해 위닝 조합을 빠르게 찾는다. 이게 곧 PMF 탐색.</p></div></div>
-      </div>
-      <p class="note">사전과제 4번(랜딩→상담신청 전환율 정체)과 직결 — 같은 로직을 '제품을 더 잘 팔리게'로 확장.</p>
-      <div class="foot"><span class="brand">TWENNIES · GROWTH</span><span class="pageno">10 / 14</span></div>
-    </section>
-
-    <!-- 11. 실행 2 -->
-    <section class="slide">
-      <div class="slide-head">
-        <span class="kicker"><span class="dot"></span>실행 2 · 공급 확보 + 검증을 제품으로</span>
-        <h2>검증된 남성을 <span class="hl">'제품'으로 모읍니다</span></h2>
+        <span class="kicker"><span class="dot"></span>약점 진단 · 세 가지 신뢰 공백</span>
+        <h2>지금 트웨니스의 약점은 <span class="hl">결국 '신뢰'</span>로 모입니다</h2>
       </div>
       <div class="g3 grid" style="flex:1;align-content:center">
-        <div class="card"><div class="ci">🎯</div><h3>채널 정합 (웹의 강점)</h3><p>웹 랜딩을 <span class="term">블라인드<span class="tip"><b>블라인드</b> · 재직 인증 직장인 커뮤니티. 소득·직업이 검증된 남성 풀로, '검증' USP와 정확히 맞물린다.</span></span>·링크드인 직장인증 풀에 <b>설치 마찰 0으로 직접 노출</b> — 공급(남성)을 효율적으로 확보.</p></div>
-        <div class="card"><div class="ci">🛡️</div><h3>검증을 기능으로</h3><p>소득 인증을 넘어 <b>가치관·결혼 의도 검증</b>을 제품 기능·뱃지로. '인증 동질화'를 탈출하고, 신뢰가 곧 전환이 된다.</p></div>
-        <div class="card"><div class="ci">⚖️</div><h3>공급 선(先)확보</h3><p><span class="term">양면 시장<span class="tip"><b>양면 시장</b> · 공급(남성)과 수요(여성)를 함께 모아야 작동. 공급이 비면 수요가 떠난다.</span></span>에선 검증된 남성이 병목. 여성 유입보다 <b>남성 풀을 먼저</b> 채워 매칭 실패를 막는다.</p></div>
+        <div class="card" style="border-top:4px solid var(--mint)"><span class="tag">약점 ①</span><h3 style="margin-top:.9vw">언어·문화 차이</h3><p>매칭에는 집중하지만, 국제결혼의 진짜 불편 — <b>언어·문화 차이</b> — 을 풀어주는 장치가 없다.</p></div>
+        <div class="card" style="border-top:4px solid var(--mint)"><span class="tag">약점 ②</span><h3 style="margin-top:.9vw">사례 부족</h3><p>신생이라 <b>성혼·커플 사례</b>가 거의 없어, 고관여 결정에 필요한 신뢰가 쌓이지 않는다.</p></div>
+        <div class="card" style="border-top:4px solid var(--mint)"><span class="tag">약점 ③</span><h3 style="margin-top:.9vw">신뢰 안 오는 페이지</h3><p>페이지가 <b>AI·템플릿 느낌</b>이라, '사람'이 안 보이고 진정성이 전달되지 않는다.</p></div>
       </div>
-      <div class="callout"><div class="big">＂</div><p>검증된 남성이 모이면 여성 전환·성혼이 함께 오른다 — <b>공급 확보 자체가 가장 강력한 '제품 개선'</b>입니다.</p></div>
-      <div class="foot"><span class="brand">TWENNIES · GROWTH</span><span class="pageno">11 / 14</span></div>
+      <div class="callout"><div class="big">＝</div><p>세 약점은 한 단어로 모입니다 — <b>신뢰</b>. 그리고 이 공백은 광고가 아니라 <b>새로운 USP로만</b> 메울 수 있습니다.</p></div>
+      <div class="foot"><span class="brand">twennies TOKYO · GROWTH</span><span class="pageno">05 / 14</span></div>
     </section>
 
-    <!-- 12. 실행 3 -->
+    <!-- 6. 약점 1 -->
     <section class="slide">
       <div class="slide-head">
-        <span class="kicker"><span class="dot"></span>실행 3 · PMF 측정 + 도쿄 현지화</span>
-        <h2>무엇이 PMF인지 <span class="hl">숫자로 정의</span>합니다</h2>
+        <span class="kicker"><span class="dot"></span>약점 ① · 언어·문화 차이</span>
+        <h2>매칭은 했는데, <span class="hl">그 다음의 '차이'</span>는 누가 책임지나</h2>
       </div>
-      <div class="nsm">
-        <div><div class="lab">North Star Metric</div><div class="val">상담신청 → 성혼으로 이어지는 전환 (팔리는 정도)</div></div>
+      <div class="twocol" style="grid-template-columns:1fr 1fr">
+        <div class="rows">
+          <div class="row"><div class="ix">a</div><div class="tx"><h4>국제결혼의 진짜 난도는 '만남'이 아니다</h4><p>결혼 후의 <b>언어·소통·가족·생활 관습 차이</b>가 핵심 불편. 그런데 서비스는 매칭까지만 책임진다.</p></div></div>
+          <div class="row"><div class="ix">b</div><div class="tx"><h4>그래서 결정 전부터 망설인다</h4><p>일본 여성도 한국 남성도 "<b>말이 통할까, 문화가 맞을까</b>"가 가입·상담의 가장 큰 허들이 된다.</p></div></div>
+          <div class="row"><div class="ix">c</div><div class="tx"><h4>경쟁사도 못 푼 문제다</h4><p>국내 결정사·매칭앱 누구도 이 차이를 해결하지 않는다 — <b>비어 있는 만큼 기회</b>인 영역.</p></div></div>
+        </div>
+        <div class="callout" style="flex-direction:column;align-items:flex-start;gap:.9vw">
+          <p style="font-size:1.36vw">＂차이를 '리스크'로 두면 약점이지만,<br><b>'해결'로 만들면 그게 곧 USP</b>가 됩니다.＂</p>
+          <p style="font-size:.96vw;color:#dff1ef;font-weight:500">→ 10p에서 이 약점을 USP로 뒤집습니다.</p>
+        </div>
       </div>
-      <div class="metric-grid">
-        <div class="metric"><div class="mh">랜딩 → 상담신청 CVR</div><div class="md">제품이 팔리는 1차 신호</div><div class="mk2">↑ 상향</div></div>
-        <div class="metric"><div class="mh">상담 → 성혼 전환</div><div class="md">진짜 가치 전달 여부</div><div class="mk2">↑ 상향</div></div>
-        <div class="metric"><div class="mh">리퍼럴·재추천</div><div class="md">PMF의 가장 강한 증거</div><div class="mk2">↑ 상향</div></div>
-        <div class="metric"><div class="mh"><span class="term up">LTV / CAC<span class="tip"><b>LTV/CAC</b> · 고객 가치 ÷ 획득 비용. 1보다 충분히 커야 광고를 키워도 남는다.</span></span></div><div class="md">스케일 가능 시점 판정</div><div class="mk2">↑ 상향</div></div>
+      <p class="note">참고: 국제결혼의 현실 장벽(언어·문화·금전감각 차이)은 비자·생활 적응 단계의 대표 갈등 요인으로 보고됨(continental-immigration 등).</p>
+      <div class="foot"><span class="brand">twennies TOKYO · GROWTH</span><span class="pageno">06 / 14</span></div>
+    </section>
+
+    <!-- 7. 약점 2 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>약점 ② · 사례 부족</span>
+        <h2>결혼은 신뢰 게임인데, <span class="hl">보여줄 사례가 적습니다</span></h2>
       </div>
-      <div class="callout" style="margin-top:2vh"><div class="big">+</div><p><b>도쿄는 웹이라 더 빠르다</b> — 국가·언어별 랜딩 즉시 분기, <span class="term up">eKYC<span class="tip"><b>eKYC</b> · 온라인 본인확인. 사기·위장결혼을 막는 신뢰 장치이자 일본 규제 대응.</span></span>·규제 대응 페이지를 유연하게 얹는다.</p></div>
-      <div class="foot"><span class="brand">TWENNIES · GROWTH</span><span class="pageno">12 / 14</span></div>
+      <div class="twocol" style="grid-template-columns:1fr 1fr">
+        <div class="rows">
+          <div class="row"><div class="ix">a</div><div class="tx"><h4>신생 서비스 = 트랙레코드 공백</h4><p>출시 초기라 성혼·커플 성공 사례가 거의 없다. "<b>진짜 결혼까지 되나?</b>"를 증명할 근거가 부족.</p></div></div>
+          <div class="row"><div class="ix">b</div><div class="tx"><h4>고관여 결정일수록 사례가 전환을 만든다</h4><p>결혼은 인생 최대 결정 중 하나. 광고 카피가 아니라 <b>실제 사례·후기</b>가 상담신청을 끌어낸다.</p></div></div>
+          <div class="row"><div class="ix">c</div><div class="tx"><h4>듀오·가연은 수십 년 사례가 진입장벽</h4><p>경쟁사는 누적 성혼 실적이 곧 신뢰 자산. 트웨니스는 매번 신뢰를 처음부터 증명해야 한다.</p></div></div>
+        </div>
+        <div class="callout" style="flex-direction:column;align-items:flex-start;gap:.9vw">
+          <p style="font-size:1.36vw">＂사례는 기다린다고 쌓이지 않습니다.<br><b>'사례를 만드는 구조'를 설계</b>해야 합니다.＂</p>
+          <p style="font-size:.96vw;color:#dff1ef;font-weight:500">→ 11p 신뢰 자산화로 연결.</p>
+        </div>
+      </div>
+      <div class="foot"><span class="brand">twennies TOKYO · GROWTH</span><span class="pageno">07 / 14</span></div>
+    </section>
+
+    <!-- 8. 약점 3 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>약점 ③ · 신뢰 안 오는 페이지</span>
+        <h2>페이지에서 <span class="hl">'사람'이 안 보입니다</span></h2>
+      </div>
+      <div class="g3 grid" style="flex:1;align-content:center">
+        <div class="card"><div class="ci">🤖</div><h3>AI·템플릿 톤</h3><p>현재 페이지가 자동 생성된 듯한 인상 — 멋진 카피는 있지만 <b>진정성·신뢰</b>가 전달되지 않는다.</p></div>
+        <div class="card"><div class="ci">🧑‍🤝‍🧑</div><h3>사람·증거의 부재</h3><p>인생 결정엔 <b>실제 커플·실제 후기·검증 과정</b>이 보여야 한다. 지금은 '누가, 어떻게'가 안 보인다.</p></div>
+        <div class="card"><div class="ci">📉</div><h3>전환의 누수</h3><p>신뢰가 안 서면 상담신청 직전에 이탈. 고관여 카테고리에서 <b>신뢰 = 전환율</b>이다.</p></div>
+      </div>
+      <div class="callout"><div class="big">＂</div><p>고관여 결혼 결정에서 이기는 페이지는 화려한 페이지가 아니라 <b>'진짜 사람과 진짜 사례'가 보이는 페이지</b>입니다.</p></div>
+      <p class="note">※ twennies.us 공개 페이지 관찰 기반 정성 진단.</p>
+      <div class="foot"><span class="brand">twennies TOKYO · GROWTH</span><span class="pageno">08 / 14</span></div>
+    </section>
+
+    <!-- 9. 전환점: 비교표 → 새 USP 필요 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>전환점 · 왜 새 USP인가</span>
+        <h2>'고소득 인증·알고리즘 매칭'으로는 <span class="hl">못 이깁니다</span></h2>
+      </div>
+      <table class="ctable">
+        <thead><tr><th style="width:13%"></th><th class="own" style="width:23%">트웨니스 도쿄</th><th>골드스푼</th><th>다이아매치</th><th>듀오 (결정사)</th></tr></thead>
+        <tbody>
+          <tr><th>핵심 무기</th><td class="own">국제결혼 + 정착 패키지</td><td>소득·자산 인증</td><td>최상위 자산 인증</td><td>휴먼 매니저 · 성혼 실적</td></tr>
+          <tr><th>검증</th><td class="own">대면 + 글램 데이터</td><td>소득 서류</td><td>소득·자산 서류</td><td>신원 + 매니저</td></tr>
+          <tr><th>언어·문화 차이 해결</th><td class="own">미흡 (기회)</td><td>해당 없음</td><td>해당 없음</td><td>해당 없음</td></tr>
+          <tr><th>사례·트랙레코드</th><td class="own">부족 (신생)</td><td>축적</td><td>축적</td><td>수십 년</td></tr>
+        </tbody>
+      </table>
+      <div class="callout" style="margin-top:1.6vh"><div class="big">→</div><p>인증·매칭은 이미 흔하고, 사례·연차로는 후발이 불리합니다. 그렇다면 답은 하나 — <b>'아무도 안 푼 문제'를 USP로</b> 가져오는 것.</p></div>
+      <p class="note">출처: 각사 공식·머니투데이·한경·duo.co.kr. 일부 항목 비공개(미확인).</p>
+      <div class="foot"><span class="brand">twennies TOKYO · GROWTH</span><span class="pageno">09 / 14</span></div>
+    </section>
+
+    <!-- 10. 새 USP -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>제안 · 새로운 USP</span>
+        <h2>USP = 매칭이 아니라 <span class="hl">'차이를 메우는 것'</span></h2>
+      </div>
+      <div class="callout" style="margin-bottom:1.8vh"><div class="big">＂</div><p>한·일 부부의 <b>언어·문화 적응까지 책임지는 국제결혼 솔루션</b> — 경쟁사가 '만남'에 머무는 동안, 트웨니스는 '결혼 그 후'까지 간다.</p></div>
+      <div class="g3 grid" style="flex:1;align-content:center">
+        <div class="pillar"><div class="ci" style="font-size:1.5vw">🗣️</div><h3>적응 동행</h3><p>언어·통역, 문화 온보딩, 커플 적응 프로그램 — <b>차이(약점 ①)를 제품으로</b> 전환.</p></div>
+        <div class="pillar"><div class="ci" style="font-size:1.5vw">🤝</div><h3>검증된 신뢰</h3><p>실제 한·일 커플 사례·사람 중심 콘텐츠로 <b>신뢰 공백(약점 ②③)을 메움</b>.</p></div>
+        <div class="pillar"><div class="ci" style="font-size:1.5vw">🛫</div><h3>정착 풀패키지</h3><p>기존 비자·생활 인프라와 결합해 <b>매칭→결혼→정착 풀스택</b>으로 완성.</p></div>
+      </div>
+      <p class="note">핵심: 세 약점(차이·사례·신뢰)을 그대로 뒤집어 USP로 만든다 — 따라하기 어려운 '실제 제공가치' 기반의 차별화.</p>
+      <div class="foot"><span class="brand">twennies TOKYO · GROWTH</span><span class="pageno">10 / 14</span></div>
+    </section>
+
+    <!-- 11. 실행 1 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>실행 ① · 신뢰 자산화</span>
+        <h2>AI 페이지를 <span class="hl">'진짜 사람'</span>으로 바꿉니다</h2>
+      </div>
+      <div class="rows" style="flex:1;justify-content:center">
+        <div class="row"><div class="ix">A</div><div class="tx"><h4>실제 한·일 커플 다큐·후기 콘텐츠</h4><p>성사 과정·적응 스토리를 영상/인터뷰로. 광고가 아니라 <b>사람이 증명하는 신뢰</b>로 약점 ②③을 동시에 해소.</p></div></div>
+          <div class="row"><div class="ix">B</div><div class="tx"><h4>검증 과정·사람을 페이지에 드러내기</h4><p>대면 검증 절차, 매니저·대표의 얼굴과 목소리를 노출 → 템플릿 인상을 <b>진정성</b>으로 교체.</p></div></div>
+          <div class="row"><div class="ix">C</div><div class="tx"><h4>성혼·후기 데이터 누적·공개</h4><p>사례가 쌓이는 구조를 설계하고 지표로 공개 → <span class="term">SEO<span class="tip"><b>SEO</b> · 검색 유입 자산. 후기·사례 콘텐츠는 광고비 없이 신뢰와 유입을 동시에 쌓는다.</span></span>·랜딩 신뢰요소로 복리화.</p></div></div>
+          <div class="row hot"><div class="ix">D</div><div class="tx"><h4>신뢰요소 = 상담신청 전환율</h4><p>랜딩에 사례·검증·후기를 배치하면 <b>상담신청 CVR</b>이 오른다 — 신뢰가 곧 성과.</p></div></div>
+      </div>
+      <div class="foot"><span class="brand">twennies TOKYO · GROWTH</span><span class="pageno">11 / 14</span></div>
+    </section>
+
+    <!-- 12. 실행 2 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>실행 ② · 차이 해소 솔루션</span>
+        <h2>언어·문화 적응을 <span class="hl">'제품'으로</span> 만듭니다</h2>
+      </div>
+      <div class="g2 grid" style="flex:1;align-content:center">
+        <div class="card"><h3 style="color:var(--mint-deep)">매칭 후를 설계한다</h3>
+          <p style="margin-top:.6vw"><b>① 소통 지원:</b> 매칭 후 통역·번역·소통 가이드(도구·세션)로 초기 대화 장벽 제거.</p>
+          <p style="margin-top:.5vw"><b>② 문화 온보딩:</b> 상대국 문화·가족·관습 가이드로 '문화가 맞을까' 불안 해소.</p>
+          <p style="margin-top:.5vw"><b>③ 커플 적응 프로그램:</b> 결혼 준비·정착 단계의 동행 케어.</p>
+        </div>
+        <div class="card soft"><h3 style="color:var(--mint-deep)">왜 강력한가</h3>
+          <p style="margin-top:.6vw"><b>경쟁 부재:</b> 누구도 '결혼 그 후'를 제품화하지 않았다.</p>
+          <p style="margin-top:.5vw"><b>모방 난도 ↑:</b> 메시지가 아니라 <b>실제 제공가치</b>라 따라하기 어렵다.</p>
+          <p style="margin-top:.5vw"><b>자산 결합:</b> 기존 비자·정착 패키지와 묶어 <b>풀스택 USP</b> 완성.</p>
+          <p style="margin-top:.5vw"><b>전환 직결:</b> 가입 전 가장 큰 망설임(차이)을 직접 해소.</p>
+        </div>
+      </div>
+      <div class="foot"><span class="brand">twennies TOKYO · GROWTH</span><span class="pageno">12 / 14</span></div>
     </section>
 
     <!-- 13. 로드맵 -->
     <section class="slide">
       <div class="slide-head">
-        <span class="kicker"><span class="dot"></span>로드맵 · Pre-PMF → PMF → Scale</span>
-        <h2>'팔리는 공식'을 찾고, <span class="hl">그 다음 광고로 증폭</span>합니다</h2>
+        <span class="kicker"><span class="dot"></span>로드맵 · 우선순위</span>
+        <h2>신뢰부터 세우고, <span class="hl">차이 해소 USP로 차별화</span>합니다</h2>
       </div>
       <div class="tl">
-        <div class="phase hot"><div class="ph-top"><span class="wk">NOW</span><h3>팔리는 제품 찾기</h3></div>
-          <ul><li>랜딩·오퍼·메시지 매일 A/B</li><li>검증된 남성(공급) 선확보</li><li>상담신청 CVR 끌어올리기</li></ul>
-          <div class="goal">→ 전환되는 공식 발견</div></div>
-        <div class="phase"><div class="ph-top"><span class="wk">PMF</span><h3>신호로 확인</h3></div>
-          <ul><li>상담→성혼·리퍼럴 신호 측정</li><li>위닝 퍼널 정식화</li><li>LTV/CAC 회수 구조 확인</li></ul>
-          <div class="goal">→ 스케일 준비 완료</div></div>
-        <div class="phase"><div class="ph-top"><span class="wk">SCALE</span><h3>광고로 증폭</h3></div>
-          <ul><li>검증된 공식에 예산 집중</li><li>도쿄 국가별 웹 현지화 확장</li><li>SEO·콘텐츠 자산 복리화</li></ul>
-          <div class="goal">→ 같은 예산이 몇 배로</div></div>
+        <div class="phase hot"><div class="ph-top"><span class="wk">NOW</span><h3>신뢰 자산화</h3></div>
+          <ul><li>실제 커플 사례·사람 콘텐츠 제작</li><li>AI 느낌 페이지를 진정성으로 교체</li><li>랜딩 신뢰요소로 상담 CVR↑</li></ul>
+          <div class="goal">→ 신뢰 공백 메우기</div></div>
+        <div class="phase"><div class="ph-top"><span class="wk">NEXT</span><h3>차이 해소 USP</h3></div>
+          <ul><li>언어·문화 적응 솔루션 1개 출시</li><li>비자·정착 패키지와 결합</li><li>'결혼 그 후'를 핵심 메시지로</li></ul>
+          <div class="goal">→ 모방 어려운 차별화</div></div>
+        <div class="phase"><div class="ph-top"><span class="wk">SCALE</span><h3>USP 중심 확장</h3></div>
+          <ul><li>USP를 축으로 퍼포먼스·콘텐츠 집행</li><li>사례 복리화 → 신뢰 가속</li><li>도쿄 외 지역·세그먼트 확장</li></ul>
+          <div class="goal">→ 차별화된 성장</div></div>
       </div>
-      <div class="callout" style="margin-top:2vh"><div class="big">→</div><p>순서가 핵심입니다 — <b>Pre-PMF에 광고부터 키우지 않고, 팔리는 제품을 먼저 만든 뒤 증폭</b>합니다.</p></div>
-      <div class="foot"><span class="brand">TWENNIES · GROWTH</span><span class="pageno">13 / 14</span></div>
+      <div class="callout" style="margin-top:2vh"><div class="big">→</div><p>순서가 핵심 — <b>신뢰(사례·사람)부터 세운 뒤, 차이 해소를 USP로</b> 올려 경쟁사와 다른 길을 갑니다.</p></div>
+      <div class="foot"><span class="brand">twennies TOKYO · GROWTH</span><span class="pageno">13 / 14</span></div>
     </section>
 
     <!-- 14. 클로징 -->
     <section class="slide closing">
       <span class="glow a"></span>
+      <span class="spark" style="left:13%;top:26%">✦</span>
       <div style="position:relative;z-index:2">
         <span class="kicker"><span class="dot"></span>맺음말</span>
-        <h2>마케팅을 더하기 전에,<br><span style="color:var(--gold-2)">팔리는 제품을 먼저 만듭니다</span></h2>
-        <p class="lead">웹과 Pre-PMF는 약점이 아니라, <b>'광고로 메우는 성장'에서 '제품으로 이기는 성장'으로</b> 갈 수 있는 가장 좋은 출발점입니다. 글램의 데이터 위에 '검증된 진지함'을 얹고, 퍼널 전체를 제품으로 설계해 트웨니스를 <b>더 잘 팔리는 제품</b>으로 만들겠습니다.</p>
-        <div class="sign">트웨니스 제품 성장 전략 &nbsp;|&nbsp; <b>이도형</b> &nbsp;·&nbsp; 5년차 그로스 마케터</div>
+        <h2>매칭이 아니라,<br><span style="color:var(--mint-deep)">'차이와 신뢰'를 푸는 회사로</span></h2>
+        <p class="lead">트웨니스의 약점은 <b>언어·문화 차이, 부족한 사례, 신뢰 안 오는 페이지</b>입니다. 저는 이 셋을 그대로 뒤집어 — <b>실제 사람과 사례로 신뢰를 세우고, 차이 해소를 USP로</b> 만들어 — 경쟁사가 따라올 수 없는 트웨니스 도쿄를 만들겠습니다.</p>
+        <div class="sign">트웨니스 도쿄 성장 전략 &nbsp;|&nbsp; <b>이도형</b> &nbsp;·&nbsp; 5년차 그로스 마케터</div>
       </div>
-      <div class="foot"><span class="brand">TWENNIES · GROWTH</span><span class="pageno">14 / 14</span></div>
+      <div class="foot"><span class="brand">twennies TOKYO · GROWTH</span><span class="pageno">14 / 14</span></div>
     </section>
 
   </div>
