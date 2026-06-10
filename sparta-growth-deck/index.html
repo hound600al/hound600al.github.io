@@ -382,23 +382,29 @@ b,strong{font-weight:800;color:var(--ink);}
   <!-- 10-2. 기대 효과 (정량) -->
   <section class="slide" style="background:var(--lav);">
     <div class="head"><span class="num">08</span><span class="ttl">커리큘럼 도입 시, 이런 정량 변화를 기대합니다</span></div>
-    <p>Phase 2·3(딥 디버깅·실전 사고 시뮬)의 핵심은 결국 숫자로 증명됩니다. 아래는 <b>기존 주니어 대비 목표 지표</b>이며, <b>파일럿 1기에서 직접 검증</b>합니다.</p>
-    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:2.5vh;">
+    <p><b class="ink">개선 방향은 검수공학 연구로 이미 검증된 사실</b>이고, <b class="hl">크기(%)는 파일럿 1기에서 검증할 목표치</b>입니다. 각 지표는 <b>"무엇 대비, 무엇이 좋아지는가"</b>를 분명히 했습니다.</p>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:2.2vh;">
       <div class="metrics">
-        <div class="metric"><div class="v">+35<span style="font-size:1.6vw;">%p</span></div><div class="l">배포 전 결함 발견율<br/>(검수 훈련 효과)</div></div>
-        <div class="metric"><div class="v">−40<span style="font-size:1.6vw;">%</span></div><div class="l">장애 대응 시간(MTTR)<br/>(사고 시뮬 훈련)</div></div>
-        <div class="metric"><div class="v">½</div><div class="l">코드 처닝(재수정)<br/>(GitClear 2배 급증분 환원)</div></div>
-        <div class="metric"><div class="v">+20<span style="font-size:1.6vw;">%</span></div><div class="l">수료생 취업·연봉 프리미엄<br/>('대체 불가' 포지션)</div></div>
+        <div class="metric"><div class="v">+35<span style="font-size:1.6vw;">%p</span></div><div class="l"><b class="ink">배포 전 결함 발견율</b><br/>기존 주니어 대비 ↑</div></div>
+        <div class="metric"><div class="v">−40<span style="font-size:1.6vw;">%</span></div><div class="l"><b class="ink">장애 대응 시간(MTTR)</b><br/>미훈련 개발자 대비 ↓</div></div>
+        <div class="metric"><div class="v">½</div><div class="l"><b class="ink">코드 처닝(재수정률)</b><br/>AI 도입 후 2배 급증분 환원</div></div>
+        <div class="metric"><div class="v">+20<span style="font-size:1.6vw;">%</span></div><div class="l"><b class="ink">취업·연봉 프리미엄</b><br/>일반 부트캠프 수료생 대비</div></div>
       </div>
       <div class="metrics" style="grid-template-columns:repeat(3,1fr);">
-        <div class="metric" style="background:var(--ink);"><div class="v" style="color:var(--yellow);">CAC −30%</div><div class="l" style="color:#C9C9D2;">'AI 코드 진단 테스트'<br/>리드 자석 효과 목표</div></div>
-        <div class="metric" style="background:var(--ink);"><div class="v" style="color:var(--yellow);">CVR 2배</div><div class="l" style="color:#C9C9D2;">오답자 → 수강 전환<br/>(불안·리스크 직결 카피)</div></div>
-        <div class="metric" style="background:var(--ink);"><div class="v" style="color:var(--yellow);">B2B LTV ↑</div><div class="l" style="color:#C9C9D2;">채용연계 계약으로<br/>매출 수명 연장</div></div>
+        <div class="metric" style="background:var(--ink);"><div class="v" style="color:var(--yellow);">CAC −30%</div><div class="l" style="color:#C9C9D2;"><b style="color:#fff;">고객 획득 비용</b> 대비<br/>'진단 테스트' 리드자석 효과</div></div>
+        <div class="metric" style="background:var(--ink);"><div class="v" style="color:var(--yellow);">CVR ×2</div><div class="l" style="color:#C9C9D2;"><b style="color:#fff;">기존 광고 유입</b> 대비<br/>오답자→수강 전환율</div></div>
+        <div class="metric" style="background:var(--ink);"><div class="v" style="color:var(--yellow);">B2B LTV ↑</div><div class="l" style="color:#C9C9D2;"><b style="color:#fff;">B2C 단발 매출</b> 대비<br/>채용연계 매출 수명</div></div>
       </div>
     </div>
-    <div class="evi">
-      <span class="tag">근거</span>
-      <p>이 목표들은 막연한 기대가 아니라, 앞서 본 <b>'AI 도입 후 처닝 2배(GitClear)·안정성 7.2% 감소(DORA)'</b>라는 정량 갭을 <b>검수 역량으로 되돌리는 수치</b>입니다. 파일럿 1기 데이터로 검증 후 다음 기수 마케팅 소스로 재활용합니다.</p>
+    <div class="grid g2" style="gap:1vw;">
+      <div class="evi" style="margin-top:0;">
+        <span class="tag">출처 · 효과의 '방향'</span>
+        <p><b>코드 리뷰·인스펙션은 결함의 60% 이상을 테스트 이전에 제거</b>합니다(Capers Jones, <i>Software Quality 연구</i> / Fagan Inspection, IBM). 또 <b>결함은 늦게 발견될수록 수정 비용이 급증</b>해, 출시 후 수정은 설계 단계 대비 수십 배입니다(NIST 2002 — 부실 테스트로 美 연 <b>약 $59.5B</b> 손실). → 결함 발견율↑·MTTR↓·처닝↓의 <b>인과 근거</b>.</p>
+      </div>
+      <div class="evi" style="margin-top:0;">
+        <span class="tag">출처 · 갭의 '크기'</span>
+        <p>되돌릴 갭의 크기는 앞서 본 <b>AI 도입 후 처닝 2배(GitClear)·전달 안정성 7.2%↓(Google DORA 2024)</b>에서 나옵니다. 위 % 목표는 이 갭과 업계 리뷰 효율을 반영한 <b>파일럿 1기 검증 대상</b>이며, 1기 실측치로 보정해 다음 기수 마케팅 소스로 재활용합니다.</p>
+      </div>
     </div>
     <div class="foot"><span class="brand"><span class="logo">SPARTA</span> Growth 전략 제안</span><span>이도형</span></div>
   </section>
