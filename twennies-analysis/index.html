@@ -145,6 +145,11 @@
   .pillar p b{color:var(--mint-deep)}
 
   .note{font-size:.78vw;color:var(--muted-2);font-weight:500;margin-top:1vh;line-height:1.5}
+  .refs{display:flex;flex-wrap:wrap;align-items:center;gap:.5vw;margin-top:1.4vh}
+  .refs .rlab{font-size:.82vw;font-weight:800;color:var(--mint-deep);margin-right:.2vw}
+  .reflink{display:inline-flex;align-items:center;gap:.25em;font-size:.8vw;font-weight:700;color:var(--mint-ink);background:var(--mint-soft);border:1px solid var(--mint-line);border-radius:7px;padding:.28em .7em;text-decoration:none;transition:.14s}
+  .reflink:hover{background:#dbeeeb;border-color:var(--mint)}
+  .reflink .ar{font-size:.72vw;opacity:.7}
 
   .closing{background:radial-gradient(120% 90% at 78% 12%,var(--mint-soft),transparent 55%),linear-gradient(180deg,#FBFEFD,#EAF5F4);color:var(--ink);justify-content:center}
   .closing h2{font-size:2.6vw;line-height:1.32}
@@ -419,7 +424,20 @@
         <div class="row"><div class="ix" style="font-size:.86vw">정착</div><div class="tx"><h4>IBJ 상견례 중재 · 일본 GTN(25개어·24시간 정착앱) · 한국 다누리(무료 통번역)</h4><p>→ <b>양가 상견례 통역 케어</b> + 비자·주거·생활 정착 원스톱(공공 무료 리소스 연계).</p></div></div>
         <div class="row hot"><div class="ix" style="font-size:.86vw">문화</div><div class="tx"><h4>Hofstede 문화 6차원 · 일본 출입국청 생활 오리엔테이션 — 문화차 정량화·온보딩 콘텐츠</h4><p>→ <b>한·일 문화차원 자가진단</b>(어디서 충돌하는지) + 가족 단위 문화 온보딩 영상·체크리스트.</p></div></div>
       </div>
-      <p class="note">출처: Paired·Lasting·Relish·Gottman 공식, Flitto·Papago·DeepL, IBJ·GTN·다누리(liveinkorea), Hofstede Insights·일본 출입국재류관리청. ※ 번역앱의 '커플 전용' 기능은 트웨니스가 재구성할 영역.</p>
+      <div class="refs">
+        <span class="rlab">참고 레퍼런스</span>
+        <a class="reflink" href="https://www.paired.com/" target="_blank" rel="noopener">Paired<span class="ar">↗</span></a>
+        <a class="reflink" href="https://getlasting.com/" target="_blank" rel="noopener">Lasting<span class="ar">↗</span></a>
+        <a class="reflink" href="https://www.gottman.com/couples/apps/" target="_blank" rel="noopener">Gottman 카드덱<span class="ar">↗</span></a>
+        <a class="reflink" href="https://www.flitto.com/" target="_blank" rel="noopener">Flitto<span class="ar">↗</span></a>
+        <a class="reflink" href="https://papago.naver.com/" target="_blank" rel="noopener">Papago<span class="ar">↗</span></a>
+        <a class="reflink" href="https://www.deepl.com/" target="_blank" rel="noopener">DeepL<span class="ar">↗</span></a>
+        <a class="reflink" href="https://www.gtn.co.jp/business/acceptance/living-support" target="_blank" rel="noopener">일본 GTN<span class="ar">↗</span></a>
+        <a class="reflink" href="https://www.liveinkorea.kr/" target="_blank" rel="noopener">다누리<span class="ar">↗</span></a>
+        <a class="reflink" href="https://www.theculturefactor.com/country-comparison-tool" target="_blank" rel="noopener">Hofstede 문화비교<span class="ar">↗</span></a>
+        <a class="reflink" href="https://www.moj.go.jp/isa/support/portal/index.html" target="_blank" rel="noopener">日 생활 오리엔테이션<span class="ar">↗</span></a>
+      </div>
+      <p class="note">※ 위 서비스는 일반/여행·관계 용도이며, '커플 전용·한일 특화' 기능은 트웨니스가 재구성할 영역입니다.</p>
       <div class="foot"><span class="brand">twennies TOKYO · GROWTH</span><span class="pageno">14 / 17</span></div>
     </section>
 
@@ -517,7 +535,7 @@
     else if(e.key==='f'||e.key==='F'){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen();}
   });
   document.querySelector('.stage').addEventListener('click',e=>{
-    if(e.target.closest('.nav')||e.target.closest('.term'))return;
+    if(e.target.closest('.nav')||e.target.closest('.term')||e.target.closest('a'))return;
     const x=e.clientX/window.innerWidth;
     if(x>0.5)show(i+1);else show(i-1);
   });
