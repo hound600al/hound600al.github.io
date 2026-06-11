@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>트웨니스 · 페이크 테스트 시간·예산 프로젝션</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+  :root{
+    --mint:#7CBDB7;--mint-2:#9AD0CB;--mint-deep:#2F8F88;--mint-ink:#1F6F69;
+    --mint-soft:#EAF5F4;--mint-soft-2:#F2F9F8;--mint-line:#CBE6E2;
+    --ink:#223331;--cream:#2E403E;--body:#5C6B69;--muted:#8E9C9A;--muted-2:#A9B5B3;
+    --bg:#F5FAF9;--bg2:#FFFFFF;--bg3:#F0F7F6;--line:#E2ECEA;--line-2:#EDF3F2;
+    --gold:#C99A3F;--gold-soft:#FBF3E3;
+    --shadow:0 22px 50px -24px rgba(31,111,105,.28);--shadow-sm:0 10px 26px -16px rgba(31,111,105,.2);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{font-family:'Pretendard',-apple-system,system-ui,sans-serif;background:#0c1413;color:var(--body);-webkit-font-smoothing:antialiased;overflow:hidden}
+  .deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+  .stage{position:relative;width:100vw;height:100vh;max-width:177.78vh;max-height:56.25vw;background:var(--bg);overflow:hidden}
+  .slide{position:absolute;inset:0;padding:4.2% 5.4%;display:flex;flex-direction:column}
+
+  .kicker{display:inline-flex;align-items:center;gap:7px;font-size:.96vw;font-weight:700;color:var(--mint-deep);background:var(--mint-soft);padding:.45em 1.05em;border-radius:100px;letter-spacing:.01em;width:fit-content;border:1px solid var(--mint-line)}
+  .kicker .dot{width:6px;height:6px;border-radius:50%;background:var(--mint)}
+  h2{font-size:2.15vw;font-weight:900;letter-spacing:-.03em;line-height:1.22;color:var(--ink)}
+  h2 .hl{color:var(--mint-deep)}
+  .slide-head{margin-bottom:1.5vh}
+  .slide-head h2{margin-top:.9vh}
+  b,strong{font-weight:700;color:var(--cream)}
+
+  .foot{position:absolute;left:5.4%;right:5.4%;bottom:2vh;display:flex;justify-content:space-between;align-items:center;font-size:.8vw;color:var(--muted-2);font-weight:600;letter-spacing:.01em}
+  .foot .brand{color:var(--mint-deep);font-weight:800;letter-spacing:.05em}
+
+  .term{position:relative;border-bottom:1.4px dotted var(--mint-deep);cursor:help;white-space:nowrap;color:inherit}
+  .term .tip{position:absolute;bottom:148%;left:50%;transform:translateX(-50%) translateY(5px);background:var(--ink);color:#EAF5F4;padding:.8em 1em;border-radius:11px;font-size:.78vw;font-weight:500;line-height:1.5;width:max-content;max-width:22vw;white-space:normal;opacity:0;visibility:hidden;transition:.16s;z-index:40;box-shadow:0 14px 34px -10px rgba(0,0,0,.4);text-align:left;letter-spacing:-.01em}
+  .term .tip b{color:var(--mint-2)}
+  .term .tip:after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:7px solid transparent;border-top-color:var(--ink)}
+  .term:hover .tip,.term.show .tip{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+
+  /* timeline */
+  .timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:.9vw;margin-bottom:1.3vh}
+  .tphase{background:var(--bg2);border:1px solid var(--line);border-radius:13px;padding:.95vw 1.05vw;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;position:relative}
+  .tphase .wk{font-size:.74vw;font-weight:800;color:#fff;background:var(--mint-deep);padding:.28em .75em;border-radius:7px;width:fit-content;letter-spacing:.02em}
+  .tphase h4{font-size:1.08vw;font-weight:900;letter-spacing:-.02em;color:var(--ink);margin:.5vw 0 .45vw}
+  .tphase ul{list-style:none;display:flex;flex-direction:column;gap:.3vw}
+  .tphase li{font-size:.78vw;color:var(--muted);font-weight:500;line-height:1.38;padding-left:.8vw;position:relative}
+  .tphase li:before{content:"";position:absolute;left:0;top:.5em;width:5px;height:5px;border-radius:50%;background:var(--mint)}
+  .tphase .cost{margin-top:.65vw;padding-top:.55vw;border-top:1px dashed var(--line);font-size:.86vw;font-weight:800;color:var(--mint-deep);display:flex;justify-content:space-between;align-items:center}
+  .tphase .cost span{font-size:.72vw;color:var(--muted-2);font-weight:600}
+  .arrowmark{position:absolute;right:-.78vw;top:2.3vw;color:var(--mint);font-size:1vw;font-weight:800;z-index:4}
+
+  /* R&R */
+  .rr{display:grid;grid-template-columns:1fr 1fr;gap:1vw;margin-bottom:1.3vh}
+  .rcard{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:1vw 1.15vw;box-shadow:var(--shadow-sm);display:flex;flex-direction:column}
+  .rcard.lead{background:var(--mint-soft);border-color:var(--mint-line);box-shadow:none}
+  .rcard .rh{display:flex;align-items:center;gap:.55vw;margin-bottom:.6vw}
+  .rcard .rh .who{font-size:1.1vw;font-weight:900;color:var(--ink);letter-spacing:-.02em}
+  .rcard .rh .role{font-size:.72vw;font-weight:700;color:var(--mint-deep);background:var(--bg2);border:1px solid var(--mint-line);padding:.2em .55em;border-radius:6px}
+  .rcard.lead .rh .role{background:#fff}
+  .rcard ul{list-style:none;display:flex;flex-direction:column;gap:.4vw}
+  .rcard li{font-size:.85vw;color:var(--body);font-weight:500;line-height:1.4;padding-left:1.05vw;position:relative}
+  .rcard li:before{content:"✓";position:absolute;left:0;top:0;color:var(--mint-deep);font-weight:900;font-size:.78vw}
+  .rcard li b{color:var(--cream);font-weight:700}
+  .costft{margin-top:auto;padding-top:.6vw;border-top:1px dashed var(--line);font-size:.8vw;font-weight:700;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+  .costft .amt{font-size:1.04vw;font-weight:900;color:var(--mint-deep)}
+
+  /* budget strip */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:.9vw}
+  .stat{background:var(--mint-soft-2);border-radius:12px;padding:.9vw 1vw;border:1px solid var(--mint-line)}
+  .stat .n{font-size:1.5vw;font-weight:900;letter-spacing:-.03em;color:var(--mint-deep);line-height:1;font-variant-numeric:tabular-nums}
+  .stat .l{font-size:.74vw;color:var(--muted);font-weight:600;margin-top:.45vw;line-height:1.35}
+  .stat .l b{color:var(--cream)}
+  .stat.total{background:linear-gradient(120deg,var(--mint-deep),#3AA59D);border-color:transparent;box-shadow:var(--shadow)}
+  .stat.total .n{color:#fff;font-size:1.62vw}
+  .stat.total .l{color:#D6ECEA}.stat.total .l b{color:#fff}
+
+  .note{font-size:.74vw;color:var(--muted-2);font-weight:500;margin-top:.9vh;line-height:1.5}
+  .note b{color:var(--muted)}
+  .hint{position:fixed;bottom:14px;right:16px;font-size:11px;color:rgba(255,255,255,.4)}
+</style>
+</head>
+<body>
+<div class="deck">
+  <div class="stage">
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>트웨니스 · 페이크 테스트 시간·예산 프로젝션</span>
+        <h2>6주 · 총 <span class="hl">약 1,150만원</span>으로 '먹히는 소구점'을 유의미하게 검증한다</h2>
+      </div>
+
+      <!-- timeline -->
+      <div class="timeline">
+        <div class="tphase">
+          <span class="wk">WEEK 1–2</span>
+          <h4>기획 · 제작</h4>
+          <ul>
+            <li>소구점 <b>4종</b> 정의 (성혼율·문화·언어·적응 케어)</li>
+            <li>상세페이지 기획·제작 · 광고소재/<b>영상 8~12종</b></li>
+            <li>픽셀·이벤트·캠페인 셋업</li>
+          </ul>
+          <div class="cost">직접비 ≈30만 <span>제작=인건비 계상</span></div>
+          <span class="arrowmark">→</span>
+        </div>
+        <div class="tphase">
+          <span class="wk">WEEK 3–4</span>
+          <h4>소구점 테스트</h4>
+          <ul>
+            <li>4개 소구점 동시 집행 (<span class="term">CTR<span class="tip"><b>CTR</b> · 노출 대비 클릭률 — 어떤 메시지가 시선을 끄는지.</span></span>·<span class="term">CVR<span class="tip"><b>CVR</b> · 방문 대비 사전예약 전환율 — 어떤 소구점이 행동을 만드는지.</span></span> 비교)</li>
+            <li>저성과 소재 컷 · 예산 재배분</li>
+            <li><b>위닝 소구점 1~2개 도출</b></li>
+          </ul>
+          <div class="cost">광고비 200만 <span>≈ 400 전환</span></div>
+          <span class="arrowmark">→</span>
+        </div>
+        <div class="tphase">
+          <span class="wk">WEEK 5–6</span>
+          <h4>모수 검증</h4>
+          <ul>
+            <li>위닝 소구점 <b>스케일</b> 집행</li>
+            <li><span class="term">유의 모수<span class="tip"><b>유의 모수</b> · 결과를 우연이 아니라 말할 수 있는 표본. n≈384(95% 신뢰·±5%)를 앵커로 사용.</span></span> 확보 → 전환율 확정</li>
+            <li>인사이트 리포트 · 런칭 소구점 확정</li>
+          </ul>
+          <div class="cost">광고비 200만 <span>≈ 400+ 전환</span></div>
+        </div>
+      </div>
+
+      <!-- R&R with time→cost -->
+      <div class="rr">
+        <div class="rcard lead">
+          <div class="rh"><span class="who">나</span><span class="role">그로스 리드 · 설계/분석/의사결정</span></div>
+          <ul>
+            <li><b>테스트 설계</b> — 소구점 가설·성공기준·유의수준 정의</li>
+            <li><b>캠페인 전략</b> — 구조·예산 배분·입찰, 일일 최적화 판단</li>
+            <li><b>상세페이지 기획</b> — 메시지·전환 동선 / 소재 디렉션</li>
+            <li><b>분석</b> — 유의성 판정·인사이트 리포트·런칭 소구점 확정</li>
+          </ul>
+          <div class="costft"><span>투입 <b>80h</b> (≈6주 중 33%) · 4.0만원/h</span><span class="amt">320만원</span></div>
+        </div>
+        <div class="rcard">
+          <div class="rh"><span class="who">주니어 마케터</span><span class="role">제작/실행/트래킹</span></div>
+          <ul>
+            <li><b>광고소재 제작</b> — 카피 변형·이미지 (8~12종)</li>
+            <li><b>영상편집</b> — 숏폼 소재 편집</li>
+            <li><b>상세페이지 제작</b> — 노코드 빌드·QA·픽셀 태깅</li>
+            <li><b>캠페인 운영</b> — 셋업·업로드·일일 트래킹/대시보드</li>
+          </ul>
+          <div class="costft"><span>투입 <b>160h</b> (≈6주 중 67%) · 2.5만원/h</span><span class="amt">400만원</span></div>
+        </div>
+      </div>
+
+      <!-- budget summary -->
+      <div class="stats">
+        <div class="stat"><div class="n">430만</div><div class="l">① 직접비<br><b>광고 400 · 툴 30</b></div></div>
+        <div class="stat"><div class="n">720만</div><div class="l">② 인건비 (시간 환산)<br><b>나 320 · 주니어 400</b></div></div>
+        <div class="stat"><div class="n">240h</div><div class="l">총 투입 시간<br><b>나 80 · 주니어 160</b></div></div>
+        <div class="stat total"><div class="n">≈ 1,150만원</div><div class="l">총 예산 (①+②)<br><b>6주 · 사전예약 ≈800건 확보</b></div></div>
+      </div>
+
+      <p class="note">※ 가정 — 채널 <b>Meta</b>, 전환=<span class="term">사전예약<span class="tip"><b>페이크 도어 테스트</b> · 제품 완성 전, 실제처럼 광고·랜딩을 띄워 사전예약(소프트 전환)으로 수요·소구점을 검증.</span></span>(소프트 전환)로 <b>CPL≈5,000원</b>(회원 CAC 3만원보다 낮음). 시급은 4대보험·간접비 포함 <b>부담 인건비</b> 기준(리드 4.0만·주니어 2.5만/h). CPL 4,000~7,000원 시 총액 1,070~1,310만원. 산출물: 위닝 소구점 1~2개 + 사전예약 ≈800건(런칭 초기 유저풀) · 검증기준 n≈384.</p>
+
+      <div class="foot"><span class="brand">트웨니스 · Fake-Door Test Plan</span><span>이도형 · Growth</span></div>
+    </section>
+  </div>
+</div>
+<div class="hint">F 전체화면 · 점선 단어에 마우스를 올리면 뜻이 나옵니다</div>
+<script>
+  document.querySelectorAll('.term').forEach(t=>t.addEventListener('click',e=>{e.stopPropagation();const o=t.classList.contains('show');document.querySelectorAll('.term').forEach(x=>x.classList.remove('show'));if(!o)t.classList.add('show');}));
+  document.addEventListener('keydown',e=>{if(e.key==='f'||e.key==='F'){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen();}});
+</script>
+</body>
+</html>
