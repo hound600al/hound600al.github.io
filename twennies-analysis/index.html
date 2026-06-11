@@ -150,6 +150,16 @@
   .reflink{display:inline-flex;align-items:center;gap:.25em;font-size:.8vw;font-weight:700;color:var(--mint-ink);background:var(--mint-soft);border:1px solid var(--mint-line);border-radius:7px;padding:.28em .7em;text-decoration:none;transition:.14s}
   .reflink:hover{background:#dbeeeb;border-color:var(--mint)}
   .reflink .ar{font-size:.72vw;opacity:.7}
+  /* reference screenshot gallery */
+  .refgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2vw;flex:1;align-content:center}
+  .refcard{display:flex;flex-direction:column;background:var(--bg2);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);text-decoration:none;transition:.16s}
+  .refcard:hover{border-color:var(--mint);transform:translateY(-4px);box-shadow:var(--shadow)}
+  .refcard .shot{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top center;background:#fff;border-bottom:1px solid var(--line)}
+  .refcard .rc{padding:1vw 1.1vw 1.2vw}
+  .refcard .rtag{font-size:.74vw;font-weight:800;color:var(--mint-deep);background:var(--mint-soft);border:1px solid var(--mint-line);border-radius:6px;padding:.2em .6em;display:inline-block}
+  .refcard h3{font-size:1.1vw;font-weight:800;color:var(--ink);margin:.55vw 0 .3vw;letter-spacing:-.02em}
+  .refcard p{font-size:.82vw;color:var(--muted);font-weight:500;line-height:1.45}
+  .refcard .src{font-size:.74vw;color:var(--mint-deep);font-weight:700;margin-top:.55vw;display:inline-flex;align-items:center;gap:.2em}
 
   .closing{background:radial-gradient(120% 90% at 78% 12%,var(--mint-soft),transparent 55%),linear-gradient(180deg,#FBFEFD,#EAF5F4);color:var(--ink);justify-content:center}
   .closing h2{font-size:2.6vw;line-height:1.32}
@@ -438,10 +448,38 @@
         <a class="reflink" href="https://www.moj.go.jp/isa/support/portal/index.html" target="_blank" rel="noopener">日 생활 오리엔테이션<span class="ar">↗</span></a>
       </div>
       <p class="note">※ 위 서비스는 일반/여행·관계 용도이며, '커플 전용·한일 특화' 기능은 트웨니스가 재구성할 영역입니다.</p>
-      <div class="foot"><span class="brand">twennies TOKYO · GROWTH</span><span class="pageno">14 / 17</span></div>
+      <div class="foot"><span class="brand">twennies TOKYO · GROWTH</span><span class="pageno">14 / 18</span></div>
     </section>
 
-    <!-- 15. 증분 임팩트 -->
+    <!-- 15. 레퍼런스 실제 화면 갤러리 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>벤치마킹 · 실제 레퍼런스 화면</span>
+        <h2>우리가 베낄 화면 — <span class="hl">이미 누군가는 하고 있습니다</span></h2>
+      </div>
+      <div class="refgrid">
+        <a class="refcard" href="https://dayrie.com/" target="_blank" rel="noopener">
+          <img class="shot" src="assets/ref_dayrie.png" alt="데이리에 한일 국제결혼" />
+          <div class="rc"><span class="rtag">한일 국제결혼 · 직접 선례</span><h3>데이리에 (DAYRIE)</h3><p>실제 대표 사진·성혼 스토리·유튜브 1만 구독·IBJ AWARD로 <b>신뢰를 쌓는 직접 경쟁사</b>. 우리가 넘어서야 할 표본.</p><span class="src">dayrie.com ↗</span></div>
+        </a>
+        <a class="refcard" href="https://www.paired.com/" target="_blank" rel="noopener">
+          <img class="shot" src="assets/ref_paired.png" alt="Paired 커플 관계 앱" />
+          <div class="rc"><span class="rtag">관계 케어</span><h3>Paired</h3><p>데일리 질문·퀴즈로 <b>매칭 후 관계를 설계</b> → 한일 커플용 양국어 질문으로 변형.</p><span class="src">paired.com ↗</span></div>
+        </a>
+        <a class="refcard" href="https://papago.naver.com/" target="_blank" rel="noopener">
+          <img class="shot" src="assets/ref_papago.png" alt="Papago 한일 통역" />
+          <div class="rc"><span class="rtag">실시간 통역</span><h3>Papago</h3><p>일↔한 즉시 번역 → <b>커플 채팅·만남·가족 응대</b>(존댓말)에 임베드.</p><span class="src">papago.naver.com ↗</span></div>
+        </a>
+        <a class="refcard" href="https://www.gtn.co.jp/business/acceptance/living-support" target="_blank" rel="noopener">
+          <img class="shot" src="assets/ref_gtn.png" alt="GTN 일본 생활지원" />
+          <div class="rc"><span class="rtag">일본 정착</span><h3>GTN 생활지원</h3><p>주거·금융·통역 등 <b>다국어 24시간 생활지원</b> → 일본 여성 배우자 정착 원스톱.</p><span class="src">gtn.co.jp ↗</span></div>
+        </a>
+      </div>
+      <p class="note">※ 실제 서비스 화면 캡처(2026.6). 트웨니스는 이를 <b>한일·커플 맥락</b>으로 재구성해 '결혼 그 후'를 제품화합니다. (문화 진단은 Hofstede 문화 6차원 비교 도구 참고)</p>
+      <div class="foot"><span class="brand">twennies TOKYO · GROWTH</span><span class="pageno">15 / 18</span></div>
+    </section>
+
+    <!-- 16. 증분 임팩트 -->
     <section class="slide">
       <div class="slide-head">
         <span class="kicker"><span class="dot"></span>기대 효과 · 증분 임팩트</span>
@@ -496,7 +534,7 @@
 
 <div class="nav">
   <button id="prev" aria-label="이전">◀</button>
-  <span class="ind"><span id="cur">1</span> / <span id="tot">17</span></span>
+  <span class="ind"><span id="cur">1</span> / <span id="tot">18</span></span>
   <button id="next" aria-label="다음">▶</button>
 </div>
 <div class="hint">← → 또는 클릭으로 이동 · 단어 위 점선에 마우스/탭하면 뜻이 나옵니다 · F 전체화면</div>
