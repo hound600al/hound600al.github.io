@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>고이장례연구소 · 선불제 퍼포먼스 마케팅 전략 ｜ 이도형</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+  :root{
+    --coral:#DD8568;--coral-d:#C0654A;--coral-050:#FBEFE9;--coral-100:#F4DACE;
+    --ink:#2B2622;--ink2:#4C453D;--muted:#8C857A;--muted-2:#A9A296;
+    --line:#ECE4D8;--bg:#FAF6EF;--soft:#F4EDE2;--soft2:#EFE7DA;--white:#FFFFFF;
+    --espresso:#2A2420;--sage:#7E8B6F;--sage-bg:#EEF1E7;
+    --shadow:0 18px 46px -20px rgba(43,38,34,.26);--shadow-sm:0 8px 22px -13px rgba(43,38,34,.20);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{font-family:'Pretendard',-apple-system,system-ui,sans-serif;background:#15110d;color:var(--ink);-webkit-font-smoothing:antialiased;overflow:hidden}
+  .deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+  .stage{position:relative;width:100vw;height:100vh;max-width:177.78vh;max-height:56.25vw;background:var(--bg);overflow:hidden}
+  .slide{position:absolute;inset:0;padding:5.4% 6.4%;display:none;flex-direction:column;animation:fade .5s ease}
+  .slide.active{display:flex}
+  @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+  .kicker{display:inline-flex;align-items:center;gap:7px;font-size:1.02vw;font-weight:700;color:var(--coral-d);background:var(--coral-050);padding:.5em 1em;border-radius:100px;letter-spacing:-.01em;width:fit-content}
+  .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--coral)}
+  h1{font-size:4.1vw;font-weight:800;letter-spacing:-.035em;line-height:1.16;color:var(--ink)}
+  h2{font-size:2.65vw;font-weight:800;letter-spacing:-.03em;line-height:1.22;color:var(--ink)}
+  h2 .hl{color:var(--coral-d)}
+  .sub{font-size:1.26vw;color:var(--muted);font-weight:500;line-height:1.6;letter-spacing:-.01em}
+  .slide-head{margin-bottom:2.1vh}
+  .slide-head h2{margin-top:1vh}
+  p{line-height:1.6}
+  b,strong{font-weight:700}
+
+  .foot{position:absolute;left:6.4%;right:6.4%;bottom:3vh;display:flex;justify-content:space-between;align-items:center;font-size:.9vw;color:var(--muted-2);font-weight:600;letter-spacing:-.01em}
+  .foot .brand{color:var(--coral-d);font-weight:800}
+  .pageno{font-variant-numeric:tabular-nums}
+
+  .term{position:relative;border-bottom:1.6px dotted var(--coral);cursor:help;white-space:nowrap;color:inherit}
+  .term .tip{position:absolute;bottom:142%;left:50%;transform:translateX(-50%) translateY(5px);background:var(--espresso);color:#fff;padding:.8em 1em;border-radius:11px;font-size:.82vw;font-weight:500;line-height:1.5;width:max-content;max-width:24vw;white-space:normal;opacity:0;visibility:hidden;transition:.16s;z-index:40;box-shadow:0 14px 34px -10px rgba(0,0,0,.4);text-align:left;letter-spacing:-.01em}
+  .term .tip b{color:#f0b69f}
+  .term .tip:after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:7px solid transparent;border-top-color:var(--espresso)}
+  .term.down .tip{bottom:auto;top:142%;transform:translateX(-50%) translateY(-5px)}
+  .term.down .tip:after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--espresso)}
+  .term:hover .tip,.term.show .tip{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+  .cover .term,.closing .term{border-bottom-color:var(--coral)}
+
+  .grid{display:grid;gap:1.3vw}
+  .g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:1.5vw;box-shadow:var(--shadow-sm)}
+  .card.soft{background:var(--soft);box-shadow:none}
+  .card .ci{font-size:1.7vw;margin-bottom:.5vw}
+  .card h3{font-size:1.3vw;font-weight:800;letter-spacing:-.02em;margin-bottom:.45vw;line-height:1.28;color:var(--ink)}
+  .card p{font-size:1.0vw;color:var(--muted);font-weight:500;letter-spacing:-.01em;line-height:1.5}
+  .card p b{color:var(--ink)}
+
+  .cover{background:radial-gradient(120% 95% at 85% 10%,var(--coral-050),transparent 55%),linear-gradient(180deg,#FCF9F3,#F5EEE3);justify-content:center}
+  .cover h1{margin:2.2vh 0}
+  .cover h1 .hl{color:var(--coral-d)}
+  .cover .lead{font-size:1.42vw;color:var(--ink2);font-weight:500;line-height:1.65;max-width:72%}
+  .cover .lead b{color:var(--ink)}
+  .cover .meta{margin-top:4.2vh;display:flex;gap:2.2vw;font-size:1vw;color:var(--muted);font-weight:600}
+  .cover .meta b{color:var(--ink);font-weight:700;display:block;font-size:1.14vw;margin-top:.3vw}
+
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1vw}
+  .stat{background:var(--white);border-radius:16px;padding:1.4vw;border:1px solid var(--line);box-shadow:var(--shadow-sm)}
+  .stat .n{font-size:2.1vw;font-weight:800;letter-spacing:-.03em;color:var(--coral-d);line-height:1;font-variant-numeric:tabular-nums}
+  .stat .n.dark{color:var(--ink)}
+  .stat .l{font-size:.9vw;color:var(--muted);font-weight:600;margin-top:.6vw;line-height:1.4}
+
+  .rows{display:flex;flex-direction:column;gap:.9vw}
+  .row{display:flex;gap:1.05vw;align-items:flex-start;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:1.05vw 1.35vw;box-shadow:var(--shadow-sm)}
+  .row .ix{flex:none;min-width:2vw;height:2vw;padding:0 .4vw;border-radius:9px;display:grid;place-items:center;font-weight:800;font-size:.96vw;color:#fff;background:var(--coral)}
+  .row.sage .ix{background:var(--sage)}
+  .row .tx h4{font-size:1.16vw;font-weight:800;letter-spacing:-.02em;margin-bottom:.22vw;color:var(--ink)}
+  .row .tx p{font-size:.96vw;color:var(--muted);font-weight:500;line-height:1.5}
+  .row .tx p b{color:var(--ink)}
+  .row.hot{background:var(--coral-050);border-color:var(--coral-100);box-shadow:none}
+
+  .callout{background:var(--espresso);color:#fff;border-radius:20px;padding:1.8vw 2.1vw;display:flex;gap:1.5vw;align-items:center}
+  .callout .big{font-size:3vw;font-weight:800;color:#f0b69f;line-height:1;flex:none}
+  .callout p{font-size:1.3vw;font-weight:600;line-height:1.5;letter-spacing:-.01em}
+  .callout p b{color:#f4cbb6}
+
+  .twocol{display:grid;grid-template-columns:1.05fr .95fr;gap:1.8vw;flex:1;min-height:0;align-items:center}
+
+  .lever-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1vw}
+  .lever{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:1.2vw 1.35vw;box-shadow:var(--shadow-sm)}
+  .lever .ln{font-size:.86vw;font-weight:800;color:var(--coral-d);background:var(--coral-050);width:fit-content;padding:.22em .6em;border-radius:7px}
+  .lever .lt{font-size:1.14vw;font-weight:800;letter-spacing:-.02em;margin:.55vw 0 .35vw;line-height:1.25;color:var(--ink)}
+  .lever .ld{font-size:.92vw;color:var(--muted);font-weight:500;line-height:1.45}
+  .lever .ld b{color:var(--ink)}
+
+  .match{display:flex;flex-direction:column;gap:.85vw}
+  .mrow{display:grid;grid-template-columns:1fr auto 1.1fr;gap:1vw;align-items:center}
+  .mrow .need{background:var(--soft);border:1px solid var(--line);border-radius:13px;padding:.85vw 1.1vw;font-size:1.0vw;font-weight:700;color:var(--ink2)}
+  .mrow .ar{color:var(--coral);font-weight:800;font-size:1.2vw}
+  .mrow .have{background:var(--coral-050);border:1px solid var(--coral-100);border-radius:13px;padding:.85vw 1.1vw;font-size:1.0vw;font-weight:700;color:var(--ink)}
+  .mrow .have b{color:var(--coral-d)}
+
+  .pchip{display:inline-block;font-size:.82vw;font-weight:700;color:var(--coral-d);background:var(--coral-050);border:1px solid var(--coral-100);border-radius:7px;padding:.24em .6em;margin:.28vw .28vw 0 0}
+
+  .note{font-size:.82vw;color:var(--muted-2);font-weight:500;margin-top:1vh;line-height:1.5}
+  .note b{color:var(--muted)}
+
+  .closing{background:radial-gradient(120% 95% at 15% 12%,var(--coral-050),transparent 55%),linear-gradient(180deg,#FCF9F3,#F2EADE);justify-content:center}
+  .closing h2{font-size:2.85vw}.closing h2 .hl{color:var(--coral-d)}
+  .closing .lead{font-size:1.4vw;color:var(--ink2);font-weight:500;line-height:1.66;margin-top:2.2vh;max-width:80%}
+  .closing .lead b{color:var(--ink)}
+  .closing .sign{margin-top:4vh;font-size:1.05vw;color:var(--muted);font-weight:600}.closing .sign b{color:var(--ink)}
+
+  .nav{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;background:rgba(42,36,32,.82);backdrop-filter:blur(10px);padding:9px 16px;border-radius:100px;z-index:50}
+  .nav button{background:none;border:none;color:#fff;font-size:15px;cursor:pointer;opacity:.85;padding:2px 4px}
+  .nav button:hover{opacity:1}
+  .nav .ind{color:#fff;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;min-width:46px;text-align:center}
+  .progress{position:fixed;top:0;left:0;height:3px;background:var(--coral);z-index:60;transition:width .4s ease}
+  .hint{position:fixed;bottom:22px;right:22px;font-size:12px;color:rgba(43,38,34,.4);z-index:50}
+  @media(max-width:760px){.hint{display:none}.term .tip{max-width:62vw;font-size:11px}}
+</style>
+</head>
+<body>
+<div class="progress" id="bar"></div>
+<div class="deck"><div class="stage">
+
+  <!-- 1 COVER -->
+  <section class="slide active cover">
+    <span class="kicker"><span class="dot"></span>퍼포먼스 마케터 지원 · 선불제 스쿼드</span>
+    <h1>'죽음을 준비하라'가 아니라,<br><span class="hl">'사랑을 미리 남겨두자'</span></h1>
+    <p class="lead">선불제는 긴급하지 않은 <b>고관여 신뢰 상품</b>입니다. '장례 준비'라는 회피의 언어를 <b>'남은 가족을 위한 안심'</b>으로 바꾸고, 고이의 <b>투명·신뢰</b>로 상조 불신을 넘어 100원 상조를 키우는 전략을 제안합니다.</p>
+    <div class="meta">
+      <div>대상<b>고이장례연구소 · 100원 상조</b></div>
+      <div>포지션<b>퍼포먼스 마케터 (선불제 스쿼드)</b></div>
+      <div>구성<b>주력 → 페인 → USP·극복 → 적합성 11p</b></div>
+    </div>
+    <div class="foot"><span class="brand">고이 · Performance</span><span class="pageno">01 / 11</span></div>
+  </section>
+
+  <!-- 2 이해 & 주력 -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>고이 이해 · 주력 사업</span>
+      <h2>고이의 심장은 <span class="hl">'100원 상조'</span> — 상조의 새 표준</h2></div>
+    <div class="stats">
+      <div class="stat"><div class="n">10만</div><div class="l">누적 계약 (출시 1년 6개월)</div></div>
+      <div class="stat"><div class="n">36배 ↓</div><div class="l">업계 평균 대비 낮은 <span class="term down">CAC<span class="tip"><b>CAC</b> · 고객 1명 획득 비용.</span></span></div></div>
+      <div class="stat"><div class="n dark">월 100원</div><div class="l">선납 → 장례 발생 시 정산</div></div>
+      <div class="stat"><div class="n dark">카카오벤처스</div><div class="l">시드 투자 · 상조업계 최초 스타트업</div></div>
+    </div>
+    <div class="callout" style="margin-top:2.6vh"><div class="big">＂</div><p>'숨김없는 장례' — <b>품목별 정찰제 · 미사용 100% 공제 · 불만족 100% 환불</b>. 고이는 불투명한 상조 시장에 <b>투명함</b>으로 새 표준을 만들고 있습니다.</p></div>
+    <p class="note"><b>출처</b> · 채용공고(누적 10만·CAC 36배↓), 고이 공식사이트(100원 상조·정찰제·환불), 언론(카카오벤처스 시드). ※ 공개자료.</p>
+    <div class="foot"><span class="brand">고이 · Performance</span><span class="pageno">02 / 11</span></div>
+  </section>
+
+  <!-- 3 내 미션 -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>내가 합류할 곳 · 선불제 스쿼드</span>
+      <h2>미리 준비하는 고객을 <span class="hl">'가입'까지 설득</span>하는 일</h2></div>
+    <div class="twocol">
+      <div class="rows">
+        <div class="row"><div class="ix">정의</div><div class="tx"><h4>선불제 스쿼드의 미션</h4><p>"장례를 미리 준비하는 고객이 고이의 <span class="term">상조<span class="tip"><b>상조(선불제)</b> · 장례를 미리 가입해두고, 실제 장례 때 서비스를 받는 상품.</span></span> 상품에 가입하도록 설득" — 즉 <b>수요를 '만들고' 가입으로 전환</b>하는 일.</p></div></div>
+        <div class="row"><div class="ix">역할</div><div class="tx"><h4>나의 역할 = 그 전환의 엔진</h4><p>Meta·Google·Kakao·Naver를 운영해 <b>저CAC로 가입을 만들고</b>, 데이터로 예산·소구점을 최적화.</p></div></div>
+      </div>
+      <div><div class="callout" style="flex-direction:column;align-items:flex-start;gap:.8vw">
+        <p style="font-size:1.4vw">＂'후불제(필요할 때)'는 검색이 잡아줍니다. 하지만 <b>'선불제(미리)'는 필요를 먼저 일깨워야</b> 하는 — 가장 어려운 마케팅입니다.＂</p>
+      </div></div>
+    </div>
+    <p class="note"><b>출처</b> · 채용공고("선불제 스쿼드는 장례를 미리 준비하는 고객이 고이의 상조 상품에 가입하는 것을 설득").</p>
+    <div class="foot"><span class="brand">고이 · Performance</span><span class="pageno">03 / 11</span></div>
+  </section>
+
+  <!-- 4 페인포인트 -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>페인포인트 진단 · 선불제의 어려움</span>
+      <h2>선불제 활성화를 막는 <span class="hl">네 개의 벽</span></h2></div>
+    <div class="rows">
+      <div class="row"><div class="ix">1</div><div class="tx"><h4>죽음 회피 · 긴급성 제로</h4><p>내·가족의 죽음을 미리 떠올리기 싫고, 언제 필요할지 몰라 <b>지금 가입할 이유</b>가 약하다 → 광고 동기·전환 저조.</p></div></div>
+      <div class="row"><div class="ix">2</div><div class="tx"><h4>상조 불신 (먹튀·강매 트라우마)</h4><p>"또 사기 아냐?"라는 뿌리 깊은 불신 → 가입 직전 이탈. <b>신뢰가 전환의 최대 장벽</b>.</p></div></div>
+      <div class="row"><div class="ix">3</div><div class="tx"><h4>무형·이연 상품</h4><p>지금 가입해도 효용은 수년 뒤 → 가치 체감이 어렵고, 가입 후 <span class="term">리텐션<span class="tip"><b>리텐션</b> · 가입 유지율. 선불제는 장기 유지돼야 실제 장례 정산으로 이어진다.</span></span> 유지도 과제.</p></div></div>
+      <div class="row"><div class="ix">4</div><div class="tx"><h4>모호한 타깃 + 민감 카테고리</h4><p>결정자가 본인(시니어)인지 자녀(40·50대)인지 모호. 게다가 장례·죽음은 <span class="term">민감 카테고리<span class="tip"><b>민감 카테고리</b> · Meta·Google이 죽음·건강 등 민감 주제 광고에 제약·심사를 두는 영역. 소재 거부·타겟 제한이 생긴다.</span></span>라 매체 정책 제약.</p></div></div>
+    </div>
+    <p class="note">※ 외부 관점 기반 가설 — 입사 후 가입 퍼널·코호트 데이터로 검증.</p>
+    <div class="foot"><span class="brand">고이 · Performance</span><span class="pageno">04 / 11</span></div>
+  </section>
+
+  <!-- 5 본질 -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>본질 문제 정의</span>
+      <h2>CAC 36배 우위, <span class="hl">스케일하려면 '회피 프레임'을 깨야</span> 한다</h2></div>
+    <div class="twocol">
+      <div class="rows">
+        <div class="row"><div class="ix">∵</div><div class="tx"><h4>지금의 저CAC는 '저관여 수요'를 잘 잡은 결과</h4><p>이미 장례를 고민하던 사람을 효율적으로 전환 — 훌륭하지만, 그 풀은 한정적.</p></div></div>
+        <div class="row"><div class="ix">→</div><div class="tx"><h4>스케일 = 아직 생각 안 한 사람을 깨우는 일</h4><p>여기서부터 CAC가 오른다. '죽음 준비'라는 회피 언어로는 새 수요가 안 열린다.</p></div></div>
+        <div class="row hot"><div class="ix">✓</div><div class="tx"><h4>해법 = 프레임 전환 + 신뢰</h4><p>"죽음 준비" → <b>"남은 가족을 위한 사랑·안심"</b>으로 소구점을 바꾸고, 고이의 <b>투명·신뢰</b>로 불신을 격파.</p></div></div>
+      </div>
+      <div><div class="callout" style="flex-direction:column;align-items:flex-start;gap:.8vw">
+        <p style="font-size:1.4vw">＂선불제 마케팅은 '수요를 찾는' 게 아니라 <b>'수요를 깨우는'</b> 일 — 핵심은 <span class="term up">소구점<span class="tip"><b>소구점</b> · 고객의 마음을 움직이는 핵심 메시지/이유. 무엇을 내세워 설득하느냐.</span></span>입니다.＂</p>
+      </div></div>
+    </div>
+    <div class="foot"><span class="brand">고이 · Performance</span><span class="pageno">05 / 11</span></div>
+  </section>
+
+  <!-- 6 USP -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>고이의 USP · 무기</span>
+      <h2>불신을 정면으로 깨는 <span class="hl">'숨김없는' 투명함</span></h2></div>
+    <div class="g4 grid" style="flex:1;align-content:center">
+      <div class="card"><div class="ci">🏷️</div><h3>품목별 정찰제</h3><p>가격을 숨기지 않는다 — 상조 불신의 핵심을 정면 격파.</p></div>
+      <div class="card"><div class="ci">↩️</div><h3>미사용 100% 공제 · 환불</h3><p>안 쓴 품목은 돌려주고, 불만족 시 100% 환불 — '먹튀' 공포 제거.</p></div>
+      <div class="card"><div class="ci">🪙</div><h3>월 100원 진입장벽</h3><p>가입을 '큰 결심'이 아닌 <b>가벼운 시작</b>으로 — 저CAC의 구조적 무기.</p></div>
+      <div class="card" style="border-top:4px solid var(--coral)"><div class="ci">🤝</div><h3>검증된 신뢰</h3><p>누적 10만 계약 · 카카오벤처스 · 상조업계 최초 스타트업.</p></div>
+    </div>
+    <div class="callout"><div class="big">＝</div><p>이 USP는 곧 광고의 무기입니다 — <b>'투명·환불보장·100원'</b>을 소재 전면에 세우면, 불신 장벽이 낮아져 전환이 오릅니다.</p></div>
+    <div class="foot"><span class="brand">고이 · Performance</span><span class="pageno">06 / 11</span></div>
+  </section>
+
+  <!-- 7 극복 1 소구점·타깃 -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>극복 ① · 소구점 재정의 & 타깃 분리</span>
+      <h2>같은 상품, <span class="hl">'누구에게 무엇을'</span>은 다르게</h2></div>
+    <div class="g2 grid" style="flex:1;align-content:center">
+      <div class="card">
+        <div class="ci">🧓</div><span class="ln" style="font-size:.84vw;font-weight:800;color:var(--coral-d)">타깃 A · 60대+ 시니어 본인</span>
+        <h3 style="margin-top:.5vw">"자녀에게 부담 주지 않는 준비"</h3>
+        <p>스스로 존엄을 준비하는 자기결정. <b>안심·자존</b> 소구.</p>
+        <div style="margin-top:.6vw"><span class="pchip">Kakao(중장년 도달)</span><span class="pchip">Naver 검색</span><span class="pchip">유튜브 다큐</span></div>
+      </div>
+      <div class="card" style="border-top:4px solid var(--coral)">
+        <div class="ci">👩‍👦</div><span class="ln" style="font-size:.84vw;font-weight:800;color:var(--coral-d)">타깃 B · 40·50대 자녀</span>
+        <h3 style="margin-top:.5vw">"부모님께 드리는 마지막 효도"</h3>
+        <p>부모 부담·후회 걱정을 미리 던다. <b>사랑·효심</b> 소구.</p>
+        <div style="margin-top:.6vw"><span class="pchip">Meta(이타 스토리 영상)</span><span class="pchip">Naver 블로그</span><span class="pchip">리타겟</span></div>
+      </div>
+    </div>
+    <div class="callout"><div class="big">↺</div><p>핵심 전환 — <b>"죽음을 준비하라"(회피)</b> → <b>"사랑을 미리 남겨두자"(이타·안심)</b>. 소재·랜딩·키워드를 이 한 줄로 관통시킵니다.</p></div>
+    <div class="foot"><span class="brand">고이 · Performance</span><span class="pageno">07 / 11</span></div>
+  </section>
+
+  <!-- 8 극복 2 채널·측정 -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>극복 ② · 채널 믹스 & 측정</span>
+      <h2>저CAC 가입을 <span class="hl">'유지·정산'까지</span> 잇는다</h2></div>
+    <div class="lever-grid">
+      <div class="lever"><span class="ln">신뢰 소재 + 민감 우회</span><div class="lt">Meta · 유튜브</div><div class="ld">투명·환불보장·이타 스토리 영상. 민감 카테고리 정책을 피하는 <b>'가족·준비' 화법</b>으로 소재 운영.</div></div>
+      <div class="lever"><span class="ln">잠재 수요 캡처</span><div class="lt">Naver · Google SA</div><div class="ld">'상조 비교·장례 비용·상조 추천' 검색 = 이미 고민 시작한 수요. <b>정찰제·후기</b>로 전환.</div></div>
+      <div class="lever"><span class="ln">중장년 도달 · 유지</span><div class="lt">Kakao</div><div class="ld">중장년 대량 도달 + 알림톡 <span class="term">CRM<span class="tip"><b>CRM</b> · 가입 고객에게 알림톡 등으로 관계를 유지·강화하는 활동.</span></span>으로 100원 가입자 <b>장기 유지</b>.</div></div>
+      <div class="lever" style="border-left:4px solid var(--coral)"><span class="ln">측정 · 판단 기준</span><div class="lt">CAC × 유지율 × 정산전환</div><div class="ld">가입 CAC만 보지 않는다. <span class="term up">LTV<span class="tip"><b>LTV</b> · 가입자가 유지·정산까지 가며 주는 생애가치. 선불제는 유지율이 LTV를 좌우.</span></span>로 이어지는 <b>유지율·정산 전환</b>까지 본다.</div></div>
+    </div>
+    <p class="note">💡 100원의 역할 = <b>진입장벽 제거로 저CAC 가입</b> → 이후 신뢰·CRM으로 유지율을 끌어올려 LTV를 만든다. '싸게 모으고, 오래 남긴다.'</p>
+    <div class="foot"><span class="brand">고이 · Performance</span><span class="pageno">08 / 11</span></div>
+  </section>
+
+  <!-- 9 왜 내가 -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>왜 제가 이 문제를 잘 풉니다</span>
+      <h2>선불제는 <span class="hl">'소구점'과 '신뢰'</span>의 게임 — 제 전문 영역</h2></div>
+    <div class="match">
+      <div class="mrow"><div class="need">선불제 핵심 = <b>소구점 발굴</b></div><div class="ar">←→</div><div class="have">소구점 발굴로 <b>CPI −72.8%</b> → 앱 매출 <b>40배</b>의 첫 단추</div></div>
+      <div class="mrow"><div class="need">공고 = <b>월 1억+ 광고비 단독 운영</b></div><div class="ar">←→</div><div class="have">월 <b>4.5억(5채널)</b> 직접 운영·최적화</div></div>
+      <div class="mrow"><div class="need">선불제 = <b>유지·LTV 게임</b></div><div class="ar">←→</div><div class="have">등급제·CRM <b>LTV 18.1배</b> · 휴면 재활성 <b>12.3억</b></div></div>
+      <div class="mrow"><div class="need">데이터 기반 단독 수행</div><div class="ar">←→</div><div class="have"><b>BigQuery</b>·5채널 운영·자동화로 의사결정 리드</div></div>
+    </div>
+    <p class="note">민감·고관여 영역(헬스케어·의료 마케팅) 경험까지 — <b>'예민한 주제의 소구점'</b>을 찾아 전환시키는 일을 5년간 해왔습니다.</p>
+    <div class="foot"><span class="brand">고이 · Performance</span><span class="pageno">09 / 11</span></div>
+  </section>
+
+  <!-- 10 컬처핏 -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>컬처핏 · 왜 고이와 잘 맞는가</span>
+      <h2>고이가 일하는 방식, <span class="hl">제가 일해온 방식</span></h2></div>
+    <div class="rows">
+      <div class="row"><div class="ix">진정성</div><div class="tx"><h4>"사람에 대한 진정성" ↔ 똑똑한 다정함</h4><p>매출을 넘어 사람을 챙겨온 방식 — 팀원 성장·생일을 진심으로 챙겼고, 그게 제 일의 동력입니다.</p></div></div>
+      <div class="row"><div class="ix">투명</div><div class="tx"><h4>"의견 충돌을 표면화 · 투명·진실" ↔ 솔직한 피드백</h4><p>불편해도 회피 않고 솔직히 부딪쳐 더 나은 결론을 만든다 — 받은 피드백을 칠판에 적어 매일 새겼습니다.</p></div></div>
+      <div class="row sage"><div class="ix">동반</div><div class="tx"><h4>"직원이 아닌 동반자 · 함께 성장" ↔ 함께 크는 팀</h4><p>'네 일·내 일' 없이 함께 성장하는 조직을 목표로 일해왔습니다 — 고이가 바라는 동반자의 모습.</p></div></div>
+    </div>
+    <div class="callout" style="margin-top:1.6vh"><div class="big">♥</div><p>무엇보다 — 장례는 <b>남은 가족의 슬픔을 덜어주는 일</b>. '사람을 이롭게 하는 성장'이라는 점에서, 제가 일하고 싶은 이유와 정확히 맞닿아 있습니다.</p></div>
+    <div class="foot"><span class="brand">고이 · Performance</span><span class="pageno">10 / 11</span></div>
+  </section>
+
+  <!-- 11 CLOSING -->
+  <section class="slide closing">
+    <span class="kicker"><span class="dot"></span>맺음말 · 포부</span>
+    <h2>더 많은 가족이 <span class="hl">'후회 없이' 작별</span>할 수 있도록</h2>
+    <p class="lead">'죽음 준비'를 <b>'사랑을 미리 남기는 일'</b>로 바꾸고, 고이의 투명·신뢰를 무기로 <b>저CAC 가입을 유지·정산까지</b> 잇겠습니다. 선불제 스쿼드의 퍼포먼스 엔진이 되어, 고이를 <b>가장 신뢰받는 장례 브랜드</b>로 함께 키우고 싶습니다.</p>
+    <div style="margin-top:24px;display:flex;gap:11px;flex-wrap:wrap">
+      <span class="pchip" style="font-size:1vw;padding:.5em 1em">소구점 재정의</span>
+      <span class="pchip" style="font-size:1vw;padding:.5em 1em">신뢰 소재로 불신 격파</span>
+      <span class="pchip" style="font-size:1vw;padding:.5em 1em">저CAC × 유지 LTV</span>
+      <span class="pchip" style="font-size:1vw;padding:.5em 1em">사람에 대한 진정성</span>
+    </div>
+    <div class="sign">제안 · 퍼포먼스 마케터 지원자 &nbsp;|&nbsp; <b>이도형</b> &nbsp;·&nbsp; 5년차 그로스 마케터</div>
+    <div class="foot"><span class="brand">고이 · Performance</span><span class="pageno">11 / 11</span></div>
+  </section>
+
+</div></div>
+
+<div class="nav">
+  <button id="prev" aria-label="이전">◀</button>
+  <span class="ind"><span id="cur">1</span> / 11</span>
+  <button id="next" aria-label="다음">▶</button>
+</div>
+<div class="hint">← → 또는 클릭 · 점선 단어에 마우스/탭하면 뜻이 나옵니다 · F 전체화면</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  const bar=document.getElementById('bar'), cur=document.getElementById('cur');
+  const terms=[...document.querySelectorAll('.term')];
+  let i=0;
+  function closeTips(){terms.forEach(t=>t.classList.remove('show'))}
+  function show(n){i=Math.max(0,Math.min(slides.length-1,n));slides.forEach((s,k)=>s.classList.toggle('active',k===i));bar.style.width=((i+1)/slides.length*100)+'%';cur.textContent=i+1;closeTips();}
+  document.getElementById('next').onclick=e=>{e.stopPropagation();show(i+1)};
+  document.getElementById('prev').onclick=e=>{e.stopPropagation();show(i-1)};
+  terms.forEach(t=>t.addEventListener('click',e=>{e.stopPropagation();const o=t.classList.contains('show');closeTips();if(!o)t.classList.add('show');}));
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' ')show(i+1);
+    else if(e.key==='ArrowLeft'||e.key==='PageUp')show(i-1);
+    else if(e.key==='Home')show(0);else if(e.key==='End')show(slides.length-1);
+    else if(e.key==='f'||e.key==='F'){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen();}
+  });
+  document.querySelector('.stage').addEventListener('click',e=>{if(e.target.closest('.nav')||e.target.closest('.term'))return;const x=e.clientX/window.innerWidth;if(x>0.5)show(i+1);else show(i-1);});
+  show(0);
+</script>
+</body>
+</html>
