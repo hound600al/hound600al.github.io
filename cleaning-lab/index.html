@@ -134,6 +134,7 @@
   .refcard .cap b{color:var(--ink)}
   .shot{flex:none;border-radius:14px;overflow:hidden;border:6px solid var(--navy);background:#fff;box-shadow:var(--shadow)}
   .shot img{display:block;height:39vh;width:auto}
+  .pchip{display:inline-block;font-size:.78vw;font-weight:700;color:var(--blue-600);background:var(--blue-050);border:1px solid var(--blue-100);border-radius:7px;padding:.22em .6em;margin:.28vw .28vw 0 0;letter-spacing:-.01em}
   .closing{background:linear-gradient(135deg,#0C2230 0%,#0E6090 60%,#15A1D2 130%);color:#fff;justify-content:center}
   .closing h2{color:#fff;font-size:2.9vw}.closing h2 .hl{color:#9be3fb}
   .closing .lead{font-size:1.4vw;color:#c6dfeb;font-weight:500;line-height:1.65;margin-top:2.2vh;max-width:78%}
@@ -329,20 +330,37 @@
     <div class="foot"><span class="brand">청소연구소 · Performance</span><span class="pageno">10 / 14</span></div>
   </section>
 
-  <!-- 11 미디어믹스 풀퍼널 -->
+  <!-- 11 페르소나 우선 · 페르소나별 매체 -->
   <section class="slide">
-    <div class="slide-head"><span class="kicker"><span class="dot"></span>미디어 믹스 ① · 풀퍼널 설계</span>
-      <h2>'신뢰 소재'가 <span class="hl">퍼널 전체를 관통</span>하게</h2></div>
-    <div class="flow" style="margin-top:4px">
-      <div class="node"><div class="stg">① 인지</div><div class="nt">숏폼·유튜브·Meta</div><div class="nd">매니저 실제 <span class="term">Before/After UGC<span class="tip"><b>UGC</b> · 실제 사용자·매니저가 만든 청소 전·후 영상. 광고보다 신뢰도가 높아 진입 장벽을 낮춘다.</span></span>·청소 ASMR</div></div>
-      <div class="arr">→</div>
-      <div class="node"><div class="stg">② 고려·신뢰</div><div class="nt">Naver·리타겟</div><div class="nd">블로그·플레이스 후기 + <span class="term">리타겟<span class="tip"><b>리타게팅</b> · 방문했지만 구매 안 한 유저에게 다시 노출. 후기·보장 메시지로 신뢰 보강.</span></span> '안심 보장' 메시지</div></div>
-      <div class="arr">→</div>
-      <div class="node hot"><div class="stg">③ 전환</div><div class="nt">Google·Naver 검색</div><div class="nd">'집청소·가사도우미' <b>수요 캡처</b> + 전환 캠페인</div></div>
-      <div class="arr">→</div>
-      <div class="node"><div class="stg">④ 재구매·확장</div><div class="nt">Kakao·앱푸시</div><div class="nd">정기구독 리마인드 + <span class="term">CRM<span class="tip"><b>CRM</b> · 보유 고객에게 알림톡·푸시로 재구매·정기화를 유도하는 활동.</span></span> 크로스셀</div></div>
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>미디어 믹스 ① · 페르소나 우선</span>
+      <h2>검색 데이터가 가리키는 <span class="hl">'진짜 고객'</span>부터 정의한다</h2></div>
+    <div class="stats" style="margin-bottom:1.7vh">
+      <div class="stat"><div class="n">83%</div><div class="l">모바일 검색 비중 (月 약 1.3만)</div></div>
+      <div class="stat"><div class="n">81%</div><div class="l">여성 (모바일 기준)</div></div>
+      <div class="stat"><div class="n dark">30~40대</div><div class="l">검색 최다 연령</div></div>
+      <div class="stat"><div class="n dark">27%</div><div class="l">모바일 50대+ 비중 (시니어↑)</div></div>
     </div>
-    <div class="callout" style="margin-top:2.4vh"><div class="big">↻</div><p>채널은 다르지만 메시지는 하나 — <b>'검증된 매니저·안심 보장'</b>. 단계마다 신뢰를 한 겹씩 쌓아 전환까지 끌고 갑니다.</p></div>
+    <div class="g3 grid" style="align-items:stretch">
+      <div class="card">
+        <div class="ci">🧺</div><h3>시간 없는 워킹맘 <span style="font-size:.82vw;color:var(--blue-600);font-weight:800">· 핵심</span></h3>
+        <p style="font-size:.84vw;color:var(--muted-2);font-weight:700;margin-bottom:.45vw">30~40대 · 여성 · 모바일</p>
+        <p>"퇴근하면 깨끗한 집 — 검증된 매니저에게 안심하고 맡기세요"</p>
+        <div style="margin-top:.6vw"><span class="pchip">Instagram·Meta(Before/After·맘 후기)</span><span class="pchip">Naver 모바일·맘카페</span><span class="pchip">Kakao 재구매</span></div>
+      </div>
+      <div class="card">
+        <div class="ci">🌷</div><h3>5060 생활관리 여성</h3>
+        <p style="font-size:.84vw;color:var(--muted-2);font-weight:700;margin-bottom:.45vw">모바일 50대+ 27% · 본인·부모님집·이사</p>
+        <p>"믿을 수 있는 우리 동네 전문가, 전화 한 통이면 끝"</p>
+        <div style="margin-top:.6vw"><span class="pchip">Naver 검색·플레이스(전화상담)</span><span class="pchip">Kakao 알림톡</span><span class="pchip">당근(동네)</span></div>
+      </div>
+      <div class="card">
+        <div class="ci">💼</div><h3>계획형 구매자 (사무실·입주)</h3>
+        <p style="font-size:.84vw;color:var(--muted-2);font-weight:700;margin-bottom:.45vw">데스크탑 · 30대 · 남성 비중↑(41%) · 목적성 검색</p>
+        <p>"정기 사무실·입주 청소, 검증된 인력으로 한 번에"</p>
+        <div style="margin-top:.6vw"><span class="pchip">Google·Naver SA(사무실/입주청소)</span><span class="pchip">데스크탑 리타겟</span></div>
+      </div>
+    </div>
+    <p class="note">💡 같은 <b>'안심'</b> 메시지를 <b>페르소나별 매체·화법으로 변주</b> — 예산은 <b>P1(모바일·30~40대 여성)</b>에 집중. <b>데이터</b> · 네이버 키워드 '청소연구소' 검색 통계(2026-05, 모바일 11,100/월).</p>
     <div class="foot"><span class="brand">청소연구소 · Performance</span><span class="pageno">11 / 14</span></div>
   </section>
 
