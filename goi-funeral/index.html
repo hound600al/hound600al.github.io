@@ -107,8 +107,15 @@
 
   .adgrid{display:flex;gap:1.3vw;flex:1;min-height:0}
   .adcard{flex:1;background:var(--white);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow-sm)}
-  .adcard .imgwrap{flex:1;min-height:0;background:#EEF0F2;overflow:hidden;border-bottom:1px solid var(--line)}
-  .adcard img{width:100%;height:100%;object-fit:cover;object-position:top center}
+  .adcard .imgwrap{flex:1;min-height:0;background:#EEF0F2;overflow:hidden;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+  .adcard img{width:100%;height:100%;object-fit:contain;object-position:center}
+  .flow{display:flex;align-items:stretch;gap:.6vw}
+  .flow .node{flex:1;background:var(--soft);border:1px solid var(--line);border-radius:13px;padding:.95vw .85vw;display:flex;flex-direction:column}
+  .flow .node.hot{background:var(--coral-050);border-color:var(--coral-100)}
+  .flow .node .stg{font-size:.92vw;font-weight:800;color:var(--coral-d)}
+  .flow .node .nt{font-size:1.0vw;font-weight:800;letter-spacing:-.02em;margin:.35vw 0 .3vw;color:var(--ink);line-height:1.2}
+  .flow .node .nd{font-size:.8vw;color:var(--muted);font-weight:500;line-height:1.38}
+  .flow .arr{flex:none;display:grid;place-items:center;color:var(--coral);font-size:1.2vw;font-weight:800}
   .adcard .tt{padding:.8vw 1.1vw .12vw;font-size:1.0vw;font-weight:800;color:var(--ink)}
   .adcard .tt span{color:var(--coral-d)}
   .adcard .cap{padding:0 1.1vw .85vw;font-size:.82vw;color:var(--muted);line-height:1.4}
@@ -210,16 +217,23 @@
 
   <!-- 6 USP -->
   <section class="slide">
-    <div class="slide-head"><span class="kicker"><span class="dot"></span>신뢰 강화 · "회사가 망하면?"의 해소</span>
-      <h2>핵심 불신은 돈이 아니라 <span class="hl">'수십 년 뒤, 약속이 지켜질까'</span>입니다</h2></div>
-    <p class="sub" style="font-size:1.04vw;margin-bottom:1.3vh">100원도 분명 '선납'입니다. 진짜 불안은 떼일 금액이 아니라 — <b style="color:var(--ink)">정작 필요한 먼 훗날 회사가 남아 약속을 이행할지</b>. 이건 세 겹으로 답합니다.</p>
-    <div class="rows">
-      <div class="row"><div class="ix">제도</div><div class="tx"><h4>① 법·제도 안전망 — 망해도 약속은 지켜진다</h4><p>선불식 상조는 <span class="term">할부거래법<span class="tip"><b>할부거래법 제27조</b> · 선불식 상조는 선수금의 50%를 공제조합·은행 등에 보전해야 하고, 폐업 시 소비자에게 피해보상한다.</span></span>상 <b>선수금 보전·공제조합</b> 의무 + <b>'내상조 그대로'</b>로 폐업해도 계약을 우량 상조사가 승계 → <b>공제조합 보증 배지</b>를 광고·랜딩에 증거로.</p></div></div>
-      <div class="row"><div class="ix">구조</div><div class="tx"><h4>② 묶인 목돈이 거의 없다 (후불 구조)</h4><p>100원도 선납은 맞지만, 전통 상조의 '수백만원 선납'과 달리 고이는 납입액이 극소 → <b>최악의 경우에도 잃을 돈이 사실상 없다.</b> 잃는 건 '약속'뿐인데, 그건 ①제도가 받친다.</p></div></div>
-      <div class="row hot"><div class="ix">존속</div><div class="tx"><h4>③ '투자로 버틴다'가 아니라 '스스로 번다'</h4><p>전통 상조는 가입 때 사은품으로 출혈하지만, 고이는 <b>가입 비용 ≈ 0 + 매출은 실제 장례 정산에서 발생</b> → 가입이 늘어도 적자가 쌓이지 않음. <b>투자에 기대지 않고 자생하는 구조</b>(CAC 36배↓·계약 10만)라 먼 훗날까지 버틴다.</p></div></div>
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>신뢰 강화 · "투자 없이 버틸까?"의 증명</span>
+      <h2>투자로 버티는 게 아니라, <span class="hl">쌓인 가입자가 매출을 만든다</span></h2></div>
+    <p class="sub" style="font-size:1.04vw;margin-bottom:1.1vh">"싸서 매출 안 나면 투자 떨어질 때 망하지 않나?" — 고이는 <b style="color:var(--ink)">보험의 in-force처럼</b> 가입자 풀 자체가 매년 매출을 내는 <b style="color:var(--ink)">자생 구조</b>입니다.</p>
+    <div class="flow">
+      <div class="node"><div class="stg">①</div><div class="nt">무출혈 가입</div><div class="nd">가전 사은품 0 · <span class="term">CAC<span class="tip"><b>CAC</b> · 고객 획득 비용. 36배 낮으면 같은 돈으로 36배 더 모은다.</span></span> 36배↓ → 가입당 적자 없음</div></div>
+      <div class="arr">→</div>
+      <div class="node"><div class="stg">②</div><div class="nt">10만 in-force 누적</div><div class="nd">가입자 풀이 곧 '매출 자산'</div></div>
+      <div class="arr">→</div>
+      <div class="node hot"><div class="stg">③</div><div class="nt">매년 장례 발생 = 매출</div><div class="nd">후불 정산 마진이 반복 발생</div></div>
+      <div class="arr">→</div>
+      <div class="node"><div class="stg">④</div><div class="nt">운영·재획득 재원</div><div class="nd">투자 없이 굴러가는 사이클</div></div>
     </div>
-    <div class="callout" style="margin-top:1.4vh"><div class="big">!</div><p>핵심 화법 — <b>"투자받아 안전합니다"(투자는 유한) ❌ → "스스로 버는 구조라 지속합니다"(자생) ✅.</b> 이 세 겹을 광고·검색·댓글에 <b>증거와 함께 선제 노출</b>하는 게 마케터의 일.</p></div>
-    <p class="note">※ 고이의 선수금 보전기관·지급보증 파트너, 손익(자생력) 현황은 입사 후 확인해 소재에 정확히 반영. (근거: 할부거래법 제27조·'내상조 그대로' 제도)</p>
+    <div class="g2 grid" style="margin-top:1.3vh">
+      <div class="card soft"><h3 style="font-size:1.18vw;color:var(--coral-d)">왜 '남는 장사'인가 (건전성)</h3><p>가입당 <b>CAC ≪ 건당 장례 정산 매출</b> + 가입 무출혈 → 가입이 늘수록 손실이 아니라 <b>미래 매출이 쌓인다</b>(LTV>CAC). 손익·집행 건수·건당 마진을 <b>투명 공개</b>해 증명.</p></div>
+      <div class="card soft" style="border-left:4px solid var(--coral)"><h3 style="font-size:1.18vw;color:var(--coral-d)">그래도 폐업하면?</h3><p>선불식 상조는 <span class="term">할부거래법<span class="tip"><b>할부거래법 제27조</b> · 선수금의 50%를 공제조합·은행에 보전, 폐업 시 소비자 피해보상.</span></span>상 <b>선수금 보전·공제조합</b> + <b>'내상조 그대로'</b>로 폐업해도 계약 승계 — 약속은 제도가 지킨다.</p></div>
+    </div>
+    <div class="callout" style="margin-top:1.3vh"><div class="big">!</div><p>화법 — "투자받아 안전"(유한) ❌ → <b>"가입자가 쌓일수록 스스로 버는 자생 구조"(in-force) ✅</b>. 건전성은 '말'이 아니라 <b>손익·집행 건수를 투명 공개</b>해 증명한다.</p></div>
     <div class="foot"><span class="brand">고이 · Performance</span><span class="pageno">06 / 12</span></div>
   </section>
 
@@ -254,8 +268,8 @@
     <div class="adgrid">
       <div class="adcard">
         <div class="imgwrap"><img src="images/ref-adlib-sangjo.jpg" alt="Meta 광고 라이브러리 - 상조" /></div>
-        <div class="tt"><span>상조</span> · Meta 광고 라이브러리</div>
-        <div class="cap"><b>보람상조=가전 사은품</b>으로 본질을 가림 ❌ &nbsp;vs&nbsp; <b>고이=실제 가족 UGC</b>("아빠 장례 때 고생, 남은 가족은 미리 준비") + <b>'누적 투자 120억'</b> 명시 ✅</div>
+        <div class="tt"><span>상조</span> · 고이 실제 광고 (Meta 라이브러리)</div>
+        <div class="cap"><b>UGC 후기</b> + <b>"100원도 예치금?"(공정위·은행 예치 보전 안내)</b> + <b>"가전결합 하지마세요"</b>로 경쟁사 사은품 관행을 비판 — 불신을 정면으로 답하는 소재.</div>
       </div>
       <div class="adcard">
         <div class="imgwrap"><img src="images/ref-adlib-insure.jpg" alt="Meta 광고 라이브러리 - 종신보험" /></div>
