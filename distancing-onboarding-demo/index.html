@@ -113,6 +113,11 @@
   .tcard .tq{font-size:13.5px;color:#3f474e;line-height:1.55;}
   .tcard .tq b{color:var(--blue-d);}
   .tba{display:inline-flex;gap:6px;align-items:center;font-size:11px;font-weight:800;color:var(--green);background:var(--green-bg);border-radius:9px;padding:4px 10px;margin-top:9px;}
+  .revhead{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:800;color:var(--ink);margin-top:18px;}
+  .revhead .pl{font-size:10px;font-weight:800;color:#fff;background:#ff0033;border-radius:5px;padding:2px 6px;letter-spacing:.3px;}
+  .shortwrap{width:64%;margin:11px auto 2px;border-radius:18px;overflow:hidden;background:#000;aspect-ratio:9/16;border:1px solid var(--line);box-shadow:0 8px 22px rgba(25,31,40,.12);}
+  .shortwrap iframe{width:100%;height:100%;border:0;display:block;}
+  .revcap{text-align:center;font-size:11.5px;color:var(--gray);font-weight:600;margin-top:4px;}
   .docnote{display:flex;gap:9px;align-items:flex-start;background:var(--blue-bg);border-radius:13px;padding:12px 14px;margin-top:14px;font-size:12.5px;color:var(--blue-d);font-weight:600;line-height:1.5;}
   .docnote .dav{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#1d44d6,#6a8bff);color:#fff;display:grid;place-items:center;font-weight:800;font-size:12px;flex:0 0 auto;}
 
@@ -153,6 +158,32 @@
   .check{width:78px;height:78px;border-radius:50%;background:var(--green-bg);display:grid;place-items:center;font-size:38px;color:var(--green);animation:pop .5s ease both;}
   .restart{margin-top:18px;font-size:13px;font-weight:700;color:var(--blue-d);cursor:pointer;border:1.5px solid var(--blue-l);border-radius:12px;padding:11px 20px;background:#fff;}
 
+  /* consult booking */
+  .docprofile{background:var(--tint);border-radius:18px;padding:16px;margin-top:16px;}
+  .docprofile .dtop{display:flex;align-items:center;gap:12px;}
+  .docprofile .dav2{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#1d44d6,#6a8bff);color:#fff;display:grid;place-items:center;font-weight:800;font-size:20px;flex:0 0 auto;}
+  .docprofile .dnm{font-size:15px;font-weight:800;color:var(--ink);}
+  .docprofile .dsub{font-size:12px;color:var(--gray);margin-top:2px;}
+  .docprofile ul{list-style:none;margin-top:13px;}
+  .docprofile li{position:relative;padding-left:18px;font-size:12.5px;color:#4a525a;margin:6px 0;line-height:1.45;}
+  .docprofile li::before{content:"";position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:50%;background:var(--blue);}
+  .seclbl{font-size:13px;font-weight:800;color:var(--ink);margin-top:18px;margin-bottom:9px;}
+  .daterow{display:flex;gap:8px;}
+  .daterow .dchip{flex:1;border:1.6px solid var(--line);border-radius:13px;padding:10px 2px;text-align:center;cursor:pointer;transition:all .15s ease;}
+  .daterow .dchip .dd{font-size:11px;color:var(--gray);font-weight:700;}
+  .daterow .dchip .dn2{font-size:15px;font-weight:800;color:var(--ink);margin-top:2px;}
+  .daterow .dchip .dw{font-size:11px;color:var(--gray);font-weight:700;}
+  .daterow .dchip.sel{border-color:var(--blue);background:var(--blue-bg);}
+  .daterow .dchip.sel .dd,.daterow .dchip.sel .dn2,.daterow .dchip.sel .dw{color:var(--blue-d);}
+  .timegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+  .timegrid .tchip{border:1.6px solid var(--line);border-radius:12px;padding:11px 4px;text-align:center;font-size:14px;font-weight:700;color:var(--charcoal);cursor:pointer;transition:all .15s ease;}
+  .timegrid .tchip.sel{border-color:var(--blue);background:var(--blue-bg);color:var(--blue-d);}
+  .timegrid .tchip:active,.daterow .dchip:active{transform:scale(.98);}
+  .whenbox{background:var(--blue-bg);border-radius:16px;padding:16px 18px;margin-top:8px;}
+  .whenbox .wl{font-size:12px;color:var(--blue-d);font-weight:700;}
+  .whenbox .wv{font-size:20px;font-weight:800;color:var(--ink);margin-top:5px;letter-spacing:-.5px;}
+  .whenbox .wv b{color:var(--blue-d);}
+
   @media(max-width:480px){
     body{padding:0;gap:0;background:#0a1030;}
     .demoinfo{display:none;}
@@ -183,7 +214,7 @@
         <div class="eyebrow">디스턴싱을 만든 의사입니다</div>
         <h2 class="t">약이 아니라,<br><span class="i">생각</span>을 바꾸는 길도 있어요</h2>
         <div class="vidwrap">
-          <iframe src="https://www.youtube.com/embed/coJgVczpsf0" title="홍승주 대표 영상" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          <iframe src="https://www.youtube.com/embed/9H1-kQRZKJY?start=11" title="홍승주 대표 영상" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
         </div>
         <div class="docrow">
           <div class="docav">홍</div>
@@ -234,6 +265,11 @@
           <div class="tq">"매일 코치님 피드백이 오니까 <b>혼자가 아니라는 마음</b>으로 끝까지 해낼 수 있었어요."</div>
           <span class="tba">수면 시간 +1.4h ↑</span>
         </div>
+        <div class="revhead"><span class="pl">▶ 후기</span>직접 받아본 분의 영상 이야기</div>
+        <div class="shortwrap">
+          <iframe src="https://www.youtube.com/embed/8cmpoCcF3Hw" title="디스턴싱 고객 후기" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="revcap">"디스턴싱 후기 — '멘탈 PT' 받고 왔습니다"</div>
         <div class="docnote"><div class="dav">홍</div><div>"이런 변화, 생각보다 흔해요. 매일 조금씩 생각과 거리를 두는 연습이면 충분합니다." — 홍승주 대표</div></div>
         <div class="spacer"></div>
         <div class="cta">
@@ -259,7 +295,7 @@
         <div class="spacer"></div>
         <div class="cta">
           <button class="btn green" data-next>7일 무료로 체험하기</button>
-          <button class="btn ghost green" data-next>의사와 먼저 상담하기</button>
+          <button class="btn ghost green" id="consultBtn">의사와 먼저 상담 신청하기</button>
         </div>
       </section>
 
@@ -299,12 +335,55 @@
       </section>
 
       <!-- S7 완료 -->
-      <section class="screen" data-step="7">
+      <section class="screen" data-step="done">
         <div class="donewrap">
           <div class="check">✓</div>
           <h2 class="t" style="margin-top:18px;">7일 무료 체험이<br>시작됐어요</h2>
           <p class="lead" style="text-align:center;">전담 코치가 배정되었어요.<br>오늘 첫 생각기록부터 함께 시작해볼까요?</p>
-          <div class="restart" id="restart">↺ 처음부터 다시 보기</div>
+          <div class="restart js-restart">↺ 처음부터 다시 보기</div>
+        </div>
+      </section>
+
+      <!-- C1 상담 예약 -->
+      <section class="screen" data-step="consult">
+        <div class="eyebrow">의사와 1:1 상담 신청</div>
+        <h2 class="t">먼저, 의사와<br><span class="i">직접</span> 이야기 나눠봐요</h2>
+        <div class="docprofile">
+          <div class="dtop">
+            <div class="dav2">홍</div>
+            <div>
+              <div class="dnm">홍승주 · 정신건강의학과 의사</div>
+              <div class="dsub">오웰헬스 대표 · 디스턴싱 개발</div>
+            </div>
+          </div>
+          <ul>
+            <li>서울대학교 의과대학 졸업</li>
+            <li>인지행동치료(CBT) 기반 비약물 멘탈케어 설계</li>
+            <li>불안 · 우울 · 불면 · 강박 영역 상담</li>
+          </ul>
+        </div>
+        <div class="seclbl">언제 통화가 편하세요?</div>
+        <div class="daterow" id="dateChips"><!-- JS --></div>
+        <div class="seclbl">시간대를 골라주세요</div>
+        <div class="timegrid" id="timeChips"><!-- JS --></div>
+        <div class="spacer"></div>
+        <div class="cta">
+          <button class="btn" id="consultConfirm" disabled>이 시간으로 상담 신청하기</button>
+          <div class="factline">※ 의사 이력은 예시이며, 실제 상담 일정은 운영 정책에 맞춰 연동</div>
+        </div>
+      </section>
+
+      <!-- C2 상담 신청 완료 -->
+      <section class="screen" data-step="consult-done">
+        <div class="donewrap">
+          <div class="check">✓</div>
+          <h2 class="t" style="margin-top:18px;">상담 신청이<br>완료됐어요</h2>
+          <div class="whenbox" style="width:100%;margin-top:18px;">
+            <div class="wl">예약된 상담 시간</div>
+            <div class="wv"><b id="consultWhen">—</b>에 전화드릴게요</div>
+          </div>
+          <p class="lead" style="text-align:center;">홍승주 의사가 직접 전화드려<br>약 없이도 일상을 이어갈 길을 함께 찾을게요.</p>
+          <div class="restart js-restart">↺ 처음부터 다시 보기</div>
         </div>
       </section>
 
@@ -314,29 +393,42 @@
 <script>
 (function(){
   var screens = Array.prototype.slice.call(document.querySelectorAll('.screen'));
-  var total = 6; // progress steps (S7 = done)
-  var idx = 0;
+  var total = 6; // main funnel steps (S1–S6)
+  var hist = [0];
   var progfill = document.getElementById('progfill');
   var stepn = document.getElementById('stepn');
   var back = document.getElementById('back');
+  function cur(){ return hist[hist.length-1]; }
 
   function render(){
+    var c = cur();
     screens.forEach(function(s,i){
       s.classList.remove('active','exit-left');
-      if(i===idx){ s.classList.add('active'); s.scrollTop=0; }
-      else if(i<idx){ s.classList.add('exit-left'); }
+      if(i===c){ s.classList.add('active'); s.scrollTop=0; }
+      else if(i<c){ s.classList.add('exit-left'); }
     });
-    var step = Math.min(idx+1,total);
-    progfill.style.width = (Math.min(idx,total)/total*100)+'%';
-    stepn.textContent = idx>=total ? '완료' : (step+'/'+total);
-    back.classList.toggle('hide', idx===0 || idx>=total);
+    var attr = screens[c].getAttribute('data-step');
+    if(attr==='done' || attr==='consult-done'){
+      progfill.style.width='100%'; stepn.textContent='완료'; back.classList.add('hide');
+    } else if(attr==='consult'){
+      progfill.style.width='100%'; stepn.textContent='상담'; back.classList.remove('hide');
+    } else {
+      var st=parseInt(attr,10);
+      progfill.style.width=((st-1)/total*100)+'%';
+      stepn.textContent=st+'/'+total;
+      back.classList.toggle('hide', st===1);
+    }
   }
-  function go(n){ idx = Math.max(0, Math.min(screens.length-1, n)); render(); }
+  function go(n){ n=Math.max(0,Math.min(screens.length-1,n)); hist.push(n); render(); }
+  function goByStep(v){ for(var i=0;i<screens.length;i++){ if(screens[i].getAttribute('data-step')===v){ go(i); return; } } }
 
   document.querySelectorAll('[data-next]').forEach(function(btn){
-    btn.addEventListener('click', function(){ go(idx+1); });
+    btn.addEventListener('click', function(){ go(cur()+1); });
   });
-  back.addEventListener('click', function(){ if(idx>0 && idx<total) go(idx-1); });
+  back.addEventListener('click', function(){ if(hist.length>1){ hist.pop(); render(); } });
+
+  var consultBtn = document.getElementById('consultBtn');
+  if(consultBtn) consultBtn.addEventListener('click', function(){ goByStep('consult'); });
 
   /* ---- S2: 디스턴싱 시연 ---- */
   var chat = document.getElementById('chat');
@@ -420,7 +512,7 @@
   }
   qNext.addEventListener('click', function(){
     if(qi < QS.length-1){ qi++; renderQ(); }
-    else { applyPlan(); go(idx+1); }
+    else { applyPlan(); go(cur()+1); }
   });
   function applyPlan(){
     var concern = answers.concern || '불안';
@@ -437,14 +529,64 @@
   });
   screens[4] && sObserver.observe(screens[4], {attributes:true, attributeFilter:['class']});
 
-  /* restart */
-  document.getElementById('restart').addEventListener('click', function(){
-    // reset demo
-    demoDone=false; tRow.style.display='flex'; tInput.value=''; demoNext.style.display='none';
-    chat.innerHTML='<div class="chatb sys">지금 머릿속을 맴도는 걱정 하나를 적어볼까요?</div>';
-    qi=0; answers={}; chips.innerHTML=''; qNext.disabled=true;
-    go(0);
+  /* consult booking */
+  var consultDate=null, consultTime=null;
+  var dateChips=document.getElementById('dateChips');
+  var timeChips=document.getElementById('timeChips');
+  var consultConfirm=document.getElementById('consultConfirm');
+  var consultWhen=document.getElementById('consultWhen');
+  var DOW=['일','월','화','수','목','금','토'];
+  var DAYLBL=['오늘','내일','모레','글피'];
+  var TIMES=['10:00','11:00','14:00','15:00','16:00','17:00'];
+  function updateConsultBtn(){ if(consultConfirm) consultConfirm.disabled=!(consultDate&&consultTime); }
+  function buildDates(){
+    if(!dateChips) return; dateChips.innerHTML='';
+    var base=new Date();
+    for(var i=0;i<4;i++){
+      var d=new Date(base.getFullYear(),base.getMonth(),base.getDate()+i);
+      var el=document.createElement('div'); el.className='dchip';
+      el.innerHTML='<div class="dd">'+DAYLBL[i]+'</div><div class="dn2">'+(d.getMonth()+1)+'/'+d.getDate()+'</div><div class="dw">('+DOW[d.getDay()]+')</div>';
+      (function(dd,ell){ ell.addEventListener('click',function(){
+        Array.prototype.forEach.call(dateChips.children,function(x){x.classList.remove('sel');});
+        ell.classList.add('sel');
+        consultDate={m:dd.getMonth()+1,d:dd.getDate(),w:DOW[dd.getDay()]};
+        updateConsultBtn();
+      }); })(d,el);
+      dateChips.appendChild(el);
+    }
+  }
+  function buildTimes(){
+    if(!timeChips) return; timeChips.innerHTML='';
+    TIMES.forEach(function(t){
+      var el=document.createElement('div'); el.className='tchip'; el.textContent=t;
+      el.addEventListener('click',function(){
+        Array.prototype.forEach.call(timeChips.children,function(x){x.classList.remove('sel');});
+        el.classList.add('sel'); consultTime=t; updateConsultBtn();
+      });
+      timeChips.appendChild(el);
+    });
+  }
+  function resetConsult(){
+    consultDate=null; consultTime=null; updateConsultBtn();
+    if(dateChips) Array.prototype.forEach.call(dateChips.children,function(x){x.classList.remove('sel');});
+    if(timeChips) Array.prototype.forEach.call(timeChips.children,function(x){x.classList.remove('sel');});
+  }
+  if(consultConfirm) consultConfirm.addEventListener('click', function(){
+    if(consultConfirm.disabled) return;
+    consultWhen.textContent = consultDate.m+'월 '+consultDate.d+'일('+consultDate.w+') '+consultTime;
+    goByStep('consult-done');
   });
+  buildDates(); buildTimes();
+
+  /* restart (works on both done screens) */
+  function resetAll(){
+    demoDone=false; tRow.style.display='flex'; tInput.value=''; demoNext.style.display='none';
+    chat.innerHTML='<div class="chatb sys">지금 머릿속을 맴도는 걱정, 하나만 적어볼까요?</div>';
+    qi=0; answers={}; chips.innerHTML=''; qNext.disabled=true;
+    resetConsult();
+    hist=[0]; render();
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.js-restart'), function(b){ b.addEventListener('click', resetAll); });
 
   render();
 })();
