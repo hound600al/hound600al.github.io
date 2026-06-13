@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>디스턴싱 온보딩 데모 — 의사가 여는 온보딩 · 7일 체험 퍼널</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+  :root{
+    --ink:#191f28; --charcoal:#343a40; --gray:#7c848c; --faint:#aeb4bb; --line:#edeff2;
+    --blue:#2b59ff; --blue-d:#1d44d6; --blue-l:#6a8bff; --blue-bg:#eaf0ff;
+    --tint:#f6f8fc; --green:#12a886; --green-bg:#e7f8f3; --navy:#0a1030;
+    --amber:#e8761c; --amber-bg:#fff4ea;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;}
+  body{
+    font-family:'Pretendard','Pretendard Variable',-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+    color:var(--charcoal);line-height:1.55;
+    background:radial-gradient(120% 120% at 75% 0%,#1a2452,#0a1030 70%);
+    min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:26px 16px;gap:18px;
+  }
+  /* intro caption */
+  .demoinfo{color:#c2cbef;text-align:center;max-width:420px;}
+  .demoinfo .wm{font-size:19px;font-weight:800;color:#fff;display:flex;align-items:center;gap:8px;justify-content:center;letter-spacing:-.4px;}
+  .demoinfo .wm .dot{width:11px;height:11px;border-radius:50%;background:linear-gradient(135deg,#7df9ff,#6a8bff);}
+  .demoinfo .sub{font-size:12.5px;margin-top:8px;color:#8089bd;line-height:1.5;}
+  .demoinfo .sub b{color:#aebbf3;}
+
+  /* phone */
+  .phone{
+    width:390px;max-width:96vw;height:800px;max-height:86vh;
+    background:#fff;border-radius:42px;position:relative;overflow:hidden;
+    box-shadow:0 0 0 11px #0c1230, 0 0 0 13px #1c2550, 0 40px 90px rgba(0,0,0,.55);
+    display:flex;flex-direction:column;
+  }
+  .notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:128px;height:26px;background:#0c1230;border-radius:0 0 16px 16px;z-index:60;}
+
+  /* top bar: progress */
+  .pbar{flex:0 0 auto;padding:30px 20px 10px;display:flex;align-items:center;gap:10px;background:#fff;z-index:30;}
+  .back{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;color:var(--gray);font-size:19px;font-weight:700;cursor:pointer;flex:0 0 auto;}
+  .back.hide{visibility:hidden;}
+  .prog{flex:1;height:6px;background:#eef0f3;border-radius:6px;overflow:hidden;}
+  .prog > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--blue-l));border-radius:6px;transition:width .45s cubic-bezier(.4,0,.2,1);}
+  .stepn{font-size:11.5px;font-weight:800;color:var(--faint);flex:0 0 auto;min-width:34px;text-align:right;}
+
+  /* screen viewport */
+  .view{flex:1 1 auto;position:relative;overflow:hidden;}
+  .screen{position:absolute;inset:0;overflow-y:auto;padding:8px 22px 20px;display:flex;flex-direction:column;
+    opacity:0;transform:translateX(28px);pointer-events:none;transition:opacity .42s ease,transform .42s ease;-webkit-overflow-scrolling:touch;}
+  .screen.active{opacity:1;transform:none;pointer-events:auto;}
+  .screen.exit-left{opacity:0;transform:translateX(-28px);}
+  .screen::-webkit-scrollbar{width:0;}
+
+  .eyebrow{font-size:12px;font-weight:800;color:var(--blue);letter-spacing:.3px;margin-bottom:7px;}
+  .eyebrow.g{color:var(--green);} .eyebrow.a{color:var(--amber);}
+  h2.t{font-size:23px;font-weight:800;color:var(--ink);letter-spacing:-.8px;line-height:1.32;}
+  h2.t .i{color:var(--blue);} h2.t .g{color:var(--green);}
+  .lead{font-size:14px;color:#5b636b;margin-top:11px;line-height:1.6;}
+  .lead b{color:var(--ink);font-weight:700;}
+
+  .spacer{flex:1 1 auto;min-height:14px;}
+
+  /* CTA */
+  .cta{flex:0 0 auto;padding:6px 0 4px;background:#fff;}
+  .btn{display:block;width:100%;border:none;cursor:pointer;font-family:inherit;
+    background:var(--blue);color:#fff;font-size:15.5px;font-weight:800;padding:15px;border-radius:15px;text-align:center;
+    box-shadow:0 8px 20px rgba(43,89,255,.28);transition:transform .12s ease,filter .12s ease;}
+  .btn:active{transform:scale(.98);}
+  .btn.green{background:var(--green);box-shadow:0 8px 20px rgba(18,168,134,.28);}
+  .btn.ghost{background:#fff;color:var(--blue-d);border:1.6px solid var(--blue-l);box-shadow:none;margin-top:9px;}
+  .btn.ghost.green{color:var(--green);border-color:#9fdccd;}
+  .btn[disabled]{background:#dfe3ea;color:#aeb4bb;box-shadow:none;cursor:default;}
+  .btn.sm{font-size:14px;padding:13px;}
+  .skip{text-align:center;font-size:12.5px;color:var(--faint);margin-top:11px;cursor:pointer;font-weight:600;}
+
+  /* doctor screen */
+  .vidwrap{border-radius:16px;overflow:hidden;background:#000;aspect-ratio:16/9;width:100%;border:1px solid var(--line);margin-top:16px;}
+  .vidwrap iframe{width:100%;height:100%;border:0;display:block;}
+  .docrow{display:flex;align-items:center;gap:11px;margin-top:14px;background:var(--tint);border-radius:14px;padding:12px 14px;}
+  .docav{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#1d44d6,#6a8bff);color:#fff;display:grid;place-items:center;font-weight:800;font-size:17px;flex:0 0 auto;}
+  .docrow .dn{font-size:14px;font-weight:800;color:var(--ink);} .docrow .dr{font-size:11.5px;color:var(--gray);margin-top:1px;}
+  .quote{background:var(--blue-bg);border-radius:14px;padding:14px 16px;margin-top:14px;font-size:14px;font-weight:700;color:var(--blue-d);line-height:1.55;}
+  .encourage{margin-top:11px;font-size:14.5px;font-weight:700;color:var(--ink);line-height:1.55;text-align:center;background:linear-gradient(180deg,#fff,var(--tint));border:1px dashed #cdd7ff;border-radius:14px;padding:13px 14px;}
+  .encourage b{color:var(--blue-d);font-weight:800;}
+  .factline{font-size:11.5px;color:var(--gray);margin-top:12px;line-height:1.5;text-align:center;}
+
+  /* chat / demo */
+  .chat{margin-top:18px;display:flex;flex-direction:column;}
+  .chatb{font-size:14px;border-radius:16px;padding:11px 14px;margin-bottom:9px;max-width:86%;line-height:1.45;animation:pop .35s ease both;}
+  .chatb.sys{background:var(--tint);color:#343a40;border-bottom-left-radius:5px;align-self:flex-start;}
+  .chatb.me{background:var(--blue);color:#fff;border-bottom-right-radius:5px;align-self:flex-end;}
+  @keyframes pop{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+  .relief{background:var(--green-bg);border-radius:14px;padding:14px 16px;font-size:14px;font-weight:800;color:var(--green);text-align:center;margin-top:6px;animation:pop .4s ease both;}
+  .relief small{display:block;font-weight:600;color:#3a9b86;font-size:12px;margin-top:5px;}
+  .inputrow{display:flex;gap:8px;margin-top:6px;}
+  .inputrow input{flex:1;border:1.6px solid var(--line);border-radius:13px;padding:13px 14px;font-size:14px;font-family:inherit;color:var(--ink);outline:none;}
+  .inputrow input:focus{border-color:var(--blue-l);}
+  .send{flex:0 0 auto;width:50px;border:none;border-radius:13px;background:var(--blue);color:#fff;font-size:18px;font-weight:800;cursor:pointer;}
+  .send:active{transform:scale(.96);}
+
+  /* testimonials */
+  .gmini{background:var(--navy);border-radius:16px;padding:15px 16px;margin-top:16px;color:#fff;}
+  .gmini .gl{font-size:12px;color:#aab2e6;font-weight:700;}
+  .gmini .gv{font-size:13px;color:#fff;font-weight:800;margin-top:3px;}
+  .bars{display:flex;align-items:flex-end;gap:7px;height:54px;margin-top:12px;}
+  .bars > i{flex:1;background:linear-gradient(180deg,#8be9ff,#6a8bff);border-radius:5px 5px 0 0;opacity:.9;}
+  .tcard{background:#fff;border:1px solid var(--line);border-radius:15px;padding:13px 14px;box-shadow:0 3px 12px rgba(25,31,40,.05);margin-top:12px;}
+  .tcard .th{display:flex;align-items:center;gap:10px;margin-bottom:9px;}
+  .tcard .tav{width:36px;height:36px;border-radius:50%;background:var(--blue-bg);color:var(--blue-d);display:grid;place-items:center;font-weight:800;font-size:14px;flex:0 0 auto;}
+  .tcard .tnm{font-size:13px;font-weight:800;color:var(--ink);} .tcard .tmeta{font-size:11px;color:var(--gray);margin-top:1px;}
+  .tcard .tq{font-size:13.5px;color:#3f474e;line-height:1.55;}
+  .tcard .tq b{color:var(--blue-d);}
+  .tba{display:inline-flex;gap:6px;align-items:center;font-size:11px;font-weight:800;color:var(--green);background:var(--green-bg);border-radius:9px;padding:4px 10px;margin-top:9px;}
+  .docnote{display:flex;gap:9px;align-items:flex-start;background:var(--blue-bg);border-radius:13px;padding:12px 14px;margin-top:14px;font-size:12.5px;color:var(--blue-d);font-weight:600;line-height:1.5;}
+  .docnote .dav{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#1d44d6,#6a8bff);color:#fff;display:grid;place-items:center;font-weight:800;font-size:12px;flex:0 0 auto;}
+
+  /* choice (trial vs consult) */
+  .trialcard{background:linear-gradient(135deg,#eef3ff,#e7f8f3);border:1px solid #d7e6ff;border-radius:20px;padding:20px 18px;margin-top:18px;text-align:center;}
+  .trialcard .badge{display:inline-block;font-size:11.5px;font-weight:800;color:var(--green);background:#fff;border-radius:20px;padding:5px 13px;}
+  .trialcard .big{font-size:28px;font-weight:800;color:var(--ink);letter-spacing:-1px;margin-top:11px;}
+  .trialcard .sub{font-size:12.5px;color:var(--gray);margin-top:6px;}
+  .tl{margin-top:16px;text-align:left;}
+  .tl .li{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:#4a525a;margin:9px 0;line-height:1.4;}
+  .tl .dot{width:10px;height:10px;border-radius:50%;margin-top:3px;flex:0 0 auto;}
+  .tl .dot.g{background:var(--green);} .tl .dot.b{background:var(--blue);} .tl .dot.f{background:var(--faint);}
+  .tl .li b{color:var(--ink);}
+
+  /* survey */
+  .qcount{font-size:12px;font-weight:800;color:var(--blue);margin-bottom:7px;}
+  .chips{display:flex;flex-direction:column;gap:10px;margin-top:18px;}
+  .chip{border:1.6px solid var(--line);border-radius:15px;padding:15px 16px;font-size:14.5px;font-weight:700;color:var(--charcoal);cursor:pointer;display:flex;align-items:center;gap:12px;transition:all .15s ease;}
+  .chip .ico{font-size:19px;}
+  .chip:active{transform:scale(.99);}
+  .chip.sel{border-color:var(--blue);background:var(--blue-bg);color:var(--blue-d);box-shadow:0 4px 14px rgba(43,89,255,.14);}
+  .chip .ck{margin-left:auto;color:var(--blue);font-weight:800;opacity:0;}
+  .chip.sel .ck{opacity:1;}
+
+  /* plan / payment */
+  .plan{background:#fff;border:2px solid var(--green);border-radius:20px;padding:18px;margin-top:16px;box-shadow:0 10px 26px rgba(18,168,134,.12);}
+  .plan .pt{font-size:12.5px;font-weight:800;color:var(--green);}
+  .plan .ph{font-size:19px;font-weight:800;color:var(--ink);margin-top:5px;letter-spacing:-.5px;line-height:1.3;}
+  .plan .tagrow{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px;}
+  .plan .ptag{font-size:11.5px;font-weight:800;background:var(--green-bg);color:var(--green);border-radius:18px;padding:5px 11px;}
+  .plan .price{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);}
+  .plan .pday{font-size:24px;font-weight:800;color:var(--ink);letter-spacing:-.8px;}
+  .plan .pfull{font-size:12px;color:var(--gray);margin-top:3px;}
+  .plan .pback{background:var(--green-bg);color:var(--green);font-size:12.5px;font-weight:800;border-radius:12px;padding:10px 12px;margin-top:12px;text-align:center;}
+
+  /* done */
+  .donewrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+  .check{width:78px;height:78px;border-radius:50%;background:var(--green-bg);display:grid;place-items:center;font-size:38px;color:var(--green);animation:pop .5s ease both;}
+  .restart{margin-top:18px;font-size:13px;font-weight:700;color:var(--blue-d);cursor:pointer;border:1.5px solid var(--blue-l);border-radius:12px;padding:11px 20px;background:#fff;}
+
+  @media(max-width:480px){
+    body{padding:0;gap:0;background:#0a1030;}
+    .demoinfo{display:none;}
+    .phone{width:100%;max-width:100%;height:100vh;max-height:100vh;border-radius:0;box-shadow:none;}
+    .notch{display:none;}
+    .pbar{padding-top:18px;}
+  }
+</style>
+</head>
+<body>
+  <div class="demoinfo">
+    <div class="wm"><span class="dot"></span>distancing · 온보딩 데모</div>
+    <div class="sub">제안한 새 온보딩 퍼널을 <b>직접 클릭</b>해보실 수 있는 프로토타입입니다.<br>의사 신뢰 → 과정 체감 → 후기 → <b>7일 무료 체험</b> → 맞춤 조사 → 납득된 결제</div>
+  </div>
+
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="pbar">
+      <div class="back hide" id="back">‹</div>
+      <div class="prog"><i id="progfill"></i></div>
+      <div class="stepn" id="stepn">1/6</div>
+    </div>
+
+    <div class="view" id="view">
+
+      <!-- S1 의사 인사 (신뢰) -->
+      <section class="screen active" data-step="1">
+        <div class="eyebrow">디스턴싱을 만든 의사입니다</div>
+        <h2 class="t">약에 기대지 않아도,<br><span class="i">생각</span>을 고치면 일상은 이어집니다</h2>
+        <div class="vidwrap">
+          <iframe src="https://www.youtube.com/embed/coJgVczpsf0" title="홍승주 대표 영상" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="docrow">
+          <div class="docav">홍</div>
+          <div><div class="dn">홍승주 · 오웰헬스 대표</div><div class="dr">서울대 의대 출신 · 정신과 의사</div></div>
+        </div>
+        <div class="quote">"불안할 때 먹는 약, 사실 그 효과의 많은 부분은 <b>‘약을 먹었다’는 안심(플라시보)</b>과 닮아 있어요. 결국 약에 의존하기보다 <b>인지(생각)만 바로잡으면</b>, 약 없이도 충분히 일상을 이어갈 수 있습니다."</div>
+        <div class="encourage">약 없이도 일상을 지낼 수 있도록 — <b>같이 한 걸음씩 나아가봐요.</b></div>
+        <div class="spacer"></div>
+        <div class="cta">
+          <button class="btn" data-next>네, 어떻게 좋아지는지 보여주세요</button>
+          <div class="factline">※ 영상·의학적 표현은 예시이며, 최종 카피는 대표님(의료진) 검수 후 확정</div>
+        </div>
+      </section>
+
+      <!-- S2 과정 시연 (체감) -->
+      <section class="screen" data-step="2">
+        <div class="eyebrow">30초만, 직접 한 번 해볼게요</div>
+        <h2 class="t">이게 바로 <span class="i">디스턴싱</span>이에요</h2>
+        <div class="chat" id="chat">
+          <div class="chatb sys">지금 머릿속을 맴도는 걱정 하나를 적어볼까요?</div>
+        </div>
+        <div class="spacer"></div>
+        <div class="cta">
+          <div class="inputrow" id="thoughtRow">
+            <input id="thoughtInput" type="text" placeholder="예: 또 실수할 것 같아 불안해요" maxlength="40" autocomplete="off">
+            <button class="send" id="thoughtSend">↑</button>
+          </div>
+          <button class="btn" id="demoNext" style="display:none" data-next>한 걸음 멀어진 느낌, 더 해보기</button>
+        </div>
+      </section>
+
+      <!-- S3 후기 (증거) -->
+      <section class="screen" data-step="3">
+        <div class="eyebrow g">먼저 시작한 분들의 변화</div>
+        <h2 class="t">나와 같은 고민을 한 사람이,<br><span class="g">이렇게</span> 좋아졌어요</h2>
+        <div class="gmini">
+          <div class="gl">디스턴싱 8주 프로그램 · 평균 변화</div>
+          <div class="gv">불안·우울 점수가 주차마다 낮아져요</div>
+          <div class="bars"><i style="height:96%"></i><i style="height:82%"></i><i style="height:70%"></i><i style="height:60%"></i><i style="height:48%"></i><i style="height:40%"></i><i style="height:33%"></i><i style="height:27%"></i></div>
+        </div>
+        <div class="tcard">
+          <div class="th"><div class="tav">J</div><div><div class="tnm">30대 · 직장인</div><div class="tmeta">불안 · 7주차</div></div></div>
+          <div class="tq">"약을 먹어야 하나 고민했는데, <b>생각과 거리두기를 배우고</b> 출근길 불안이 확 줄었어요."</div>
+          <span class="tba">불안 점수 18 → 9 ↓</span>
+        </div>
+        <div class="tcard">
+          <div class="th"><div class="tav">M</div><div><div class="tnm">20대 · 학생</div><div class="tmeta">불면 · 4주차</div></div></div>
+          <div class="tq">"매일 코치 피드백이 있어서 <b>혼자가 아니라는 느낌</b>으로 끝까지 했어요."</div>
+          <span class="tba">수면 시간 +1.4h ↑</span>
+        </div>
+        <div class="docnote"><div class="dav">홍</div><div>"이런 변화는 충분히 흔합니다. 핵심은 매일, 조금씩 생각과 거리를 두는 연습이에요." — 홍승주 대표</div></div>
+        <div class="spacer"></div>
+        <div class="cta">
+          <button class="btn" data-next>나도 해볼 수 있을까요?</button>
+          <div class="factline">※ 후기는 레이아웃 예시 — 실제 동의 후기/임상 데이터로 채울 예정</div>
+        </div>
+      </section>
+
+      <!-- S4 7일 체험 / 상담 (낮은 약속) -->
+      <section class="screen" data-step="4">
+        <div class="eyebrow g">부담 없이 시작하세요</div>
+        <h2 class="t">결제 전에,<br><span class="g">7일간 직접</span> 겪어보세요</h2>
+        <div class="trialcard">
+          <span class="badge">카드 등록 없이</span>
+          <div class="big">7일 무료 체험</div>
+          <div class="sub">생각기록 · 명상 훈련 · 1:1 코치를 직접</div>
+          <div class="tl">
+            <div class="li"><span class="dot g"></span><div><b>오늘</b> — 무료 체험 시작 · 1분 맞춤 설문</div></div>
+            <div class="li"><span class="dot b"></span><div><b>5일째</b> — 내 변화 리포트 + 코치 코멘트</div></div>
+            <div class="li"><span class="dot f"></span><div><b>7일째</b> — 납득되면 결제 (페이백 보장)</div></div>
+          </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="cta">
+          <button class="btn green" data-next>7일 무료로 체험하기</button>
+          <button class="btn ghost green" data-next>의사와 먼저 상담하기</button>
+        </div>
+      </section>
+
+      <!-- S5 맞춤 조사 (1분 설문) -->
+      <section class="screen" data-step="5">
+        <div class="eyebrow">나를 위한 맞춤 준비 · 1분</div>
+        <h2 class="t" id="qTitle">요즘 가장 힘든 건<br>무엇인가요?</h2>
+        <div class="qcount" id="qCount" style="margin-top:14px;">질문 1 / 3</div>
+        <div class="chips" id="chips"><!-- filled by JS --></div>
+        <div class="spacer"></div>
+        <div class="cta">
+          <button class="btn" id="qNext" disabled>다음</button>
+        </div>
+      </section>
+
+      <!-- S6 맞춤 플랜 + 결제 (납득된 결제) -->
+      <section class="screen" data-step="6">
+        <div class="eyebrow g">OO님을 위한 맞춤 플랜이 준비됐어요</div>
+        <h2 class="t"><span class="g" id="planConcern">불안</span> 완화 100일 플랜</h2>
+        <div class="plan">
+          <div class="pt">매일 함께하는 것</div>
+          <div class="ph" id="planHead">생각기록 · 명상 훈련 · 1:1 코치 피드백</div>
+          <div class="tagrow" id="planTags">
+            <span class="ptag">생각 기록</span><span class="ptag">명상 훈련</span><span class="ptag">가치 행동</span>
+          </div>
+          <div class="price">
+            <div class="pday">하루 4,250원</div>
+            <div class="pfull">100일 총 425,000원 · 7일 무료 체험 후 결제</div>
+            <div class="pback">효과 없으면 페이백 — 안심하고 시작하세요</div>
+          </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="cta">
+          <button class="btn green" data-next>7일 무료로 시작하기</button>
+          <div class="skip">결제는 7일 뒤, 직접 겪어본 다음에</div>
+        </div>
+      </section>
+
+      <!-- S7 완료 -->
+      <section class="screen" data-step="7">
+        <div class="donewrap">
+          <div class="check">✓</div>
+          <h2 class="t" style="margin-top:18px;">7일 무료 체험이<br>시작됐어요</h2>
+          <p class="lead" style="text-align:center;">전담 코치가 배정되었어요.<br>오늘 첫 생각기록부터 함께 시작해볼까요?</p>
+          <div class="restart" id="restart">↺ 처음부터 다시 보기</div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+<script>
+(function(){
+  var screens = Array.prototype.slice.call(document.querySelectorAll('.screen'));
+  var total = 6; // progress steps (S7 = done)
+  var idx = 0;
+  var progfill = document.getElementById('progfill');
+  var stepn = document.getElementById('stepn');
+  var back = document.getElementById('back');
+
+  function render(){
+    screens.forEach(function(s,i){
+      s.classList.remove('active','exit-left');
+      if(i===idx){ s.classList.add('active'); s.scrollTop=0; }
+      else if(i<idx){ s.classList.add('exit-left'); }
+    });
+    var step = Math.min(idx+1,total);
+    progfill.style.width = (Math.min(idx,total)/total*100)+'%';
+    stepn.textContent = idx>=total ? '완료' : (step+'/'+total);
+    back.classList.toggle('hide', idx===0 || idx>=total);
+  }
+  function go(n){ idx = Math.max(0, Math.min(screens.length-1, n)); render(); }
+
+  document.querySelectorAll('[data-next]').forEach(function(btn){
+    btn.addEventListener('click', function(){ go(idx+1); });
+  });
+  back.addEventListener('click', function(){ if(idx>0 && idx<total) go(idx-1); });
+
+  /* ---- S2: 디스턴싱 시연 ---- */
+  var chat = document.getElementById('chat');
+  var tInput = document.getElementById('thoughtInput');
+  var tSend = document.getElementById('thoughtSend');
+  var tRow = document.getElementById('thoughtRow');
+  var demoNext = document.getElementById('demoNext');
+  var demoDone = false;
+  function addBubble(cls, html){
+    var b = document.createElement('div'); b.className='chatb '+cls; b.innerHTML=html; chat.appendChild(b); return b;
+  }
+  function runDemo(){
+    if(demoDone) return; demoDone = true;
+    var raw = (tInput.value||'').trim() || '또 실수할 것 같아 불안해요';
+    addBubble('me', esc(raw));
+    tRow.style.display='none';
+    setTimeout(function(){
+      addBubble('sys', "이 문장 앞에 <b>'나는 …라고 생각하고 있다'</b>를 붙여 다시 읽어볼까요?");
+    }, 450);
+    setTimeout(function(){
+      addBubble('me', '나는 <b>‘'+esc(raw)+'’</b>라고 생각하고 있다');
+    }, 1300);
+    setTimeout(function(){
+      var r = document.createElement('div'); r.className='relief';
+      r.innerHTML = '방금 그 생각과 한 걸음 멀어졌어요 ✓<small>생각을 \'사실\'이 아니라 \'스쳐가는 마음\'으로 바라보는 것 — 이게 거리두기예요</small>';
+      chat.appendChild(r);
+      demoNext.style.display='block';
+      demoNext.scrollIntoView({behavior:'smooth', block:'nearest'});
+    }, 2200);
+  }
+  function esc(s){ return s.replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+  tSend.addEventListener('click', runDemo);
+  tInput.addEventListener('keydown', function(e){ if(e.key==='Enter') runDemo(); });
+
+  /* ---- S5: 맞춤 조사 ---- */
+  var QS = [
+    { title:'요즘 가장 힘든 건<br>무엇인가요?', key:'concern', opts:[
+      {t:'불안·걱정이 많아요', ico:'😟', v:'불안'},
+      {t:'우울하고 무기력해요', ico:'😞', v:'우울'},
+      {t:'잠들기가 어려워요', ico:'😣', v:'불면'},
+      {t:'생각·행동을 멈추기 힘들어요', ico:'🔁', v:'강박'}
+    ]},
+    { title:'얼마나 자주<br>그렇게 느끼시나요?', key:'freq', opts:[
+      {t:'가끔', ico:'🌤️', v:'가끔'},
+      {t:'자주', ico:'⛅', v:'자주'},
+      {t:'거의 매일', ico:'🌧️', v:'거의 매일'}
+    ]},
+    { title:'약물 복용에 대해<br>어떻게 생각하세요?', key:'med', opts:[
+      {t:'되도록 약 없이 해보고 싶어요', ico:'🌱', v:'비약물 선호'},
+      {t:'아직 고민 중이에요', ico:'🤔', v:'고민 중'},
+      {t:'상관없어요', ico:'👌', v:'상관없음'}
+    ]}
+  ];
+  var qi = 0; var answers = {};
+  var qTitle = document.getElementById('qTitle');
+  var qCount = document.getElementById('qCount');
+  var chips = document.getElementById('chips');
+  var qNext = document.getElementById('qNext');
+  var concernMap = {
+    '불안':{tags:['생각 기록','호흡 명상','걱정 거리두기']},
+    '우울':{tags:['생각 기록','활동 활성화','가치 행동']},
+    '불면':{tags:['수면 루틴','이완 명상','생각 비우기']},
+    '강박':{tags:['생각 기록','노출 연습','거리두기 훈련']}
+  };
+  function renderQ(){
+    var q = QS[qi];
+    qTitle.innerHTML = q.title;
+    qCount.textContent = '질문 '+(qi+1)+' / '+QS.length;
+    chips.innerHTML='';
+    q.opts.forEach(function(o){
+      var c = document.createElement('div'); c.className='chip';
+      c.innerHTML = '<span class="ico">'+o.ico+'</span><span>'+o.t+'</span><span class="ck">✓</span>';
+      c.addEventListener('click', function(){
+        Array.prototype.forEach.call(chips.children,function(x){x.classList.remove('sel');});
+        c.classList.add('sel');
+        answers[q.key]=o.v; qNext.disabled=false;
+      });
+      chips.appendChild(c);
+    });
+    qNext.disabled = !answers[q.key];
+  }
+  qNext.addEventListener('click', function(){
+    if(qi < QS.length-1){ qi++; renderQ(); }
+    else { applyPlan(); go(idx+1); }
+  });
+  function applyPlan(){
+    var concern = answers.concern || '불안';
+    document.getElementById('planConcern').textContent = concern;
+    var info = concernMap[concern] || concernMap['불안'];
+    var tagrow = document.getElementById('planTags'); tagrow.innerHTML='';
+    info.tags.forEach(function(t){ var s=document.createElement('span'); s.className='ptag'; s.textContent=t; tagrow.appendChild(s); });
+    var line = concern + ' 완화에 맞춘 ';
+    document.getElementById('planHead').textContent = info.tags.join(' · ') + ' · 1:1 코치';
+  }
+  // init survey when entering S5
+  var sObserver = new MutationObserver(function(){
+    var s5 = screens[4];
+    if(s5.classList.contains('active') && chips.children.length===0){ qi=0; renderQ(); }
+  });
+  screens[4] && sObserver.observe(screens[4], {attributes:true, attributeFilter:['class']});
+
+  /* restart */
+  document.getElementById('restart').addEventListener('click', function(){
+    // reset demo
+    demoDone=false; tRow.style.display='flex'; tInput.value=''; demoNext.style.display='none';
+    chat.innerHTML='<div class="chatb sys">지금 머릿속을 맴도는 걱정 하나를 적어볼까요?</div>';
+    qi=0; answers={}; chips.innerHTML=''; qNext.disabled=true;
+    go(0);
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
