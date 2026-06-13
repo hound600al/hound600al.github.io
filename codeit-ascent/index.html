@@ -18,29 +18,29 @@
   html,body{height:100%}
   body{font-family:'Pretendard',-apple-system,system-ui,sans-serif;background:#0e0b1c;color:var(--ink);-webkit-font-smoothing:antialiased;overflow:hidden}
   .deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
-  .stage{position:relative;width:100vw;height:100vh;max-width:177.78vh;max-height:56.25vw;background:var(--bg);overflow:hidden}
+  .stage{position:relative;width:100vw;height:100vh;max-width:177.78vh;max-height:56.25vw;container-type:size;background:var(--bg);overflow:hidden}
   .slide{position:absolute;inset:0;padding:5.2% 6.2%;display:none;flex-direction:column;animation:fade .5s ease}
   .slide.active{display:flex}
   @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
-  .kicker{display:inline-flex;align-items:center;gap:7px;font-size:1.02vw;font-weight:700;color:var(--violet-d);background:var(--violet-050);padding:.5em 1em;border-radius:100px;letter-spacing:-.01em;width:fit-content}
+  .kicker{display:inline-flex;align-items:center;gap:7px;font-size:1.02cqw;font-weight:700;color:var(--violet-d);background:var(--violet-050);padding:.5em 1em;border-radius:100px;letter-spacing:-.01em;width:fit-content}
   .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--violet)}
-  .qtag{display:inline-block;font-size:.8vw;font-weight:800;color:#fff;background:var(--violet);padding:.32em .7em;border-radius:7px;margin-left:.5vw;letter-spacing:.01em;vertical-align:middle}
-  h1{font-size:4.2vw;font-weight:800;letter-spacing:-.035em;line-height:1.14}
-  h2{font-size:2.6vw;font-weight:800;letter-spacing:-.03em;line-height:1.2;color:var(--ink)}
+  .qtag{display:inline-block;font-size:.8cqw;font-weight:800;color:#fff;background:var(--violet);padding:.32em .7em;border-radius:7px;margin-left:.5cqw;letter-spacing:.01em;vertical-align:middle}
+  h1{font-size:4.2cqw;font-weight:800;letter-spacing:-.035em;line-height:1.14}
+  h2{font-size:2.6cqw;font-weight:800;letter-spacing:-.03em;line-height:1.2;color:var(--ink)}
   h2 .hl{color:var(--violet)}
-  .sub{font-size:1.26vw;color:var(--muted);font-weight:500;line-height:1.6;letter-spacing:-.01em}
-  .slide-head{margin-bottom:1.9vh}
-  .slide-head h2{margin-top:1vh}
+  .sub{font-size:1.26cqw;color:var(--muted);font-weight:500;line-height:1.6;letter-spacing:-.01em}
+  .slide-head{margin-bottom:1.9cqh}
+  .slide-head h2{margin-top:1cqh}
   p{line-height:1.6}
   b,strong{font-weight:700}
 
-  .foot{position:absolute;left:6.2%;right:6.2%;bottom:3vh;display:flex;justify-content:space-between;align-items:center;font-size:.9vw;color:var(--muted-2);font-weight:600;letter-spacing:-.01em}
+  .foot{position:absolute;left:6.2%;right:6.2%;bottom:3cqh;display:flex;justify-content:space-between;align-items:center;font-size:.9cqw;color:var(--muted-2);font-weight:600;letter-spacing:-.01em}
   .foot .brand{color:var(--violet-d);font-weight:800}
   .pageno{font-variant-numeric:tabular-nums}
 
   .term{position:relative;border-bottom:1.6px dotted var(--violet);cursor:help;white-space:nowrap;color:inherit}
-  .term .tip{position:absolute;bottom:142%;left:50%;transform:translateX(-50%) translateY(5px);background:var(--ink);color:#fff;padding:.8em 1em;border-radius:11px;font-size:.82vw;font-weight:500;line-height:1.5;width:max-content;max-width:24vw;white-space:normal;opacity:0;visibility:hidden;transition:.16s;z-index:40;box-shadow:0 14px 34px -10px rgba(0,0,0,.45);text-align:left;letter-spacing:-.01em}
+  .term .tip{position:absolute;bottom:142%;left:50%;transform:translateX(-50%) translateY(5px);background:var(--ink);color:#fff;padding:.8em 1em;border-radius:11px;font-size:.82cqw;font-weight:500;line-height:1.5;width:max-content;max-width:24cqw;white-space:normal;opacity:0;visibility:hidden;transition:.16s;z-index:40;box-shadow:0 14px 34px -10px rgba(0,0,0,.45);text-align:left;letter-spacing:-.01em}
   .term .tip b{color:#b9a8ff}
   .term .tip:after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:7px solid transparent;border-top-color:var(--ink)}
   .term.down .tip{bottom:auto;top:142%;transform:translateX(-50%) translateY(-5px)}
@@ -48,97 +48,97 @@
   .term:hover .tip,.term.show .tip{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
   .cover .term,.closing .term{border-bottom-color:#b9a8ff}
 
-  .grid{display:grid;gap:1.2vw}
+  .grid{display:grid;gap:1.2cqw}
   .g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
-  .card{background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:1.4vw;box-shadow:var(--shadow-sm)}
+  .card{background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:1.4cqw;box-shadow:var(--shadow-sm)}
   .card.soft{background:var(--soft);box-shadow:none}
-  .card .ci{font-size:1.6vw;margin-bottom:.4vw}
-  .card h3{font-size:1.28vw;font-weight:800;letter-spacing:-.02em;margin-bottom:.4vw;line-height:1.26;color:var(--ink)}
-  .card p{font-size:.98vw;color:var(--muted);font-weight:500;letter-spacing:-.01em;line-height:1.48}
+  .card .ci{font-size:1.6cqw;margin-bottom:.4cqw}
+  .card h3{font-size:1.28cqw;font-weight:800;letter-spacing:-.02em;margin-bottom:.4cqw;line-height:1.26;color:var(--ink)}
+  .card p{font-size:.98cqw;color:var(--muted);font-weight:500;letter-spacing:-.01em;line-height:1.48}
   .card p b{color:var(--ink)}
 
   .cover{background:linear-gradient(135deg,#241A5E 0%,#4B33C7 55%,#6B4EF0 130%);color:#fff;justify-content:center}
   .cover .kicker{background:rgba(255,255,255,.15);color:#e7defe}.cover .kicker .dot{background:#c4b4ff}
-  .cover h1{color:#fff;margin:2.2vh 0}
+  .cover h1{color:#fff;margin:2.2cqh 0}
   .cover h1 .hl{color:#c9bcff}
-  .cover .lead{font-size:1.42vw;color:#cfc6ee;font-weight:500;line-height:1.65;max-width:74%}
+  .cover .lead{font-size:1.42cqw;color:#cfc6ee;font-weight:500;line-height:1.65;max-width:74%}
   .cover .lead b{color:#fff}
-  .cover .meta{margin-top:4.2vh;display:flex;gap:2.2vw;font-size:1vw;color:#a89fce;font-weight:600}
-  .cover .meta b{color:#fff;font-weight:700;display:block;font-size:1.14vw;margin-top:.3vw}
+  .cover .meta{margin-top:4.2cqh;display:flex;gap:2.2cqw;font-size:1cqw;color:#a89fce;font-weight:600}
+  .cover .meta b{color:#fff;font-weight:700;display:block;font-size:1.14cqw;margin-top:.3cqw}
 
-  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1vw}
-  .stat{background:var(--soft);border-radius:16px;padding:1.3vw;border:1px solid var(--line)}
-  .stat .n{font-size:1.9vw;font-weight:800;letter-spacing:-.03em;color:var(--violet);line-height:1.08;font-variant-numeric:tabular-nums}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1cqw}
+  .stat{background:var(--soft);border-radius:16px;padding:1.3cqw;border:1px solid var(--line)}
+  .stat .n{font-size:1.9cqw;font-weight:800;letter-spacing:-.03em;color:var(--violet);line-height:1.08;font-variant-numeric:tabular-nums}
   .stat .n.dark{color:var(--ink)}
-  .stat .l{font-size:.9vw;color:var(--muted);font-weight:600;margin-top:.55vw;line-height:1.4}
+  .stat .l{font-size:.9cqw;color:var(--muted);font-weight:600;margin-top:.55cqw;line-height:1.4}
 
-  .rows{display:flex;flex-direction:column;gap:.8vw}
-  .row{display:flex;gap:1.0vw;align-items:flex-start;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:.95vw 1.25vw;box-shadow:var(--shadow-sm)}
-  .row .ix{flex:none;min-width:2.1vw;height:2.1vw;padding:0 .4vw;border-radius:9px;display:grid;place-items:center;font-weight:800;font-size:.92vw;color:#fff;background:var(--violet)}
+  .rows{display:flex;flex-direction:column;gap:.8cqw}
+  .row{display:flex;gap:1.0cqw;align-items:flex-start;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:.95cqw 1.25cqw;box-shadow:var(--shadow-sm)}
+  .row .ix{flex:none;min-width:2.1cqw;height:2.1cqw;padding:0 .4cqw;border-radius:9px;display:grid;place-items:center;font-weight:800;font-size:.92cqw;color:#fff;background:var(--violet)}
   .row.warn .ix{background:var(--warn)}.row.mint .ix{background:var(--mint)}
-  .row .tx h4{font-size:1.12vw;font-weight:800;letter-spacing:-.02em;margin-bottom:.18vw;color:var(--ink)}
-  .row .tx p{font-size:.93vw;color:var(--muted);font-weight:500;line-height:1.46}
+  .row .tx h4{font-size:1.12cqw;font-weight:800;letter-spacing:-.02em;margin-bottom:.18cqw;color:var(--ink)}
+  .row .tx p{font-size:.93cqw;color:var(--muted);font-weight:500;line-height:1.46}
   .row .tx p b{color:var(--ink)}
   .row.hot{background:var(--violet-050);border-color:var(--violet-100);box-shadow:none}
 
-  .callout{background:var(--ink);color:#fff;border-radius:20px;padding:1.6vw 2vw;display:flex;gap:1.4vw;align-items:center}
-  .callout .big{font-size:2.9vw;font-weight:800;color:#b9a8ff;line-height:1;flex:none}
-  .callout p{font-size:1.26vw;font-weight:600;line-height:1.5;letter-spacing:-.01em}
+  .callout{background:var(--ink);color:#fff;border-radius:20px;padding:1.6cqw 2cqw;display:flex;gap:1.4cqw;align-items:center}
+  .callout .big{font-size:2.9cqw;font-weight:800;color:#b9a8ff;line-height:1;flex:none}
+  .callout p{font-size:1.26cqw;font-weight:600;line-height:1.5;letter-spacing:-.01em}
   .callout p b{color:#c9bcff}
 
-  .twocol{display:grid;grid-template-columns:1.05fr .95fr;gap:1.7vw;flex:1;min-height:0;align-items:center}
+  .twocol{display:grid;grid-template-columns:1.05fr .95fr;gap:1.7cqw;flex:1;min-height:0;align-items:center}
 
-  .lever-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1vw}
-  .lever{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:1.15vw 1.3vw}
-  .lever .ln{font-size:.84vw;font-weight:800;color:var(--violet-d);background:var(--violet-050);width:fit-content;padding:.22em .6em;border-radius:7px}
-  .lever .lt{font-size:1.12vw;font-weight:800;letter-spacing:-.02em;margin:.5vw 0 .35vw;line-height:1.25;color:var(--ink)}
-  .lever .ld{font-size:.9vw;color:var(--muted);font-weight:500;line-height:1.45}
+  .lever-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1cqw}
+  .lever{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:1.15cqw 1.3cqw}
+  .lever .ln{font-size:.84cqw;font-weight:800;color:var(--violet-d);background:var(--violet-050);width:fit-content;padding:.22em .6em;border-radius:7px}
+  .lever .lt{font-size:1.12cqw;font-weight:800;letter-spacing:-.02em;margin:.5cqw 0 .35cqw;line-height:1.25;color:var(--ink)}
+  .lever .ld{font-size:.9cqw;color:var(--muted);font-weight:500;line-height:1.45}
   .lever .ld b{color:var(--ink)}
 
-  .flow{display:flex;align-items:stretch;gap:.55vw}
-  .flow .node{flex:1;background:var(--soft);border:1px solid var(--line);border-radius:13px;padding:.9vw .8vw;display:flex;flex-direction:column}
+  .flow{display:flex;align-items:stretch;gap:.55cqw}
+  .flow .node{flex:1;background:var(--soft);border:1px solid var(--line);border-radius:13px;padding:.9cqw .8cqw;display:flex;flex-direction:column}
   .flow .node.hot{background:var(--violet-050);border-color:var(--violet-100)}
-  .flow .node .stg{font-size:.8vw;font-weight:800;color:var(--violet-d)}
-  .flow .node .nt{font-size:.98vw;font-weight:800;letter-spacing:-.02em;margin:.3vw 0 .26vw;color:var(--ink);line-height:1.2}
-  .flow .node .nd{font-size:.78vw;color:var(--muted);font-weight:500;line-height:1.36}
-  .flow .arr{flex:none;display:grid;place-items:center;color:var(--violet);font-size:1.15vw;font-weight:800}
+  .flow .node .stg{font-size:.8cqw;font-weight:800;color:var(--violet-d)}
+  .flow .node .nt{font-size:.98cqw;font-weight:800;letter-spacing:-.02em;margin:.3cqw 0 .26cqw;color:var(--ink);line-height:1.2}
+  .flow .node .nd{font-size:.78cqw;color:var(--muted);font-weight:500;line-height:1.36}
+  .flow .arr{flex:none;display:grid;place-items:center;color:var(--violet);font-size:1.15cqw;font-weight:800}
 
-  .pchip{display:inline-block;font-size:.82vw;font-weight:700;color:var(--violet-d);background:var(--violet-050);border:1px solid var(--violet-100);border-radius:7px;padding:.24em .6em;margin:.28vw .28vw 0 0}
+  .pchip{display:inline-block;font-size:.82cqw;font-weight:700;color:var(--violet-d);background:var(--violet-050);border:1px solid var(--violet-100);border-radius:7px;padding:.24em .6em;margin:.28cqw .28cqw 0 0}
 
   .adcard{background:var(--soft);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow-sm)}
   .adcard .imgwrap{flex:1;min-height:0;background:#EEF0F2;overflow:hidden;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center}
   .adcard img{width:100%;height:100%;object-fit:contain;object-position:center}
-  .adcard .tt{padding:.7vw 1vw .1vw;font-size:.98vw;font-weight:800;color:var(--ink)}
+  .adcard .tt{padding:.7cqw 1cqw .1cqw;font-size:.98cqw;font-weight:800;color:var(--ink)}
   .adcard .tt span{color:var(--violet-d)}
-  .adcard .cap{padding:0 1vw .8vw;font-size:.82vw;color:var(--muted);line-height:1.4}
+  .adcard .cap{padding:0 1cqw .8cqw;font-size:.82cqw;color:var(--muted);line-height:1.4}
   .adcard .cap b{color:var(--ink)}
   .vid{width:100%;aspect-ratio:16/9;border:0;border-radius:14px;box-shadow:var(--shadow);display:block;background:#000}
-  .vid2{height:37vh;aspect-ratio:16/9;border:0;border-radius:12px;box-shadow:var(--shadow);display:block;background:#000;flex:none}
-  .vshort2{height:37vh;aspect-ratio:9/16;border:0;border-radius:12px;box-shadow:var(--shadow);display:block;background:#000;flex:none}
-  .vcap{font-size:.86vw;color:var(--muted);font-weight:600;line-height:1.45;margin-top:.6vw}
+  .vid2{height:37cqh;aspect-ratio:16/9;border:0;border-radius:12px;box-shadow:var(--shadow);display:block;background:#000;flex:none}
+  .vshort2{height:37cqh;aspect-ratio:9/16;border:0;border-radius:12px;box-shadow:var(--shadow);display:block;background:#000;flex:none}
+  .vcap{font-size:.86cqw;color:var(--muted);font-weight:600;line-height:1.45;margin-top:.6cqw}
   .vcap b{color:var(--ink)}
 
-  .metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1vw}
-  .metric{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:1.15vw}
-  .metric .mh{font-size:1.0vw;font-weight:800;letter-spacing:-.02em;margin-bottom:.35vw;color:var(--ink)}
-  .metric .md{font-size:.84vw;color:var(--muted);font-weight:500;line-height:1.42}
-  .metric .mk2{font-size:.8vw;font-weight:800;color:var(--violet-d);margin-top:.45vw}
+  .metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1cqw}
+  .metric{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:1.15cqw}
+  .metric .mh{font-size:1.0cqw;font-weight:800;letter-spacing:-.02em;margin-bottom:.35cqw;color:var(--ink)}
+  .metric .md{font-size:.84cqw;color:var(--muted);font-weight:500;line-height:1.42}
+  .metric .mk2{font-size:.8cqw;font-weight:800;color:var(--violet-d);margin-top:.45cqw}
 
-  .fbar{display:flex;flex-direction:column;gap:.65vw}
-  .fstep{display:flex;align-items:center;gap:1vw}
-  .fstep .fl{font-size:.94vw;font-weight:700;color:var(--ink);width:13vw}
-  .fstep .ftrack{flex:1;height:1.8vw;background:var(--soft2);border-radius:8px;overflow:hidden}
+  .fbar{display:flex;flex-direction:column;gap:.65cqw}
+  .fstep{display:flex;align-items:center;gap:1cqw}
+  .fstep .fl{font-size:.94cqw;font-weight:700;color:var(--ink);width:13cqw}
+  .fstep .ftrack{flex:1;height:1.8cqw;background:var(--soft2);border-radius:8px;overflow:hidden}
   .fstep .ffill{height:100%;background:linear-gradient(90deg,var(--violet),#9a86f7);border-radius:8px}
-  .fstep .fv{font-size:.94vw;font-weight:800;color:var(--violet-d);width:6vw;text-align:right;font-variant-numeric:tabular-nums}
+  .fstep .fv{font-size:.94cqw;font-weight:800;color:var(--violet-d);width:6cqw;text-align:right;font-variant-numeric:tabular-nums}
 
-  .note{font-size:.82vw;color:var(--muted-2);font-weight:500;margin-top:.9vh;line-height:1.5}
+  .note{font-size:.82cqw;color:var(--muted-2);font-weight:500;margin-top:.9cqh;line-height:1.5}
   .note b{color:var(--muted)}
 
   .closing{background:linear-gradient(135deg,#241A5E 0%,#4B33C7 60%,#6B4EF0 130%);color:#fff;justify-content:center}
-  .closing h2{color:#fff;font-size:2.8vw}.closing h2 .hl{color:#c9bcff}
-  .closing .lead{font-size:1.38vw;color:#cfc6ee;font-weight:500;line-height:1.66;margin-top:2.1vh;max-width:80%}
+  .closing h2{color:#fff;font-size:2.8cqw}.closing h2 .hl{color:#c9bcff}
+  .closing .lead{font-size:1.38cqw;color:#cfc6ee;font-weight:500;line-height:1.66;margin-top:2.1cqh;max-width:80%}
   .closing .lead b{color:#fff}
-  .closing .sign{margin-top:3.6vh;font-size:1.05vw;color:#a89fce;font-weight:600}.closing .sign b{color:#fff}
+  .closing .sign{margin-top:3.6cqh;font-size:1.05cqw;color:#a89fce;font-weight:600}.closing .sign b{color:#fff}
 
   .nav{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;background:rgba(20,15,40,.82);backdrop-filter:blur(10px);padding:9px 16px;border-radius:100px;z-index:50}
   .nav button{background:none;border:none;color:#fff;font-size:15px;cursor:pointer;opacity:.85;padding:2px 4px}
@@ -146,7 +146,7 @@
   .nav .ind{color:#fff;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;min-width:46px;text-align:center}
   .progress{position:fixed;top:0;left:0;height:3px;background:var(--violet);z-index:60;transition:width .4s ease}
   .hint{position:fixed;bottom:22px;right:22px;font-size:12px;color:rgba(25,21,39,.4);z-index:50}
-  @media(max-width:760px){.hint{display:none}.term .tip{max-width:62vw;font-size:11px}}
+  @media(max-width:760px){.hint{display:none}.term .tip{max-width:62cqw;font-size:11px}}
 </style>
 </head>
 <body>
@@ -170,7 +170,7 @@
   <section class="slide">
     <div class="slide-head"><span class="kicker"><span class="dot"></span>어센트가 뭐지? & 발표 순서</span>
       <h2>'AI 모의면접'을 <span class="hl">가입·결제</span>로 키운다</h2></div>
-    <div class="g4 grid" style="margin-bottom:1.5vh">
+    <div class="g4 grid" style="margin-bottom:1.5cqh">
       <div class="stat"><div class="n dark">AI 면접관</div><div class="l">기업·직무별 진짜 같은 모의면접</div></div>
       <div class="stat"><div class="n dark">표정·시선·말투</div><div class="l">말투까지 봐주고 결과 리포트도 줍니다</div></div>
       <div class="stat"><div class="n">무료 1회</div><div class="l">가입하면 1번 무료 → 추가는 약 1.5만원</div></div>
@@ -213,9 +213,9 @@
         <div class="row"><div class="ix">뷰인터</div><div class="tx"><h4>영상면접 도입한 기업 지원자</h4><p>회사가 시켜서 보는 영상면접 대비라 두루뭉술하고 수동적입니다.</p></div></div>
         <div class="row"><div class="ix">아무나</div><div class="tx"><h4>사람인·ChatGPT = 모든 구직자</h4><p>'누구나'를 노리다 보니 <b>누구에게도 딱 맞지 않습니다.</b> 특히 개발 직무 깊이가 없고요.</p></div></div>
       </div>
-      <div><div class="callout" style="flex-direction:column;align-items:flex-start;gap:.9vw">
-        <p style="font-size:1.4vw">비어 있는 자리 — <b>"코드는 짰는데 면접은 처음인 개발 직무 취준생"</b>을 콕 집어 챙기는 곳이 없습니다.</p>
-        <p style="font-size:1vw;color:#a89fce;font-weight:500">바로 코드잇이 가장 잘 알고, 가장 많이 가진 고객입니다.</p>
+      <div><div class="callout" style="flex-direction:column;align-items:flex-start;gap:.9cqw">
+        <p style="font-size:1.4cqw">비어 있는 자리 — <b>"코드는 짰는데 면접은 처음인 개발 직무 취준생"</b>을 콕 집어 챙기는 곳이 없습니다.</p>
+        <p style="font-size:1cqw;color:#a89fce;font-weight:500">바로 코드잇이 가장 잘 알고, 가장 많이 가진 고객입니다.</p>
       </div></div>
     </div>
     <div class="foot"><span class="brand">Codeit Ascent · Growth</span><span class="pageno">04 / 17</span></div>
@@ -242,7 +242,7 @@
       <div class="card" style="border:1px solid var(--violet-100);background:var(--violet-050)">
         <div class="ci">👩‍💻</div>
         <h3>'개발 직무, 첫 실전' 취준생</h3>
-        <p style="margin-top:.5vw">부트캠프·전공·독학으로 <b>개발/데이터/AI 실력은 쌓았지만</b>, 기술+인성+꼬리질문이 섞인 <b>실전 면접은 거의 처음</b>인 20대 후반~30대 초 신입·이직 준비생.</p>
+        <p style="margin-top:.5cqw">부트캠프·전공·독학으로 <b>개발/데이터/AI 실력은 쌓았지만</b>, 기술+인성+꼬리질문이 섞인 <b>실전 면접은 거의 처음</b>인 20대 후반~30대 초 신입·이직 준비생.</p>
       </div>
       <div class="rows">
         <div class="row mint"><div class="ix">근거</div><div class="tx"><h4>코드잇이 이미 가진 고객 → 가장 싸게</h4><p>부트캠프·강의 수강생이 곧 이 사람이고, 수료가 곧 취업 시점이라 자연스럽게 이어집니다.</p></div></div>
@@ -263,9 +263,9 @@
         <div class="row warn"><div class="ix">2</div><div class="tx"><h4>면접관이 무표정·시큰둥하면 흔들린다 ⭐</h4><p>반응이 없으면 "내가 못하나?" 싶어 위축되고, 목소리도 답도 무너집니다. 결과를 가장 크게 좌우하는 순간이죠.</p></div></div>
         <div class="row warn"><div class="ix">3</div><div class="tx"><h4>예상 못한·답 없는 질문에 당황</h4><p>그 자리에서 침착하게 대처하는 힘이 진짜 실력으로 보입니다.</p></div></div>
       </div>
-      <div><div class="callout" style="flex-direction:column;align-items:flex-start;gap:.9vw">
-        <p style="font-size:1.36vw">"침착함이 절반"이라지만, <b>한 번도 안 겪어보면 절대 안 침착해집니다.</b></p>
-        <p style="font-size:1.02vw;color:#a89fce;font-weight:500">그래서 어센트는 '질문 연습'이 아니라 <b style="color:#c9bcff">'말리는 순간을 미리 겪는 연습'</b>이어야 합니다.</p>
+      <div><div class="callout" style="flex-direction:column;align-items:flex-start;gap:.9cqw">
+        <p style="font-size:1.36cqw">"침착함이 절반"이라지만, <b>한 번도 안 겪어보면 절대 안 침착해집니다.</b></p>
+        <p style="font-size:1.02cqw;color:#a89fce;font-weight:500">그래서 어센트는 '질문 연습'이 아니라 <b style="color:#c9bcff">'말리는 순간을 미리 겪는 연습'</b>이어야 합니다.</p>
       </div></div>
     </div>
     <p class="note"><b>출처</b> · 링커리어·슈퍼루키·하이잡 등 면접 가이드(꼬리질문·압박·면접관 태도에 가장 많이 당황). ※ 공개자료.</p>
@@ -276,7 +276,7 @@
   <section class="slide">
     <div class="slide-head"><span class="kicker"><span class="dot"></span>어센트의 남다른 점 & 핵심 약속<span class="qtag">Q1 답</span></span>
       <h2>ChatGPT엔 없는 <span class="hl">'진짜 면접', 면접관 표정까지</span></h2></div>
-    <div class="g4 grid" style="margin-bottom:1.3vh">
+    <div class="g4 grid" style="margin-bottom:1.3cqh">
       <div class="card"><div class="ci">🎬</div><h3>진짜 기업·직무 면접</h3><p>삼성·네이버·카카오·토스에 개발 직무까지 그대로. 맥락 없는 ChatGPT와는 차원이 다릅니다.</p></div>
       <div class="card" style="border-top:4px solid var(--violet)"><div class="ci">😐</div><h3>면접관 표정·반응까지 ⭐</h3><p>무표정·끄덕임·압박을 진짜처럼 보여줘 <b>'눈치에 안 흔들리는 연습'</b>. (제안 강화 포인트)</p></div>
       <div class="card"><div class="ci">📊</div><h3>내 표정·꼬리질문·리포트</h3><p>내 표정·시선·말투를 봐주고, 꼬리질문·점수·고칠 점까지 짚어줍니다. <b>'연습'이 아니라 '코칭'</b>인 셈이죠.</p></div>
@@ -290,17 +290,17 @@
   <section class="slide">
     <div class="slide-head"><span class="kicker"><span class="dot"></span>USP 깊이 보기 · 왜 '진짜 같은가'<span class="qtag">Q1 답</span></span>
       <h2>'정해진 질문'이 아니라 <span class="hl">'나를 위한, 진짜 같은 면접'</span>이라서</h2></div>
-    <p class="sub" style="font-size:1.08vw;margin-bottom:1.3vh"><b style="color:var(--ink)">① 진짜 기업·직무 면접</b> — 빈출 질문만 던지지 않고, <b style="color:var(--ink)">이력서·포트폴리오를 읽어 '개인화 질문'</b>으로 차별화합니다.</p>
-    <div style="display:flex;gap:2.6vw;flex:1;min-height:0;justify-content:center;align-items:flex-start">
+    <p class="sub" style="font-size:1.08cqw;margin-bottom:1.3cqh"><b style="color:var(--ink)">① 진짜 기업·직무 면접</b> — 빈출 질문만 던지지 않고, <b style="color:var(--ink)">이력서·포트폴리오를 읽어 '개인화 질문'</b>으로 차별화합니다.</p>
+    <div style="display:flex;gap:2.6cqw;flex:1;min-height:0;justify-content:center;align-items:flex-start">
       <div style="display:flex;flex-direction:column;align-items:flex-start">
-        <div style="font-size:1.12vw;font-weight:800;color:var(--violet-d);margin-bottom:.7vw">② 면접관 표정·반응까지 — 실시간으로</div>
+        <div style="font-size:1.12cqw;font-weight:800;color:var(--violet-d);margin-bottom:.7cqw">② 면접관 표정·반응까지 — 실시간으로</div>
         <iframe class="vid2" src="https://www.youtube-nocookie.com/embed/qII6QyhUCv8" title="실시간 표정 반응 예시" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
-        <div style="font-size:1.0vw;color:var(--muted);font-weight:500;line-height:1.55;margin-top:.8vw;max-width:46vw">다른 AI는 듣고 질문하면 끝입니다. 어센트는 <b style="color:var(--ink)">사람 얼굴</b>을 띄워두고, 내 답변에 따라 <b style="color:var(--ink)">표정이 실시간으로 바뀌어</b> 실제 면접에서 '휘말리는' 순간까지 미리 겪게 합니다. <span style="color:var(--muted-2)">(실시간 표정 반응 예시)</span></div>
+        <div style="font-size:1.0cqw;color:var(--muted);font-weight:500;line-height:1.55;margin-top:.8cqw;max-width:46cqw">다른 AI는 듣고 질문하면 끝입니다. 어센트는 <b style="color:var(--ink)">사람 얼굴</b>을 띄워두고, 내 답변에 따라 <b style="color:var(--ink)">표정이 실시간으로 바뀌어</b> 실제 면접에서 '휘말리는' 순간까지 미리 겪게 합니다. <span style="color:var(--muted-2)">(실시간 표정 반응 예시)</span></div>
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-start">
-        <div style="font-size:1.12vw;font-weight:800;color:var(--violet-d);margin-bottom:.7vw">③ 내 표정·꼬리질문 리포트</div>
+        <div style="font-size:1.12cqw;font-weight:800;color:var(--violet-d);margin-bottom:.7cqw">③ 내 표정·꼬리질문 리포트</div>
         <iframe class="vshort2" src="https://www.youtube-nocookie.com/embed/amzQBWIu2gY" title="표정 추적 예시" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
-        <div style="font-size:1.0vw;color:var(--muted);font-weight:500;line-height:1.55;margin-top:.8vw;max-width:25vw">내 표정을 추적해 <b style="color:var(--ink)">어떤 표정일 때 호감으로 보이는지</b> 분석하고, <b style="color:var(--ink)">답변 퀄리티까지 예측</b>해 리포트로 줍니다. <span style="color:var(--muted-2)">(표정 추적 예시)</span></div>
+        <div style="font-size:1.0cqw;color:var(--muted);font-weight:500;line-height:1.55;margin-top:.8cqw;max-width:25cqw">내 표정을 추적해 <b style="color:var(--ink)">어떤 표정일 때 호감으로 보이는지</b> 분석하고, <b style="color:var(--ink)">답변 퀄리티까지 예측</b>해 리포트로 줍니다. <span style="color:var(--muted-2)">(표정 추적 예시)</span></div>
       </div>
     </div>
     <div class="foot"><span class="brand">Codeit Ascent · Growth</span><span class="pageno">09 / 17</span></div>
@@ -327,7 +327,7 @@
       <div style="display:flex;flex-direction:column;justify-content:center">
         <iframe class="vid" src="https://www.youtube-nocookie.com/embed/O0KuVQGjW-Y" title="스픽 캠페인 영상" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
         <div class="vcap"><b>스픽 「영어, 틀려야 트인다」</b> — "무서워서 못한다? 이제 걱정 안 한다." <b>'AI로 미리 연습 → 두렵지 않다'</b>는 메시지의 숏폼 벤치마크. 어센트로 옮기면 <b>"면접도 미리 틀려보면 덜 떨린다"</b>.</div>
-        <div class="vcap" style="margin-top:.6vw"><b>→ 우리 콘텐츠</b> &nbsp;A 실제 모의면접·리포트 데모 &nbsp;·&nbsp; B "ChatGPT vs 어센트" 비교 &nbsp;·&nbsp; C "면접관 무표정에 멘붕" 공감 + 합격 후기</div>
+        <div class="vcap" style="margin-top:.6cqw"><b>→ 우리 콘텐츠</b> &nbsp;A 실제 모의면접·리포트 데모 &nbsp;·&nbsp; B "ChatGPT vs 어센트" 비교 &nbsp;·&nbsp; C "면접관 무표정에 멘붕" 공감 + 합격 후기</div>
       </div>
       <div class="adcard">
         <div class="imgwrap" style="flex:1"><img src="images/ref-jobedu.jpg" alt="취업 교육 광고 (Meta 라이브러리)" style="object-position:center top" /></div>
@@ -343,7 +343,7 @@
   <section class="slide">
     <div class="slide-head"><span class="kicker"><span class="dot"></span>무료 1번의 'WOW' → 다시 결제하는 구조</span>
       <h2>무료 면접이 끝나는 순간, <span class="hl">'리포트'에서 놀라게</span> 한다</h2></div>
-    <div class="flow" style="margin-bottom:1.4vh">
+    <div class="flow" style="margin-bottom:1.4cqh">
       <div class="node"><div class="stg">무료</div><div class="nt">첫 모의면접 1회</div><div class="nd">진짜 같은 면접관 앞에서 한 판</div></div>
       <div class="arr">→</div>
       <div class="node hot"><div class="stg">WOW</div><div class="nt">결과 리포트 충격</div><div class="nd">"면접관 표정에 흔들렸고, 꼬리질문에서 무너졌다"를 처음 객관적으로 봄</div></div>
@@ -385,7 +385,7 @@
   <section class="slide">
     <div class="slide-head"><span class="kicker"><span class="dot"></span>채널을 왜 골랐나 & 운영 방향<span class="qtag">Q2 답</span></span>
       <h2>채널을 <span class="hl">'누가·어느 단계·매체 특성'</span>으로 배치</h2></div>
-    <div class="rows" style="margin-bottom:1.2vh">
+    <div class="rows" style="margin-bottom:1.2cqh">
       <div class="row"><div class="ix">결제</div><div class="tx"><h4>코드잇 알림·이메일·수료 페이지</h4><p><b>누가</b> 우리 수강생(딱 그 사람) · <b>단계</b> 결제 직전 · <b>특성</b> 광고비가 거의 안 들고 바로 닿습니다.</p></div></div>
       <div class="row"><div class="ix">관심</div><div class="tx"><h4>유튜브·인스타 숏폼</h4><p><b>누가</b> 면접·취업 영상 보는 사람 · <b>단계</b> 관심 만들기 · <b>특성</b> 실제 화면을 보여주기 좋고, 적은 비용으로 많이 닿습니다.</p></div></div>
       <div class="row"><div class="ix">결제</div><div class="tx"><h4>네이버·구글 검색</h4><p><b>누가</b> '개발자 면접 준비' 검색하는 사람 · <b>단계</b> 바로 결제로 · <b>특성</b> 지금 당장 필요한 사람을 잡습니다.</p></div></div>
@@ -420,7 +420,7 @@
   <section class="slide">
     <div class="slide-head"><span class="kicker"><span class="dot"></span>'잘됐다/아니다'를 무엇으로 보나<span class="qtag">Q2 답</span></span>
       <h2>가장 중요한 숫자는 <span class="hl">'유료로 결제한 사람 수'</span></h2></div>
-    <div class="callout" style="margin-bottom:1.4vh"><div class="big">★</div><p>제일 중요한 단 하나 = <b>유료 크레딧을 결제한 사람 수</b> (과제 목표인 '가입 + 결제'를 한 번에 보는 숫자).</p></div>
+    <div class="callout" style="margin-bottom:1.4cqh"><div class="big">★</div><p>제일 중요한 단 하나 = <b>유료 크레딧을 결제한 사람 수</b> (과제 목표인 '가입 + 결제'를 한 번에 보는 숫자).</p></div>
     <div class="metric-grid">
       <div class="metric"><div class="mh">신규 회원가입 수</div><div class="md">얼마나 데려왔는지, 채널별로 나눠 봅니다</div><div class="mk2">↑ 늘리기</div></div>
       <div class="metric"><div class="mh">무료 1번 완주율</div><div class="md">첫 면접을 끝까지 해보면 결제로 이어집니다</div><div class="mk2">↑ 늘리기</div></div>
@@ -437,10 +437,10 @@
     <h2>코드잇은 코딩을 가르쳤습니다.<br><span class="hl">이제 '합격'까지 함께합니다</span></h2>
     <p class="lead">아무도 안 챙긴 <b>'개발 직무 첫 실전' 취준생</b>을 코드잇 강점으로 먼저 잡고, <b>'면접관 표정까지 진짜 같은 면접'</b>을 스픽처럼 와닿는 메시지로 전하며, <b>무료 1번의 WOW로 결제를 만들고</b> 가진 고객(싸게)·신규(넓게)로 키우겠습니다.</p>
     <div style="margin-top:22px;display:flex;gap:11px;flex-wrap:wrap">
-      <span class="pchip" style="font-size:1vw;padding:.5em 1em;background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.25)">개발 실전 고객 선점</span>
-      <span class="pchip" style="font-size:1vw;padding:.5em 1em;background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.25)">면접관 표정까지 연습</span>
-      <span class="pchip" style="font-size:1vw;padding:.5em 1em;background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.25)">무료 WOW → 재구매</span>
-      <span class="pchip" style="font-size:1vw;padding:.5em 1em;background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.25)">싸게(가진 고객)×넓게(신규)</span>
+      <span class="pchip" style="font-size:1cqw;padding:.5em 1em;background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.25)">개발 실전 고객 선점</span>
+      <span class="pchip" style="font-size:1cqw;padding:.5em 1em;background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.25)">면접관 표정까지 연습</span>
+      <span class="pchip" style="font-size:1cqw;padding:.5em 1em;background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.25)">무료 WOW → 재구매</span>
+      <span class="pchip" style="font-size:1cqw;padding:.5em 1em;background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.25)">싸게(가진 고객)×넓게(신규)</span>
     </div>
     <div class="sign">코드잇 어센트 마케팅 매니저(신사업) 지원 · <b>이도형</b></div>
     <div class="foot"><span class="brand">Codeit Ascent · Growth</span><span class="pageno">17 / 17</span></div>
