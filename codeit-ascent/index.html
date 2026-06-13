@@ -147,6 +147,18 @@
   .progress{position:fixed;top:0;left:0;height:3px;background:var(--violet);z-index:60;transition:width .4s ease}
   .hint{position:fixed;bottom:22px;right:22px;font-size:12px;color:rgba(25,21,39,.4);z-index:50}
   @media(max-width:760px){.hint{display:none}.term .tip{max-width:62cqw;font-size:11px}}
+  .print-thumb{display:none}
+  @media print{
+    html,body{height:auto;overflow:visible;background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .nav,.hint,.progress{display:none!important}
+    .deck{position:static;display:block}
+    .stage{position:static;width:1280px;height:auto;max-width:none;max-height:none;box-shadow:none;overflow:visible;container-type:normal}
+    .slide{position:relative!important;display:flex!important;opacity:1!important;width:1280px;height:720px;container-type:size;break-after:page;animation:none!important}
+    .slide:last-child{break-after:auto}
+    iframe{display:none!important}
+    .print-thumb{display:block!important;object-fit:cover;border-radius:12px;box-shadow:none}
+    @page{size:1280px 720px;margin:0}
+  }
 </style>
 </head>
 <body>
@@ -295,11 +307,13 @@
       <div style="display:flex;flex-direction:column;align-items:flex-start">
         <div style="font-size:1.12cqw;font-weight:800;color:var(--violet-d);margin-bottom:.7cqw">② 면접관 표정·반응까지 — 실시간으로</div>
         <iframe class="vid2" src="https://www.youtube-nocookie.com/embed/qII6QyhUCv8" title="실시간 표정 반응 예시" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
+        <img class="print-thumb" style="height:37cqh;aspect-ratio:16/9" src="https://img.youtube.com/vi/qII6QyhUCv8/hqdefault.jpg" alt="실시간 표정 반응 예시 영상" />
         <div style="font-size:1.0cqw;color:var(--muted);font-weight:500;line-height:1.55;margin-top:.8cqw;max-width:46cqw">다른 AI는 듣고 질문하면 끝입니다. 어센트는 <b style="color:var(--ink)">사람 얼굴</b>을 띄워두고, 내 답변에 따라 <b style="color:var(--ink)">표정이 실시간으로 바뀌어</b> 실제 면접에서 '휘말리는' 순간까지 미리 겪게 합니다. <span style="color:var(--muted-2)">(실시간 표정 반응 예시)</span></div>
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-start">
         <div style="font-size:1.12cqw;font-weight:800;color:var(--violet-d);margin-bottom:.7cqw">③ 내 표정·꼬리질문 리포트</div>
         <iframe class="vshort2" src="https://www.youtube-nocookie.com/embed/amzQBWIu2gY" title="표정 추적 예시" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
+        <img class="print-thumb" style="height:37cqh;aspect-ratio:9/16" src="https://img.youtube.com/vi/amzQBWIu2gY/hqdefault.jpg" alt="표정 추적 예시 영상" />
         <div style="font-size:1.0cqw;color:var(--muted);font-weight:500;line-height:1.55;margin-top:.8cqw;max-width:25cqw">내 표정을 추적해 <b style="color:var(--ink)">어떤 표정일 때 호감으로 보이는지</b> 분석하고, <b style="color:var(--ink)">답변 퀄리티까지 예측</b>해 리포트로 줍니다. <span style="color:var(--muted-2)">(표정 추적 예시)</span></div>
       </div>
     </div>
@@ -326,6 +340,7 @@
     <div class="twocol" style="grid-template-columns:1.1fr .9fr;align-items:stretch">
       <div style="display:flex;flex-direction:column;justify-content:center">
         <iframe class="vid" src="https://www.youtube-nocookie.com/embed/O0KuVQGjW-Y" title="스픽 캠페인 영상" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
+        <img class="print-thumb" style="width:100%;aspect-ratio:16/9" src="https://img.youtube.com/vi/O0KuVQGjW-Y/hqdefault.jpg" alt="스픽 캠페인 영상" />
         <div class="vcap"><b>스픽 「영어, 틀려야 트인다」</b> — "무서워서 못한다? 이제 걱정 안 한다." <b>'AI로 미리 연습 → 두렵지 않다'</b>는 메시지의 숏폼 벤치마크. 어센트로 옮기면 <b>"면접도 미리 틀려보면 덜 떨린다"</b>.</div>
         <div class="vcap" style="margin-top:.6cqw"><b>→ 우리 콘텐츠</b> &nbsp;A 실제 모의면접·리포트 데모 &nbsp;·&nbsp; B "ChatGPT vs 어센트" 비교 &nbsp;·&nbsp; C "면접관 무표정에 멘붕" 공감 + 합격 후기</div>
       </div>
