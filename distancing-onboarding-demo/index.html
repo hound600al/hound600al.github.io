@@ -30,7 +30,7 @@
 
   /* phone */
   .phone{
-    width:390px;max-width:96vw;height:800px;max-height:86vh;
+    width:390px;max-width:96vw;height:800px;max-height:90vh;
     background:#fff;border-radius:42px;position:relative;overflow:hidden;
     box-shadow:0 0 0 11px #0c1230, 0 0 0 13px #1c2550, 0 40px 90px rgba(0,0,0,.55);
     display:flex;flex-direction:column;
@@ -52,6 +52,7 @@
   .screen.active{opacity:1;transform:none;pointer-events:auto;}
   .screen.exit-left{opacity:0;transform:translateX(-28px);}
   .screen::-webkit-scrollbar{width:0;}
+  .screen > *{flex-shrink:0;} /* keep media & cards from squishing — overflow scrolls instead */
 
   .eyebrow{font-size:12px;font-weight:800;color:var(--blue);letter-spacing:.3px;margin-bottom:7px;}
   .eyebrow.g{color:var(--green);} .eyebrow.a{color:var(--amber);}
@@ -60,10 +61,10 @@
   .lead{font-size:14px;color:#5b636b;margin-top:11px;line-height:1.6;}
   .lead b{color:var(--ink);font-weight:700;}
 
-  .spacer{flex:1 1 auto;min-height:14px;}
+  .spacer{flex:0 0 14px;}
 
-  /* CTA */
-  .cta{flex:0 0 auto;padding:6px 0 4px;background:#fff;}
+  /* CTA — sits at bottom when there's room, scrolls with content when long */
+  .cta{flex:0 0 auto;padding:6px 0 4px;background:#fff;margin-top:auto;}
   .btn{display:block;width:100%;border:none;cursor:pointer;font-family:inherit;
     background:var(--blue);color:#fff;font-size:15.5px;font-weight:800;padding:15px;border-radius:15px;text-align:center;
     box-shadow:0 8px 20px rgba(43,89,255,.28);transition:transform .12s ease,filter .12s ease;}
@@ -184,12 +185,38 @@
   .whenbox .wv{font-size:20px;font-weight:800;color:var(--ink);margin-top:5px;letter-spacing:-.5px;}
   .whenbox .wv b{color:var(--blue-d);}
 
+  /* diagnosis */
+  .dxcard{background:var(--tint);border-radius:16px;padding:6px 16px;margin-top:16px;}
+  .dxrow{display:flex;gap:12px;padding:11px 0;}
+  .dxrow + .dxrow{border-top:1px solid var(--line);}
+  .dxk{flex:0 0 62px;font-size:12px;font-weight:800;color:var(--blue-d);padding-top:1px;}
+  .dxv{flex:1;font-size:13.5px;color:#3f474e;line-height:1.5;}
+  .dxpath{display:flex;flex-direction:column;gap:8px;}
+  .dxstep{display:flex;align-items:flex-start;gap:11px;background:#fff;border:1px solid var(--line);border-radius:13px;padding:11px 13px;box-shadow:0 2px 8px rgba(25,31,40,.04);}
+  .dxstep .sn{width:24px;height:24px;border-radius:8px;background:var(--blue-bg);color:var(--blue-d);display:grid;place-items:center;font-weight:800;font-size:12px;flex:0 0 auto;}
+  .dxstep .stt{font-size:13px;color:#3f474e;line-height:1.45;font-weight:600;padding-top:3px;}
+  .dxmed{display:flex;gap:9px;align-items:flex-start;background:var(--green-bg);border-radius:13px;padding:12px 14px;margin-top:14px;font-size:12.5px;color:var(--green);font-weight:700;line-height:1.5;}
+  .dxmed .mic{font-size:15px;flex:0 0 auto;}
+
   @media(max-width:480px){
     body{padding:0;gap:0;background:#0a1030;}
     .demoinfo{display:none;}
     .phone{width:100%;max-width:100%;height:100vh;max-height:100vh;border-radius:0;box-shadow:none;}
     .notch{display:none;}
     .pbar{padding-top:18px;}
+  }
+  /* short viewports (laptops): give the phone more height, trim the caption */
+  @media(max-height:860px){
+    body{padding:14px;gap:10px;}
+    .phone{max-height:96vh;}
+    .demoinfo .sub{font-size:11.5px;}
+  }
+  @media(max-height:680px){
+    body{padding:0;gap:0;}
+    .demoinfo{display:none;}
+    .phone{width:100%;max-width:430px;height:100vh;max-height:100vh;border-radius:0;box-shadow:none;}
+    .notch{display:none;}
+    .pbar{padding-top:16px;}
   }
 </style>
 </head>
@@ -294,18 +321,18 @@
         <h2 class="t">결제는 나중에,<br>먼저 <span class="g">7일간 직접</span> 겪어봐요</h2>
         <div class="trialcard">
           <span class="badge">카드 등록 없이</span>
-          <div class="big">7일 무료 체험</div>
-          <div class="sub">생각기록 · 명상 훈련 · 1:1 코치를 직접</div>
+          <div class="big">치료, 7일간 맛보기</div>
+          <div class="sub">생각기록 · 명상 훈련 · 1:1 코치를 직접 — 마음에 들면 그대로 이어가요</div>
           <div class="tl">
-            <div class="li"><span class="dot g"></span><div><b>오늘</b> — 무료 체험 시작 · 1분 맞춤 설문</div></div>
+            <div class="li"><span class="dot g"></span><div><b>오늘</b> — 치료 맛보기 시작 · 1분 맞춤 설문</div></div>
             <div class="li"><span class="dot b"></span><div><b>5일째</b> — 내 변화 리포트 + 코치 코멘트</div></div>
-            <div class="li"><span class="dot f"></span><div><b>7일째</b> — 납득되면 결제 (페이백 보장)</div></div>
+            <div class="li"><span class="dot f"></span><div><b>7일째</b> — 이어갈지 결정 (페이백 보장)</div></div>
           </div>
         </div>
         <div class="spacer"></div>
         <div class="cta">
-          <button class="btn green" data-next>7일 무료로 체험하기</button>
-          <button class="btn ghost green" id="consultBtn">의사와 먼저 상담 신청하기</button>
+          <button class="btn green" data-next>치료, 7일간 맛보기</button>
+          <button class="btn ghost green" id="consultBtn">의사와 먼저 상담 후 체험 신청하기</button>
         </div>
       </section>
 
@@ -321,9 +348,27 @@
         </div>
       </section>
 
-      <!-- S6 맞춤 플랜 + 결제 (납득된 결제) -->
+      <!-- S5B 맞춤 진단 -->
       <section class="screen" data-step="7">
-        <div class="eyebrow g">방금 답을 토대로 준비했어요</div>
+        <div class="eyebrow">방금 답을 토대로 본 1차 진단</div>
+        <h2 class="t"><span class="i" id="dxConcern">불안</span>, 이렇게 보고 있어요</h2>
+        <div class="dxcard">
+          <div class="dxrow"><span class="dxk">지금 상태</span><span class="dxv" id="dxState">—</span></div>
+          <div class="dxrow"><span class="dxk">느끼는 빈도</span><span class="dxv" id="dxFreq">—</span></div>
+          <div class="dxrow"><span class="dxk">주요 원인</span><span class="dxv" id="dxCause">—</span></div>
+        </div>
+        <div class="seclbl">디스턴싱이 이렇게 바꿔드릴게요</div>
+        <div class="dxpath" id="dxPath"><!-- JS --></div>
+        <div class="dxmed" id="dxMed"><span class="mic">🌱</span><div>—</div></div>
+        <div class="spacer"></div>
+        <div class="cta">
+          <button class="btn" data-next>그래서 나에게 맞는 플랜은?</button>
+        </div>
+      </section>
+
+      <!-- S6 맞춤 플랜 + 결제 (납득된 결제) -->
+      <section class="screen" data-step="8">
+        <div class="eyebrow g">진단을 토대로 준비한 플랜이에요</div>
         <h2 class="t">당신을 위한<br><span class="g" id="planConcern">불안</span> 완화 100일 플랜</h2>
         <div class="plan">
           <div class="pt">매일 함께하는 것</div>
@@ -333,14 +378,14 @@
           </div>
           <div class="price">
             <div class="pday">하루 4,250원</div>
-            <div class="pfull">100일 총 425,000원 · 7일 무료 체험 후 결제</div>
+            <div class="pfull">100일 총 425,000원 · 7일 맛보기 후 결제</div>
             <div class="pback">효과 없으면 페이백 — 안심하고 시작하세요</div>
           </div>
         </div>
         <div class="spacer"></div>
         <div class="cta">
-          <button class="btn green" data-next>7일 무료로 시작하기</button>
-          <div class="skip">결제는 7일 뒤, 직접 겪어본 다음에</div>
+          <button class="btn green" data-next>치료 7일간 맛보기로 시작</button>
+          <div class="skip">결제는 7일 뒤, 직접 겪어보고 이어갈 때</div>
         </div>
       </section>
 
@@ -403,7 +448,7 @@
 <script>
 (function(){
   var screens = Array.prototype.slice.call(document.querySelectorAll('.screen'));
-  var total = 7; // main funnel steps (S1–S7)
+  var total = 8; // main funnel steps (S1–S8)
   var hist = [0];
   var progfill = document.getElementById('progfill');
   var stepn = document.getElementById('stepn');
@@ -532,6 +577,33 @@
     var tagrow = document.getElementById('planTags'); tagrow.innerHTML='';
     info.tags.forEach(function(t){ var s=document.createElement('span'); s.className='ptag'; s.textContent=t; tagrow.appendChild(s); });
     document.getElementById('planHead').textContent = info.tags.join(' · ') + ' · 1:1 코치';
+    applyDiagnosis(concern);
+  }
+  /* S5B: 맞춤 진단 채우기 */
+  var DX = {
+    '불안':{state:'불안과 걱정이 자주 올라오는 상태',cause:'아직 오지 않은 일을 미리 걱정하는 ‘반추’',path:['머릿속 걱정과 나 사이에 거리 두기','그 걱정이 ‘사실’이 아님을 확인하기','불안에 덜 휘둘리는 하루 되찾기']},
+    '우울':{state:'기분이 가라앉고 무기력한 상태',cause:'부정적 생각의 반복과 활동의 감소',path:['생각을 한 걸음 떨어져 바라보기','작은 ‘가치 행동’부터 회복하기','활력과 생활 리듬 되찾기']},
+    '불면':{state:'잠들기 어렵고 생각이 멈추지 않는 상태',cause:'잠자리에서 생각이 과하게 활성화되는 것',path:['잠들기 전 생각 흘려보내기','이완·수면 루틴 만들기','수면의 질 회복하기']},
+    '강박':{state:'생각·행동을 멈추기 어려운 상태',cause:'불안을 줄이려는 반복 행동의 굳어짐',path:['생각과 거리 두는 연습','불안을 견디는 힘 키우기','반복에서 조금씩 자유로워지기']}
+  };
+  var MEDLINE = {
+    '비약물 선호':'약 없이 인지 변화부터 시작하는 방식이 잘 맞아요.',
+    '고민 중':'약은 열어두되, 먼저 인지 변화부터 함께 도와드릴게요.',
+    '상관없음':'인지 변화에 집중하면서, 필요하면 의료진과 상의해요.'
+  };
+  function applyDiagnosis(concern){
+    var info = DX[concern] || DX['불안'];
+    document.getElementById('dxConcern').textContent = concern;
+    document.getElementById('dxState').textContent = info.state;
+    document.getElementById('dxFreq').textContent = (answers.freq||'자주') + ' 느끼고 있어요';
+    document.getElementById('dxCause').textContent = info.cause;
+    var p = document.getElementById('dxPath'); p.innerHTML='';
+    info.path.forEach(function(t,i){
+      var el=document.createElement('div'); el.className='dxstep';
+      el.innerHTML='<div class="sn">'+(i+1)+'</div><div class="stt">'+t+'</div>';
+      p.appendChild(el);
+    });
+    document.getElementById('dxMed').innerHTML = '<span class="mic">🌱</span><div>'+(MEDLINE[answers.med]||MEDLINE['비약물 선호'])+'</div>';
   }
   /* consult booking */
   var consultDate=null, consultTime=null;
