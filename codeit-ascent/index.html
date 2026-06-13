@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>코드잇 어센트 · AI 모의면접 그로스 전략 ｜ 이도형</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+  :root{
+    --violet:#6B4EF0;--violet-d:#5235C8;--violet-050:#F1ECFE;--violet-100:#DDD3FB;
+    --ink:#191527;--ink2:#3A3550;--muted:#6B6680;--muted-2:#9A95AD;
+    --line:#ECE9F5;--bg:#FFFFFF;--soft:#F7F5FD;--soft2:#EFEBFB;
+    --mint:#16B79A;--mint-bg:#E5F7F2;--warn:#F2603F;--warn-bg:#FDEEEA;--amber:#F5A623;
+    --shadow:0 18px 48px -18px rgba(25,21,39,.24);--shadow-sm:0 8px 22px -13px rgba(25,21,39,.18);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{font-family:'Pretendard',-apple-system,system-ui,sans-serif;background:#0e0b1c;color:var(--ink);-webkit-font-smoothing:antialiased;overflow:hidden}
+  .deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+  .stage{position:relative;width:100vw;height:100vh;max-width:177.78vh;max-height:56.25vw;background:var(--bg);overflow:hidden}
+  .slide{position:absolute;inset:0;padding:5.4% 6.4%;display:none;flex-direction:column;animation:fade .5s ease}
+  .slide.active{display:flex}
+  @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+  .kicker{display:inline-flex;align-items:center;gap:7px;font-size:1.02vw;font-weight:700;color:var(--violet-d);background:var(--violet-050);padding:.5em 1em;border-radius:100px;letter-spacing:-.01em;width:fit-content}
+  .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--violet)}
+  .qtag{display:inline-block;font-size:.8vw;font-weight:800;color:#fff;background:var(--violet);padding:.32em .7em;border-radius:7px;margin-left:.5vw;letter-spacing:.01em;vertical-align:middle}
+  h1{font-size:4.2vw;font-weight:800;letter-spacing:-.035em;line-height:1.14}
+  h2{font-size:2.65vw;font-weight:800;letter-spacing:-.03em;line-height:1.2;color:var(--ink)}
+  h2 .hl{color:var(--violet)}
+  .sub{font-size:1.26vw;color:var(--muted);font-weight:500;line-height:1.6;letter-spacing:-.01em}
+  .slide-head{margin-bottom:2.1vh}
+  .slide-head h2{margin-top:1vh}
+  p{line-height:1.6}
+  b,strong{font-weight:700}
+
+  .foot{position:absolute;left:6.4%;right:6.4%;bottom:3vh;display:flex;justify-content:space-between;align-items:center;font-size:.9vw;color:var(--muted-2);font-weight:600;letter-spacing:-.01em}
+  .foot .brand{color:var(--violet-d);font-weight:800}
+  .pageno{font-variant-numeric:tabular-nums}
+
+  .term{position:relative;border-bottom:1.6px dotted var(--violet);cursor:help;white-space:nowrap;color:inherit}
+  .term .tip{position:absolute;bottom:142%;left:50%;transform:translateX(-50%) translateY(5px);background:var(--ink);color:#fff;padding:.8em 1em;border-radius:11px;font-size:.82vw;font-weight:500;line-height:1.5;width:max-content;max-width:24vw;white-space:normal;opacity:0;visibility:hidden;transition:.16s;z-index:40;box-shadow:0 14px 34px -10px rgba(0,0,0,.45);text-align:left;letter-spacing:-.01em}
+  .term .tip b{color:#b9a8ff}
+  .term .tip:after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:7px solid transparent;border-top-color:var(--ink)}
+  .term.down .tip{bottom:auto;top:142%;transform:translateX(-50%) translateY(-5px)}
+  .term.down .tip:after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--ink)}
+  .term:hover .tip,.term.show .tip{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+  .cover .term,.closing .term{border-bottom-color:#b9a8ff}
+
+  .grid{display:grid;gap:1.3vw}
+  .g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+  .card{background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:1.5vw;box-shadow:var(--shadow-sm)}
+  .card.soft{background:var(--soft);box-shadow:none}
+  .card .ci{font-size:1.6vw;margin-bottom:.5vw}
+  .card h3{font-size:1.3vw;font-weight:800;letter-spacing:-.02em;margin-bottom:.45vw;line-height:1.26;color:var(--ink)}
+  .card p{font-size:1.0vw;color:var(--muted);font-weight:500;letter-spacing:-.01em;line-height:1.5}
+  .card p b{color:var(--ink)}
+
+  .cover{background:linear-gradient(135deg,#241A5E 0%,#4B33C7 55%,#6B4EF0 130%);color:#fff;justify-content:center}
+  .cover .kicker{background:rgba(255,255,255,.15);color:#e7defe}.cover .kicker .dot{background:#c4b4ff}
+  .cover h1{color:#fff;margin:2.2vh 0}
+  .cover h1 .hl{color:#c9bcff}
+  .cover .lead{font-size:1.42vw;color:#cfc6ee;font-weight:500;line-height:1.65;max-width:72%}
+  .cover .lead b{color:#fff}
+  .cover .meta{margin-top:4.2vh;display:flex;gap:2.2vw;font-size:1vw;color:#a89fce;font-weight:600}
+  .cover .meta b{color:#fff;font-weight:700;display:block;font-size:1.14vw;margin-top:.3vw}
+
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1vw}
+  .stat{background:var(--soft);border-radius:16px;padding:1.4vw;border:1px solid var(--line)}
+  .stat .n{font-size:2.0vw;font-weight:800;letter-spacing:-.03em;color:var(--violet);line-height:1.05;font-variant-numeric:tabular-nums}
+  .stat .n.dark{color:var(--ink)}
+  .stat .l{font-size:.9vw;color:var(--muted);font-weight:600;margin-top:.6vw;line-height:1.4}
+
+  .rows{display:flex;flex-direction:column;gap:.85vw}
+  .row{display:flex;gap:1.05vw;align-items:flex-start;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:1.0vw 1.3vw;box-shadow:var(--shadow-sm)}
+  .row .ix{flex:none;min-width:2.1vw;height:2.1vw;padding:0 .4vw;border-radius:9px;display:grid;place-items:center;font-weight:800;font-size:.94vw;color:#fff;background:var(--violet)}
+  .row.warn .ix{background:var(--warn)}.row.mint .ix{background:var(--mint)}
+  .row .tx h4{font-size:1.14vw;font-weight:800;letter-spacing:-.02em;margin-bottom:.2vw;color:var(--ink)}
+  .row .tx p{font-size:.95vw;color:var(--muted);font-weight:500;line-height:1.48}
+  .row .tx p b{color:var(--ink)}
+  .row.hot{background:var(--violet-050);border-color:var(--violet-100);box-shadow:none}
+
+  .callout{background:var(--ink);color:#fff;border-radius:20px;padding:1.7vw 2.1vw;display:flex;gap:1.5vw;align-items:center}
+  .callout .big{font-size:3vw;font-weight:800;color:#b9a8ff;line-height:1;flex:none}
+  .callout p{font-size:1.3vw;font-weight:600;line-height:1.5;letter-spacing:-.01em}
+  .callout p b{color:#c9bcff}
+
+  .twocol{display:grid;grid-template-columns:1.05fr .95fr;gap:1.8vw;flex:1;min-height:0;align-items:center}
+
+  .lever-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1vw}
+  .lever{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:1.2vw 1.35vw}
+  .lever .ln{font-size:.84vw;font-weight:800;color:var(--violet-d);background:var(--violet-050);width:fit-content;padding:.22em .6em;border-radius:7px}
+  .lever .lt{font-size:1.14vw;font-weight:800;letter-spacing:-.02em;margin:.5vw 0 .35vw;line-height:1.25;color:var(--ink)}
+  .lever .ld{font-size:.92vw;color:var(--muted);font-weight:500;line-height:1.45}
+  .lever .ld b{color:var(--ink)}
+
+  .flow{display:flex;align-items:stretch;gap:.6vw}
+  .flow .node{flex:1;background:var(--soft);border:1px solid var(--line);border-radius:13px;padding:.95vw .85vw;display:flex;flex-direction:column}
+  .flow .node.hot{background:var(--violet-050);border-color:var(--violet-100)}
+  .flow .node .stg{font-size:.82vw;font-weight:800;color:var(--violet-d)}
+  .flow .node .nt{font-size:1.0vw;font-weight:800;letter-spacing:-.02em;margin:.32vw 0 .28vw;color:var(--ink);line-height:1.2}
+  .flow .node .nd{font-size:.8vw;color:var(--muted);font-weight:500;line-height:1.38}
+  .flow .arr{flex:none;display:grid;place-items:center;color:var(--violet);font-size:1.2vw;font-weight:800}
+
+  .pchip{display:inline-block;font-size:.82vw;font-weight:700;color:var(--violet-d);background:var(--violet-050);border:1px solid var(--violet-100);border-radius:7px;padding:.24em .6em;margin:.28vw .28vw 0 0}
+
+  .adgrid{display:flex;gap:1.3vw;flex:1;min-height:0}
+  .adcard{flex:1;background:var(--soft);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow-sm)}
+  .adcard .imgwrap{flex:1;min-height:0;background:#EEF0F2;overflow:hidden;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+  .adcard img{width:100%;height:100%;object-fit:contain;object-position:center}
+  .adcard .tt{padding:.8vw 1.1vw .12vw;font-size:1.0vw;font-weight:800;color:var(--ink)}
+  .adcard .tt span{color:var(--violet-d)}
+  .adcard .cap{padding:0 1.1vw .85vw;font-size:.84vw;color:var(--muted);line-height:1.42}
+  .adcard .cap b{color:var(--ink)}
+
+  .metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1vw}
+  .metric{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:1.2vw}
+  .metric .mh{font-size:1.0vw;font-weight:800;letter-spacing:-.02em;margin-bottom:.4vw;color:var(--ink)}
+  .metric .md{font-size:.84vw;color:var(--muted);font-weight:500;line-height:1.42}
+  .metric .mk2{font-size:.8vw;font-weight:800;color:var(--violet-d);margin-top:.5vw}
+
+  /* funnel bars (증분) */
+  .fbar{display:flex;flex-direction:column;gap:.7vw}
+  .fstep{display:flex;align-items:center;gap:1vw}
+  .fstep .fl{font-size:.96vw;font-weight:700;color:var(--ink);width:12vw}
+  .fstep .ftrack{flex:1;height:1.9vw;background:var(--soft2);border-radius:8px;overflow:hidden}
+  .fstep .ffill{height:100%;background:linear-gradient(90deg,var(--violet),#9a86f7);border-radius:8px}
+  .fstep .fv{font-size:.96vw;font-weight:800;color:var(--violet-d);width:7vw;text-align:right;font-variant-numeric:tabular-nums}
+
+  .note{font-size:.82vw;color:var(--muted-2);font-weight:500;margin-top:1vh;line-height:1.5}
+  .note b{color:var(--muted)}
+
+  .closing{background:linear-gradient(135deg,#241A5E 0%,#4B33C7 60%,#6B4EF0 130%);color:#fff;justify-content:center}
+  .closing h2{color:#fff;font-size:2.85vw}.closing h2 .hl{color:#c9bcff}
+  .closing .lead{font-size:1.4vw;color:#cfc6ee;font-weight:500;line-height:1.66;margin-top:2.2vh;max-width:80%}
+  .closing .lead b{color:#fff}
+  .closing .sign{margin-top:4vh;font-size:1.05vw;color:#a89fce;font-weight:600}.closing .sign b{color:#fff}
+
+  .nav{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;background:rgba(20,15,40,.82);backdrop-filter:blur(10px);padding:9px 16px;border-radius:100px;z-index:50}
+  .nav button{background:none;border:none;color:#fff;font-size:15px;cursor:pointer;opacity:.85;padding:2px 4px}
+  .nav button:hover{opacity:1}
+  .nav .ind{color:#fff;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;min-width:46px;text-align:center}
+  .progress{position:fixed;top:0;left:0;height:3px;background:var(--violet);z-index:60;transition:width .4s ease}
+  .hint{position:fixed;bottom:22px;right:22px;font-size:12px;color:rgba(25,21,39,.4);z-index:50}
+  @media(max-width:760px){.hint{display:none}.term .tip{max-width:62vw;font-size:11px}}
+</style>
+</head>
+<body>
+<div class="progress" id="bar"></div>
+<div class="deck"><div class="stage">
+
+  <!-- 1 COVER -->
+  <section class="slide active cover">
+    <span class="kicker"><span class="dot"></span>코드잇 어센트 · 마케팅 매니저(신사업) 사전과제</span>
+    <h1>코딩은 가르쳤으니,<br><span class="hl">이제 '합격'을 가르친다</span></h1>
+    <p class="lead">AI 모의면접 <b>어센트</b>의 첫 시장은 — 경쟁사도 ChatGPT도 비워둔 <b>'IT 직무 실전 면접'</b>. 코드잇만의 자산으로 그 빈틈을 선점하는 페르소나·USP·런칭 캠페인을 제안합니다.</p>
+    <div class="meta">
+      <div>대상<b>코드잇 어센트 · AI 모의면접</b></div>
+      <div>제출<b>이도형 · 2026.06</b></div>
+      <div>구성<b>경쟁·페르소나(Q1) → USP·메시지 → 캠페인(Q2)</b></div>
+    </div>
+    <div class="foot"><span class="brand">Codeit Ascent · Growth</span><span class="pageno">01 / 15</span></div>
+  </section>
+
+  <!-- 2 어센트 이해 + 답변 맵 -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>어센트 이해 & 오늘의 답변 지도</span>
+      <h2>'AI 모의면접'을 <span class="hl">가입·유료 전환</span>으로 키운다</h2></div>
+    <div class="g4 grid" style="margin-bottom:1.6vh">
+      <div class="stat"><div class="n dark">AI 면접관</div><div class="l">기업·직무별 실전 모의면접</div></div>
+      <div class="stat"><div class="n dark">표정·시선·말투</div><div class="l">비언어까지 분석 + 상세 리포트</div></div>
+      <div class="stat"><div class="n">무료 1크레딧</div><div class="l">가입 시 제공 → 패키지(~1.5만원)</div></div>
+      <div class="stat"><div class="n">가입 + 유료</div><div class="l">과제 목표 = 회원가입·크레딧 구매 ↑</div></div>
+    </div>
+    <div class="flow">
+      <div class="node"><div class="stg">Q1</div><div class="nt">경쟁·페르소나</div><div class="nd">누가 있고, 누구를 비웠나 → 우선 타겟</div></div>
+      <div class="arr">→</div>
+      <div class="node hot"><div class="stg">Q1</div><div class="nt">USP·메시지</div><div class="nd">차별점 → 핵심 가치 → 설득 카피</div></div>
+      <div class="arr">→</div>
+      <div class="node"><div class="stg">참고</div><div class="nt">레퍼런스·콘텐츠</div><div class="nd">벤치마크 임베딩 → 차용 콘텐츠</div></div>
+      <div class="arr">→</div>
+      <div class="node"><div class="stg">Q2</div><div class="nt">캠페인·KPI</div><div class="nd">액션·채널·증분·성공지표</div></div>
+    </div>
+    <p class="note">※ 본 덱은 위 흐름 순서대로 진행하며, 각 장 상단 배지로 <b>과제 문항(Q1·Q2)</b>의 어느 답인지 표시합니다.</p>
+    <div class="foot"><span class="brand">Codeit Ascent · Growth</span><span class="pageno">02 / 15</span></div>
+  </section>
+
+  <!-- 3 경쟁 지형 -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>경쟁 지형 · 누가 있는가<span class="qtag">Q1</span></span>
+      <h2>면접 준비 시장은 이미 <span class="hl">네 부류</span>가 점유 중</h2></div>
+    <div class="g4 grid" style="flex:1;align-content:center">
+      <div class="card"><div class="ci">🏢</div><h3>마이다스인 잡다·inAIR</h3><p>대기업 <b>AI 역량검사</b> 표준(450개사). 취준생 82%가 경험 — 단, B2B '채용 통과'용.</p></div>
+      <div class="card"><div class="ci">🎥</div><h3>뷰인터HR (제네시스랩)</h3><p>AI 영상면접 솔루션. 기업 도입형 + 구직자 연습.</p></div>
+      <div class="card"><div class="ci">📋</div><h3>사람인·잡코리아·면접왕</h3><p>범용 AI 모의면접 부가 기능. 자소서·공고 중심, 면접은 곁다리.</p></div>
+      <div class="card" style="border:1px dashed var(--warn);background:var(--warn-bg)"><div class="ci">🤖</div><h3>ChatGPT (무료 대체재)</h3><p>가장 큰 위협. 단 <b>실제 환경·비언어·기업별·리포트가 없는</b> 텍스트 연습.</p></div>
+    </div>
+    <p class="note"><b>출처</b> · 마이다스인 보도(AI역량검사 450개사·취준생 82% 경험), 제네시스랩 뷰인터, 사람인·면접왕 서비스. ※ 공개자료.</p>
+    <div class="foot"><span class="brand">Codeit Ascent · Growth</span><span class="pageno">03 / 15</span></div>
+  </section>
+
+  <!-- 4 경쟁사 페르소나 + 빈틈 -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>경쟁사가 공략하는 페르소나 · 빈틈<span class="qtag">Q1</span></span>
+      <h2>모두 '대기업 공채·범용'에 몰려 — <span class="hl">'IT 직무 실전'은 무주공산</span></h2></div>
+    <div class="twocol">
+      <div class="rows">
+        <div class="row"><div class="ix">잡다</div><div class="tx"><h4>대기업 공채 'AI 역량검사' 응시자</h4><p>인적성·게임형 검사 통과가 목적. 직무 실전 대화 면접과는 결이 다름.</p></div></div>
+        <div class="row"><div class="ix">뷰인터</div><div class="tx"><h4>영상면접 도입 기업 지원자</h4><p>기업이 시켜서 보는 영상면접 대비 — 범용·수동적.</p></div></div>
+        <div class="row"><div class="ix">범용</div><div class="tx"><h4>사람인·ChatGPT = 모든 구직자</h4><p>'누구나'를 노려 <b>누구에게도 특화되지 않음</b>. 특히 IT 직무 깊이가 없음.</p></div></div>
+      </div>
+      <div><div class="callout" style="flex-direction:column;align-items:flex-start;gap:.9vw">
+        <p style="font-size:1.42vw">비어 있는 시장 — <b>"코드는 짰는데 면접은 처음인 IT 직무 취준생"</b>을 정조준하는 곳이 없습니다.</p>
+        <p style="font-size:1vw;color:#a89fce;font-weight:500">바로 코드잇이 가장 잘 아는, 가장 많이 가진 고객.</p>
+      </div></div>
+    </div>
+    <div class="foot"><span class="brand">Codeit Ascent · Growth</span><span class="pageno">04 / 15</span></div>
+  </section>
+
+  <!-- 5 놓친 페르소나 뺏기 -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>놓친 페르소나를 빼앗는 법<span class="qtag">Q1</span></span>
+      <h2>코드잇의 <span class="hl">자산</span>으로 빈틈을 선점한다</h2></div>
+    <div class="g3 grid" style="flex:1;align-content:center">
+      <div class="card"><div class="ci">🎓</div><h3>IT 교육 1위의 신뢰</h3><p>'코드잇이 만든 IT 면접'이라는 <b>직무 전문성·신뢰</b> — 범용 경쟁사가 못 가진 무기.</p></div>
+      <div class="card" style="border-top:4px solid var(--violet)"><div class="ci">🔗</div><h3>이미 보유한 고객 풀</h3><p>스프린트 수료생·강의 수강생 = IT 취준 페르소나 그 자체 → <b>저<span class="term">CAC<span class="tip"><b>CAC</b> · 고객 획득 비용.</span></span> 전환</b>.</p></div>
+      <div class="card"><div class="ci">🎯</div><h3>실전 차별점</h3><p>ChatGPT가 못 주는 <b>실제 환경·비언어·꼬리질문·리포트</b>로 'IT 실전'을 정조준.</p></div>
+    </div>
+    <div class="callout"><div class="big">→</div><p>경쟁사의 '대기업 공채 응시자'를 정면으로 뺏기보다, <b>아무도 안 챙긴 'IT 직무 실전' 페르소나를 코드잇 자산으로 선점</b>하고 거기서 확장합니다.</p></div>
+    <div class="foot"><span class="brand">Codeit Ascent · Growth</span><span class="pageno">05 / 15</span></div>
+  </section>
+
+  <!-- 6 우선 페르소나 (문제1) -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>우선 페르소나 정의<span class="qtag">Q1 답</span></span>
+      <h2>"코드는 짰는데, <span class="hl">면접 앞에선 머리가 하얘지는</span> IT 직무 취준생"</h2></div>
+    <div class="twocol" style="grid-template-columns:.9fr 1.1fr">
+      <div class="card" style="border:1px solid var(--violet-100);background:var(--violet-050)">
+        <div class="ci">👩‍💻</div>
+        <h3>페르소나 · 'IT 직무 첫 실전' 취준생</h3>
+        <p style="margin-top:.5vw">부트캠프·전공·독학으로 <b>개발/데이터/AI 역량은 쌓았지만</b>, 기술+인성+꼬리질문이 섞인 <b>실전 면접 경험이 부족</b>한 20대 후반~30대 초 신입·중고신입.</p>
+      </div>
+      <div class="rows">
+        <div class="row mint"><div class="ix">근거</div><div class="tx"><h4>코드잇 자산 정합 → 가장 싸게 획득</h4><p>스프린트·강의 수강생이 곧 이 페르소나. 수료=취업 단계라 전환 동선이 자연스럽다.</p></div></div>
+        <div class="row mint"><div class="ix">근거</div><div class="tx"><h4>경쟁 무주공산 + 높은 지불의사</h4><p>IT 실전 면접 특화 강자 부재. 취업 직결이라 ~1.5만원 지불 장벽 낮음.</p></div></div>
+        <div class="row mint"><div class="ix">근거</div><div class="tx"><h4>확장의 교두보</h4><p>IT에서 신뢰를 쌓아 전 직무·채용 플랫폼으로 확장(어센트 비전과 정합).</p></div></div>
+      </div>
+    </div>
+    <div class="foot"><span class="brand">Codeit Ascent · Growth</span><span class="pageno">06 / 15</span></div>
+  </section>
+
+  <!-- 7 USP (문제1) -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>USP & 핵심 가치 제안<span class="qtag">Q1 답</span></span>
+      <h2>ChatGPT엔 없는 <span class="hl">'진짜 면접 환경'</span> + 코드잇의 IT 신뢰</h2></div>
+    <div class="g4 grid" style="margin-bottom:1.4vh">
+      <div class="card"><div class="ci">🎬</div><h3>실제 기업·직무 환경</h3><p>삼성·네이버·카카오·토스 + IT 직무 그대로. 맥락 없는 ChatGPT와 차원이 다름.</p></div>
+      <div class="card"><div class="ci">👁️</div><h3>비언어까지 분석</h3><p>표정·시선·말투 — 사람도 못 주는 객관 피드백.</p></div>
+      <div class="card"><div class="ci">📊</div><h3>점수·꼬리질문·리포트</h3><p>'연습'이 아니라 <b>합격까지 코칭</b>.</p></div>
+      <div class="card" style="border-top:4px solid var(--violet)"><div class="ci">🎓</div><h3>코드잇 IT 신뢰</h3><p>IT 교육 1위가 만든 직무 면접.</p></div>
+    </div>
+    <div class="callout"><div class="big">＂</div><p>핵심 가치 — <b>"코딩 실력은 키웠으니, 이제 합격하는 면접을. 표정까지 코칭받는 진짜 모의면접을 무료 크레딧으로 한 번."</b></p></div>
+    <div class="foot"><span class="brand">Codeit Ascent · Growth</span><span class="pageno">07 / 15</span></div>
+  </section>
+
+  <!-- 8 메시지 -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>USP를 설득하는 메시지</span>
+      <h2>가격이 아니라 <span class="hl">'첫 실전의 두려움'</span>을 건드린다</h2></div>
+    <div class="rows">
+      <div class="row hot"><div class="ix">메인</div><div class="tx"><h4>"면접, 처음이라 머리가 하얘지죠? 합격하는 사람은 '실전처럼' 연습합니다."</h4><p>페르소나의 가장 큰 페인(실전 경험 부족)을 정면으로.</p></div></div>
+      <div class="row"><div class="ix">차별</div><div class="tx"><h4>"ChatGPT엔 없는 진짜 면접 환경 — 표정·꼬리질문까지."</h4><p>무료 대체재 대비 차별점을 한 줄로.</p></div></div>
+      <div class="row"><div class="ix">전환</div><div class="tx"><h4>"코딩 다음은 합격. 무료 크레딧 1개로 지금 실전 한 번."</h4><p>코드잇 맥락 + 무료 진입 훅.</p></div></div>
+    </div>
+    <p class="note">메시지 톤 = 코드잇 보이스("5분마다 인생이 바뀐다")의 결 — 가볍게 시작, 결과로 증명.</p>
+    <div class="foot"><span class="brand">Codeit Ascent · Growth</span><span class="pageno">08 / 15</span></div>
+  </section>
+
+  <!-- 9 레퍼런스 임베딩 -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>레퍼런스 · 메시지에 가장 가까운 벤치마크</span>
+      <h2>'AI로 실전 연습 → 결과'를 <span class="hl">이렇게</span> 판다</h2></div>
+    <div class="adgrid">
+      <div class="adcard">
+        <div class="imgwrap"><img src="images/ref-speak.jpg" alt="Speak 스픽 광고 (Meta 라이브러리)" /></div>
+        <div class="tt"><span>Speak(스픽)</span> · 메시지 공식 벤치마크</div>
+        <div class="cap">"AI랑 실전처럼 연습 → 입이 트인다" + <b>실제 후기 인용</b> + "지금 바로 무료 경험" + 앱 데모 영상. → 차용: <b>실전연습→결과 공식·후기 인용·무료 훅·데모.</b></div>
+      </div>
+      <div class="adcard">
+        <div class="imgwrap"><img src="images/ref-jobedu.jpg" alt="취업 교육 광고 (Meta 라이브러리)" /></div>
+        <div class="tt"><span>취업 교육</span> · 결과 증명 벤치마크</div>
+        <div class="cap">"수료생 취업률·취업수당"으로 <b>'합격이라는 결과'를 증명</b>, 사회초년생 타겟. → 차용: <b>합격·결과 증명 + 진입 혜택(무료 크레딧)</b>.</div>
+      </div>
+    </div>
+    <p class="note"><b>출처</b> · Meta 광고 라이브러리(대한민국 '스픽'·'AI 면접' 활성 광고, 2026.06 캡처).</p>
+    <div class="foot"><span class="brand">Codeit Ascent · Growth</span><span class="pageno">09 / 15</span></div>
+  </section>
+
+  <!-- 10 콘텐츠 -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>차용해서 나와야 할 콘텐츠</span>
+      <h2>레퍼런스를 어센트판으로 <span class="hl">번역</span>하면</h2></div>
+    <div class="g4 grid" style="flex:1;align-content:center">
+      <div class="card"><div class="ci">🎬</div><h3>실전 데모 숏폼</h3><p>실제 모의면접 화면 + 리포트 공개 (Speak 앱 데모 차용).</p></div>
+      <div class="card"><div class="ci">⚖️</div><h3>"ChatGPT vs 어센트"</h3><p>환경·비언어·리포트 차이를 한 화면에 — 차별점 시각화.</p></div>
+      <div class="card"><div class="ci">😵</div><h3>공감 훅 숏폼</h3><p>"IT 면접 실전 꼬리질문 TOP5 / 머리 하얘지는 순간" — 페르소나 정조준.</p></div>
+      <div class="card"><div class="ci">🏆</div><h3>합격 후기 UGC</h3><p>"어센트로 연습하고 합격" 인용 (Speak 후기 포맷 차용).</p></div>
+    </div>
+    <div class="callout"><div class="big">↺</div><p>모든 콘텐츠의 종착지는 하나 — <b>'무료 크레딧 1개로 첫 실전 면접 보기'</b> CTA로 수렴.</p></div>
+    <div class="foot"><span class="brand">Codeit Ascent · Growth</span><span class="pageno">10 / 15</span></div>
+  </section>
+
+  <!-- 11 마케팅 액션 2가지 (문제2) -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>초기 런칭 캠페인 · 액션 2가지<span class="qtag">Q2 답</span></span>
+      <h2>가진 풀로 <span class="hl">싸게</span>, 밖에서 <span class="hl">넓게</span></h2></div>
+    <div class="lever-grid" style="flex:1;align-content:center">
+      <div class="lever" style="border-left:4px solid var(--mint)">
+        <span class="ln">액션 1 · Owned (저CAC 전환)</span>
+        <div class="lt">코드잇 풀 '합격까지' 전환</div>
+        <div class="ld">스프린트 수료생·강의 수강생에게 <b>수료=취업 시점 트리거</b>로 "이제 면접만 남았어요, 무료 크레딧으로 실전 한 번" 푸시. <br><b>채널</b>: 앱푸시·이메일·카톡 알림톡·수료 페이지·커뮤니티(디스코드) 면접 챌린지.</div>
+      </div>
+      <div class="lever" style="border-left:4px solid var(--violet)">
+        <span class="ln">액션 2 · Paid (신규 획득)</span>
+        <div class="lt">구직자 밀집처 숏폼·검색</div>
+        <div class="ld">데모·비교 숏폼으로 인지 → 무료 크레딧 CTA. <br><b>채널</b>: 인스타·유튜브 릴스/쇼츠(면접·취업 콘텐츠 시청자), 네이버·구글 검색('개발자 면접 질문'), 에브리타임·대학커뮤·잡카페.</div>
+      </div>
+    </div>
+    <p class="note">전략 = <b>Owned로 CAC를 끌어내리고, Paid로 신규 풀을 넓힌다.</b> 두 액션 모두 '무료 크레딧 1개'로 첫 활성화를 만든다.</p>
+    <div class="foot"><span class="brand">Codeit Ascent · Growth</span><span class="pageno">11 / 15</span></div>
+  </section>
+
+  <!-- 12 채널별 선정 이유 + 운영 방향성 (문제2) -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>채널별 선정 이유 & 운영 방향성<span class="qtag">Q2 답</span></span>
+      <h2>채널을 <span class="hl">타겟·퍼널·매체특성</span>으로 배치</h2></div>
+    <div class="rows" style="margin-bottom:1.3vh">
+      <div class="row"><div class="ix">전환</div><div class="tx"><h4>코드잇 Owned (앱푸시·CRM·수료 페이지)</h4><p><b>타겟 매칭</b> 페르소나 그 자체 · <b>퍼널</b> 하단(전환) · <b>매체</b> CAC≈0·즉시 도달.</p></div></div>
+      <div class="row"><div class="ix">인지</div><div class="tx"><h4>유튜브·인스타 숏폼</h4><p><b>타겟</b> 면접·취업 콘텐츠 시청자 · <b>퍼널</b> 인지·고려 · <b>매체</b> 데모 영상에 최적·저CPM 도달.</p></div></div>
+      <div class="row"><div class="ix">전환</div><div class="tx"><h4>네이버·구글 검색(SA)</h4><p><b>타겟</b> 'IT/개발 면접 준비' 검색 의도 · <b>퍼널</b> 하단·고전환 · <b>매체</b> 즉시 니즈 캡처.</p></div></div>
+      <div class="row"><div class="ix">신뢰</div><div class="tx"><h4>에브리타임·대학커뮤·잡카페</h4><p><b>타겟</b> 취준 페르소나 밀집 · <b>퍼널</b> 고려 · <b>매체</b> 또래 신뢰·후기.</p></div></div>
+    </div>
+    <p class="note"><b>운영 방향성</b> · 크리에이티브=실제 화면·리포트 데모+합격 후기 / 타겟팅=Meta 관심사(취업·개발)+수강생 시드 <span class="term up">유사타겟<span class="tip"><b>유사타겟(Lookalike)</b> · 기존 고객과 닮은 신규 잠재고객을 자동으로 찾아 노출.</span></span> / 형식=9:16 숏폼·캐러셀(리포트 해부)·검색 RSA / 빈도=주 2~3 신규 소재·위닝 스케일·격주 리프레시.</p>
+    <div class="foot"><span class="brand">Codeit Ascent · Growth</span><span class="pageno">12 / 15</span></div>
+  </section>
+
+  <!-- 13 증분 예측 (문제2) -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>액션의 증분 예측 (예측치)<span class="qtag">Q2 답</span></span>
+      <h2>'무료 크레딧 사용'이 <span class="hl">유료 전환의 선행지표</span></h2></div>
+    <div class="twocol" style="grid-template-columns:1.05fr .95fr">
+      <div class="fbar">
+        <div class="fstep"><span class="fl">신규 회원가입</span><div class="ftrack"><div class="ffill" style="width:100%"></div></div><span class="fv">100%</span></div>
+        <div class="fstep"><span class="fl">무료 크레딧 사용(활성화)</span><div class="ftrack"><div class="ffill" style="width:60%"></div></div><span class="fv">~60%</span></div>
+        <div class="fstep"><span class="fl">유료 크레딧 전환</span><div class="ftrack"><div class="ffill" style="width:18%"></div></div><span class="fv">~18%</span></div>
+        <div class="fstep"><span class="fl">패키지 재구매</span><div class="ftrack"><div class="ffill" style="width:7%"></div></div><span class="fv">~7%</span></div>
+      </div>
+      <div class="rows">
+        <div class="row mint"><div class="ix">1</div><div class="tx"><h4>Owned = 저CAC 가입 증분</h4><p>수료·수강 풀 전환으로 <b>거의 0원에 가입·활성화</b>를 확보 → 전체 CAC를 끌어내림.</p></div></div>
+        <div class="row"><div class="ix">2</div><div class="tx"><h4>Paid = 신규 가입 증분</h4><p>광고비 ÷ 가입 CAC = 신규 가입. 무료 크레딧 사용률이 유료 전환을 좌우.</p></div></div>
+        <div class="row hot"><div class="ix">핵심</div><div class="tx"><h4>레버는 '활성화율'</h4><p>가입만 늘리지 않는다 — <b>첫 모의면접 완주(활성화)</b>를 올리면 유료 전환이 곱으로 커진다.</p></div></div>
+      </div>
+    </div>
+    <p class="note">※ 퍼널 %는 구조를 보여주는 <b>예시값</b> — 실제는 런칭 데이터로 보정. ARPU 기준 ≈ 1.5만원/패키지.</p>
+    <div class="foot"><span class="brand">Codeit Ascent · Growth</span><span class="pageno">13 / 15</span></div>
+  </section>
+
+  <!-- 14 KPI (문제2) -->
+  <section class="slide">
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>성공 판단 지표 (KPI)<span class="qtag">Q2 답</span></span>
+      <h2>무엇으로 <span class="hl">'달성/미달'</span>을 판단하나</h2></div>
+    <div class="callout" style="margin-bottom:1.5vh"><div class="big">★</div><p>북극성 = <b>유료 크레딧 패키지를 구매한 사용자 수</b> (= 과제 목표: 가입 + 유료 전환).</p></div>
+    <div class="metric-grid">
+      <div class="metric"><div class="mh">신규 회원가입 수</div><div class="md">획득 규모 · 채널별 분해</div><div class="mk2">↑ 상향</div></div>
+      <div class="metric"><div class="mh">무료 크레딧 활성화율</div><div class="md">첫 모의면접 완주 = 전환 선행</div><div class="mk2">↑ 상향</div></div>
+      <div class="metric"><div class="mh">무료→유료 전환율</div><div class="md">수익화 핵심 KPI</div><div class="mk2">↑ 상향</div></div>
+      <div class="metric"><div class="mh"><span class="term up">CAC<span class="tip"><b>CAC</b> · 획득 비용.</span></span> · <span class="term up">ROAS<span class="tip"><b>ROAS</b> · 광고비 대비 매출. 채널별 효율 판정.</span></span></div><div class="md">Owned로↓ · Paid 채널 증액/킬 판정</div><div class="mk2">효율</div></div>
+    </div>
+    <p class="note">판단 = 이 지표들이 <b>목표 증분 대비 달성</b>이면 위닝 채널·소재 증액, 미달이면 빠르게 킬·재설계. (Test &amp; Learn)</p>
+    <div class="foot"><span class="brand">Codeit Ascent · Growth</span><span class="pageno">14 / 15</span></div>
+  </section>
+
+  <!-- 15 CLOSING -->
+  <section class="slide closing">
+    <span class="kicker"><span class="dot"></span>맺음말</span>
+    <h2>코드잇은 코딩을 가르쳤습니다.<br><span class="hl">이제 '합격'까지 함께합니다</span></h2>
+    <p class="lead">아무도 안 챙긴 <b>'IT 직무 첫 실전' 페르소나</b>를 코드잇 자산으로 선점하고, <b>'진짜 면접 환경'</b>이라는 USP를 Speak식 메시지로 전해, <b>Owned로 싸게·Paid로 넓게</b> 가입과 유료 전환을 키우겠습니다.</p>
+    <div style="margin-top:24px;display:flex;gap:11px;flex-wrap:wrap">
+      <span class="pchip" style="font-size:1vw;padding:.5em 1em;background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.25)">IT 실전 페르소나 선점</span>
+      <span class="pchip" style="font-size:1vw;padding:.5em 1em;background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.25)">진짜 면접 환경 USP</span>
+      <span class="pchip" style="font-size:1vw;padding:.5em 1em;background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.25)">Owned×Paid</span>
+      <span class="pchip" style="font-size:1vw;padding:.5em 1em;background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.25)">활성화율 = 전환 레버</span>
+    </div>
+    <div class="sign">코드잇 어센트 마케팅 매니저(신사업) 지원 · <b>이도형</b></div>
+    <div class="foot"><span class="brand">Codeit Ascent · Growth</span><span class="pageno">15 / 15</span></div>
+  </section>
+
+</div></div>
+
+<div class="nav">
+  <button id="prev" aria-label="이전">◀</button>
+  <span class="ind"><span id="cur">1</span> / 15</span>
+  <button id="next" aria-label="다음">▶</button>
+</div>
+<div class="hint">← → 또는 클릭 · 점선 단어에 마우스/탭하면 뜻이 나옵니다 · F 전체화면</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  const bar=document.getElementById('bar'), cur=document.getElementById('cur');
+  const terms=[...document.querySelectorAll('.term')];
+  let i=0;
+  function closeTips(){terms.forEach(t=>t.classList.remove('show'))}
+  function show(n){i=Math.max(0,Math.min(slides.length-1,n));slides.forEach((s,k)=>s.classList.toggle('active',k===i));bar.style.width=((i+1)/slides.length*100)+'%';cur.textContent=i+1;closeTips();}
+  document.getElementById('next').onclick=e=>{e.stopPropagation();show(i+1)};
+  document.getElementById('prev').onclick=e=>{e.stopPropagation();show(i-1)};
+  terms.forEach(t=>t.addEventListener('click',e=>{e.stopPropagation();const o=t.classList.contains('show');closeTips();if(!o)t.classList.add('show');}));
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' ')show(i+1);
+    else if(e.key==='ArrowLeft'||e.key==='PageUp')show(i-1);
+    else if(e.key==='Home')show(0);else if(e.key==='End')show(slides.length-1);
+    else if(e.key==='f'||e.key==='F'){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen();}
+  });
+  document.querySelector('.stage').addEventListener('click',e=>{if(e.target.closest('.nav')||e.target.closest('.term'))return;const x=e.clientX/window.innerWidth;if(x>0.5)show(i+1);else show(i-1);});
+  show(0);
+</script>
+</body>
+</html>
