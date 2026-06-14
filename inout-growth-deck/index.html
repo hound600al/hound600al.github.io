@@ -24,7 +24,7 @@ html,body{height:100%;background:#23252B;font-family:var(--font);-webkit-font-sm
 #stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .deck{position:relative;width:1280px;height:720px;transform-origin:center center}
 .slide{position:absolute;inset:0;background:var(--bg);display:none;flex-direction:column;
-  padding:54px 70px;overflow:hidden}
+  padding:50px 68px;overflow:hidden}
 .slide.active{display:flex;animation:fade .5s ease}
 @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
@@ -32,11 +32,11 @@ html,body{height:100%;background:#23252B;font-family:var(--font);-webkit-font-sm
   color:var(--mint-deep);text-transform:uppercase;margin-bottom:12px}
 .kicker.lav{color:var(--lav-deep)} .kicker.sky{color:var(--sky-deep)} .kicker.coral{color:var(--coral)}
 .kicker.gray{color:var(--gray)} .kicker.yellow{color:var(--yellow-deep)}
-h1{font-size:58px;font-weight:800;line-height:1.1;color:var(--ink);letter-spacing:-.02em}
-h2{font-size:37px;font-weight:800;line-height:1.16;color:var(--ink);letter-spacing:-.02em}
+h1{font-size:56px;font-weight:800;line-height:1.1;color:var(--ink);letter-spacing:-.02em}
+h2{font-size:36px;font-weight:800;line-height:1.16;color:var(--ink);letter-spacing:-.02em}
 h3{font-size:21px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
 p,li{font-size:17px;line-height:1.6;color:#2B2D33}
-.lead{font-size:21px;line-height:1.6;color:var(--gray2);font-weight:500}
+.lead{font-size:21px;line-height:1.62;color:var(--gray2);font-weight:500}
 .hl{background:linear-gradient(transparent 58%, var(--mint) 58%);font-weight:800;color:var(--ink)}
 .hl.lav{background:linear-gradient(transparent 58%, var(--lav) 58%)}
 .hl.coral{background:linear-gradient(transparent 58%, var(--coral-soft) 58%)}
@@ -45,7 +45,6 @@ b,strong{font-weight:800;color:var(--ink)}
 .mono{font-variant-numeric:tabular-nums}
 
 .head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:22px}
-.head .pg{font-size:13px;color:var(--gray);font-weight:600}
 .logo{display:inline-flex;align-items:center;gap:9px;font-weight:800;font-size:18px;letter-spacing:-.01em;color:var(--ink)}
 .logo .ic{width:24px;height:24px;border-radius:8px;background:
   conic-gradient(from 210deg,#1FB463,#5B6CFF,#FF7A4D,#FFD43B,#1FB463)}
@@ -77,7 +76,13 @@ td b{font-weight:800}
 tr.hi td{background:var(--mint)}
 .chk{color:var(--mint-deep);font-weight:800} .x{color:var(--coral);font-weight:800}
 
-.phone{width:228px;height:474px;border-radius:32px;background:#fff;border:8px solid #111;
+/* screenshot */
+.shot{border-radius:16px;border:1px solid var(--line);box-shadow:var(--shadow);width:100%;display:block}
+.cap{font-size:12.5px;color:var(--gray);margin-top:8px;text-align:center;line-height:1.4}
+.shotwrap{position:relative}
+.shotwrap .badge{position:absolute;left:12px;top:12px;background:var(--ink);color:#fff;font-size:12px;font-weight:800;padding:5px 11px;border-radius:999px}
+
+.phone{width:226px;height:470px;border-radius:32px;background:#fff;border:8px solid #111;
   box-shadow:var(--shadow);overflow:hidden;position:relative;flex:none}
 .phone .top{height:28px;background:#fff;display:flex;align-items:center;justify-content:center}
 .phone .notch{width:70px;height:15px;background:#111;border-radius:0 0 12px 12px}
@@ -92,9 +97,6 @@ tr.hi td{background:var(--mint)}
 .gauge .ring{width:46px;height:46px;border-radius:50%;
   background:conic-gradient(var(--mint-deep) 62%, #E6E7EA 0);margin:0 auto;display:flex;align-items:center;justify-content:center}
 .gauge .ring i{width:33px;height:33px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:800;font-style:normal;color:var(--ink)}
-.srow{display:flex;gap:6px;margin-bottom:8px}
-.scard{flex:1;border-radius:12px;padding:9px 8px;font-size:9px;font-weight:800;min-height:44px;display:flex;flex-direction:column;justify-content:space-between}
-.scard .e{font-size:14px}
 .buried{background:var(--soft);border-radius:10px;padding:7px 9px;font-size:8.5px;color:var(--gray);margin-bottom:5px;font-weight:600}
 .hubrow{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px}
 .hub{border-radius:11px;padding:8px;font-size:8.5px;font-weight:800;display:flex;flex-direction:column;gap:3px;min-height:40px}
@@ -106,20 +108,29 @@ tr.hi td{background:var(--mint)}
 .callout{background:var(--ink);color:#fff;border-radius:var(--radius);padding:20px 24px}
 .callout h3{color:#fff} .callout p{color:#D7D9DE}
 .quote{background:linear-gradient(120deg,var(--ink),#23252B);color:#fff;border-radius:var(--radius);padding:26px 30px}
-.quote .q{font-size:27px;font-weight:800;line-height:1.34;letter-spacing:-.01em}
+.quote .q{font-size:27px;font-weight:800;line-height:1.34;letter-spacing:-.01em;color:#fff}
 .quote .q .g{background:linear-gradient(90deg,#7CF0AC,#8AA0FF,#FFB38C);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* agenda list */
+.agenda{display:flex;flex-direction:column;gap:12px}
+.arow{display:flex;align-items:center;gap:18px;background:var(--soft);border-radius:16px;padding:16px 22px}
+.arow .n{width:38px;height:38px;border-radius:11px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;flex:none}
+.arow .ti{font-size:20px;font-weight:800;color:var(--ink)}
+.arow .de{font-size:15px;color:var(--gray2);margin-top:1px}
+.arow.m{background:var(--mint)} .arow.s{background:var(--sky)} .arow.l{background:var(--lav)} .arow.c{background:var(--coral-soft)} .arow.y{background:var(--yellow)}
+
 .flag{font-size:13px;color:var(--gray);font-style:italic}
 .src{font-size:12px;color:var(--gray);line-height:1.5}
 .src b{color:var(--gray2);font-weight:700}
-.foot{position:absolute;left:70px;right:70px;bottom:22px;display:flex;justify-content:space-between;
-  font-size:12px;color:var(--gray);border-top:1px solid var(--line);padding-top:11px}
+.foot{position:absolute;left:68px;right:68px;bottom:20px;display:flex;justify-content:space-between;
+  font-size:12px;color:var(--gray);border-top:1px solid var(--line);padding-top:10px;gap:20px}
+.foot .src{flex:1}
 
 ul.clean{list-style:none}
 ul.clean li{position:relative;padding-left:24px;margin-bottom:9px;font-size:16px}
 ul.clean li:before{content:"";position:absolute;left:4px;top:10px;width:8px;height:8px;border-radius:3px;background:var(--mint-deep)}
 ul.clean.lav li:before{background:var(--lav-deep)} ul.clean.coral li:before{background:var(--coral)}
 ul.clean.sky li:before{background:var(--sky-deep)}
-ul.arrow li:before{content:"→";background:none;left:0;top:0;font-weight:800;color:var(--ink);font-size:16px;width:auto;height:auto}
 
 .flow{display:flex;align-items:stretch;gap:0}
 .flow .step{flex:1;background:var(--soft);border-radius:14px;padding:13px;text-align:center}
@@ -146,8 +157,8 @@ ul.arrow li:before{content:"→";background:none;left:0;top:0;font-weight:800;co
   <div class="kicker">경쟁전략 & 비즈니스 모델 제안 · Growth Marketing</div>
   <h1>왜 <span class="hl">필라이즈가 아니라 인아웃</span>이어야 하는지,<br>그리고 매출을 어떻게 키울지</h1>
   <p class="lead" style="margin-top:24px;max-width:880px">
-    직접 써본 그로스 마케터의 관점에서 — 필라이즈 대비 <b>경쟁 우위</b>, 광고를 해치지 않는 <b>구독 BM</b>,
-    홈·온보딩 개선, 그리고 경쟁사 광고를 읽은 <b>인아웃의 지향점</b>까지 한 번에 제안합니다.</p>
+    직접 써본 그로스 마케터의 관점에서 — 지금 다이어트 앱 시장의 문제를 짚고,
+    인아웃이 가야 할 길을 <b>전략 5개</b>로 하나씩 풀어보겠습니다.</p>
   <div style="margin-top:40px;display:flex;gap:10px">
     <span class="pill k">마이노멀컴퍼니 · 인아웃(IN-OUT)</span>
     <span class="pill mint">그로스/퍼포먼스 마케터 지원</span>
@@ -155,29 +166,68 @@ ul.arrow li:before{content:"→";background:none;left:0;top:0;font-weight:800;co
   </div>
 </section>
 
-<!-- 2 TL;DR -->
+<!-- 2 인아웃이란 -->
 <section class="slide">
-  <div class="head"><div><div class="kicker">한 장 요약 · TL;DR</div><h2>가볍고 즐거운 '소셜 다이어트'로 이기고,<br>구독은 '광고 제거'가 아니라 '가치'로 판다</h2></div><div class="logo"><span class="ic"></span>INOUT</div></div>
-  <div class="grid" style="grid-template-columns:repeat(3,1fr)">
-    <div class="card mint"><div class="num">① 경쟁 우위</div><h3>버티컬 소셜 = 해자</h3>
-      <p style="margin-top:6px">필라이즈가 '슈퍼앱'으로 넓힐 때, 인아웃은 <b>배틀·게이미피케이션(무료·핵심)</b>으로 좁고 깊게. 가격↓·만족도↑.</p></div>
-    <div class="card sky"><div class="num">② 광고 지향점</div><h3>"같이, 게임처럼"</h3>
-      <p style="margin-top:6px">경쟁사 모두 'AI 사진 로깅'으로 수렴 → 인아웃은 <b>"혼자 굶지 말고, 친구와 겨루며 매일 이기는 다이어트"</b>로.</p></div>
-    <div class="card lav"><div class="num">③ 제품 — 홈·온보딩</div><h3>발견성·진척을 직관적으로</h3>
-      <p style="margin-top:6px">온보딩에 <b>'사용법'</b>을, 홈에 <b>'목표 대비 지금 나'</b>를 한눈에. 강점을 더 잘 보이게.</p></div>
+  <div class="head"><div><div class="kicker">먼저, 인아웃은 어떤 앱일까요</div><h2>친구와 겨루고, 게임처럼 기록하는<br>'소셜 다이어트' 앱</h2></div><div class="logo"><span class="ic"></span>INOUT</div></div>
+  <div style="display:flex;gap:40px;flex:1;align-items:center">
+    <div style="flex:1.05">
+      <ul class="clean" style="margin-bottom:18px">
+        <li><b>무엇</b> — 마이노멀컴퍼니의 다이어트·식단 기록 앱 (2021년 12월 출시)</li>
+        <li><b>강점 ①</b> — "2클릭 식단 기록" · 음식 DB 50만+로 <b>기록이 빠르고 쉬움</b></li>
+        <li><b>강점 ②</b> — 친구와 <b>다이어트 배틀</b>·랭킹, 캐릭터·사과 포인트·방 꾸미기 = <b>게임처럼 재미있게</b></li>
+        <li><b>강점 ③</b> — AI 코치 '말랑', 익명 커뮤니티 '대나무숲'</li>
+      </ul>
+      <div class="grid" style="grid-template-columns:repeat(3,1fr)">
+        <div class="card metric mint"><div class="big">100만+</div><div class="lab">누적 가입자</div></div>
+        <div class="card metric sky"><div class="big">4.9<span style="font-size:22px">/5</span></div><div class="lab">App Store (약 5.4만)</div></div>
+        <div class="card metric lav"><div class="big">소셜</div><div class="lab">배틀·랭킹이 무료·핵심</div></div>
+      </div>
+    </div>
+    <div style="flex:.78">
+      <div class="shotwrap"><span class="badge">inout.team</span><img class="shot" src="images/inout-hero.png" alt="인아웃 화면"></div>
+      <div class="cap">캐릭터·파스텔·게임 요소 — '가볍고 친근한' 브랜드 톤</div>
+    </div>
   </div>
-  <div class="grid" style="grid-template-columns:repeat(2,1fr);margin-top:16px">
-    <div class="card coral"><div class="num">④ 구독 BM 재설계</div><h3>가치 게이팅 + 자연스러운 넛지</h3>
-      <p style="margin-top:6px">광고 차단(불편 제거)이 아니라 <b>자동화·인사이트·필수 기능</b>을 가치로 팔고, UX를 해치지 않는 퍼널로 전환.</p></div>
-    <div class="card yellow"><div class="num">⑤ 매출 극대화</div><h3>구독 위에 '커머스'를 얹는다</h3>
-      <p style="margin-top:6px">모회사 <b>마이노멀푸드(제로슈가·알룰로스)</b>를 기록 맥락에 크로스셀 — 필라이즈엔 없는 <b>PB 마진</b> 레버.</p></div>
-  </div>
-  <div class="foot"><span>인아웃 경쟁전략 & BM 제안</span><span>이도형 · Growth Marketer</span></div>
+  <div class="foot"><span class="src"><b>출처</b> · App Store(id1599210729, 4.9/약5.4만, 2026-06) · inout.team · maily 성장스토리(가입 100만은 2024-03 PR 기준, 발표 시 최신 재확인)</span><span>02</span></div>
 </section>
 
-<!-- 3 방법론 -->
+<!-- 3 시장의 문제 -->
 <section class="slide">
-  <div class="head"><div><div class="kicker gray">분석 방법 · How I looked at it</div><h2>직접 써보고, 데이터로 검증하고,<br>경쟁사 광고에서 처방을 찾았습니다</h2></div><div class="logo"><span class="ic"></span>INOUT</div></div>
+  <div class="head"><div><div class="kicker coral">시장의 문제 · 왜 지금 전략이 필요한가</div><h2>요즘 다이어트 앱 광고가<br>전부 '똑같은 말'을 하고 있습니다</h2></div><div class="logo"><span class="ic"></span>INOUT</div></div>
+  <div style="display:flex;gap:38px;flex:1;align-items:center">
+    <div style="flex:1.1">
+      <p style="font-size:18px;margin-bottom:14px">예전엔 앱마다 내세우는 게 달랐습니다. 그런데 지금은 거의 모든 앱이 <b class="hl">"음식 사진만 찍으면 AI가 알아서 기록해준다"</b>는 <b>똑같은 한 가지</b>로 광고합니다.</p>
+      <ul class="clean coral" style="margin-bottom:16px">
+        <li><b>필라이즈</b> — "사진 한 장으로 식단 기록" + 혈당·영양제까지 <b>'건강 슈퍼앱'</b>으로 확장</li>
+        <li><b>Cal AI · Yazio</b> — "찍으면 끝", AI 칼로리 카메라가 전면</li>
+        <li><b>Noom</b> — 심리 코칭에서 GLP-1(체중감량 주사) 장기관리로 이동</li>
+      </ul>
+      <div class="callout"><p>문제는 — <b style="color:#fff">남들과 똑같은 메시지로 광고하면 결국 '광고비 싸움'</b>이 됩니다. 그런데 필라이즈는 누적 투자가 약 <b style="color:#fff">150억</b>. 같은 후크로 정면충돌하면 인아웃이 불리합니다. <b style="color:#fff">그래서 싸움터를 바꿔야 합니다.</b></p></div>
+    </div>
+    <div style="flex:.82">
+      <div class="shotwrap"><span class="badge">필라이즈</span><img class="shot" src="images/pillyze-hero.png" alt="필라이즈 화면"></div>
+      <div class="cap">"식단·혈당·운동·체중·영양제까지 하나로" — 점점 무거워지는 슈퍼앱</div>
+    </div>
+  </div>
+  <div class="foot"><span class="src"><b>출처</b> · pillyze.com(2026-06 캡처) · 플래텀(2026-01, 필라이즈 누적 투자 약 150억) · Noom blog·TechCrunch(2025~26)</span><span>03</span></div>
+</section>
+
+<!-- 4 인아웃의 답 (agenda) -->
+<section class="slide" style="background:linear-gradient(180deg,#fff,var(--mint) 420%)">
+  <div class="head"><div><div class="kicker">인아웃의 답 · 5개의 전략</div><h2>싸움터를 바꾸는 5개의 전략,<br>하나씩 보겠습니다</h2></div><div class="logo"><span class="ic"></span>INOUT</div></div>
+  <div class="agenda" style="flex:1;justify-content:center">
+    <div class="arow s"><div class="n">1</div><div><div class="ti">지향점을 바꾼다</div><div class="de">'슈퍼앱'이 아니라 — "혼자 굶지 말고, 같이·게임처럼"</div></div></div>
+    <div class="arow m"><div class="n">2</div><div><div class="ti">경쟁 우위를 세운다</div><div class="de">필라이즈가 못 따라올 '소셜·게임' 해자</div></div></div>
+    <div class="arow l"><div class="n">3</div><div><div class="ti">제품을 다듬는다</div><div class="de">온보딩엔 '사용법', 홈엔 '목표 대비 지금 나'를</div></div></div>
+    <div class="arow c"><div class="n">4</div><div><div class="ti">구독을 다시 판다</div><div class="de">'광고 제거'가 아니라 '가치'로 — UX를 해치지 않게</div></div></div>
+    <div class="arow y"><div class="n">5</div><div><div class="ti">매출을 키운다</div><div class="de">구독 위에 '마이노멀푸드 커머스'를 얹어 LTV ↑</div></div></div>
+  </div>
+  <div class="foot"><span class="src">각 전략은 '직접 사용 + 공개자료 검증' 기반 가설입니다 · 내부 데이터 확인 시 우선순위는 조정됩니다</span><span>04</span></div>
+</section>
+
+<!-- 5 방법론 -->
+<section class="slide">
+  <div class="head"><div><div class="kicker gray">잠깐 · 이렇게 분석했습니다</div><h2>직접 써보고, 데이터로 검증하고,<br>경쟁사 광고에서 처방을 찾았습니다</h2></div><div class="logo"><span class="ic"></span>INOUT</div></div>
   <div class="grid" style="grid-template-columns:repeat(3,1fr);flex:1">
     <div class="card out"><div class="num">STEP 1 — 체험</div><h3>인아웃·필라이즈 직접 사용</h3>
       <p style="margin-top:6px">두 앱의 온보딩 → 기록 → 구독 플로우를 직접 거치며 마찰·차별점을 메모.</p>
@@ -187,33 +237,12 @@ ul.arrow li:before{content:"→";background:none;left:0;top:0;font-weight:800;co
     <div class="card out"><div class="num">STEP 3 — 처방</div><h3>경쟁사 광고·BM 분해</h3>
       <p style="margin-top:6px">필라이즈·Noom·Cal AI·Yazio의 <b>광고 후크와 과금 구조</b>를 분해해 인아웃의 빈틈을 도출.</p></div>
   </div>
-  <p class="src" style="margin-top:16px"><b>전제</b> · 본 제안은 외부 공개자료 + 직접 사용 경험 기반 가설입니다. 인아웃 내부 데이터(전환율·리텐션·구독 단계별 이탈) 확인 시 우선순위는 즉시 조정됩니다.</p>
-  <div class="foot"><span>분석 방법</span><span>03</span></div>
+  <div class="foot"><span class="src"><b>전제</b> · 외부 공개자료 + 직접 사용 경험 기반 가설 · 인아웃 내부 데이터(전환율·리텐션·구독 단계별 이탈) 확인 시 우선순위 즉시 조정</span><span>05</span></div>
 </section>
 
-<!-- 4 경쟁 구도 + 경쟁사 광고 -->
-<section class="slide">
-  <div class="head"><div><div class="kicker sky">시장 구도 · 경쟁사 광고를 읽다</div><h2>경쟁사는 모두 '같은 곳'으로 수렴하고 있습니다</h2></div><div class="logo"><span class="ic"></span>INOUT</div></div>
-  <div class="grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:14px">
-    <div class="card out"><div class="num">필라이즈</div><h3 style="font-size:18px">건강 슈퍼앱</h3>
-      <p style="margin-top:6px;font-size:14.5px">"사진 한 장으로 식단·칼로리·AI코칭" + <b>혈당·영양제</b>로 확장. 후크=AI 사진 로깅.</p></div>
-    <div class="card out"><div class="num">Noom</div><h3 style="font-size:18px">심리→GLP-1</h3>
-      <p style="margin-top:6px;font-size:14.5px">"다이어트가 아니다(심리·행동)"에서 <b>2025~26 GLP-1 장기관리</b>로 피벗.</p></div>
-    <div class="card out"><div class="num">Cal AI · Yazio</div><h3 style="font-size:18px">AI 카메라·정확도</h3>
-      <p style="margin-top:6px;font-size:14.5px">"찍으면 끝", "추정 vs 실제" 정확도 후크. Cal AI는 MyFitnessPal에 인수(2026).</p></div>
-    <div class="card mint"><div class="num">→ 인아웃의 빈틈</div><h3 style="font-size:18px">가볍고 '같이'</h3>
-      <p style="margin-top:6px;font-size:14.5px">모두가 'AI·슈퍼앱·진지함'으로 갈 때, <b>소셜·게임·재미</b>는 비어 있음.</p></div>
-  </div>
-  <div class="callout" style="display:flex;align-items:center;gap:24px">
-    <h3 style="white-space:nowrap">읽어낸 핵심</h3>
-    <p>경쟁의 후크가 <b style="color:#fff">'AI 사진 로깅' 한 곳으로 동질화</b>되는 중입니다. 같은 후크로 싸우면 인아웃은 자본(필라이즈 누적 투자 약 150억)에서 불리합니다. <b style="color:#fff">싸움터를 바꿔야</b> 합니다 — 혼자가 아니라 '같이', 진지함이 아니라 '재미'로.</p>
-  </div>
-  <div class="foot"><span class="src">출처 · 필라이즈 App Store/플래텀(2026-01)·AI타임스(2024) / Noom blog·MediaPost(2025) / Cal AI·MyFitnessPal TechCrunch(2026-03) · 일부 수치 사측 발표</span><span>04</span></div>
-</section>
-
-<!-- 5 인아웃 지향점 -->
-<section class="slide" style="background:linear-gradient(180deg,#fff,var(--sky) 360%)">
-  <div class="head"><div><div class="kicker">지향점 · Positioning</div><h2>인아웃은 '슈퍼앱의 반대편'으로 갑니다</h2></div><div class="logo"><span class="ic"></span>INOUT</div></div>
+<!-- 6 전략1 지향점 -->
+<section class="slide" style="background:linear-gradient(180deg,#fff,var(--sky) 380%)">
+  <div class="head"><div><div class="kicker sky">전략 1 · 지향점</div><h2>인아웃은 '슈퍼앱의 반대편'으로 갑니다</h2></div><div class="logo"><span class="ic"></span>INOUT</div></div>
   <div class="quote" style="margin-bottom:16px">
     <div class="q">"혼자 굶는 다이어트는 끝.<br><span class="g">친구와 겨루고, 게임처럼 기록하고, 매일 이기는</span> 다이어트."</div>
   </div>
@@ -223,59 +252,58 @@ ul.arrow li:before{content:"→";background:none;left:0;top:0;font-weight:800;co
     <div class="card lav"><div class="num">광고 앵글 ③</div><h3 style="font-size:17px">친구 같은 AI 말랑</h3><p style="margin-top:5px;font-size:14px">사진 로깅은 따라가되, 톤은 잔소리 코치가 아닌 '같이 가는 친구'.</p></div>
     <div class="card coral"><div class="num">광고 앵글 ④</div><h3 style="font-size:17px">반(反)다이어트 피로</h3><p style="margin-top:5px;font-size:14px">"숫자 강박 NO, 굶기 NO. 게임처럼 가볍게."</p></div>
   </div>
-  <p class="src" style="margin-top:14px"><b>제품에서 노릴 곳</b> · 지금 앱에서 <b>묻혀 있는 배틀·소셜</b>을 전면으로 끌어올려 광고-제품 메시지를 일치. <b>크리에이티브 안전장치</b> — Meta가 사실상 막은 before/after 대신 캐릭터·배틀·게임 모션으로 '변화'를 표현(정책 리스크 회피).</p>
-  <div class="foot"><span class="src">출처 · Meta 건강·웰니스 광고정책(before/after 제한, 2025~) · 경쟁사 광고 분석 종합</span><span>05</span></div>
+  <div class="foot"><span class="src"><b>출처</b> · 경쟁사 광고 분석 종합 · Meta 건강·웰니스 광고정책(before/after 사실상 제한, 2025~) → 변화는 캐릭터·배틀·게임 모션으로 표현해 정책 리스크 회피</span><span>06</span></div>
 </section>
 
-<!-- 6 비교표 -->
+<!-- 7 전략2 비교표 -->
 <section class="slide">
-  <div class="head"><div><div class="kicker coral">정면 비교 · InOut vs Pillyze</div><h2>같은 '다이어트 AI'지만, 싸우는 방식이 다릅니다</h2></div><div class="logo"><span class="ic"></span>INOUT</div></div>
+  <div class="head"><div><div class="kicker coral">전략 2 · 경쟁 우위 (1/2)</div><h2>같은 '다이어트 AI'지만, 싸우는 방식이 다릅니다</h2></div><div class="logo"><span class="ic"></span>INOUT</div></div>
   <table>
     <tr><th style="width:20%">항목</th><th style="width:40%">인아웃 (IN-OUT)</th><th style="width:40%">필라이즈 (Pillyze)</th></tr>
     <tr class="hi"><td><b>포지셔닝</b></td><td><b>버티컬 소셜 다이어트</b> · 가볍고 재밌게</td><td>건강 슈퍼앱 (식단+영양제+혈당+글로벌)</td></tr>
     <tr class="hi"><td><b>핵심 차별</b></td><td><b>배틀·랭킹·대나무숲(무료·핵심)</b> <span class="chk">강력</span></td><td>파나케이아 영양제 AI·CGM 혈당 <span class="x">소셜 없음</span></td></tr>
     <tr class="hi"><td><b>가격(구독)</b></td><td>월 <b>약 ₩10,900~14,900</b> <span class="chk">더 저렴</span></td><td>월 ₩15,900</td></tr>
     <tr class="hi"><td><b>만족도(iOS)</b></td><td><b>4.9</b> / 약 5.4만 평가 <span class="chk">평점·표본 우위</span></td><td>4.8 / 약 1.1만 평가</td></tr>
-    <tr><td><b>회원·성장</b></td><td>가입 100만+ <span class="x">(2024 PR, 갱신無)</span></td><td><b>140만+ · 월 2~3배 성장</b> (2026-01) <span class="x">최근 모멘텀 우위</span></td></tr>
+    <tr><td><b>회원·성장</b></td><td>가입 100만+ <span class="x">(2024 PR, 갱신 없음)</span></td><td><b>140만+ · 월 2~3배 성장</b> (2026-01) <span class="x">모멘텀 우위</span></td></tr>
     <tr><td><b>AI 사진 기록</b></td><td>말랑(Plus) — 둘 다 유료</td><td>유료 + 혈당 스파이크 예측 결합</td></tr>
     <tr><td><b>글로벌·투자</b></td><td>국내 중심 · Pre-A 17억(2022)</td><td>Mealo 80개국 · 누적 약 150억 <span class="x">자본 우위</span></td></tr>
   </table>
-  <div class="foot"><span class="src">출처 · App Store(id1599210729 / id1595472563, 2026-06) · 플래텀·ZDNet(2026) · 가격은 2026-06 기준, 프로모·코호트별 상이 · 인아웃 회원수는 2024-03 PR 기준</span><span>06</span></div>
+  <div class="foot"><span class="src"><b>출처</b> · App Store(id1599210729 / id1595472563, 2026-06) · 플래텀·ZDNet(2026) · 가격은 2026-06 기준 프로모·코호트별 상이 · 인아웃 회원수는 2024-03 PR</span><span>07</span></div>
 </section>
 
-<!-- 7 왜 인아웃 (해자) -->
-<section class="slide" style="background:linear-gradient(180deg,#fff,var(--mint) 360%)">
-  <div class="head"><div><div class="kicker">결론 ① · Why InOut</div><h2>필라이즈가 못 따라오는 '인아웃의 해자'</h2></div><div class="logo"><span class="ic"></span>INOUT</div></div>
+<!-- 8 전략2 왜 인아웃 -->
+<section class="slide" style="background:linear-gradient(180deg,#fff,var(--mint) 380%)">
+  <div class="head"><div><div class="kicker">전략 2 · 경쟁 우위 (2/2)</div><h2>필라이즈가 못 따라오는 '인아웃의 해자'</h2></div><div class="logo"><span class="ic"></span>INOUT</div></div>
   <div class="grid" style="grid-template-columns:repeat(2,1fr);flex:1">
     <div class="card mint"><h3>① 소셜·배틀 = 구조적 해자</h3>
-      <p style="margin-top:6px">친구와 겨루고 함께 기록하는 경험은 <b>네트워크 효과</b>가 있어 슈퍼앱이 기능 추가로 단숨에 복제하기 어렵습니다. 게다가 인아웃은 이게 <b>무료·핵심</b>입니다.</p></div>
+      <p style="margin-top:6px">친구와 겨루고 함께 기록하는 경험은 <b>네트워크 효과</b>가 있어, 슈퍼앱이 기능 하나 추가한다고 단숨에 복제하기 어렵습니다. 게다가 인아웃은 이게 <b>무료·핵심</b>입니다.</p></div>
     <div class="card sky"><h3>② '가볍고 재밌게' = 차별 포지션</h3>
       <p style="margin-top:6px">필라이즈·Noom이 무거워질수록(혈당·영양제·GLP-1), <b>"부담 없이 게임처럼"</b>을 원하는 다수 다이어터의 빈자리가 커집니다.</p></div>
     <div class="card lav"><h3>③ 가격·만족도 우위</h3>
       <p style="margin-top:6px">더 낮은 구독가에 <b>더 높은 평점(4.9 vs 4.8)·더 많은 표본</b>. 충성 사용자층이 두껍다는 신호 — 전환·추천의 토양.</p></div>
     <div class="card yellow"><h3>④ 마이노멀푸드 = 커머스 무기</h3>
-      <p style="margin-top:6px">모회사의 <b>제로슈가·알룰로스 식품(PB)</b>을 보유 — 필라이즈의 영양제 '마켓플레이스 수수료'와 달리 <b>제조 마진</b>까지 가져갑니다.</p></div>
+      <p style="margin-top:6px">모회사의 <b>제로슈가·알룰로스 식품(PB)</b> 보유 — 필라이즈의 영양제 '마켓플레이스 수수료'와 달리 <b>제조 마진</b>까지 (전략 5에서 자세히).</p></div>
   </div>
-  <div class="foot"><span class="src">출처 · 직접 사용 + App Store · 마이노멀컴퍼니 식품 사업(알룰로스·제로슈가) 공개자료</span><span>07</span></div>
+  <div class="foot"><span class="src"><b>출처</b> · 직접 사용 + App Store · 마이노멀컴퍼니 식품 사업(알룰로스·제로슈가) 공개자료 · 네트워크 효과는 소셜 제품 일반 원리</span><span>08</span></div>
 </section>
 
-<!-- 8 온보딩 개선 -->
+<!-- 9 전략3 온보딩 -->
 <section class="slide">
-  <div class="head"><div><div class="kicker lav">제품 ① · 온보딩</div><h2>온보딩: 동기는 충분, 이제 '사용법'을 더합니다</h2></div><div class="logo"><span class="ic"></span>INOUT</div></div>
+  <div class="head"><div><div class="kicker lav">전략 3 · 제품 (1/2) · 온보딩</div><h2>온보딩: 동기는 충분, 이제 '사용법'을 더합니다</h2></div><div class="logo"><span class="ic"></span>INOUT</div></div>
   <div style="display:flex;gap:30px;flex:1;align-items:center">
     <div style="flex:1.1">
       <div class="grid" style="grid-template-columns:1fr 1fr">
-        <div class="card coral"><div class="num">지금 — 관찰</div><h3 style="font-size:18px">감성·동기 위주, 첫 행동은 막연</h3>
+        <div class="card coral"><div class="num">지금 — 관찰</div><h3 style="font-size:18px">동기는 잡지만, 첫 행동이 막연</h3>
           <ul class="clean coral" style="margin-top:8px">
             <li style="font-size:14.5px">목표·동기 설정은 좋지만 <b>"그래서 뭘 먼저?"</b>가 약함</li>
             <li style="font-size:14.5px">핵심 기능(배틀·AI 말랑)이 <b>온보딩에서 안 보임</b></li>
-            <li style="font-size:14.5px">스텝 과다 불만 — <b>이탈 위험 구간</b></li>
+            <li style="font-size:14.5px">스텝이 많아 <b>이탈 위험 구간</b>이 존재</li>
           </ul></div>
         <div class="card lav"><div class="num">제안 — 처방</div><h3 style="font-size:18px">'첫 3가지 해보기' 가이드</h3>
           <ul class="clean lav" style="margin-top:8px">
             <li style="font-size:14.5px">온보딩 직후 <b>인터랙티브 체크리스트</b>로 전환</li>
             <li style="font-size:14.5px">① 식단 1건 ② 배틀 참여 ③ 말랑에게 질문</li>
-            <li style="font-size:14.5px">완료 시 <b>사과 보상</b> — 가치경험까지의 시간 단축</li>
+            <li style="font-size:14.5px">완료 시 <b>사과 보상</b> — 가치 경험까지의 시간 단축</li>
           </ul></div>
       </div>
       <div class="callout" style="margin-top:14px"><p>온보딩의 목적은 '감동'이 아니라 <b style="color:#fff">첫 핵심 행동(Activation)</b>입니다. 가치를 한 번 경험시키면 D7 리텐션과 구독 전환이 함께 올라갑니다.</p></div>
@@ -293,13 +321,13 @@ ul.arrow li:before{content:"→";background:none;left:0;top:0;font-weight:800;co
       <div class="tabbar"><div class="t on"><div class="d"></div>홈</div><div class="t"><div class="d"></div>배틀</div><div class="t"><div class="d"></div>기록</div><div class="t"><div class="d"></div>MY</div></div>
     </div>
   </div>
-  <div class="foot"><span class="src">출처 · App Store 리뷰(스텝 과다) · 브런치 UX 티어다운(발견성) · Amplitude(가치경험→리텐션 ×3) · 목업은 제안 예시</span><span>08</span></div>
+  <div class="foot"><span class="src"><b>출처</b> · App Store 리뷰(스텝 과다) · 브런치 UX 티어다운(핵심 기능 발견성 부족) · Amplitude(가치경험→리텐션 ×3) · 목업은 제안 예시</span><span>09</span></div>
 </section>
 
-<!-- 9 홈 목표진척 -->
+<!-- 10 전략3 홈 -->
 <section class="slide">
-  <div class="head"><div><div class="kicker">제품 ② · 홈 화면</div><h2>홈: '목표 대비 지금 나'를 한눈에</h2></div><div class="logo"><span class="ic"></span>INOUT</div></div>
-  <div style="display:flex;gap:26px;flex:1;align-items:center">
+  <div class="head"><div><div class="kicker lav">전략 3 · 제품 (2/2) · 홈</div><h2>홈: '목표 대비 지금 나'를 한눈에</h2></div><div class="logo"><span class="ic"></span>INOUT</div></div>
+  <div style="display:flex;gap:24px;flex:1;align-items:center">
     <div class="phone">
       <div class="top"><div class="notch"></div></div>
       <div class="scr">
@@ -332,19 +360,18 @@ ul.arrow li:before{content:"→";background:none;left:0;top:0;font-weight:800;co
     <div style="flex:1">
       <div class="card out"><h3>핵심 변화 3가지</h3>
         <ul class="clean" style="margin-top:10px">
-          <li><b>진척을 hero로</b> — "목표까지 -3.2kg · N주차"를 가장 크고 진하게(현재 게이지 대비 1.78:1 → 강조 강화)</li>
+          <li><b>진척을 hero로</b> — "목표까지 -3.2kg · N주차"를 가장 크고 진하게 (현재 게이지는 글자 대비 1.78:1로 약함 → 강조 강화)</li>
           <li><b>캐릭터·방 꾸미기를 '단계 인디케이터'로</b> — 게이미피케이션을 목표-진행 시각화에 직결</li>
           <li><b>배틀 순위를 홈으로</b> — 묻혀 있던 소셜 진행도를 첫 화면에 노출</li>
         </ul></div>
-      <p class="src" style="margin-top:12px"><b>레퍼런스</b> · Apple 활동 링, Noom 체중 트렌드선, MyFitnessPal '남은 칼로리' hero, 목표구배 효과(Kivetz et al., 2006)</p>
     </div>
   </div>
-  <div class="foot"><span class="src">출처 · 브런치 UX 티어다운(게이지 대비 1.78:1·구조 파악 어려움) · 목업은 공개 리뷰 기반 재구성 예시</span><span>09</span></div>
+  <div class="foot"><span class="src"><b>출처</b> · 브런치 UX 티어다운(게이지 대비 1.78:1·구조 파악 어려움) · 레퍼런스: Apple 활동 링·Noom 트렌드선·MFP '남은 칼로리' hero·목표구배 효과(Kivetz 2006) · 목업은 재구성 예시</span><span>10</span></div>
 </section>
 
-<!-- 10 구독 BM 재설계 -->
+<!-- 11 전략4 구독 재설계 -->
 <section class="slide">
-  <div class="head"><div><div class="kicker coral">BM ① · 구독 재설계</div><h2>구독을 '광고 제거'가 아니라 '가치'로 팝니다</h2></div><div class="logo"><span class="ic"></span>INOUT</div></div>
+  <div class="head"><div><div class="kicker coral">전략 4 · 구독 (1/2)</div><h2>구독을 '광고 제거'가 아니라 '가치'로 팝니다</h2></div><div class="logo"><span class="ic"></span>INOUT</div></div>
   <div class="grid" style="grid-template-columns:1fr 1fr;flex:1">
     <div class="card out"><div class="num">지금의 구조</div><h3>Plus = AI 기능 + 광고 제거</h3>
       <p style="margin-top:8px">광고 제거는 <b>'불편을 없애는' 약한 동기</b>입니다. "광고 없애려고 매달 결제"는 이탈도 쉽습니다. 또 <b>이미 무료인 기능을 빼앗으면</b> 반발이 큽니다(MyFitnessPal 바코드 백래시).</p>
@@ -363,12 +390,12 @@ ul.arrow li:before{content:"→";background:none;left:0;top:0;font-weight:800;co
     <h3 style="white-space:nowrap">게이팅 원칙</h3>
     <p><b style="color:#fff">① 사용량 캡</b>(AI 사진 1일 N회 무료→초과 시 Plus) · <b style="color:#fff">② 자동화는 유료</b>(수동은 영원히 무료) · <b style="color:#fff">③ 인사이트 깊이로 차등</b>. 강점인 소셜·기록은 절대 가두지 않습니다.</p>
   </div>
-  <div class="foot"><span class="src">출처 · Cal AI(스캔 무료 캡)·MyFitnessPal(바코드 유료화 백래시, 2022)·Noom/YAZIO(분석 게이팅) 사례</span><span>10</span></div>
+  <div class="foot"><span class="src"><b>출처</b> · Cal AI(스캔 무료 캡 후 유료) · MyFitnessPal(바코드 유료화 백래시, 2022) · Noom/YAZIO(분석 게이팅) 사례</span><span>11</span></div>
 </section>
 
-<!-- 11 자연스러운 구독 퍼널 -->
-<section class="slide" style="background:linear-gradient(180deg,#fff,var(--lav) 380%)">
-  <div class="head"><div><div class="kicker lav">BM ② · 전환 퍼널</div><h2>광고는 UX를 해치지 않고,<br>가치는 자연스럽게 넛지합니다</h2></div><div class="logo"><span class="ic"></span>INOUT</div></div>
+<!-- 12 전략4 퍼널 -->
+<section class="slide" style="background:linear-gradient(180deg,#fff,var(--lav) 400%)">
+  <div class="head"><div><div class="kicker lav">전략 4 · 구독 (2/2)</div><h2>광고는 해치지 않고, 가치는 자연스럽게 넛지</h2></div><div class="logo"><span class="ic"></span>INOUT</div></div>
   <div class="grid" style="grid-template-columns:1fr 1fr;margin-bottom:14px">
     <div class="card out"><h3>광고를 '거슬리지 않게'</h3>
       <ul class="clean" style="margin-top:8px">
@@ -394,12 +421,12 @@ ul.arrow li:before{content:"→";background:none;left:0;top:0;font-weight:800;co
     <div class="arr">→</div>
     <div class="step" style="background:var(--lav)"><h3 style="font-size:15px">연간 구독</h3><p style="font-size:12.5px;color:#3343d6">LTV 확정</p></div>
   </div>
-  <div class="foot"><span class="src">출처 · soft paywall·trial→annual 퍼널 베스트프랙티스(RevenueCat·Reforge) · 리워드 광고는 게이미피케이션 자산과 정합</span><span>11</span></div>
+  <div class="foot"><span class="src"><b>출처</b> · soft paywall·trial→annual 퍼널 베스트프랙티스(RevenueCat·Reforge) · 리워드 광고는 인아웃 게이미피케이션 자산과 정합</span><span>12</span></div>
 </section>
 
-<!-- 12 매출 극대화 / BM 디벨롭 -->
+<!-- 13 전략5 매출 극대화 -->
 <section class="slide">
-  <div class="head"><div><div class="kicker yellow">BM ③ · 매출 극대화</div><h2>구독 위에 '커머스'를 얹어 LTV를 키웁니다</h2></div><div class="logo"><span class="ic"></span>INOUT</div></div>
+  <div class="head"><div><div class="kicker yellow">전략 5 · 매출 극대화</div><h2>구독 위에 '커머스'를 얹어 LTV를 키웁니다</h2></div><div class="logo"><span class="ic"></span>INOUT</div></div>
   <div class="grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:14px">
     <div class="card mint"><div class="num">Layer 1 — 구독</div><h3>가치 기반 Plus</h3>
       <p style="margin-top:6px">자동화·인사이트·말랑으로 전환. 트라이얼→연간으로 <b>예측 가능한 매출</b>.</p></div>
@@ -415,75 +442,91 @@ ul.arrow li:before{content:"→";background:none;left:0;top:0;font-weight:800;co
         <li><b>식단 데이터 보유</b> — 무엇을·언제 먹는지 알기에 추천 정확도↑</li>
         <li><b>모회사 PB(제로슈가·알룰로스)</b> — 수수료가 아니라 <b>제조 마진</b></li>
       </ul>
-      <ul class="clean yellow" style="flex:1">
-        <li><b>배틀·미션과 결합</b> — "이번 주 챌린지 간식" 큐레이션</li>
+      <ul class="clean" style="flex:1"><li><b>배틀·미션과 결합</b> — "이번 주 챌린지 간식" 큐레이션</li>
         <li><b>구독 혜택과 번들</b> — Plus 회원 식품 할인 → 구독·커머스 상호 강화</li>
       </ul>
     </div>
-    <p class="src" style="margin-top:10px"><b>방향성(가정치)</b> · 구독 전환율·ARPU·커머스 attach rate를 함께 끌어올리는 다층 BM. 정확한 목표 수치는 내부 베이스라인 측정 후 확정.</p>
   </div>
-  <div class="foot"><span class="src">출처 · 다노샵(PB가 샵 매출 ~80%, 콘텐츠→커머스 전환) · 필라이즈 영양제 마켓플레이스(수수료형) 대비 · 마이노멀컴퍼니 식품 사업</span><span>12</span></div>
+  <div class="foot"><span class="src"><b>출처</b> · 다노샵(PB가 샵 매출 ~80%, 콘텐츠→커머스) 사례 · 필라이즈 영양제 마켓플레이스(수수료형) 대비 · 마이노멀컴퍼니 식품 사업</span><span>13</span></div>
 </section>
 
-<!-- 13 로드맵 + KPI -->
+<!-- 14 로드맵 -->
 <section class="slide">
-  <div class="head"><div><div class="kicker">실행 · Roadmap & KPI</div><h2>가장 싼 레버부터, A/B로 검증하며</h2></div><div class="logo"><span class="ic"></span>INOUT</div></div>
-  <div class="grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:16px">
-    <div class="card mint"><div class="num">0–2주 · 바로</div><h3 style="font-size:18px">발견성·진척</h3>
-      <ul class="clean" style="margin-top:8px"><li style="font-size:14.5px">홈 진척 hero화</li><li style="font-size:14.5px">온보딩 '첫 3행동' 가이드</li><li style="font-size:14.5px">광고 위치·빈도 A/B</li></ul></div>
-    <div class="card lav"><div class="num">2–8주 · 다음</div><h3 style="font-size:18px">구독 퍼널</h3>
-      <ul class="clean lav" style="margin-top:8px"><li style="font-size:14.5px">무료/Plus 가치 재정의</li><li style="font-size:14.5px">사용량 캡 소프트페이월</li><li style="font-size:14.5px">맥락형 Plus 제안</li></ul></div>
-    <div class="card yellow"><div class="num">분기 · 확장</div><h3 style="font-size:18px">커머스·광고</h3>
-      <ul class="clean" style="margin-top:8px"><li style="font-size:14.5px">마이노멀푸드 크로스셀</li><li style="font-size:14.5px">배틀 소셜 광고 캠페인</li><li style="font-size:14.5px">데이터 기반 추천</li></ul></div>
+  <div class="head"><div><div class="kicker">실행 · Roadmap</div><h2>가장 싼 레버부터, A/B로 검증하며</h2></div><div class="logo"><span class="ic"></span>INOUT</div></div>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr);flex:1">
+    <div class="card mint"><div class="num">0–2주 · 바로</div><h3>발견성·진척</h3>
+      <ul class="clean" style="margin-top:10px">
+        <li>홈 진척 'hero'화 (목표 대비 현재)</li>
+        <li>온보딩 '첫 3행동' 가이드</li>
+        <li>광고 위치·빈도 A/B 테스트</li></ul>
+      <p class="flag" style="margin-top:10px">코드 변경이 작고 효과가 빠른 것부터.</p></div>
+    <div class="card lav"><div class="num">2–8주 · 다음</div><h3>구독 퍼널</h3>
+      <ul class="clean lav" style="margin-top:10px">
+        <li>무료/Plus 가치 재정의</li>
+        <li>사용량 캡 소프트페이월</li>
+        <li>맥락형 Plus 제안 + 트라이얼</li></ul>
+      <p class="flag" style="margin-top:10px">전환율을 직접 끌어올리는 구간.</p></div>
+    <div class="card yellow"><div class="num">분기 · 확장</div><h3>커머스·광고</h3>
+      <ul class="clean" style="margin-top:10px">
+        <li>마이노멀푸드 크로스셀</li>
+        <li>배틀·소셜 중심 광고 캠페인</li>
+        <li>식단 데이터 기반 추천</li></ul>
+      <p class="flag" style="margin-top:10px">LTV·새 매출원으로 확장.</p></div>
   </div>
-  <div class="callout" style="display:flex;align-items:center;gap:20px">
-    <h3 style="white-space:nowrap">하나의 인과사슬</h3>
-    <p style="font-size:16px">발견성 ↑ → <b style="color:#fff">Activation ↑</b> → time-to-value ↓ → <b style="color:#fff">D7·D30 리텐션 ↑</b> → <b style="color:#fff">무료→Plus 전환 ↑</b> → 커머스 attach → <b style="color:#fff">ARPU·LTV ↑</b>. 한 지표만 꼽으면 <b style="color:#fff">'무료→Plus 전환율'</b>.</p>
-  </div>
-  <div class="foot"><span class="src">한 번에 하나씩만 바꿔 A/B로 비교 · 내부 베이스라인 확인 후 목표치 확정</span><span>13</span></div>
+  <div class="foot"><span class="src">한 번에 하나씩만 바꿔 A/B로 비교 · 내부 베이스라인 확인 후 목표치 확정</span><span>14</span></div>
 </section>
 
-<!-- 14 References -->
-<section class="slide">
-  <div class="head"><div><div class="kicker gray">근거 · References</div><h2>주장마다 출처를 붙였습니다</h2></div><div class="logo"><span class="ic"></span>INOUT</div></div>
-  <div class="grid" style="grid-template-columns:1fr 1fr;flex:1">
-    <div class="card out">
-      <h3 style="font-size:18px">인아웃 · 필라이즈 1차자료</h3>
-      <p class="src" style="margin-top:10px"><b>인아웃</b> · App Store(id1599210729, 4.9/약5.4만, v7.2.16 2026-06), inout.team, maily 성장스토리(140만DL·100만가입·DAU 2024), platum/venturesquare(Pre-A 17억, 2022)<br>
-      <b>필라이즈</b> · App Store(id1595472563, 4.8/약1.1만), platum(2026-01, 140만·월2~3배), ZDNet(2026-02, 구독70~80%·해외40%+), AI타임스(2024, 9만종·감량509톤), pillyze.com(파나케이아·파트너십)</p>
-      <h3 style="font-size:18px;margin-top:14px">경쟁사·광고</h3>
-      <p class="src" style="margin-top:8px"><b>Noom</b> blog·MediaPost(2025, GLP-1·Rebel Wilson) · <b>Cal AI/MyFitnessPal</b> TechCrunch(2026-03, 인수) · <b>Yazio</b> App Store·Motion · <b>Meta</b> 건강·웰니스 광고정책(before/after 제한)</p>
-    </div>
-    <div class="card out">
-      <h3 style="font-size:18px">그로스·UX 이론</h3>
-      <p class="src" style="margin-top:10px"><b>Amplitude</b> · Aha moment/Time-to-Value(가치경험→리텐션 ×3)<br>
-      <b>Reforge</b> · Activation 가이드(활성화↑→매출↑)<br>
-      <b>NN/g</b> · 발견성/숨김 내비 · <b>Apple HIG</b> 활동 링 · <b>Kivetz et al.(JMR 2006)</b> 목표구배 효과<br>
-      <b>RevenueCat</b> · soft paywall·trial→annual 퍼널 · <b>다노샵</b> PB 커머스 사례</p>
-      <div class="card yellow" style="margin-top:12px;padding:12px 16px"><p class="src" style="color:#5a4a10;font-size:12.5px"><b>데이터 주의</b> · 인아웃 회원·DAU 등은 2024 PR 기준(≥2년)이라 발표 시 공식 최신치 재확인 권장. 구독가는 2026-06 기준 프로모·코호트별 상이. 목업은 공개 리뷰 기반 재구성 예시로 실제 화면과 다를 수 있음.</p></div>
-    </div>
+<!-- 15 기대 증분 / KPI -->
+<section class="slide" style="background:linear-gradient(180deg,#fff,var(--mint) 420%)">
+  <div class="head"><div><div class="kicker">기대 효과 · 왜 매출이 늘어나는가</div><h2>발견성 한 번 올리면,<br>매출까지 도미노로 이어집니다</h2></div><div class="logo"><span class="ic"></span>INOUT</div></div>
+  <div class="flow" style="margin-bottom:20px">
+    <div class="step"><div style="font-size:22px">🔎</div><h3 style="font-size:15px;margin-top:4px">발견성 ↑</h3></div>
+    <div class="arr">→</div>
+    <div class="step"><div style="font-size:22px">⚡</div><h3 style="font-size:15px;margin-top:4px">Activation ↑</h3></div>
+    <div class="arr">→</div>
+    <div class="step"><div style="font-size:22px">🔁</div><h3 style="font-size:15px;margin-top:4px">리텐션 ↑</h3></div>
+    <div class="arr">→</div>
+    <div class="step" style="background:var(--mint)"><div style="font-size:22px">💳</div><h3 style="font-size:15px;margin-top:4px">Plus 전환 ↑</h3></div>
+    <div class="arr">→</div>
+    <div class="step" style="background:var(--yellow)"><div style="font-size:22px">🛒</div><h3 style="font-size:15px;margin-top:4px">ARPU·LTV ↑</h3></div>
   </div>
-  <div class="foot"><span>근거 · References</span><span>14</span></div>
+  <div class="grid" style="grid-template-columns:1.3fr 1fr;flex:1">
+    <div class="card out"><h3>무엇을 보고 판단할까 (KPI)</h3>
+      <table style="margin-top:8px;font-size:14.5px">
+        <tr><th>구간</th><th>핵심 지표</th></tr>
+        <tr><td>발견·활성화</td><td>핵심 기능 첫 사용률 · 온보딩 완주율</td></tr>
+        <tr><td>리텐션</td><td>D7 · D30 잔존율</td></tr>
+        <tr class="hi"><td><b>전환(★)</b></td><td><b>무료 → Plus 전환율</b></td></tr>
+        <tr><td>매출</td><td>ARPU · 커머스 attach rate</td></tr>
+      </table></div>
+    <div class="card dark"><h3>한 지표만 꼽는다면</h3>
+      <p style="margin-top:8px;font-size:16px">바로 <b style="color:#fff">'무료 → Plus 전환율'</b>입니다. 이 숫자가 오르면 허용 CAC가 올라가 <b style="color:#fff">퍼포먼스 마케팅의 여력</b>이 함께 커집니다.</p>
+      <p style="margin-top:10px;font-size:13px;color:#aab">증분 목표치는 내부 베이스라인 측정 후 확정 (가정치로 과장하지 않겠습니다).</p></div>
+  </div>
+  <div class="foot"><span class="src"><b>출처</b> · Amplitude(가치경험→리텐션 ×3) · Reforge(활성화↑→매출↑) · NN/g(발견성)</span><span>15</span></div>
 </section>
 
-<!-- 15 Closing -->
+<!-- 16 Closing + 지원동기 -->
 <section class="slide" style="justify-content:center;background:
   radial-gradient(820px 520px at 85% 110%, var(--mint) 0%, transparent 55%),
   radial-gradient(720px 470px at 0% -10%, var(--lav) 0%, transparent 55%), #fff">
-  <div class="logo" style="margin-bottom:28px"><span class="ic"></span>INOUT</div>
-  <h1>가볍고 즐겁게, 그리고 돈이 되게 —<br><span class="hl">필라이즈가 아니라 인아웃</span></h1>
-  <p class="lead" style="margin-top:22px;max-width:840px">소셜·게임이라는 해자를 더 잘 보이게 하고, 광고를 해치지 않는 가치 기반 구독으로 전환하고,
-  그 위에 마이노멀푸드 커머스를 얹습니다. <b>직접 써보고, 데이터로 증명하겠습니다.</b></p>
-  <div style="margin-top:38px;display:flex;gap:10px">
-    <span class="pill k">감사합니다</span>
-    <span class="pill mint">이도형 · Growth Marketer</span>
-    <span class="pill lav">마이노멀컴퍼니 · 인아웃</span>
+  <div class="logo" style="margin-bottom:26px"><span class="ic"></span>INOUT</div>
+  <h1>다이어트를, <span class="hl">힘들어도 참는 것</span>이 아니라<br><span class="hl lav">재미있게 이기는 것</span>으로</h1>
+  <p class="lead" style="margin-top:22px;max-width:880px">
+    저는 굶고 강박에 시달리며 <b>건강하지 않게 빼는 다이어트</b>가 아니라,
+    <b>건강하면서도 즐겁게 빼는 앱</b>을 만드는 데 일조하고 싶습니다.
+    인아웃이 '같이, 게임처럼'이라는 강점으로 <b>재미있게 빼는 슈퍼앱</b>이 되어
+    사용자의 건강한 성장을 이끄는 일 — 그 성장을 마케팅으로 증명하고 싶어 지원합니다.</p>
+  <p style="font-size:16px;color:var(--gray2);margin-top:18px;max-width:880px">직접 써보고, 데이터로 증명하겠습니다. 감사합니다.</p>
+  <div style="margin-top:34px;display:flex;gap:10px">
+    <span class="pill k">이도형 · Growth Marketer</span>
+    <span class="pill mint">마이노멀컴퍼니 · 인아웃</span>
   </div>
 </section>
 
 </div></div>
 
-<div id="nav"><button id="prev">‹</button><span class="ct"><span id="cur">1</span> / <span id="tot">15</span></span><button id="next">›</button></div>
+<div id="nav"><button id="prev">‹</button><span class="ct"><span id="cur">1</span> / <span id="tot">16</span></span><button id="next">›</button></div>
 <div class="hint">← → 또는 Space · F 전체화면</div>
 
 <script>
