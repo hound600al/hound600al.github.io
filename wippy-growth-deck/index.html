@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>위피 전략 & BM 제안 · 이도형</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+:root{
+  --ink:#1A1430; --black:#000; --gray:#8B8698; --gray2:#6B6577;
+  --bg:#FFFFFF; --soft:#F6F4FB; --line:#ECE8F3;
+  --pink:#FF4E8E; --pink-d:#E23A75; --pink-soft:#FFE2EE;
+  --purple:#7B5CFF; --purple-d:#5E40E0; --purple-soft:#ECE6FF;
+  --peach:#FF9E7A; --peach-soft:#FFE6DA;
+  --sky:#3E8EF7; --sky-soft:#E0ECFF;
+  --radius:22px;
+  --shadow:0 10px 40px rgba(26,20,48,.10);
+  --font:"Pretendard","Noto Sans KR",-apple-system,system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:#26222F;font-family:var(--font);-webkit-font-smoothing:antialiased}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.deck{position:relative;width:1280px;height:720px;transform-origin:center center}
+.slide{position:absolute;inset:0;background:var(--bg);display:none;flex-direction:column;
+  padding:48px 66px;overflow:hidden}
+.slide.active{display:flex;animation:fade .5s ease}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;letter-spacing:.04em;
+  color:var(--pink-d);text-transform:uppercase;margin-bottom:11px}
+.kicker.pur{color:var(--purple-d)} .kicker.sky{color:var(--sky)} .kicker.peach{color:#d2641f}
+.kicker.gray{color:var(--gray)}
+h1{font-size:55px;font-weight:800;line-height:1.12;color:var(--ink);letter-spacing:-.02em}
+h2{font-size:35px;font-weight:800;line-height:1.16;color:var(--ink);letter-spacing:-.02em}
+h3{font-size:21px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+p,li{font-size:17px;line-height:1.6;color:#2E2A3A}
+.lead{font-size:21px;line-height:1.62;color:var(--gray2);font-weight:500}
+.hl{background:linear-gradient(transparent 58%, var(--pink-soft) 58%);font-weight:800;color:var(--ink)}
+.hl.pur{background:linear-gradient(transparent 58%, var(--purple-soft) 58%)}
+.hl.peach{background:linear-gradient(transparent 58%, var(--peach-soft) 58%)}
+b,strong{font-weight:800;color:var(--ink)}
+.mono{font-variant-numeric:tabular-nums}
+
+.head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:18px}
+.logo{display:inline-flex;align-items:center;gap:9px;font-weight:800;font-size:18px;letter-spacing:.01em;color:var(--ink)}
+.logo .ic{width:25px;height:25px;border-radius:9px;background:linear-gradient(135deg,#FF4E8E,#7B5CFF);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px}
+
+.grid{display:grid;gap:16px}
+.card{background:var(--soft);border-radius:var(--radius);padding:20px 22px;border:1px solid transparent}
+.card.pink{background:var(--pink-soft)} .card.pur{background:var(--purple-soft)} .card.sky{background:var(--sky-soft)}
+.card.peach{background:var(--peach-soft)}
+.card.out{background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}
+.card.dark{background:var(--ink)} .card.dark h3{color:#fff} .card.dark p,.card.dark li{color:#D9D4E6}
+.card h3{margin-bottom:6px}
+.card .num{font-size:14px;font-weight:800;color:var(--gray);margin-bottom:5px}
+.card p{font-size:15.5px;line-height:1.55}
+.tag{display:inline-block;font-size:13px;font-weight:700;padding:5px 12px;border-radius:999px;
+  background:#fff;border:1px solid var(--line);color:var(--gray2)}
+.pill{display:inline-block;font-size:13px;font-weight:800;padding:6px 13px;border-radius:999px}
+.pill.k{background:var(--ink);color:#fff}
+.pill.pink{background:var(--pink-soft);color:var(--pink-d)} .pill.pur{background:var(--purple-soft);color:var(--purple-d)}
+.pill.sky{background:var(--sky-soft);color:#1f6fd6}
+
+/* goal + as-is/to-be */
+.goal{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;border-radius:999px;
+  padding:8px 16px;font-size:14px;font-weight:800;margin-bottom:14px}
+.goal b{color:#FF9CC0}
+.aisb{display:flex;align-items:stretch;gap:0;margin-bottom:14px}
+.aisb .box{flex:1;border-radius:16px;padding:13px 18px}
+.aisb .box.a{background:var(--soft)}
+.aisb .box.b{background:var(--pink-soft)}
+.aisb .lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;margin-bottom:4px}
+.aisb .box.a .lbl{color:var(--gray2)}
+.aisb .box.b .lbl{color:var(--pink-d)}
+.aisb .box p{font-size:14.5px;line-height:1.5;color:#2E2A3A}
+.aisb .arr{display:flex;align-items:center;padding:0 12px;font-size:20px;color:var(--gray);font-weight:800}
+
+.metric .big{font-size:40px;font-weight:800;letter-spacing:-.02em;line-height:1;color:var(--ink)}
+.metric .big.pink{color:var(--pink-d)} .metric .big.pur{color:var(--purple-d)} .metric .big.sky{color:#1f6fd6}
+.metric .lab{font-size:14px;color:var(--gray2);margin-top:7px;font-weight:600;line-height:1.4}
+
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{text-align:left;padding:9px 13px;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font-size:13px;color:var(--gray);font-weight:700;letter-spacing:.02em}
+td b{font-weight:800}
+tr.hi td{background:var(--pink-soft)}
+.chk{color:var(--purple-d);font-weight:800} .x{color:var(--pink-d);font-weight:800}
+
+.shot{border-radius:14px;border:1px solid var(--line);box-shadow:var(--shadow);width:100%;display:block}
+.cap{font-size:12px;color:var(--gray);margin-top:7px;text-align:center;line-height:1.4}
+.shotwrap{position:relative}
+.shotwrap .badge{position:absolute;left:10px;top:10px;background:var(--ink);color:#fff;font-size:11.5px;font-weight:800;padding:4px 10px;border-radius:999px}
+
+.phone{width:222px;height:462px;border-radius:32px;background:#fff;border:8px solid #1A1430;
+  box-shadow:var(--shadow);overflow:hidden;position:relative;flex:none}
+.phone .top{height:26px;background:#fff;display:flex;align-items:center;justify-content:center}
+.phone .notch{width:66px;height:14px;background:#1A1430;border-radius:0 0 12px 12px}
+.scr{padding:10px 11px;height:calc(100% - 26px - 42px);overflow:hidden}
+.tabbar{position:absolute;bottom:0;left:0;right:0;height:42px;background:#fff;border-top:1px solid var(--line);display:flex}
+.tabbar .t{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:8px;font-weight:700;color:var(--gray)}
+.tabbar .t .d{width:14px;height:14px;border-radius:6px;background:var(--line)}
+.tabbar .t.on{color:var(--pink-d)} .tabbar .t.on .d{background:var(--pink)}
+.mhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.mhead .t{font-size:12px;font-weight:800}
+.pcard{border-radius:11px;padding:8px 10px;margin-bottom:6px;font-weight:800}
+.pcard .ti{font-size:10px} .pcard .me{font-size:8px;font-weight:700;margin-top:3px;color:var(--gray2)}
+.jelly{background:var(--soft);border-radius:10px;padding:7px 9px;font-size:8.5px;color:var(--gray);margin-bottom:5px;font-weight:700;text-align:center}
+.profcard{background:var(--soft);border-radius:12px;padding:9px;margin-bottom:7px;text-align:center}
+.profcard .av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#FFB6CE,#C9B6FF);margin:0 auto 5px}
+.profcard .nm{font-size:10px;font-weight:800} .profcard .ds{font-size:8px;color:var(--gray)}
+
+.callout{background:var(--ink);color:#fff;border-radius:var(--radius);padding:18px 24px}
+.callout h3{color:#fff} .callout p{color:#D9D4E6}
+.flag{font-size:13px;color:var(--gray);font-style:italic}
+.src{font-size:12px;color:var(--gray);line-height:1.5}
+.src b{color:var(--gray2);font-weight:700}
+.foot{position:absolute;left:66px;right:66px;bottom:18px;display:flex;justify-content:space-between;
+  font-size:12px;color:var(--gray);border-top:1px solid var(--line);padding-top:9px;gap:20px}
+.foot .src{flex:1}
+
+ul.clean{list-style:none}
+ul.clean li{position:relative;padding-left:24px;margin-bottom:8px;font-size:15.5px}
+ul.clean li:before{content:"";position:absolute;left:4px;top:9px;width:8px;height:8px;border-radius:3px;background:var(--pink)}
+ul.clean.pur li:before{background:var(--purple)} ul.clean.sky li:before{background:var(--sky)}
+
+.flow{display:flex;align-items:stretch;gap:0}
+.flow .step{flex:1;background:var(--soft);border-radius:14px;padding:12px;text-align:center}
+.flow .arr{display:flex;align-items:center;padding:0 7px;font-size:20px;color:var(--gray);font-weight:800}
+
+#nav{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;
+  background:rgba(26,20,48,.6);backdrop-filter:blur(8px);padding:8px 16px;border-radius:999px;z-index:50}
+#nav button{background:none;border:none;color:#fff;font-size:17px;cursor:pointer;opacity:.85;line-height:1}
+#nav .ct{color:#fff;font-size:13px;font-weight:600;min-width:54px;text-align:center;font-variant-numeric:tabular-nums}
+#bar{position:fixed;top:0;left:0;height:3px;background:var(--pink);z-index:60;transition:width .3s}
+.hint{position:fixed;bottom:20px;right:22px;color:#8b8694;font-size:12px;z-index:50}
+@media print{.slide{display:flex!important;page-break-after:always}#nav,#bar,.hint{display:none}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="stage"><div class="deck" id="deck">
+
+<!-- 1 TITLE -->
+<section class="slide active" style="justify-content:center;background:
+  radial-gradient(900px 520px at 82% -10%, var(--pink-soft) 0%, transparent 55%),
+  radial-gradient(720px 520px at -5% 110%, var(--purple-soft) 0%, transparent 55%), #fff">
+  <div class="logo" style="margin-bottom:32px"><span class="ic">♥</span>WIPPY</div>
+  <div class="kicker">경쟁전략 & 비즈니스 모델 제안 · Performance Marketing</div>
+  <h1>스와이프로 사랑을 찾던 시대는 <span class="hl">지나가고 있습니다</span><br>위피, 이제 <span class="hl pur">'만남의 장'</span>으로</h1>
+  <p class="lead" style="margin-top:24px;max-width:880px">
+    직접 써본 퍼포먼스 마케터의 관점에서 — 2030이 인연을 만드는 방식의 변화를 짚고,
+    <b>문토식 '취향 기반 만남의 장'</b>으로 위피의 새로운 매출 판로를 제안합니다.</p>
+  <div style="margin-top:38px;display:flex;gap:10px">
+    <span class="pill k">엔라이즈 · 위피(WIPPY)</span>
+    <span class="pill pink">퍼포먼스 마케터 지원</span>
+    <span class="pill pur">이도형</span>
+  </div>
+</section>
+
+<!-- 2 위피란 -->
+<section class="slide">
+  <div class="head"><div><div class="kicker">먼저, 위피는 어떤 앱일까요</div><h2>"동네 친구가 필요할 때" —<br>위치 기반 소셜 디스커버리</h2></div><div class="logo"><span class="ic">♥</span>WIPPY</div></div>
+  <div style="display:flex;gap:40px;flex:1;align-items:center">
+    <div style="flex:1.05">
+      <ul class="clean" style="margin-bottom:16px">
+        <li><b>무엇</b> — 엔라이즈의 위치(반경) 기반 만남 앱 (2017 출시) · 국내 데이팅 부문 <b>매출 6년 연속 1위</b></li>
+        <li><b>방식</b> — 주변 사람 추천 → 대화 신청 → 상호 수락 시 채팅. 핵심 상호작용은 인앱 재화 <b>'젤리'</b>로 과금</li>
+        <li><b>지금</b> — '플레이스·동네 모임' 기능으로 <b>이미 커뮤니티로 확장 중</b> (← 이 방향을 가속하자는 게 제안)</li>
+      </ul>
+      <div class="grid" style="grid-template-columns:repeat(3,1fr)">
+        <div class="card metric pink"><div class="big pink">820만+</div><div class="lab">누적 가입자<br>(DL 1,000만+)</div></div>
+        <div class="card metric pur"><div class="big pur">25–34세</div><div class="lab">코어 유저 65%<br>(2030 중심)</div></div>
+        <div class="card metric sky"><div class="big sky">젤리</div><div class="lab">종량제 과금<br>(채팅·열람 시 소모)</div></div>
+      </div>
+    </div>
+    <div style="flex:.74">
+      <div class="shotwrap"><span class="badge">wippy.io</span><img class="shot" src="images/wippy-hero.png" alt="위피 화면"></div>
+      <div class="cap">"내가 찾던 동네친구 위피에서 만나세요!" — 핑크·퍼플 톤</div>
+    </div>
+  </div>
+  <div class="foot"><span class="src"><b>출처</b> · wippy.io · 한경(2019)·Sensor Tower(2024-01)·벤처스퀘어(2026-04, 누적 820만) · 규모는 2025.4 기준, 발표 시 최신 재확인</span><span>02</span></div>
+</section>
+
+<!-- 3 시장 신호 1 -->
+<section class="slide">
+  <div class="head"><div><div class="kicker peach">시장 신호 ① · 왜 지금 전략이 필요한가</div><h2>데이팅 앱, 전 세계에서 식고 있습니다</h2></div><div class="logo"><span class="ic">♥</span>WIPPY</div></div>
+  <div class="grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:16px">
+    <div class="card metric out"><div class="big pink">-8%</div><div class="lab">Tinder 유료 가입자<br>(YoY, 2025 Q4)</div></div>
+    <div class="card metric out"><div class="big pink">-9.9%</div><div class="lab">Bumble 연매출<br>(유료 -20.5%)</div></div>
+    <div class="card metric out"><div class="big pur">78%</div><div class="lab">데이팅 앱<br>'번아웃' 경험</div></div>
+    <div class="card metric out"><div class="big sky">-11.4%</div><div class="lab">국내 데이팅앱<br>지출액(YoY)</div></div>
+  </div>
+  <div class="grid" style="grid-template-columns:1.2fr 1fr;flex:1">
+    <div class="card pink"><h3>한국 2030의 이탈</h3>
+      <p style="margin-top:8px">데이팅 앱 경험자 <b>83.3%가 "더는 쓰지 않는다"</b>. 이탈 1위 이유는 <b>'가벼운 만남 위주'</b>(33.5%). 다운로드는 늘어도 <b>결제는 줄어드는</b> 구조.</p></div>
+    <div class="card peach"><h3>신뢰의 위기</h3>
+      <p style="margin-top:8px">공정위, 일부 운영사가 <b>270여 개 가짜 여성계정</b>으로 결제 유도 → 과징금. 봇·스캠으로 카테고리 전체 신뢰가 흔들립니다.</p></div>
+  </div>
+  <div class="foot"><span class="src"><b>출처</b> · CNBC(2026-02, Match/Tinder)·Bumble IR(2025)·Forbes Health(2025-07, 번아웃 78%)·아시아경제(2024-03, 국내 지출 -11.4%)·사람인·비긴즈(2025-08, 83.3%)·경향(2025-05, 공정위)</span><span>03</span></div>
+</section>
+
+<!-- 4 위피 리뷰 -->
+<section class="slide">
+  <div class="head"><div><div class="kicker peach">시장 신호 ② · 위피 사용자 목소리</div><h2>'현재 방향 고수'는 임팩트가 약합니다</h2></div><div class="logo"><span class="ic">♥</span>WIPPY</div></div>
+  <div style="display:flex;gap:24px;flex:1;align-items:center">
+    <div style="flex:.9">
+      <div class="grid" style="grid-template-columns:1fr 1fr">
+        <div class="card metric out"><div class="big pink">3.3<span style="font-size:20px">/5</span></div><div class="lab">Google Play (약 3.5만)</div></div>
+        <div class="card metric out"><div class="big pur">4.0<span style="font-size:20px">/5</span></div><div class="lab">App Store (약 6만)</div></div>
+      </div>
+      <p style="font-size:14.5px;color:var(--gray2);margin-top:14px"><b style="color:var(--ink)">매출은 1위인데, 안드로이드 평점 3.3.</b> 인스톨을 늘려도 신뢰·만족이 못 따라오면 <b style="color:var(--ink)">LTV·리텐션이 샙니다</b> — 퍼포먼스가 풀어야 할 진짜 문제.</p>
+    </div>
+    <div style="flex:1.1">
+      <div class="card out" style="margin-bottom:10px"><h3 style="font-size:16px">반복되는 불만</h3>
+        <ul class="clean" style="margin-top:8px">
+          <li style="font-size:14.5px"><b>과금 압박</b> — "채팅 시작에도 젤리 소모…현질 유도 심하다" <span style="color:var(--gray)">(운영사도 구조 인정)</span></li>
+          <li style="font-size:14.5px"><b>가짜·봇·업체</b> 계정, <b>로맨스 스캠</b> 피해</li>
+          <li style="font-size:14.5px"><b>매칭 품질·사진/실물 불일치</b>, 부당 정지 불만</li>
+        </ul></div>
+      <div class="callout"><p>긍정 리뷰는 <b style="color:#fff">"매칭률은 제일 높다"</b>(위치 기반 즉시성). 강점은 분명하지만, <b style="color:#fff">'젤리로 1:1 채팅을 여는' 구조 자체</b>가 불만의 핵심입니다.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="src"><b>출처</b> · Google Play / App Store 위피 리뷰(2026-06 기준) · 운영사(NRISE) 답글(2026-05) · 일부 리뷰는 개별 사례로 정량 일반화는 주의</span><span>04</span></div>
+</section>
+
+<!-- 5 2030 페인포인트 -->
+<section class="slide">
+  <div class="head"><div><div class="kicker">인사이트 ① · 2030이 인연을 만드는 데 겪는 불편</div><h2>'사랑을 전제로 한 만남'이 부담스럽습니다</h2></div><div class="logo"><span class="ic">♥</span>WIPPY</div></div>
+  <div class="grid" style="grid-template-columns:repeat(4,1fr);flex:1">
+    <div class="card pink"><div class="num">페인 ①</div><h3 style="font-size:18px">인위적·어색한 만남</h3><p style="margin-top:6px">아무 맥락 없이 1:1로 마주 앉는 만남은 <b>어색하고 부담</b>. 대화 소재부터 막힘.</p></div>
+    <div class="card pur"><div class="num">페인 ②</div><h3 style="font-size:18px">'연애 전제'의 압박</h3><p style="margin-top:6px">처음부터 <b>"연애하려고 만난다"</b>는 프레임이 평가·부담을 만들고 진입을 막음.</p></div>
+    <div class="card peach"><div class="num">페인 ③</div><h3 style="font-size:18px">외모·사진 중심</h3><p style="margin-top:6px">스와이프는 <b>사진 위주</b>. 보정 불신, 성격·취향은 뒤로 밀려 미스매치.</p></div>
+    <div class="card sky"><div class="num">페인 ④</div><h3 style="font-size:18px">안전·신뢰 불안</h3><p style="margin-top:6px"><b>봇·가짜·스캠</b> 걱정. "이 사람 진짜일까?"가 만남의 첫 장벽.</p></div>
+  </div>
+  <p style="font-size:16px;color:var(--gray2);margin-top:16px;text-align:center"><b style="color:var(--ink)">한 줄 요약</b> — 문제는 '만남'이 아니라, <b style="color:var(--ink)">맥락 없이·연애를 전제로·사진으로</b> 만나게 하는 <b style="color:var(--ink)">방식</b>입니다.</p>
+  <div class="foot"><span class="src"><b>출처</b> · Forbes Health(번아웃 78%) · 국내 2030 연애요소 성격>외모(설문) · 데이팅 스캠/딥페이크 신뢰 악화(Sumsub·FTC 2025~26) · 직접 사용 관찰</span><span>05</span></div>
+</section>
+
+<!-- 6 취미·모임으로 만난다 -->
+<section class="slide" style="background:linear-gradient(180deg,#fff,var(--purple-soft) 440%)">
+  <div class="head"><div><div class="kicker pur">인사이트 ② · 만남의 무게중심이 옮겨갔다</div><h2>2030은 이제 '취미·모임'에서 만납니다</h2></div><div class="logo"><span class="ic">♥</span>WIPPY</div></div>
+  <div style="display:flex;gap:30px;flex:1;align-items:center">
+    <div style="flex:1.15">
+      <div class="grid" style="grid-template-columns:1fr 1fr;margin-bottom:14px">
+        <div class="card pur metric"><div class="big pur">관심사 ＞ 데이팅</div><div class="lab" style="margin-top:6px">관심사 커뮤니티 <b>월 이용자 수가 데이팅 서비스를 추월</b> (인크로스, 2024-06)</div></div>
+        <div class="card pink metric"><div class="big pink">40.5%</div><div class="lab" style="margin-top:6px">2030이 <b>정기 모임 보유</b> · 연애상대와 취미 공유 중요 91.3%</div></div>
+      </div>
+      <ul class="clean pur">
+        <li><b>"자만추"</b> — 자연스러운 만남을 선호. 20대 초 <b>55%가 "대면 만남을 앱보다 더 신뢰"</b> (보정 프로필 불신)</li>
+        <li>러닝크루·와인·독서모임이 <b>새로운 만남의 채널</b>로. Strava 런클럽에서 데이트하는 Gen Z</li>
+      </ul>
+      <div class="callout" style="margin-top:14px"><p>핵심 통찰 — 사랑은 더 이상 <b style="color:#fff">'전제'</b>가 아니라, 좋아하는 걸 함께하다 생기는 <b style="color:#fff">'결과'</b>입니다.</p></div>
+    </div>
+    <div style="flex:.85">
+      <div class="shotwrap"><span class="badge">문토</span><img class="shot" src="images/munto-love.png" alt="문토 모임"></div>
+      <div class="cap">문토 — '취향 인연'·소셜 파티 등 <b>취향 모임 안에서 자연스러운 인연</b></div>
+    </div>
+  </div>
+  <div class="foot"><span class="src"><b>출처</b> · 인크로스 MZ 연애문화 리포트(2024-06) · 대학내일20대연구소(2025-03) · TrendMonitor(2024-10, 55% 대면 신뢰) · TechCrunch(2025-10, Strava 런클럽)</span><span>06</span></div>
+</section>
+
+<!-- 7 데이팅앱이 나아갈 방향 -->
+<section class="slide">
+  <div class="head"><div><div class="kicker">방향 · 데이팅 앱은 어떻게 진화해야 하나</div><h2>'매칭'에서 '취향 기반 만남의 장'으로</h2></div><div class="logo"><span class="ic">♥</span>WIPPY</div></div>
+  <div class="grid" style="grid-template-columns:repeat(2,1fr);flex:1">
+    <div class="card out"><h3>① 취향 우선 진입 (연애 전제 제거)</h3>
+      <p style="margin-top:6px">"연애하러" 대신 <b>"좋아하는 걸 같이"</b>로 시작 → 부담·번아웃 회피. <span style="color:var(--gray)">벤치마크 · 문토 소셜링, Strava 런클럽</span></p></div>
+    <div class="card out"><h3>② 큐레이션된 소규모 그룹 만남</h3>
+      <p style="margin-top:6px">1:1 스와이프 대신 <b>관심사 기반 소그룹(6인 디너 등)</b>. <span style="color:var(--gray)">벤치마크 · Timeleft(52개국 월 15만 식사)</span></p></div>
+    <div class="card out"><h3>③ 친구·커뮤니티 레인 신설</h3>
+      <p style="margin-top:6px">데이팅 밖 <b>'친구·동네' 관계로 TAM 확장</b> → 진입 거부감↓. <span style="color:var(--gray)">벤치마크 · Bumble for Friends</span></p></div>
+    <div class="card out"><h3>④ 온라인 → 오프라인 IRL 이벤트</h3>
+      <p style="margin-top:6px">실제 <b>만남의 장(밋업·클래스)</b>에 투자해 외로움을 해결. <span style="color:var(--gray)">벤치마크 · Hinge 'One More Hour'</span></p></div>
+  </div>
+  <p style="font-size:16px;color:var(--gray2);margin-top:14px;text-align:center">위피는 이미 <b style="color:var(--ink)">'동네친구·플레이스'</b>로 이 방향에 발을 들였습니다 — <b style="color:var(--ink)">문토식 '만남의 장'</b>으로 가속하면 됩니다.</p>
+  <div class="foot"><span class="src"><b>출처</b> · 문토 munto.kr · TechCrunch(2025-10, Strava) · Timeleft 공개자료(2025) · Bumble IR(2025) · CNBC(2025-03, Hinge IRL)</span><span>07</span></div>
+</section>
+
+<!-- 8 문토 벤치마킹 지향점 -->
+<section class="slide" style="background:linear-gradient(180deg,#fff,var(--pink-soft) 440%)">
+  <div class="head"><div><div class="kicker pink">지향점 · 문토에서 배우는 것</div><h2>'사랑을 전제하지 않는 만남의 장'을 위피에</h2></div><div class="logo"><span class="ic">♥</span>WIPPY</div></div>
+  <div class="goal">🎯 지향 · <b>&nbsp;연애를 강요하지 않고, 취향으로 모여 자연스럽게 인연이 되게 한다</b></div>
+  <div style="display:flex;gap:26px;flex:1">
+    <div style="flex:1.2">
+      <div class="grid" style="grid-template-columns:1fr 1fr">
+        <div class="card pink"><div class="num">문토는 이렇게</div><h3 style="font-size:18px">모임이 먼저, 인연은 결과</h3>
+          <ul class="clean" style="margin-top:8px">
+            <li style="font-size:14px"><b>소셜링·클럽·챌린지</b>로 취향 모임 운영</li>
+            <li style="font-size:14px">'연애' 간판은 없지만 <b>와인·취향 인연 모임</b>에서 자연스럽게 만남</li>
+          </ul></div>
+        <div class="card pur"><div class="num">근거</div><h3 style="font-size:18px">사람들이 더 편해한다</h3>
+          <ul class="clean pur" style="margin-top:8px">
+            <li style="font-size:14px"><b>공통 관심사가 먼저</b> 검증돼 신뢰·대화가 쉬움</li>
+            <li style="font-size:14px">호스트 운영 <b>후기·실명</b>으로 봇·스캠 불안↓</li>
+          </ul></div>
+      </div>
+      <div class="callout" style="margin-top:14px"><p>문토는 <b style="color:#fff">호스트 참가비의 20%</b>를 수수료로 가져갑니다(호스트 80%, 상위 호스트 연 9,500만 사례). 모임 자체가 <b style="color:#fff">신뢰·리텐션·매출</b>을 동시에 만듭니다.</p></div>
+    </div>
+    <div style="flex:.8">
+      <div class="shotwrap"><span class="badge">문토</span><img class="shot" src="images/munto-love.png" alt="문토 모임"></div>
+      <div class="cap">취향 모임 → '취향 인연'으로 — 위피가 차용할 정확한 공식</div>
+    </div>
+  </div>
+  <div class="foot"><span class="src"><b>출처</b> · munto.kr(2026-06 캡처) · 서울경제(2023-04, 누적회원 52만) · 유니콘팩토리(2023-12, 수수료 20%·호스트 연 9,500만) · 문토 2024~26 규모는 미공개(발표 시 단서)</span><span>08</span></div>
+</section>
+
+<!-- 9 기대 포인트 & 증분 -->
+<section class="slide">
+  <div class="head"><div><div class="kicker pur">기대 효과 · 만남의 장이 만드는 증분</div><h2>진입장벽을 낮추면, 매출까지 이어집니다</h2></div><div class="logo"><span class="ic">♥</span>WIPPY</div></div>
+  <div class="flow" style="margin-bottom:18px">
+    <div class="step"><div style="font-size:22px">🎈</div><h3 style="font-size:14.5px;margin-top:4px">진입장벽 ↓</h3><p style="font-size:11.5px;color:var(--gray2)">연애 부담 제거</p></div>
+    <div class="arr">→</div>
+    <div class="step"><div style="font-size:22px">🤝</div><h3 style="font-size:14.5px;margin-top:4px">신뢰·만족 ↑</h3><p style="font-size:11.5px;color:var(--gray2)">관심사 선검증</p></div>
+    <div class="arr">→</div>
+    <div class="step"><div style="font-size:22px">🔁</div><h3 style="font-size:14.5px;margin-top:4px">리텐션 ↑</h3><p style="font-size:11.5px;color:var(--gray2)">반복 모임</p></div>
+    <div class="arr">→</div>
+    <div class="step" style="background:var(--pink-soft)"><div style="font-size:22px">💞</div><h3 style="font-size:14.5px;margin-top:4px">매칭·인연 ↑</h3><p style="font-size:11.5px;color:#c1366c">결과로서의 연애</p></div>
+    <div class="arr">→</div>
+    <div class="step" style="background:var(--purple-soft)"><div style="font-size:22px">💰</div><h3 style="font-size:14.5px;margin-top:4px">새 매출 ↑</h3><p style="font-size:11.5px;color:var(--purple-d)">모임 BM</p></div>
+  </div>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr);flex:1">
+    <div class="card pink"><h3 style="font-size:17px">새 유저층 유입</h3><p style="margin-top:6px">'연애는 부담스럽지만 친구·취미는 좋다'는 <b>이탈·관망층</b>을 끌어옴 → 신규·복귀.</p></div>
+    <div class="card pur"><h3 style="font-size:17px">신뢰·평점 회복</h3><p style="margin-top:6px">관심사·후기로 만나니 <b>봇·과금 불만이 줄고</b> 만족도·평점이 오를 여지.</p></div>
+    <div class="card sky"><h3 style="font-size:17px">젤리 너머의 매출</h3><p style="margin-top:6px">단발 젤리 소모에 더해 <b>모임 참가비·구독·수수료</b>라는 반복 매출축 확보.</p></div>
+  </div>
+  <div class="foot"><span class="src"><b>출처</b> · 인크로스(관심사 커뮤니티>데이팅) · Amplitude(가치경험→리텐션) · 증분은 방향성 가설, 내부 베이스라인 측정 후 목표치 확정</span><span>09</span></div>
+</section>
+
+<!-- 10 위피 개선 As-Is/To-Be 제품 -->
+<section class="slide">
+  <div class="head"><div><div class="kicker pink">위피 개선 (1/2) · 제품</div><h2>'젤리로 여는 1:1'에서 '취향으로 모이는 장'으로</h2></div><div class="logo"><span class="ic">♥</span>WIPPY</div></div>
+  <div class="goal">🎯 지향 · <b>&nbsp;1:1 매칭 옆에 '취향 모임(만남의 장)' 레인을 새로 연다</b></div>
+  <div style="display:flex;gap:24px;flex:1;align-items:center">
+    <div class="phone">
+      <div class="top"><div class="notch"></div></div>
+      <div class="scr">
+        <div class="mhead"><div class="t" style="color:var(--gray)">AS-IS · 지금</div></div>
+        <div class="profcard"><div class="av"></div><div class="nm">근처 OOO · 2.3km</div><div class="ds">관심사 매칭</div></div>
+        <div class="jelly">대화하려면 채팅방 열기 · 🟡 젤리 7개</div>
+        <div class="profcard" style="opacity:.6"><div class="av"></div><div class="nm">근처 OOO · 4.1km</div><div class="ds">프로필 열람 · 🟡 2개</div></div>
+        <div class="jelly" style="color:var(--pink-d)">맥락 없는 1:1 · 과금이 첫 장벽</div>
+      </div>
+      <div class="tabbar"><div class="t on"><div class="d"></div>추천</div><div class="t"><div class="d"></div>채팅</div><div class="t"><div class="d"></div>MY</div></div>
+    </div>
+    <div style="display:flex;align-items:center;font-size:24px;color:var(--gray);font-weight:800">→</div>
+    <div class="phone">
+      <div class="top"><div class="notch"></div></div>
+      <div class="scr">
+        <div class="mhead"><div class="t" style="color:var(--pink-d)">TO-BE · 제안</div></div>
+        <div class="pcard" style="background:var(--pink-soft)"><div class="ti">🍷 금요일 와인 소셜링 (6인)</div><div class="me">강남 · 호스트 인증 · 3자리 남음</div></div>
+        <div class="pcard" style="background:var(--purple-soft)"><div class="ti">🏃 한강 러닝 모임</div><div class="me">잠실 · 매주 토 · 후기 4.9</div></div>
+        <div class="pcard" style="background:var(--sky-soft)"><div class="ti">🎲 보드게임 번개</div><div class="me">오늘 저녁 · 2자리 남음</div></div>
+        <div class="pcard" style="background:var(--ink);color:#fff;text-align:center"><div class="ti">＋ 내 취향 모임 열기</div></div>
+      </div>
+      <div class="tabbar"><div class="t"><div class="d"></div>추천</div><div class="t on"><div class="d"></div>모임</div><div class="t"><div class="d"></div>채팅</div><div class="t"><div class="d"></div>MY</div></div>
+    </div>
+    <div style="flex:1">
+      <div class="card out"><h3>핵심 변화 3가지</h3>
+        <ul class="clean" style="margin-top:10px">
+          <li><b>'모임' 탭 신설</b> — 취향 소셜링·클럽·번개를 위치 기반으로 추천</li>
+          <li><b>연애 전제 제거</b> — 친구·취미로 시작, 인연은 결과로</li>
+          <li><b>호스트·후기·인증</b> — 봇·스캠 불안을 신뢰로 전환</li>
+        </ul></div>
+    </div>
+  </div>
+  <div class="foot"><span class="src"><b>출처</b> · 위피 현 플로우(직접 사용) · 문토 소셜링 구조 · 위피 '플레이스·동네 모임'(기존 확장 기능) · 목업은 제안 예시</span><span>10</span></div>
+</section>
+
+<!-- 11 위피 개선 As-Is/To-Be BM -->
+<section class="slide">
+  <div class="head"><div><div class="kicker pink">위피 개선 (2/2) · BM · 새 매출 판로</div><h2>'젤리 한 축'에서 '여러 매출 판로'로</h2></div><div class="logo"><span class="ic">♥</span>WIPPY</div></div>
+  <div class="aisb">
+    <div class="box a"><div class="lbl">AS-IS · 지금</div><p>매출이 <b>'젤리' 종량제(채팅·열람마다 과금)</b> 한 축 — 과금 압박이 평점·신뢰를 끌어내림.</p></div>
+    <div class="arr">→</div>
+    <div class="box b"><div class="lbl">TO-BE · 제안</div><p><b>모임 참가비·호스트 수수료·멤버십·티켓·제휴</b> — 만남의 장 위에 <b>반복 매출축</b>을 얹는다.</p></div>
+  </div>
+  <table>
+    <tr><th style="width:26%">새 매출 판로</th><th style="width:46%">메커니즘</th><th style="width:28%">벤치마크</th></tr>
+    <tr class="hi"><td><b>모임 참가비 + 수수료</b></td><td>호스트가 유료 모임 운영, 위피가 take-rate 후 정산</td><td>문토 20% · 프립 9.9%</td></tr>
+    <tr class="hi"><td><b>호스트(모임장) 수익배분</b></td><td>인기 호스트가 공급을 만들고 수익 공유 → 모임 풀 확장</td><td>문토(상위 호스트 연 9,500만)</td></tr>
+    <tr><td><b>프리미엄 멤버십(구독)</b></td><td>무제한 모임 참여·우선 매칭·필터를 월 구독으로</td><td>Timeleft·Strava·트레바리</td></tr>
+    <tr><td><b>오프라인 이벤트 티켓</b></td><td>대형 밋업·클래스 유료 티켓 + 플랫폼 take-rate</td><td>Eventbrite(9.6%)</td></tr>
+    <tr><td><b>브랜드 제휴·커머스</b></td><td>주류·F&B·러닝 브랜드 스폰서 모임, 굿즈·예약 연동</td><td>Timeleft×브랜드 협업</td></tr>
+  </table>
+  <div class="foot"><span class="src"><b>출처</b> · 문토·프립(국내 수수료) · Timeleft(€14.99 구독)·트레바리(시즌 19~29만) · Eventbrite(SEC, take rate 9.6%) · 일부 해외 수치 단일출처(발표 시 단서)</span><span>11</span></div>
+</section>
+
+<!-- 12 로드맵 + KPI -->
+<section class="slide" style="background:linear-gradient(180deg,#fff,var(--purple-soft) 440%)">
+  <div class="head"><div><div class="kicker">실행 · Roadmap & KPI</div><h2>작게 검증하며, 신뢰를 매출로</h2></div><div class="logo"><span class="ic">♥</span>WIPPY</div></div>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:16px">
+    <div class="card pink"><div class="num">0–4주 · 검증</div><h3>모임 베타</h3>
+      <ul class="clean" style="margin-top:8px"><li style="font-size:14px">'모임' 탭 MVP(소수 지역·관심사)</li><li style="font-size:14px">시드 호스트 모집·후기 시스템</li><li style="font-size:14px">연애 전제 없는 카피 A/B</li></ul></div>
+    <div class="card pur"><div class="num">1–3개월 · 확산</div><h3>참가비·수수료</h3>
+      <ul class="clean pur" style="margin-top:8px"><li style="font-size:14px">유료 모임 + take-rate 도입</li><li style="font-size:14px">호스트 수익배분 인센티브</li><li style="font-size:14px">모임→매칭 전환 퍼널 설계</li></ul></div>
+    <div class="card sky"><div class="num">분기 · 매출 판로</div><h3>멤버십·제휴</h3>
+      <ul class="clean sky" style="margin-top:8px"><li style="font-size:14px">프리미엄 멤버십 구독</li><li style="font-size:14px">오프라인 이벤트 티켓</li><li style="font-size:14px">브랜드 제휴·커머스</li></ul></div>
+  </div>
+  <div class="callout" style="display:flex;align-items:center;gap:20px">
+    <h3 style="white-space:nowrap">핵심 KPI</h3>
+    <p style="font-size:15.5px">모임 참여율 · <b style="color:#fff">모임→채팅/매칭 전환율</b> · D30 리텐션(모임 참여자 vs 미참여) · <b style="color:#fff">유료 모임 attach·ARPU</b> · 평점/신고율. 한 지표만 꼽으면 <b style="color:#fff">'모임 참여 → 인연 전환율'</b>.</p>
+  </div>
+  <div class="foot"><span class="src">한 번에 하나씩 A/B로 검증 · 모임 결제·정산은 베타→정식 단계 검증 · 내부 베이스라인 확인 후 목표치 확정</span><span>12</span></div>
+</section>
+
+<!-- 13 Closing 포부 -->
+<section class="slide" style="justify-content:center;background:
+  radial-gradient(840px 520px at 85% 110%, var(--pink-soft) 0%, transparent 55%),
+  radial-gradient(720px 470px at 0% -10%, var(--purple-soft) 0%, transparent 55%), #fff">
+  <div class="logo" style="margin-bottom:26px"><span class="ic">♥</span>WIPPY</div>
+  <h1>'내 짝꿍'을 만나기까지의 <span class="hl">마찰</span>을,<br><span class="hl pur">없애고 싶습니다</span></h1>
+  <p class="lead" style="margin-top:22px;max-width:900px">
+    사진을 꾸미고, 젤리를 결제하고, 어색한 1:1에 마주 앉는 일 —
+    누군가에겐 짝꿍을 만나는 길이 여전히 부담스럽고 불안합니다.
+    저는 <b>좋아하는 걸 함께하다 자연스럽게 인연이 되는 '만남의 장'</b>으로 위피를 만들어,
+    <b>사랑을 찾는 길을 더 쉽고, 더 건강하게</b> 바꾸는 데 일조하고 싶습니다.</p>
+  <p style="font-size:16px;color:var(--gray2);margin-top:18px;max-width:900px">직접 써보고, 데이터로 증명하겠습니다. 감사합니다.</p>
+  <div style="margin-top:32px;display:flex;gap:10px">
+    <span class="pill k">이도형 · Performance Marketer</span>
+    <span class="pill pink">엔라이즈 · 위피</span>
+  </div>
+</section>
+
+</div></div>
+
+<div id="nav"><button id="prev">‹</button><span class="ct"><span id="cur">1</span> / <span id="tot">13</span></span><button id="next">›</button></div>
+<div class="hint">← → 또는 Space · F 전체화면</div>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let i=0;const tot=slides.length;
+document.getElementById('tot').textContent=tot;
+function show(n){i=Math.max(0,Math.min(tot-1,n));
+  slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+  document.getElementById('cur').textContent=i+1;
+  document.getElementById('bar').style.width=((i+1)/tot*100)+'%';}
+function next(){show(i+1)} function prev(){show(i-1)}
+document.getElementById('next').onclick=next;
+document.getElementById('prev').onclick=prev;
+addEventListener('keydown',e=>{
+  if(['ArrowRight',' ','PageDown'].includes(e.key)){next();e.preventDefault();}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){prev();e.preventDefault();}
+  else if(e.key==='Home')show(0); else if(e.key==='End')show(tot-1);
+  else if(e.key.toLowerCase()==='f'){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen();}
+});
+let tx=0;addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-tx;if(d<-50)next();else if(d>50)prev();});
+function fit(){const d=document.getElementById('deck');
+  const s=Math.min(innerWidth/1280,innerHeight/720);
+  d.style.transform='scale('+s+')';}
+addEventListener('resize',fit);fit();show(0);
+</script>
+</body>
+</html>
