@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>리웨이크 그로스 전략 & BM 제안 · 이도형</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+:root{
+  --ink:#15203A; --navy:#1E2D4D; --black:#0E1626;
+  --gray:#8A8B92; --gray2:#5A5E6B;
+  --bg:#FFFFFF; --soft:#F5F2EC; --line:#E7E2D8; --cream:#FAF7F1;
+  --camel:#B08B57; --camel-d:#8C6B3E; --camel-soft:#F0E7D8;
+  --sage:#3E7A5E; --sage-soft:#E3EFE8;
+  --rose:#B5546A; --rose-soft:#F6E4E8;
+  --radius:20px;
+  --shadow:0 12px 40px rgba(21,32,58,.10);
+  --font:"Pretendard","Noto Sans KR",-apple-system,system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:#22252C;font-family:var(--font);-webkit-font-smoothing:antialiased}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.deck{position:relative;width:1280px;height:720px;transform-origin:center center}
+.slide{position:absolute;inset:0;background:var(--bg);display:none;flex-direction:column;
+  padding:48px 66px;overflow:hidden}
+.slide.active{display:flex;animation:fade .5s ease}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:700;letter-spacing:.06em;
+  color:var(--camel-d);text-transform:uppercase;margin-bottom:11px}
+.kicker.sage{color:var(--sage)} .kicker.navy{color:var(--navy)} .kicker.rose{color:var(--rose)} .kicker.gray{color:var(--gray)}
+h1{font-size:54px;font-weight:800;line-height:1.14;color:var(--ink);letter-spacing:-.02em}
+h2{font-size:34px;font-weight:800;line-height:1.18;color:var(--ink);letter-spacing:-.02em}
+h3{font-size:20px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+p,li{font-size:16.5px;line-height:1.6;color:#33394A}
+.lead{font-size:20px;line-height:1.62;color:var(--gray2);font-weight:500}
+.hl{background:linear-gradient(transparent 58%, var(--camel-soft) 58%);font-weight:800;color:var(--ink)}
+.hl.sage{background:linear-gradient(transparent 58%, var(--sage-soft) 58%)}
+.hl.rose{background:linear-gradient(transparent 58%, var(--rose-soft) 58%)}
+b,strong{font-weight:800;color:var(--ink)}
+.mono{font-variant-numeric:tabular-nums}
+
+.head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:18px}
+.logo{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:17px;letter-spacing:.02em;color:var(--ink)}
+.logo .ic{width:24px;height:24px;border-radius:7px;background:linear-gradient(135deg,#1E2D4D,#B08B57);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px}
+
+.grid{display:grid;gap:15px}
+.card{background:var(--soft);border-radius:var(--radius);padding:19px 21px;border:1px solid transparent}
+.card.cream{background:var(--cream)} .card.camel{background:var(--camel-soft)} .card.sage{background:var(--sage-soft)}
+.card.rose{background:var(--rose-soft)} .card.navy{background:var(--navy)}
+.card.navy h3{color:#fff} .card.navy p,.card.navy li{color:#D5D9E2}
+.card.out{background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}
+.card.dark{background:var(--ink)} .card.dark h3{color:#fff} .card.dark p,.card.dark li{color:#D5D9E2}
+.card h3{margin-bottom:5px}
+.card .num{font-size:13.5px;font-weight:800;color:var(--gray);margin-bottom:5px}
+.card p{font-size:15px;line-height:1.55}
+.tag{display:inline-block;font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:999px;
+  background:#fff;border:1px solid var(--line);color:var(--gray2)}
+.pill{display:inline-block;font-size:13px;font-weight:800;padding:6px 13px;border-radius:999px}
+.pill.k{background:var(--ink);color:#fff}
+.pill.camel{background:var(--camel-soft);color:var(--camel-d)} .pill.sage{background:var(--sage-soft);color:var(--sage)}
+.pill.navy{background:#E5E9F0;color:var(--navy)}
+
+.goal{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;border-radius:999px;
+  padding:8px 16px;font-size:13.5px;font-weight:800;margin-bottom:13px}
+.goal b{color:#E2C290}
+.aisb{display:flex;align-items:stretch;gap:0;margin-bottom:13px}
+.aisb .box{flex:1;border-radius:15px;padding:13px 17px}
+.aisb .box.a{background:var(--soft)}
+.aisb .box.b{background:var(--sage-soft)}
+.aisb .lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;margin-bottom:4px}
+.aisb .box.a .lbl{color:var(--gray2)}
+.aisb .box.b .lbl{color:var(--sage)}
+.aisb .box p{font-size:14px;line-height:1.5;color:#33394A}
+.aisb .arr{display:flex;align-items:center;padding:0 11px;font-size:19px;color:var(--gray);font-weight:800}
+
+.metric .big{font-size:38px;font-weight:800;letter-spacing:-.02em;line-height:1.05;color:var(--ink)}
+.metric .big.camel{color:var(--camel-d)} .metric .big.sage{color:var(--sage)} .metric .big.rose{color:var(--rose)}
+.metric .lab{font-size:13.5px;color:var(--gray2);margin-top:7px;font-weight:600;line-height:1.4}
+
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font-size:12.5px;color:var(--gray);font-weight:700;letter-spacing:.02em}
+td b{font-weight:800}
+tr.hi td{background:var(--sage-soft)}
+.chk{color:var(--sage);font-weight:800} .x{color:var(--rose);font-weight:800}
+
+.shot{border-radius:13px;border:1px solid var(--line);box-shadow:var(--shadow);width:100%;display:block}
+.cap{font-size:12px;color:var(--gray);margin-top:7px;text-align:center;line-height:1.4}
+.shotwrap{position:relative}
+.shotwrap .badge{position:absolute;left:10px;top:10px;background:var(--ink);color:#fff;font-size:11.5px;font-weight:800;padding:4px 10px;border-radius:999px}
+
+.phone{width:220px;height:458px;border-radius:30px;background:#fff;border:8px solid #15203A;
+  box-shadow:var(--shadow);overflow:hidden;position:relative;flex:none}
+.phone .top{height:25px;background:#fff;display:flex;align-items:center;justify-content:center}
+.phone .notch{width:62px;height:13px;background:#15203A;border-radius:0 0 11px 11px}
+.scr{padding:10px 11px;height:calc(100% - 25px - 40px);overflow:hidden}
+.tabbar{position:absolute;bottom:0;left:0;right:0;height:40px;background:#fff;border-top:1px solid var(--line);display:flex}
+.tabbar .t{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:7.5px;font-weight:700;color:var(--gray)}
+.tabbar .t .d{width:13px;height:13px;border-radius:5px;background:var(--line)}
+.tabbar .t.on{color:var(--camel-d)} .tabbar .t.on .d{background:var(--camel)}
+.mhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px}
+.mhead .t{font-size:11.5px;font-weight:800}
+.pimg{height:96px;border-radius:10px;background:linear-gradient(135deg,#E7E2D8,#F0E7D8);margin-bottom:7px;position:relative;display:flex;align-items:flex-end;padding:7px}
+.badge2{font-size:8px;font-weight:800;padding:3px 7px;border-radius:6px;background:var(--ink);color:#fff}
+.badge2.sage{background:var(--sage)} .badge2.rose{background:var(--rose)} .badge2.camel{background:var(--camel-d)}
+.chip{display:inline-block;font-size:8px;font-weight:800;padding:4px 8px;border-radius:999px;background:var(--soft);color:var(--gray2);margin:0 3px 4px 0}
+.chip.on{background:var(--camel-soft);color:var(--camel-d)}
+.rev{background:var(--soft);border-radius:9px;padding:7px 8px;font-size:8px;color:#4a4f5e;margin-bottom:5px;line-height:1.4}
+.rev b{color:var(--ink)}
+.field{background:var(--soft);border-radius:9px;padding:8px 9px;font-size:8.5px;font-weight:700;color:var(--gray2);margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
+.toggle{width:24px;height:14px;border-radius:99px;background:var(--sage);position:relative}
+.toggle:after{content:"";position:absolute;right:2px;top:2px;width:10px;height:10px;border-radius:50%;background:#fff}
+.push{background:var(--ink);color:#fff;border-radius:10px;padding:8px 9px;font-size:8.5px;line-height:1.4;font-weight:700}
+.push b{color:#E2C290}
+.gradebar{display:flex;gap:3px;margin-bottom:6px}
+.gradebar .g{flex:1;text-align:center;font-size:8px;font-weight:800;padding:4px 0;border-radius:6px;background:var(--soft);color:var(--gray)}
+.gradebar .g.on{background:var(--sage);color:#fff}
+.thumbs{display:flex;gap:4px;margin-bottom:6px}
+.thumbs .th{flex:1;height:30px;border-radius:6px;background:linear-gradient(135deg,#E7E2D8,#F0E7D8)}
+
+.callout{background:var(--ink);color:#fff;border-radius:var(--radius);padding:17px 23px}
+.callout h3{color:#fff} .callout p{color:#D5D9E2}
+.quote{background:linear-gradient(120deg,#15203A,#1E2D4D);color:#fff;border-radius:var(--radius);padding:24px 28px}
+.quote .q{font-size:26px;font-weight:800;line-height:1.34;color:#fff}
+.quote .q .g{background:linear-gradient(90deg,#E2C290,#9FD3B8);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+.agenda{display:flex;flex-direction:column;gap:11px}
+.arow{display:flex;align-items:center;gap:16px;background:var(--soft);border-radius:14px;padding:14px 20px}
+.arow .n{width:34px;height:34px;border-radius:10px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;flex:none}
+.arow .ti{font-size:18px;font-weight:800;color:var(--ink)}
+.arow .de{font-size:14px;color:var(--gray2);margin-top:1px}
+.arow.camel{background:var(--camel-soft)} .arow.sage{background:var(--sage-soft)} .arow.rose{background:var(--rose-soft)}
+
+.flag{font-size:12.5px;color:var(--gray);font-style:italic}
+.src{font-size:11.5px;color:var(--gray);line-height:1.5}
+.src b{color:var(--gray2);font-weight:700}
+.foot{position:absolute;left:66px;right:66px;bottom:18px;display:flex;justify-content:space-between;
+  font-size:11.5px;color:var(--gray);border-top:1px solid var(--line);padding-top:9px;gap:20px}
+.foot .src{flex:1}
+
+ul.clean{list-style:none}
+ul.clean li{position:relative;padding-left:23px;margin-bottom:8px;font-size:15.5px}
+ul.clean li:before{content:"";position:absolute;left:4px;top:9px;width:7px;height:7px;border-radius:2px;background:var(--camel)}
+ul.clean.sage li:before{background:var(--sage)} ul.clean.navy li:before{background:var(--navy)}
+
+.flow{display:flex;align-items:stretch;gap:0}
+.flow .step{flex:1;background:var(--soft);border-radius:13px;padding:12px;text-align:center}
+.flow .arr{display:flex;align-items:center;padding:0 7px;font-size:19px;color:var(--gray);font-weight:800}
+
+#nav{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;
+  background:rgba(21,32,58,.62);backdrop-filter:blur(8px);padding:8px 16px;border-radius:999px;z-index:50}
+#nav button{background:none;border:none;color:#fff;font-size:17px;cursor:pointer;opacity:.85;line-height:1}
+#nav .ct{color:#fff;font-size:13px;font-weight:600;min-width:54px;text-align:center;font-variant-numeric:tabular-nums}
+#bar{position:fixed;top:0;left:0;height:3px;background:var(--camel);z-index:60;transition:width .3s}
+.hint{position:fixed;bottom:20px;right:22px;color:#8b8d94;font-size:12px;z-index:50}
+@media print{.slide{display:flex!important;page-break-after:always}#nav,#bar,.hint{display:none}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="stage"><div class="deck" id="deck">
+
+<!-- 1 TITLE -->
+<section class="slide active" style="justify-content:center;background:
+  radial-gradient(900px 520px at 84% -10%, var(--camel-soft) 0%, transparent 55%),
+  radial-gradient(720px 520px at -5% 110%, var(--sage-soft) 0%, transparent 55%), #fff">
+  <div class="logo" style="margin-bottom:32px"><span class="ic">↻</span>RE:WAKE</div>
+  <div class="kicker">그로스 전략 & 비즈니스 모델 제안 · Growth Marketing</div>
+  <h1>아울렛인데 <span class="hl">믿고 사는</span> 경험으로,<br>리웨이크의 성장을 만들겠습니다</h1>
+  <p class="lead" style="margin-top:22px;max-width:880px">
+    직접 써본 그로스 마케터의 관점에서 — 시장 수요와 경쟁사 플레이를 짚고,
+    <b>'신뢰·알림·투명한 컨디션'</b>이라는 USP로 전환·재구매·새 매출을 만드는 길을 제안합니다.</p>
+  <div style="margin-top:38px;display:flex;gap:10px">
+    <span class="pill k">수니콘 · 리웨이크(RE:WAKE)</span>
+    <span class="pill camel">그로스 마케터 지원</span>
+    <span class="pill sage">이도형</span>
+  </div>
+</section>
+
+<!-- 2 리웨이크란 -->
+<section class="slide">
+  <div class="head"><div><div class="kicker">먼저, 리웨이크는 어떤 서비스일까요</div><h2>'디자이너 브랜드 멤버십 아울렛'<br>— 좋은 옷을, 합리적인 가격에</h2></div><div class="logo"><span class="ic">↻</span>RE:WAKE</div></div>
+  <div style="display:flex;gap:36px;flex:1;align-items:center">
+    <div style="flex:1.02">
+      <ul class="clean" style="margin-bottom:14px">
+        <li><b>무엇</b> — 디자이너 브랜드의 <b>리퍼브·전시·샘플·시즌오프</b> 재고를 소싱해 아울렛가로 판매 (<b>중고 아님</b>)</li>
+        <li><b>방식</b> — 브랜드 미판매 재고를 <b>직접 입고·검수·배송</b>(B2B2C) + <b>AI 다이나믹 프라이싱</b></li>
+        <li><b>미션</b> — "생산된 모든 옷은 입혀져야 한다" · <b>#WearOverWaste</b></li>
+      </ul>
+      <div class="grid" style="grid-template-columns:repeat(3,1fr)">
+        <div class="card metric camel"><div class="big camel">100+</div><div class="lab">입점 디자이너<br>브랜드</div></div>
+        <div class="card metric sage"><div class="big sage">4.7<span style="font-size:20px">★</span></div><div class="lab">App Store<br>(약 589 리뷰)</div></div>
+        <div class="card metric navy"><div class="big">63%</div><div class="lab">90일 재구매율<br>(자사 발표)</div></div>
+      </div>
+    </div>
+    <div style="flex:.9">
+      <div class="shotwrap"><span class="badge">rewake.co.kr</span><img class="shot" src="images/rewake2.png" alt="리웨이크 브랜드"></div>
+      <div class="cap">"가격 때문에 망설였던" 사람들에게 — 디자이너 브랜드를 합리적인 가격으로</div>
+    </div>
+  </div>
+  <div class="foot"><span class="src"><b>출처</b> · rewake.co.kr · 서울경제(2025-06)·헤럴드(2024-12, AI 다이나믹 프라이싱) · App Store(id6473886825) · MAU·재구매율은 자사 발표 기준(발표 시 재확인)</span><span>02</span></div>
+</section>
+
+<!-- 3 시장 수요 -->
+<section class="slide">
+  <div class="head"><div><div class="kicker sage">시장 수요 · Why Now</div><h2>'공급(재고)'과 '수요(가성비)'가<br>동시에 커지는 구조입니다</h2></div><div class="logo"><span class="ic">↻</span>RE:WAKE</div></div>
+  <div class="grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:14px">
+    <div class="card metric out"><div class="big">44.5조<span style="font-size:18px"> ↓</span></div><div class="lab">정가 패션시장 3년째 감소<br>(2026F, -4.7%)</div></div>
+    <div class="card metric out"><div class="big rose">2~12배</div><div class="lab">브랜드 재고평가손실 급증<br>(LF·신세계인터, 2024)</div></div>
+    <div class="card metric out"><div class="big camel">CAGR 38%</div><div class="lab">오프프라이스 급성장<br>(신세계 팩토리스토어)</div></div>
+    <div class="card metric out"><div class="big sage">5조 · +30%</div><div class="lab">중고의류 시장<br>(연 성장률)</div></div>
+  </div>
+  <div class="grid" style="grid-template-columns:1fr 1fr;flex:1">
+    <div class="card camel"><h3>공급 — 브랜드 악성재고</h3>
+      <p style="margin-top:6px">정가 시장이 줄며 <b>미판매 재고가 쌓입니다</b>. 브랜드는 '이미지 안 깎고' 재고를 털 곳이 필요 — 리웨이크의 <b>B2B 소싱 풀</b>이 커지는 이유.</p></div>
+    <div class="card sage"><h3>수요 — 불황형 가성비</h3>
+      <p style="margin-top:6px">"절약이 힙하다 76.8%". <b>좋은 브랜드를 합리적으로</b> 사려는 수요가 오프프라이스·리커머스로 이동. 리웨이크의 타깃과 정확히 일치.</p></div>
+  </div>
+  <div class="foot"><span class="src"><b>출처</b> · 패션비즈(2026-02, 시장 44.5조)·어패럴뉴스(2026-02, 아울렛 9.44조)·뉴스1(2026-05, 재고평가손실)·신세계 뉴스룸(2025)·리테일톡(2025-11, 절약 76.8%) · 일부 전망/추산치</span><span>03</span></div>
+</section>
+
+<!-- 4 직접 써보니 -->
+<section class="slide">
+  <div class="head"><div><div class="kicker rose">직접 써보니 · 사용자 페인포인트</div><h2>강점은 분명한데,<br>'믿고 고르는' 데서 막혔습니다</h2></div><div class="logo"><span class="ic">↻</span>RE:WAKE</div></div>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr);flex:1">
+    <div class="card rose"><div class="num">페인 ①</div><h3 style="font-size:18px">"사도 될까?" 불안</h3><p style="margin-top:6px">재고가 <b>1점</b>뿐이고, 같은 <b>브랜드·카테고리 후기를 볼 수 없어</b> 품질·핏을 가늠하기 어렵다.</p></div>
+    <div class="card rose"><div class="num">페인 ②</div><h3 style="font-size:18px">환불·반품 불안</h3><p style="margin-top:6px">아울렛·단품이라 <b>"환불이 될까?"</b> 걱정. 상태·조건이 불투명하면 결제 직전에 망설인다.</p></div>
+    <div class="card rose"><div class="num">페인 ③</div><h3 style="font-size:18px">"뭘 먼저 사지?"</h3><p style="margin-top:6px">제품·카테고리가 <b>너무 많아</b> 선택 과부하. 내 취향과 매칭되는 안내가 없다.</p></div>
+  </div>
+  <div class="callout" style="margin-top:16px;display:flex;align-items:center;gap:22px">
+    <h3 style="white-space:nowrap">한 줄 진단</h3>
+    <p>아울렛 모델의 본질적 마찰은 <b style="color:#fff">'신뢰(후기·컨디션)'와 '발견(알림·큐레이션)'</b>입니다. 이 둘을 풀면 전환과 재구매가 함께 올라갑니다.</p>
+  </div>
+  <div class="foot"><span class="src">직접 사용 관찰(2026-06) · 가설이며, 내부 데이터(이탈 지점·전환 퍼널) 확인 시 우선순위 조정</span><span>04</span></div>
+</section>
+
+<!-- 5 경쟁사 -->
+<section class="slide">
+  <div class="head"><div><div class="kicker">경쟁사는 이렇게 플레이한다</div><h2>'신뢰 장치'에서 승부가 갈립니다</h2></div><div class="logo"><span class="ic">↻</span>RE:WAKE</div></div>
+  <table>
+    <tr><th style="width:22%">서비스</th><th style="width:26%">리뷰(브랜드·카테고리)</th><th style="width:26%">재입고·가격인하 알림</th><th style="width:26%">컨디션 등급·검수</th></tr>
+    <tr><td><b>무신사 아울렛</b></td><td>체형 필터 후기 <span class="chk">○</span> (아울렛 적용 불명)</td><td>재입고 카톡 알림 <span class="chk">○</span></td><td>신상 위주 <span class="x">해당 약함</span></td></tr>
+    <tr><td><b>지그재그·에이블리</b></td><td>리뷰 필터 강함·사이즈 추천 <span class="chk">○</span></td><td>입고 알림 <span class="chk">○</span></td><td>신상 <span class="x">없음</span></td></tr>
+    <tr><td><b>번개장터</b></td><td>개인 거래 <span class="x">표준 후기 약함</span></td><td>키워드 알림 <span class="chk">○</span></td><td>번개케어 154항목 검수 <span class="chk">○</span></td></tr>
+    <tr><td><b>차란</b></td><td><span class="x">제한적</span></td><td><span class="x">불명</span></td><td><b>8단계+5등급 컨디션 표준화</b> <span class="chk">◎</span></td></tr>
+    <tr><td><b>트렌비 / 발란</b></td><td>명품 <span class="x">카테고리 후기 약함</span></td><td><span class="x">불명</span></td><td>트렌비 검수◎ / <b>발란 '주장≠검증' 파산</b></td></tr>
+  </table>
+  <div class="callout" style="margin-top:14px;display:flex;align-items:center;gap:20px">
+    <h3 style="white-space:nowrap">3대 공백 = 기회</h3>
+    <p><b style="color:#fff">① 브랜드+카테고리별 리뷰</b> · <b style="color:#fff">② 가격인하·재입고 알림(사실상 무주공산)</b> · <b style="color:#fff">③ 표준 컨디션 등급(제조일·상태)</b> — 아울렛 신뢰를 풀 곳이 비어 있습니다.</p>
+  </div>
+  <div class="foot"><span class="src"><b>출처</b> · 무신사 뉴스룸(2026-03)·차란 시사저널e(2023-11, 컨디션 등급)·번개장터(번개케어)·트렌비 유니콘팩토리(2025-06)·발란 뉴스핌(2026-02 파산) · 알림·필터 일부 앱 실측 권장</span><span>05</span></div>
+</section>
+
+<!-- 6 USP & 전략 개요 -->
+<section class="slide" style="background:linear-gradient(180deg,#fff,var(--camel-soft) 460%)">
+  <div class="head"><div><div class="kicker camel">USP & 전략 · 어떻게 플레이할까</div><h2>"아울렛인데, 믿고 산다"<br>— 3가지 신뢰 장치로</h2></div><div class="logo"><span class="ic">↻</span>RE:WAKE</div></div>
+  <div class="quote" style="margin-bottom:14px"><div class="q">검증된 <span class="g">컨디션</span>, 카테고리 <span class="g">신뢰</span>, 놓치지 않는 <span class="g">알림</span> —<br>아울렛의 불안을 USP로 바꿉니다.</div></div>
+  <div class="agenda" style="flex:1;justify-content:center">
+    <div class="arow camel"><div class="n">1</div><div><div class="ti">동일 브랜드·카테고리 리뷰</div><div class="de">"이 브랜드 이 카테고리는 어땠나" — 신뢰하고 사게 (페인①)</div></div></div>
+    <div class="arow sage"><div class="n">2</div><div><div class="ti">선호 입력 → 재입고·매칭 알림</div><div class="de">온보딩에 취향 등록 → 매물 뜨면 알림 (재고 1점 모델에 최적, 페인③)</div></div></div>
+    <div class="arow"><div class="n">3</div><div><div class="ti">제조일·컨디션 투명 등급</div><div class="de">언제 만들어졌고 어떤 상태인지 확대해 보여줘 "거의 감가 없음"을 증명 (페인②)</div></div></div>
+  </div>
+  <div class="foot"><span class="src">3가지 모두 경쟁사 '3대 공백'을 정조준 · 각 전략은 공개 벤치마크로 효과 검증(다음 장)</span><span>06</span></div>
+</section>
+
+<!-- 7 전략1 카테고리 리뷰 -->
+<section class="slide">
+  <div class="head"><div><div class="kicker camel">전략 1 · 신뢰</div><h2>동일 브랜드·카테고리 리뷰로 '믿고 사게'</h2></div><div class="logo"><span class="ic">↻</span>RE:WAKE</div></div>
+  <div class="goal">🎯 지향 · <b>&nbsp;"이 브랜드, 이 카테고리는 어땠나"를 보여줘 구매 불안을 제거한다</b></div>
+  <div style="display:flex;gap:26px;flex:1;align-items:center">
+    <div style="flex:1.25">
+      <div class="aisb">
+        <div class="box a"><div class="lbl">AS-IS · 지금</div><p>재고 1점 + <b>동일 브랜드·카테고리 후기 부재</b> → 품질·핏을 못 가늠해 결제 직전 이탈.</p></div>
+        <div class="arr">→</div>
+        <div class="box b"><div class="lbl">TO-BE · 제안</div><p>제품 페이지에 <b>'이 브랜드 · 같은 카테고리' 후기</b>를 모아 노출(핏·사이즈·실측 포함).</p></div>
+      </div>
+      <ul class="clean" style="margin-bottom:0">
+        <li>리뷰 열람 시 <b>구매 전환율 +108%</b>(고가품 +380%), 리뷰 5개로 <b>구매확률 +270%</b></li>
+        <li>소비자 <b>93~95%가 구매 전 리뷰를 본다</b> · 패션 반품의 <b>~70%가 사이즈 문제</b></li>
+        <li>단품이라 제품 리뷰가 부족 → <b>브랜드·카테고리 단위로 신뢰를 이전</b></li>
+      </ul>
+    </div>
+    <div class="phone">
+      <div class="top"><div class="notch"></div></div>
+      <div class="scr">
+        <div class="mhead"><div class="t">INSTANTFUNK 자켓</div><span class="badge2 rose">재고 1점</span></div>
+        <div class="pimg"><span class="badge2 camel">아울렛 -62%</span></div>
+        <div style="margin-bottom:6px"><span class="chip on">이 브랜드 · 아우터 후기 24</span><span class="chip">전체</span></div>
+        <div class="rev">⭐4.8 · <b>"인스턴트펑크 아우터, 핏 정사이즈"</b> 165cm/평소 M → M 딱 맞음</div>
+        <div class="rev">⭐4.6 · <b>"원단 도톰, 봉제 깔끔"</b> 같은 브랜드 코트도 만족</div>
+        <div class="rev">⭐5.0 · "아울렛인데 새것 같아요"</div>
+      </div>
+      <div class="tabbar"><div class="t on"><div class="d"></div>홈</div><div class="t"><div class="d"></div>찜</div><div class="t"><div class="d"></div>MY</div></div>
+    </div>
+  </div>
+  <div class="foot"><span class="src"><b>출처</b> · PowerReviews/Envive(리뷰 열람 전환 +108%·+270%) · Capital One(93~95% 열람) · Virtusize(반품 70% 사이즈) · 무신사 실측 후기(정성) · 목업은 제안 예시</span><span>07</span></div>
+</section>
+
+<!-- 8 전략2 알림 -->
+<section class="slide">
+  <div class="head"><div><div class="kicker sage">전략 2 · 발견</div><h2>선호를 등록하면, 매물이 뜰 때 알려줍니다</h2></div><div class="logo"><span class="ic">↻</span>RE:WAKE</div></div>
+  <div class="goal">🎯 지향 · <b>&nbsp;재고 1점이라 놓치기 쉬운 매물을, '내 취향 알림'으로 결제까지 연결한다</b></div>
+  <div style="display:flex;gap:26px;flex:1;align-items:center">
+    <div class="phone">
+      <div class="top"><div class="notch"></div></div>
+      <div class="scr">
+        <div class="mhead"><div class="t">취향 등록 👋</div><div style="font-size:7.5px;color:var(--gray)">온보딩</div></div>
+        <div class="field">관심 브랜드 · INSTANTFUNK 외 3 <span style="color:var(--camel-d)">＋</span></div>
+        <div class="field">카테고리 · 아우터, 셋업 <span style="color:var(--camel-d)">＋</span></div>
+        <div class="field">사이즈 · M / 95 <span style="color:var(--camel-d)">＋</span></div>
+        <div class="field">예산 · ~15만원 <span style="color:var(--camel-d)">＋</span></div>
+        <div class="field">입고 시 알림 받기 <span class="toggle"></span></div>
+        <div class="push" style="margin-top:8px">🔔 <b>찾던 매물이 떴어요</b><br>INSTANTFUNK 아우터 · M · 12만원 · 재고 1점</div>
+      </div>
+      <div class="tabbar"><div class="t on"><div class="d"></div>홈</div><div class="t"><div class="d"></div>알림</div><div class="t"><div class="d"></div>MY</div></div>
+    </div>
+    <div style="flex:1.25">
+      <div class="aisb">
+        <div class="box a"><div class="lbl">AS-IS · 지금</div><p>카테고리가 많아 <b>뭘 살지 막막</b>하고, 1점짜리 매물은 <b>떴다가 사라짐</b>.</p></div>
+        <div class="arr">→</div>
+        <div class="box b"><div class="lbl">TO-BE · 제안</div><p>온보딩에서 <b>브랜드·카테고리·사이즈·예산 등록</b> → 매칭 매물 입고 시 <b>푸시 알림</b>.</p></div>
+      </div>
+      <ul class="clean sage" style="margin-bottom:0">
+        <li>재입고/매칭 알림은 <b>전환율 25~35%</b>(이커머스 최고 전환 메시지)·오픈율 ~65%</li>
+        <li>품절 페이지 이탈자의 <b>39%가 경쟁사로 직행</b> — 알림으로 수요를 붙잡음</li>
+        <li><b>재고 1점·이월 모델에 가장 잘 맞는 기능</b> — 단품 품절이 잦을수록 알림 가치↑</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span class="src"><b>출처</b> · Klaviyo/Omnisend(재입고 알림 전환 25~35%·오픈 65%) · Baymard(품절 이탈 39%) · 무신사 재입고·번개장터 키워드 알림(메커니즘) · 목업은 제안 예시</span><span>08</span></div>
+</section>
+
+<!-- 9 전략3 컨디션 -->
+<section class="slide">
+  <div class="head"><div><div class="kicker">전략 3 · 투명성</div><h2>제조일·컨디션을 확대해, '거의 새것'을 증명</h2></div><div class="logo"><span class="ic">↻</span>RE:WAKE</div></div>
+  <div class="goal">🎯 지향 · <b>&nbsp;"언제 만들어졌고 지금 어떤 상태인지"를 투명하게 — 아울렛 불안을 신뢰로</b></div>
+  <div style="display:flex;gap:26px;flex:1;align-items:center">
+    <div style="flex:1.25">
+      <div class="aisb">
+        <div class="box a"><div class="lbl">AS-IS · 지금</div><p>상태·제조시점이 불투명 → <b>"중고 아냐?"·"하자 있나?"</b> 의심으로 결제 망설임.</p></div>
+        <div class="arr">→</div>
+        <div class="box b"><div class="lbl">TO-BE · 제안</div><p><b>컨디션 등급(S/A/B)·제조연도·검수 항목 + 디테일 확대뷰</b>로 "거의 감가 없음" 증명.</p></div>
+      </div>
+      <ul class="clean" style="margin-bottom:0">
+        <li>번개장터 '번개케어' 검수 도입 후 거래액 <b>+300%</b>(자사) · StockX 검수 정확도 99.95%</li>
+        <li>The RealReal: <b>GMV의 82%가 재구매자</b>·NPS 70 (검수·등급이 신뢰→재구매 엔진)</li>
+        <li>리웨이크는 <b>이미 직접 입고·검수</b> — 그 데이터를 '보이게' 만들기만 하면 됨</li>
+      </ul>
+    </div>
+    <div class="phone">
+      <div class="top"><div class="notch"></div></div>
+      <div class="scr">
+        <div class="mhead"><div class="t">컨디션 리포트</div><span class="badge2 sage">거의 새것</span></div>
+        <div class="gradebar"><span class="g on">S</span><span class="g">A</span><span class="g">B</span></div>
+        <div class="field" style="font-size:8px">제조연도 · <b style="color:var(--ink)">2025 F/W</b> <span style="color:var(--sage)">최신</span></div>
+        <div class="field" style="font-size:8px">상태 · 미착용 전시품 · 택 보관</div>
+        <div style="font-size:8px;font-weight:800;color:var(--gray2);margin:4px 0 4px">디테일 확대 (검수 7항목 ✓)</div>
+        <div class="thumbs"><span class="th"></span><span class="th"></span><span class="th"></span><span class="th"></span></div>
+        <div class="rev" style="background:var(--sage-soft);color:#2c5e47"><b>감가 거의 없음</b> · 정가 대비 -62%, 컨디션 S</div>
+      </div>
+      <div class="tabbar"><div class="t on"><div class="d"></div>홈</div><div class="t"><div class="d"></div>찜</div><div class="t"><div class="d"></div>MY</div></div>
+    </div>
+  </div>
+  <div class="foot"><span class="src"><b>출처</b> · 뉴시스(2024-12, 번개케어 +300%, 자사)·StockX(99.95%, 자사)·The RealReal IR(재구매 82%·NPS 70) · 목업은 제안 예시</span><span>09</span></div>
+</section>
+
+<!-- 10 BM -->
+<section class="slide">
+  <div class="head"><div><div class="kicker camel">BM · 추가 매출 창출</div><h2>'상품 마진'에서 '다층 매출'로</h2></div><div class="logo"><span class="ic">↻</span>RE:WAKE</div></div>
+  <div class="aisb">
+    <div class="box a"><div class="lbl">AS-IS · 지금</div><p>매출이 <b>상품 판매 마진</b> 중심 — 거래량에만 의존.</p></div>
+    <div class="arr">→</div>
+    <div class="box b"><div class="lbl">TO-BE · 제안</div><p><b>입점 수수료·리테일미디어 광고 + 검수·멤버십 + 데이터</b>로 매출축 다각화.</p></div>
+  </div>
+  <table>
+    <tr><th style="width:26%">추가 매출</th><th style="width:44%">메커니즘</th><th style="width:18%">벤치마크</th><th style="width:12%">판정</th></tr>
+    <tr class="hi"><td><b>입점 수수료 + 리테일미디어</b></td><td>브랜드 입점료·온사이트 광고(추천·알림 슬롯) — 마진 70~90%</td><td>무신사·29CM(광고 매출 10~15%)</td><td><span class="chk">최우선</span></td></tr>
+    <tr class="hi"><td><b>검수·보증 유료 옵션</b></td><td>'정품·컨디션 보증' 선택 과금 / 안심 배송·교환</td><td>eBay 정품보증 $40·번개케어</td><td><span class="chk">검증</span></td></tr>
+    <tr><td><b>멤버십 구독</b></td><td>알림 우선·추가 할인·무료 반품 묶음 (LTV 락인)</td><td>쿠팡 와우(인상에도 이탈 미미)</td><td><span class="chk">검증</span></td></tr>
+    <tr><td><b>큐레이션 커머스</b></td><td>취향 기반 스타일링 큐레이션·기획전</td><td>29CM(객단가 ~23만)</td><td><span class="chk">검증</span></td></tr>
+    <tr><td><b>수요·가격 데이터 B2B</b></td><td>"어떤 SKU가 언제·얼마에 소진" → 브랜드에 수요예측 제공</td><td>리웨이크 고유 자산(AI 프라이싱)</td><td><span class="x">신규</span></td></tr>
+  </table>
+  <div class="foot"><span class="src"><b>출처</b> · Mirakl(리테일미디어 마진 70~90%)·29CM 분석·eBay/번개케어·쿠팡(2024 와우) · 데이터 B2B는 take·가격 비공개(신규 가설)</span><span>10</span></div>
+</section>
+
+<!-- 11 로드맵 -->
+<section class="slide" style="background:linear-gradient(180deg,#fff,var(--sage-soft) 460%)">
+  <div class="head"><div><div class="kicker sage">실행 · 입사 후 로드맵</div><h2>입사 후, 이 순서로 증명하겠습니다</h2></div><div class="logo"><span class="ic">↻</span>RE:WAKE</div></div>
+  <div class="grid" style="grid-template-columns:repeat(4,1fr);flex:1">
+    <div class="card out"><div class="num" style="color:var(--camel-d)">0–1개월</div><h3 style="font-size:17px">진단·셋업</h3>
+      <ul class="clean" style="margin-top:8px"><li style="font-size:13.5px">AARRR 퍼널·코호트 진단</li><li style="font-size:13.5px">트래킹·이벤트 정비</li><li style="font-size:13.5px">이탈 지점 가설 도출</li></ul></div>
+    <div class="card out"><div class="num" style="color:var(--camel-d)">1–3개월</div><h3 style="font-size:17px">Quick Win</h3>
+      <ul class="clean" style="margin-top:8px"><li style="font-size:13.5px"><b>재입고·매칭 알림</b> 도입</li><li style="font-size:13.5px">카테고리 리뷰 노출 A/B</li><li style="font-size:13.5px">META·GDN·카카오·네이버 ROAS 최적화·인앱 프로모션</li></ul></div>
+    <div class="card out"><div class="num" style="color:var(--camel-d)">3–6개월</div><h3 style="font-size:17px">신뢰·리텐션</h3>
+      <ul class="clean" style="margin-top:8px"><li style="font-size:13.5px"><b>컨디션 등급·온보딩 선호</b></li><li style="font-size:13.5px">CRM 재구매 시나리오</li><li style="font-size:13.5px">인플루언서·제휴 확장</li></ul></div>
+    <div class="card out"><div class="num" style="color:var(--camel-d)">6–12개월</div><h3 style="font-size:17px">매출 다각화</h3>
+      <ul class="clean" style="margin-top:8px"><li style="font-size:13.5px"><b>리테일미디어·멤버십</b></li><li style="font-size:13.5px">검수 유료 옵션</li><li style="font-size:13.5px">수요 데이터 B2B</li></ul></div>
+  </div>
+  <div class="callout" style="margin-top:14px;display:flex;align-items:center;gap:20px">
+    <h3 style="white-space:nowrap">단계별 KPI</h3>
+    <p style="font-size:15px">설치→가입(Activation) · <b style="color:#fff">알림 동의율·구매 전환율</b> · D30 재구매율(현 63% → ↑) · ROAS·CAC · <b style="color:#fff">ARPU·광고/멤버십 매출 비중</b></p>
+  </div>
+  <div class="foot"><span class="src">JD(GDN·META·카카오·네이버 매체, AARRR·ROAS, 인앱 프로모션)에 맞춘 단계 설계 · 내부 베이스라인 확인 후 목표치 확정</span><span>11</span></div>
+</section>
+
+<!-- 12 기대효과 -->
+<section class="slide">
+  <div class="head"><div><div class="kicker">기대 효과 · 왜 매출로 이어지나</div><h2>신뢰와 알림이, 전환과 재구매를 끌어올립니다</h2></div><div class="logo"><span class="ic">↻</span>RE:WAKE</div></div>
+  <div class="flow" style="margin-bottom:18px">
+    <div class="step"><div style="font-size:22px">🤝</div><h3 style="font-size:14.5px;margin-top:4px">신뢰 ↑</h3><p style="font-size:11.5px;color:var(--gray2)">리뷰·컨디션</p></div>
+    <div class="arr">→</div>
+    <div class="step"><div style="font-size:22px">🔔</div><h3 style="font-size:14.5px;margin-top:4px">발견·회수 ↑</h3><p style="font-size:11.5px;color:var(--gray2)">매칭 알림</p></div>
+    <div class="arr">→</div>
+    <div class="step" style="background:var(--camel-soft)"><div style="font-size:22px">🛒</div><h3 style="font-size:14.5px;margin-top:4px">구매 전환 ↑</h3><p style="font-size:11.5px;color:#8C6B3E">불안 제거</p></div>
+    <div class="arr">→</div>
+    <div class="step" style="background:var(--sage-soft)"><div style="font-size:22px">🔁</div><h3 style="font-size:14.5px;margin-top:4px">재구매 ↑</h3><p style="font-size:11.5px;color:var(--sage)">63%→↑</p></div>
+    <div class="arr">→</div>
+    <div class="step" style="background:var(--soft)"><div style="font-size:22px">📈</div><h3 style="font-size:14.5px;margin-top:4px">ROAS·LTV ↑</h3><p style="font-size:11.5px;color:var(--gray2)">허용 CAC↑</p></div>
+  </div>
+  <div class="grid" style="grid-template-columns:1.3fr 1fr;flex:1">
+    <div class="card out"><h3>무엇을 보고 판단할까 (KPI)</h3>
+      <table style="margin-top:6px;font-size:14px">
+        <tr><th>구간</th><th>핵심 지표</th></tr>
+        <tr><td>신뢰</td><td>리뷰 열람률 · 컨디션 리포트 조회율</td></tr>
+        <tr><td>발견</td><td>알림 동의율 · 알림 → 구매 전환율</td></tr>
+        <tr class="hi"><td><b>전환(★)</b></td><td><b>구매 전환율 · 결제 직전 이탈률</b></td></tr>
+        <tr><td>리텐션·매출</td><td>D30 재구매율 · ARPU · 광고/멤버십 비중</td></tr>
+      </table></div>
+    <div class="card dark"><h3>한 지표만 꼽는다면</h3>
+      <p style="margin-top:8px;font-size:15.5px">바로 <b style="color:#fff">'구매 전환율'</b>과 <b style="color:#fff">'재구매율'</b>입니다. 신뢰·알림으로 이 둘이 오르면 허용 CAC가 커져 <b style="color:#fff">퍼포먼스 마케팅의 여력</b>이 늘어납니다.</p>
+      <p style="margin-top:9px;font-size:12.5px;color:#aeb4c2">목표치는 내부 베이스라인 측정 후 확정 (가정치로 과장하지 않겠습니다).</p></div>
+  </div>
+  <div class="foot"><span class="src"><b>출처</b> · 리뷰·알림·검수 전환 벤치마크(전 장 종합) · 인과는 가설, A/B로 검증</span><span>12</span></div>
+</section>
+
+<!-- 13 Closing 포부 + 지원동기 -->
+<section class="slide" style="justify-content:center;background:
+  radial-gradient(840px 520px at 85% 110%, var(--camel-soft) 0%, transparent 55%),
+  radial-gradient(720px 470px at 0% -10%, var(--sage-soft) 0%, transparent 55%), #fff">
+  <div class="logo" style="margin-bottom:24px"><span class="ic">↻</span>RE:WAKE</div>
+  <h1>"아울렛도 <span class="hl">믿고 사는 표준</span>"을<br>데이터로 증명하겠습니다</h1>
+  <p class="lead" style="margin-top:20px;max-width:920px">
+    저는 커머스에서 <b>퍼포먼스(ROAS·CAC)·CRM·데이터 분석</b>으로 성장을 만들어 온 그로스 마케터입니다.
+    숫자를 <b>인과로 검증</b>하고(쿠폰·등급 ROI 재검증), <b>신뢰를 설계해 전환을 높이는</b> 일을 해왔습니다.
+    리웨이크의 <b>#WearOverWaste 미션</b>과 <b>AI 다이나믹 프라이싱·검수 데이터</b>는 제 강점이 가장 잘 쓰일 환경입니다.</p>
+  <p style="font-size:16px;color:var(--gray2);margin-top:16px;max-width:920px">
+    시드 단계에서 <b style="color:var(--ink)">신뢰·알림·투명성</b>으로 전환과 재구매를 끌어올리고, 그 위에 <b style="color:var(--ink)">새로운 매출 판로</b>를 여는 일 — 직접 써보고, 데이터로 증명하겠습니다. 감사합니다.</p>
+  <div style="margin-top:30px;display:flex;gap:10px">
+    <span class="pill k">이도형 · Growth Marketer</span>
+    <span class="pill camel">수니콘 · 리웨이크</span>
+  </div>
+</section>
+
+</div></div>
+
+<div id="nav"><button id="prev">‹</button><span class="ct"><span id="cur">1</span> / <span id="tot">13</span></span><button id="next">›</button></div>
+<div class="hint">← → 또는 Space · F 전체화면</div>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let i=0;const tot=slides.length;
+document.getElementById('tot').textContent=tot;
+function show(n){i=Math.max(0,Math.min(tot-1,n));
+  slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+  document.getElementById('cur').textContent=i+1;
+  document.getElementById('bar').style.width=((i+1)/tot*100)+'%';}
+function next(){show(i+1)} function prev(){show(i-1)}
+document.getElementById('next').onclick=next;
+document.getElementById('prev').onclick=prev;
+addEventListener('keydown',e=>{
+  if(['ArrowRight',' ','PageDown'].includes(e.key)){next();e.preventDefault();}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){prev();e.preventDefault();}
+  else if(e.key==='Home')show(0); else if(e.key==='End')show(tot-1);
+  else if(e.key.toLowerCase()==='f'){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen();}
+});
+let tx=0;addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-tx;if(d<-50)next();else if(d>50)prev();});
+function fit(){const d=document.getElementById('deck');
+  const s=Math.min(innerWidth/1280,innerHeight/720);
+  d.style.transform='scale('+s+')';}
+addEventListener('resize',fit);fit();show(0);
+</script>
+</body>
+</html>
