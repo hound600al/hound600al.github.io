@@ -19,26 +19,25 @@
   body{font-family:'Pretendard',-apple-system,system-ui,sans-serif;background:#0c1018;color:var(--ink);-webkit-font-smoothing:antialiased;overflow:hidden}
   .deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
   .stage{position:relative;width:100vw;height:100vh;max-width:177.78vh;max-height:56.25vw;background:var(--white);overflow:hidden}
-  .slide{position:absolute;inset:0;padding:5.0% 6.0%;display:none;flex-direction:column;animation:fade .5s ease}
+  .slide{position:absolute;inset:0;padding:4.8% 5.8%;display:none;flex-direction:column;animation:fade .5s ease}
   .slide.active{display:flex}
   @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
-  .kicker{display:inline-flex;align-items:center;gap:7px;font-size:1.0vw;font-weight:700;color:var(--blue);background:var(--blue-050);padding:.5em 1em;border-radius:100px;letter-spacing:-.01em;width:fit-content}
+  .kicker{display:inline-flex;align-items:center;gap:7px;font-size:.98vw;font-weight:700;color:var(--blue);background:var(--blue-050);padding:.5em 1em;border-radius:100px;letter-spacing:-.01em;width:fit-content}
   .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--blue)}
-  h1{font-size:4.2vw;font-weight:800;letter-spacing:-.035em;line-height:1.1}
-  h2{font-size:2.55vw;font-weight:800;letter-spacing:-.03em;line-height:1.18;color:var(--ink)}
+  h1{font-size:4.1vw;font-weight:800;letter-spacing:-.035em;line-height:1.1}
+  h2{font-size:2.5vw;font-weight:800;letter-spacing:-.03em;line-height:1.18;color:var(--ink)}
   h2 .hl{color:var(--blue)}
-  .sub{font-size:1.26vw;color:var(--muted);font-weight:500;line-height:1.55;letter-spacing:-.01em}
-  .slide-head{margin-bottom:1.7vh}
-  .slide-head h2{margin-top:.9vh}
+  .sub{font-size:1.24vw;color:var(--muted);font-weight:500;line-height:1.55;letter-spacing:-.01em}
+  .slide-head{margin-bottom:1.6vh}
+  .slide-head h2{margin-top:.85vh}
   p{line-height:1.6}
   b,strong{font-weight:700}
 
-  .foot{position:absolute;left:6.0%;right:6.0%;bottom:2.6vh;display:flex;justify-content:space-between;align-items:center;font-size:.88vw;color:var(--muted-2);font-weight:600;letter-spacing:-.01em}
+  .foot{position:absolute;left:5.8%;right:5.8%;bottom:2.5vh;display:flex;justify-content:space-between;align-items:center;font-size:.86vw;color:var(--muted-2);font-weight:600;letter-spacing:-.01em}
   .foot .brand{color:var(--blue);font-weight:800}
   .pageno{font-variant-numeric:tabular-nums}
 
-  /* term tooltip */
   .term{position:relative;border-bottom:1.6px dotted var(--blue);cursor:help;white-space:nowrap;color:inherit}
   .term .tip{position:absolute;bottom:142%;left:50%;transform:translateX(-50%) translateY(5px);background:var(--navy);color:#fff;padding:.8em 1em;border-radius:11px;font-size:.8vw;font-weight:500;line-height:1.5;width:max-content;max-width:24vw;white-space:normal;opacity:0;visibility:hidden;transition:.16s;z-index:40;box-shadow:0 14px 34px -10px rgba(0,0,0,.45);text-align:left;letter-spacing:-.01em;border:1px solid rgba(255,255,255,.08)}
   .term .tip b{color:#a9c5ff}
@@ -48,122 +47,147 @@
   .term:hover .tip,.term.show .tip{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
   .cover .term,.closing .term{border-bottom-color:#7aa6ff}
 
-  .grid{display:grid;gap:1.2vw}
+  .grid{display:grid;gap:1.1vw}
   .g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
-  .card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:1.4vw;box-shadow:var(--shadow-sm)}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:1.35vw;box-shadow:var(--shadow-sm)}
   .card.soft{background:var(--bg);box-shadow:none}
-  .card .ci{font-size:1.5vw;margin-bottom:.5vw}
-  .card h3{font-size:1.28vw;font-weight:800;letter-spacing:-.02em;margin-bottom:.45vw;line-height:1.25}
-  .card p{font-size:.96vw;color:var(--muted);font-weight:500;letter-spacing:-.01em}
-  .tag{display:inline-block;font-size:.82vw;font-weight:700;padding:.28em .7em;border-radius:7px;letter-spacing:-.01em}
+  .card .ci{font-size:1.45vw;margin-bottom:.45vw}
+  .card h3{font-size:1.24vw;font-weight:800;letter-spacing:-.02em;margin-bottom:.4vw;line-height:1.25}
+  .card p{font-size:.94vw;color:var(--muted);font-weight:500;letter-spacing:-.01em}
+  .tag{display:inline-block;font-size:.8vw;font-weight:700;padding:.28em .7em;border-radius:7px;letter-spacing:-.01em}
 
   .cover{background:linear-gradient(135deg,#0F1730 0%,#172554 55%,#1E54E6 130%);color:#fff;justify-content:center}
   .cover .kicker{background:rgba(255,255,255,.12);color:#cfe0ff}.cover .kicker .dot{background:#7aa6ff}
-  .cover h1{color:#fff;margin:2.2vh 0}
+  .cover h1{color:#fff;margin:2.1vh 0}
   .cover h1 .hl{background:linear-gradient(90deg,#8fb6ff,#cfe0ff);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .cover .lead{font-size:1.4vw;color:#b9c6e6;font-weight:500;line-height:1.6;max-width:72%}
-  .cover .meta{margin-top:3.8vh;display:flex;gap:2.2vw;font-size:.98vw;color:#8ea2cf;font-weight:600}
-  .cover .meta b{color:#fff;font-weight:700;display:block;font-size:1.1vw;margin-top:.3vw}
+  .cover .lead{font-size:1.36vw;color:#b9c6e6;font-weight:500;line-height:1.6;max-width:72%}
+  .cover .meta{margin-top:3.6vh;display:flex;gap:2.1vw;font-size:.95vw;color:#8ea2cf;font-weight:600}
+  .cover .meta b{color:#fff;font-weight:700;display:block;font-size:1.08vw;margin-top:.3vw}
   .glow{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5}
   .glow.a{width:30vw;height:30vw;background:#2C6BFF;right:-8vw;top:-8vw}
   .glow.b{width:22vw;height:22vw;background:#1E54E6;right:14vw;bottom:-10vw;opacity:.35}
 
-  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3vw}
-  .stat{background:var(--bg);border-radius:16px;padding:1.4vw 1.5vw;border:1px solid var(--line)}
-  .stat .n{font-size:2.35vw;font-weight:800;letter-spacing:-.03em;color:var(--blue);line-height:1;font-variant-numeric:tabular-nums}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2vw}
+  .stat{background:var(--bg);border-radius:16px;padding:1.35vw 1.45vw;border:1px solid var(--line)}
+  .stat .n{font-size:2.25vw;font-weight:800;letter-spacing:-.03em;color:var(--blue);line-height:1;font-variant-numeric:tabular-nums}
   .stat .n.dark{color:var(--ink)}
-  .stat .l{font-size:.92vw;color:var(--muted);font-weight:600;margin-top:.6vw;line-height:1.4}
+  .stat .l{font-size:.9vw;color:var(--muted);font-weight:600;margin-top:.55vw;line-height:1.4}
 
-  .rows{display:flex;flex-direction:column;gap:.8vw}
-  .row{display:flex;gap:1.05vw;align-items:flex-start;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:1.0vw 1.3vw}
-  .row .ix{flex:none;width:1.95vw;height:1.95vw;border-radius:9px;display:grid;place-items:center;font-weight:800;font-size:.92vw;color:#fff;background:var(--blue)}
-  .row .tx h4{font-size:1.12vw;font-weight:800;letter-spacing:-.02em;margin-bottom:.22vw}
-  .row .tx p{font-size:.93vw;color:var(--muted);font-weight:500;line-height:1.48}
+  .rows{display:flex;flex-direction:column;gap:.75vw}
+  .row{display:flex;gap:1vw;align-items:flex-start;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:.95vw 1.25vw}
+  .row .ix{flex:none;width:1.9vw;height:1.9vw;border-radius:9px;display:grid;place-items:center;font-weight:800;font-size:.88vw;color:#fff;background:var(--blue)}
+  .row .tx h4{font-size:1.1vw;font-weight:800;letter-spacing:-.02em;margin-bottom:.2vw}
+  .row .tx p{font-size:.92vw;color:var(--muted);font-weight:500;line-height:1.46}
 
-  .panel{border-radius:20px;padding:1.6vw 2vw;display:flex;flex-direction:column;justify-content:center}
+  .panel{border-radius:20px;padding:1.5vw 1.9vw;display:flex;flex-direction:column;justify-content:center}
   .panel.dont{background:var(--warn-bg);border:1px solid #ffd9cf}
-  .pitem{display:flex;gap:.75vw;align-items:flex-start;margin-bottom:1.2vw}
+  .pitem{display:flex;gap:.75vw;align-items:flex-start;margin-bottom:1.1vw}
   .pitem:last-child{margin-bottom:0}
-  .pitem .mk{flex:none;font-weight:800;font-size:1.05vw;line-height:1.5}
+  .pitem .mk{flex:none;font-weight:800;font-size:1.02vw;line-height:1.5}
   .panel.dont .mk{color:var(--warn)}
-  .pitem .pt{font-size:1.0vw;line-height:1.5;font-weight:700;letter-spacing:-.01em}
-  .pitem .pt span{display:block;font-size:.88vw;color:var(--muted);font-weight:500;margin-top:.2vw}
+  .pitem .pt{font-size:.98vw;line-height:1.5;font-weight:700;letter-spacing:-.01em}
+  .pitem .pt span{display:block;font-size:.86vw;color:var(--muted);font-weight:500;margin-top:.18vw}
 
-  .tl{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4vw;flex:1;align-content:stretch}
-  .phase{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:1.4vw;display:flex;flex-direction:column}
-  .phase .ph-top{display:flex;align-items:baseline;gap:.6vw;margin-bottom:.9vw}
-  .phase .wk{font-size:.84vw;font-weight:800;color:#fff;background:var(--blue);padding:.35em .8em;border-radius:8px}
-  .phase h3{font-size:1.22vw;font-weight:800;letter-spacing:-.02em}
-  .phase ul{list-style:none;display:flex;flex-direction:column;gap:.5vw}
-  .phase li{font-size:.91vw;color:var(--muted);font-weight:500;line-height:1.45;padding-left:1vw;position:relative}
+  .tl{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3vw;flex:1;align-content:stretch}
+  .phase{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:1.35vw;display:flex;flex-direction:column}
+  .phase .ph-top{display:flex;align-items:baseline;gap:.6vw;margin-bottom:.85vw}
+  .phase .wk{font-size:.82vw;font-weight:800;color:#fff;background:var(--blue);padding:.35em .8em;border-radius:8px}
+  .phase h3{font-size:1.2vw;font-weight:800;letter-spacing:-.02em}
+  .phase ul{list-style:none;display:flex;flex-direction:column;gap:.48vw}
+  .phase li{font-size:.89vw;color:var(--muted);font-weight:500;line-height:1.42;padding-left:1vw;position:relative}
   .phase li:before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--blue)}
-  .phase .goal{margin-top:auto;padding-top:.8vw;font-size:.9vw;font-weight:700;color:var(--blue);border-top:1px dashed var(--line)}
+  .phase .goal{margin-top:auto;padding-top:.75vw;font-size:.88vw;font-weight:700;color:var(--blue);border-top:1px dashed var(--line)}
 
-  .callout{background:var(--navy);color:#fff;border-radius:20px;padding:1.7vw 2.1vw;display:flex;gap:1.5vw;align-items:center}
-  .callout .big{font-size:3.0vw;font-weight:800;color:#7aa6ff;line-height:1;flex:none}
-  .callout p{font-size:1.24vw;font-weight:600;line-height:1.5;letter-spacing:-.01em}
+  .callout{background:var(--navy);color:#fff;border-radius:20px;padding:1.6vw 2vw;display:flex;gap:1.4vw;align-items:center}
+  .callout .big{font-size:2.9vw;font-weight:800;color:#7aa6ff;line-height:1;flex:none}
+  .callout p{font-size:1.2vw;font-weight:600;line-height:1.5;letter-spacing:-.01em}
   .callout p b{color:#a9c5ff}
 
-  .twocol{display:grid;grid-template-columns:1.05fr .95fr;gap:1.9vw;flex:1;min-height:0;align-items:center}
+  .twocol{display:grid;grid-template-columns:1.05fr .95fr;gap:1.8vw;flex:1;min-height:0;align-items:center}
 
-  .flow{display:flex;align-items:stretch;gap:.7vw}
-  .flow .node{flex:1;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:1.05vw;text-align:center;display:flex;flex-direction:column;justify-content:center}
-  .flow .node .nt{font-size:1.02vw;font-weight:800;letter-spacing:-.02em}
-  .flow .node .nd{font-size:.82vw;color:var(--muted);font-weight:500;margin-top:.35vw;line-height:1.4}
+  .flow{display:flex;align-items:stretch;gap:.65vw}
+  .flow .node{flex:1;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:1vw;text-align:center;display:flex;flex-direction:column;justify-content:center}
+  .flow .node .nt{font-size:1vw;font-weight:800;letter-spacing:-.02em}
+  .flow .node .nd{font-size:.8vw;color:var(--muted);font-weight:500;margin-top:.32vw;line-height:1.38}
   .flow .node.hot{background:var(--blue-050);border-color:var(--blue-100)}.flow .node.hot .nt{color:var(--blue)}
   .flow .node.dark{background:var(--navy);border-color:var(--navy)}.flow .node.dark .nt{color:#fff}.flow .node.dark .nd{color:#aac3ff}
-  .flow .arr{flex:none;display:grid;place-items:center;color:var(--muted-2);font-size:1.35vw;font-weight:800}
+  .flow .arr{flex:none;display:grid;place-items:center;color:var(--muted-2);font-size:1.3vw;font-weight:800}
 
-  .note{font-size:.78vw;color:var(--muted-2);font-weight:500;margin-top:1vh;line-height:1.5}
+  .note{font-size:.76vw;color:var(--muted-2);font-weight:500;margin-top:.9vh;line-height:1.5}
 
-  /* comparison table */
-  .ctable{width:100%;border-collapse:separate;border-spacing:0;font-size:.92vw;border:1px solid var(--line);border-radius:16px;overflow:hidden}
-  .ctable th,.ctable td{padding:.8vw 1vw;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.4}
-  .ctable thead th{background:var(--navy);color:#fff;font-weight:800;font-size:.94vw;letter-spacing:-.01em}
+  .ctable{width:100%;border-collapse:separate;border-spacing:0;font-size:.9vw;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .ctable th,.ctable td{padding:.75vw .95vw;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.4}
+  .ctable thead th{background:var(--navy);color:#fff;font-weight:800;font-size:.92vw;letter-spacing:-.01em}
   .ctable thead th.us{background:var(--blue)}
-  .ctable tbody th{background:var(--bg);font-weight:800;color:var(--ink);width:10vw}
+  .ctable tbody th{background:var(--bg);font-weight:800;color:var(--ink);width:9vw}
   .ctable td{color:var(--muted);font-weight:500}
   .ctable td.us{background:var(--blue-050);color:var(--ink);font-weight:600}
   .ctable tr:last-child th,.ctable tr:last-child td{border-bottom:none}
   .x{color:var(--warn);font-weight:800}.o{color:var(--go);font-weight:800}
 
   /* USP venn */
-  .usp{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:1.1vw;align-items:stretch;flex:1;max-height:42vh}
-  .usp .side{background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:1.4vw;display:flex;flex-direction:column;justify-content:center}
-  .usp .side h4{font-size:1.04vw;color:var(--muted-2);font-weight:700;margin-bottom:.7vw;letter-spacing:-.01em}
-  .usp .side .it{font-size:1.0vw;font-weight:700;letter-spacing:-.01em;padding:.5vw 0;border-bottom:1px solid var(--line)}
+  .usp{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:1vw;align-items:stretch;flex:1;max-height:42vh}
+  .usp .side{background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:1.3vw;display:flex;flex-direction:column;justify-content:center}
+  .usp .side h4{font-size:1vw;color:var(--muted-2);font-weight:700;margin-bottom:.65vw;letter-spacing:-.01em}
+  .usp .side .it{font-size:.96vw;font-weight:700;letter-spacing:-.01em;padding:.48vw 0;border-bottom:1px solid var(--line)}
   .usp .side .it:last-child{border-bottom:none}
   .usp .side .it.no{color:var(--muted-2)}
-  .usp .core{background:linear-gradient(135deg,#1E54E6,#2C6BFF);color:#fff;border-radius:18px;padding:1.4vw;display:flex;flex-direction:column;justify-content:center;text-align:center;box-shadow:var(--shadow)}
-  .usp .core .lg{font-size:1.4vw;font-weight:800;letter-spacing:-.02em;line-height:1.25}
-  .usp .core .ds{font-size:.9vw;color:#cfe0ff;font-weight:500;margin-top:.6vw;line-height:1.45}
+  .usp .core{background:linear-gradient(135deg,#1E54E6,#2C6BFF);color:#fff;border-radius:18px;padding:1.3vw;display:flex;flex-direction:column;justify-content:center;text-align:center;box-shadow:var(--shadow)}
+  .usp .core .lg{font-size:1.34vw;font-weight:800;letter-spacing:-.02em;line-height:1.25}
+  .usp .core .ds{font-size:.88vw;color:#cfe0ff;font-weight:500;margin-top:.55vw;line-height:1.45}
 
-  /* strategy + reference blocks */
-  .strat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2vw;flex:1;min-height:0}
-  .strat{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:1.25vw 1.35vw;display:flex;flex-direction:column;gap:.6vw}
-  .strat .sh{display:flex;align-items:center;gap:.6vw}
-  .strat .si{font-size:1.45vw}
-  .strat .stt{font-size:1.22vw;font-weight:800;letter-spacing:-.02em;line-height:1.2}
-  .strat .ref{display:inline-flex;align-items:center;gap:.4vw;font-size:.8vw;font-weight:700;color:#fff;background:var(--navy);padding:.32em .75em;border-radius:100px;width:fit-content}
-  .strat .ref b{color:#a9c5ff;font-weight:800}
-  .strat .blk .lbl{font-weight:800;color:var(--blue);font-size:.78vw;letter-spacing:.01em}
-  .strat .blk .t{color:var(--muted);font-weight:500;font-size:.9vw;line-height:1.45}
-  .strat .work{margin-top:auto;font-size:.82vw;font-weight:700;color:var(--blue-600);background:var(--blue-050);border:1px solid var(--blue-100);border-radius:9px;padding:.5em .7em;line-height:1.4}
-  .strat .work.warn{color:#D6452B;background:var(--warn-bg);border-color:#ffd9cf}
+  /* screenshot card */
+  .scard{background:var(--bg);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+  .scard .thumb{height:19vh;overflow:hidden;border-bottom:1px solid var(--line);background:#fff;position:relative}
+  .scard .thumb img{width:100%;height:100%;object-fit:cover;object-position:top left}
+  .scard .ref{position:absolute;top:.55vw;left:.55vw;font-size:.74vw;font-weight:800;color:#fff;background:rgba(22,27,43,.86);padding:.3em .7em;border-radius:100px;letter-spacing:-.01em}
+  .scard .ref b{color:#a9c5ff}
+  .scard .body{padding:1vw 1.1vw;display:flex;flex-direction:column;gap:.45vw;flex:1}
+  .scard .stt{font-size:1.12vw;font-weight:800;letter-spacing:-.02em;line-height:1.2}
+  .scard .blk{font-size:.86vw;line-height:1.42}
+  .scard .blk .lbl{font-weight:800;color:var(--blue);font-size:.74vw}
+  .scard .blk .t{color:var(--muted);font-weight:500}
+  .scard .work{margin-top:auto;font-size:.78vw;font-weight:700;color:var(--blue-600);background:var(--blue-050);border:1px solid var(--blue-100);border-radius:8px;padding:.45em .65em;line-height:1.4}
+  .scard .work.warn{color:#D6452B;background:var(--warn-bg);border-color:#ffd9cf}
+  .scard.plain .thumb{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1E54E6,#2C6BFF)}
+  .scard.plain .thumb .ph{color:#fff;text-align:center;font-weight:800;font-size:1.4vw;letter-spacing:-.02em;line-height:1.3;padding:1vw}
+  .scard.plain .thumb .ph span{display:block;font-size:.82vw;color:#cfe0ff;font-weight:600;margin-top:.4vw}
 
-  .nsm{background:linear-gradient(135deg,#0F1730,#1E54E6);color:#fff;border-radius:20px;padding:1.6vw 2.1vw;display:flex;align-items:center;gap:1.8vw;margin-bottom:1.3vh}
-  .nsm .lab{font-size:.98vw;color:#aac3ff;font-weight:700}
-  .nsm .val{font-size:1.7vw;font-weight:800;letter-spacing:-.02em;line-height:1.2}
-  .metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1vw}
-  .metric{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:1.15vw}
-  .metric .mh{font-size:.98vw;font-weight:800;letter-spacing:-.02em;margin-bottom:.4vw}
-  .metric .md{font-size:.84vw;color:var(--muted);font-weight:500;line-height:1.45}
-  .metric .mk2{font-size:.76vw;font-weight:700;color:var(--blue);margin-top:.5vw}
+  /* big single screenshot (persona) */
+  .shotbig{border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);height:54vh;background:#fff}
+  .shotbig img{width:100%;height:100%;object-fit:cover;object-position:top left;display:block}
+  .annot{position:relative}
+  .annot .pin{position:absolute;background:var(--warn);color:#fff;font-size:.84vw;font-weight:800;padding:.4em .8em;border-radius:100px;box-shadow:var(--shadow-sm);letter-spacing:-.01em}
+
+  /* product strip */
+  .strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1vw}
+  .strip .it{background:var(--bg);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+  .strip .it .ph{height:16vh;overflow:hidden;background:#fff;border-bottom:1px solid var(--line)}
+  .strip .it .ph img{width:100%;height:100%;object-fit:cover;object-position:top left}
+  .strip .it .cap{padding:.8vw .9vw}
+  .strip .it .cap b{font-size:1vw;font-weight:800;letter-spacing:-.02em;display:block}
+  .strip .it .cap span{font-size:.84vw;color:var(--muted);font-weight:500;line-height:1.4;display:block;margin-top:.2vw}
+
+  /* persona chips */
+  .persona{display:flex;flex-direction:column;gap:.8vw}
+  .pcard{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:1vw 1.15vw}
+  .pcard .pt{font-size:1.02vw;font-weight:800;letter-spacing:-.02em}
+  .pcard .pq{font-size:.86vw;color:var(--muted);font-weight:500;margin-top:.25vw;line-height:1.45}
+  .pcard .pk{font-size:.78vw;font-weight:700;color:var(--blue-600);background:var(--blue-050);border:1px solid var(--blue-100);border-radius:7px;padding:.25em .55em;margin-top:.45vw;display:inline-block}
+
+  .nsm{background:linear-gradient(135deg,#0F1730,#1E54E6);color:#fff;border-radius:20px;padding:1.5vw 2vw;display:flex;align-items:center;gap:1.7vw;margin-bottom:1.2vh}
+  .nsm .lab{font-size:.94vw;color:#aac3ff;font-weight:700}
+  .nsm .val{font-size:1.62vw;font-weight:800;letter-spacing:-.02em;line-height:1.2}
+  .metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1vw}
+  .metric{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:1.1vw}
+  .metric .mh{font-size:.96vw;font-weight:800;letter-spacing:-.02em;margin-bottom:.35vw}
+  .metric .md{font-size:.82vw;color:var(--muted);font-weight:500;line-height:1.42}
+  .metric .mk2{font-size:.74vw;font-weight:700;color:var(--blue);margin-top:.45vw}
 
   .closing{background:linear-gradient(135deg,#0F1730 0%,#172554 60%,#1E54E6 130%);color:#fff;justify-content:center}
-  .closing h2{color:#fff;font-size:2.7vw}
-  .closing .lead{font-size:1.36vw;color:#c2d2f2;font-weight:500;line-height:1.65;margin-top:2.2vh;max-width:80%}
-  .closing .sign{margin-top:3.8vh;font-size:1.02vw;color:#8ea2cf;font-weight:600}
+  .closing h2{color:#fff;font-size:2.6vw}
+  .closing .lead{font-size:1.32vw;color:#c2d2f2;font-weight:500;line-height:1.65;margin-top:2.1vh;max-width:80%}
+  .closing .sign{margin-top:3.6vh;font-size:1vw;color:#8ea2cf;font-weight:600}
   .closing .sign b{color:#fff}
 
   .nav{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;background:rgba(15,19,30,.78);backdrop-filter:blur(10px);padding:9px 16px;border-radius:100px;z-index:50}
@@ -186,17 +210,17 @@
       <div style="position:relative;z-index:2">
         <span class="kicker"><span class="dot"></span>Marketing Lead · 당뇨 모객 전략</span>
         <h1>당뇨는 진료가 아니라<br><span class="hl">'매일의 관리'에서 이깁니다</span></h1>
-        <p class="lead">필라이즈·당뇨관리 서비스의 <b style="color:#fff">관리 기능을 프로덕트에 이식해 USP</b>로 만들고, 그 USP를 지렛대로 당뇨 환자를 <b style="color:#fff">폭발적으로 모객</b>하는 전략을 제안합니다. 모든 전략에는 검증된 <b style="color:#fff">벤치마킹 레퍼런스</b>가 붙습니다.</p>
+        <p class="lead">관리 기능을 이식해 <b style="color:#fff">USP</b>로 만들고, 당뇨 페르소나가 검색하는 곳에서 <b style="color:#fff">Paid·시딩</b>으로 폭발적으로 모객합니다. 모든 전략에는 <b style="color:#fff">실제 캡처한 벤치마킹 레퍼런스</b>가 붙습니다.</p>
         <div class="meta">
           <div>대상<b>나만의닥터 (메라키플레이스)</b></div>
-          <div>핵심<b>관리 USP → 폭발적 모객 → 재진 환전</b></div>
-          <div>구성<b>인사이트 → USP → 모객 전략 15p</b></div>
+          <div>핵심<b>관리 USP → 검색 채널 모객 → 재진 환전</b></div>
+          <div>구성<b>USP → 페르소나·채널 → 전략 17p</b></div>
         </div>
       </div>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">01 / 15</span></div>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">01 / 17</span></div>
     </section>
 
-    <!-- 2. 인사이트: 당뇨는 관리의 영역 -->
+    <!-- 2. 인사이트 -->
     <section class="slide">
       <div class="slide-head">
         <span class="kicker"><span class="dot"></span>핵심 인사이트</span>
@@ -204,41 +228,41 @@
       </div>
       <div class="twocol">
         <div class="rows">
-          <div class="row"><div class="ix">매일</div><div class="tx"><h4>환자의 하루는 '관리'로 채워진다</h4><p>혈당 측정·식단·복약·걷기는 매일. 진료는 분기에 한 번. <b>접점의 99%가 관리 영역</b>에 있다.</p></div></div>
-          <div class="row"><div class="ix">고리</div><div class="tx"><h4>관리툴은 '매일 여는 이유' = 모객·리텐션의 입구</h4><p>매일 쓰는 관리 기능이 있어야 신규를 끌고(미끼), 머물게 하고(습관), 데이터를 쌓는다.</p></div></div>
-          <div class="row" style="background:var(--blue-050);border-color:var(--blue-100)"><div class="ix">환전</div><div class="tx"><h4>그 위에서 진료·재진이 '환전'된다</h4><p>관리로 모은 트래픽·데이터를 비대면 진료·처방·재진으로 바꾼다. 관리가 입구, 진료가 출구.</p></div></div>
+          <div class="row"><div class="ix">매일</div><div class="tx"><h4>환자의 하루는 '관리'로 채워진다</h4><p>측정·식단·복약은 매일, 진료는 분기 1회. <b>접점의 99%가 관리 영역</b>.</p></div></div>
+          <div class="row"><div class="ix">입구</div><div class="tx"><h4>관리툴 = '매일 여는 이유' = 모객·리텐션 입구</h4><p>매일 쓰는 기능이 있어야 끌고(미끼)·머물게 하고(습관)·데이터를 쌓는다.</p></div></div>
+          <div class="row" style="background:var(--blue-050);border-color:var(--blue-100)"><div class="ix">환전</div><div class="tx"><h4>그 위에서 진료·재진이 '환전'된다</h4><p>관리로 모은 트래픽·데이터를 비대면 진료·처방·재진으로. 관리=입구, 진료=출구.</p></div></div>
         </div>
         <div>
-          <div class="callout" style="flex-direction:column;align-items:flex-start;gap:.9vw">
-            <p style="font-size:1.38vw">＂당뇨 환자를 데려오는 건 '진료 광고'가 아니라 <b>'매일 쓰고 싶은 관리 USP'</b>다.＂</p>
-            <p style="font-size:.98vw;color:#8ea2cf;font-weight:500">— 진료만 내세우면 '아플 때만 여는 앱'. 관리를 쥐면 '매일 여는 앱'이 된다.</p>
+          <div class="callout" style="flex-direction:column;align-items:flex-start;gap:.8vw">
+            <p style="font-size:1.34vw">＂당뇨 환자를 데려오는 건 '진료 광고'가 아니라 <b>'매일 쓰고 싶은 관리 USP'</b>다.＂</p>
+            <p style="font-size:.94vw;color:#8ea2cf;font-weight:500">— 진료만 내세우면 '아플 때만 여는 앱', 관리를 쥐면 '매일 여는 앱'.</p>
           </div>
         </div>
       </div>
-      <p class="note">전제: 나만의닥터는 비대면 진료·처방·병원연결·리워드(닥터캐시·만보기)를 보유 — 진료 역량은 있으나 '매일 쓰는 당뇨 관리 USP'가 비어 있다는 점이 이 전략의 출발점(사용자 제공/공개정보 기반).</p>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">02 / 15</span></div>
+      <p class="note">전제: 나만의닥터는 비대면 진료·처방·병원연결·리워드(닥터캐시·만보기) 보유 — 진료 역량은 있으나 '매일 쓰는 당뇨 관리 USP'가 비어 있다는 점이 출발점(공개정보 기반).</p>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">02 / 17</span></div>
     </section>
 
     <!-- 3. 시장 -->
     <section class="slide">
       <div class="slide-head">
-        <span class="kicker"><span class="dot"></span>시장 · 왜 당뇨이고 왜 지금인가</span>
+        <span class="kicker"><span class="dot"></span>시장 · 왜 당뇨, 왜 지금</span>
         <h2>거대하고, 관리가 비어 있고, <span class="hl">규제까지 우리 편</span></h2>
       </div>
       <div class="stats">
-        <div class="stat"><div class="n">530만<span style="font-size:1.0vw">명</span></div><div class="l">30세↑ 당뇨(15.5%). <b>전단계 41.1%≈1,400만</b> 포함 시 잠재풀은 더 큼 · 65세↑ 3명중 1명</div></div>
+        <div class="stat"><div class="n">530만<span style="font-size:.95vw">명</span></div><div class="l">30세↑ 당뇨(15.5%). <b>전단계 41.1%≈1,400만</b> 포함 시 더 큼 · 65세↑ 3명중 1명</div></div>
         <div class="stat"><div class="n dark">32% · 46%</div><div class="l">혈당조절률 32.4% · 안저검사 수검 46% — <b>'관리 공백'이 곧 우리가 들어갈 시장</b></div></div>
-        <div class="stat"><div class="n dark">2026.12</div><div class="l">비대면진료 <span class="term">재진 중심<span class="tip"><b>비대면진료 4대 원칙</b> · 대면 원칙·재진 중심·의원급 중심·전담기관 금지. 만성질환(당뇨)은 인정기간이 길어 사실상 우대.</span></span> 제도화 — 평생 재진하는 당뇨에 가장 유리</div></div>
+        <div class="stat"><div class="n dark">2026.12</div><div class="l">비대면진료 <span class="term">재진 중심<span class="tip"><b>비대면진료 4대 원칙</b> · 대면 원칙·재진 중심·의원급 중심·전담기관 금지. 만성질환(당뇨)은 인정기간이 길어 사실상 우대.</span></span> 제도화 — 평생 재진하는 당뇨에 유리</div></div>
       </div>
-      <div class="callout" style="margin-top:2.2vh">
+      <div class="callout" style="margin-top:2vh">
         <div class="big">＝</div>
-        <p>당뇨는 <b>분기 재진·90일 처방이 질환에 내장</b>(1인 연 진료비 ≈ 30.7만 원)된 <span class="term up">LTV<span class="tip"><b>LTV(고객 생애 가치)</b> · 평생 관리 질환이라 한 환자의 누적 가치가 본질적으로 길다.</span></span>가 긴 시장. 관리로 모아 진료로 환전하면 한 명의 가치가 오래 간다.</p>
+        <p>당뇨는 <b>분기 재진·90일 처방이 질환에 내장</b>(1인 연 진료비 ≈ 30.7만 원)된 <span class="term up">LTV<span class="tip"><b>LTV(고객 생애 가치)</b> · 평생 관리 질환이라 한 환자의 누적 가치가 본질적으로 길다.</span></span>가 긴 시장.</p>
       </div>
-      <p class="note">출처: 대한당뇨병학회 Diabetes Fact Sheet 2024, 한화생명 실손분석 2025, 건강보험심사평가원 당뇨 진료현황 2024(1인 30.7만 원), 보건복지부 비대면진료 제도화(2026.12.24 시행). 사실/추정 구분, 환자 수는 추정치.</p>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">03 / 15</span></div>
+      <p class="note">출처: 대한당뇨병학회 Diabetes Fact Sheet 2024, 한화생명 실손분석 2025, 건강보험심사평가원 당뇨 진료현황 2024, 보건복지부 비대면진료 제도화(2026.12.24 시행). 환자 수는 추정치.</p>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">03 / 17</span></div>
     </section>
 
-    <!-- 4. 경쟁 지형 빈틈 -->
+    <!-- 4. 경쟁 빈틈 -->
     <section class="slide">
       <div class="slide-head">
         <span class="kicker"><span class="dot"></span>경쟁 지형 · 누구도 둘 다 갖지 못했다</span>
@@ -247,17 +271,17 @@
       <table class="ctable">
         <thead><tr><th>구분</th><th>닥터다이어리</th><th>파스타 (카카오HC)</th><th>글루코핏</th><th class="us">나만의닥터</th></tr></thead>
         <tbody>
-          <tr><th>매일 쓰는 관리</th><td><span class="o">○</span> 기록·식단·커뮤니티</td><td><span class="o">○</span> CGM 실시간·AI코칭</td><td><span class="o">○</span> 의사·AI 코칭</td><td class="us"><span class="x">✕</span> 당뇨 특화 관리 없음</td></tr>
+          <tr><th>매일 관리</th><td><span class="o">○</span> 기록·식단·커뮤니티</td><td><span class="o">○</span> CGM·AI코칭</td><td><span class="o">○</span> 의사·AI 코칭</td><td class="us"><span class="x">✕</span> 당뇨 특화 관리 없음</td></tr>
           <tr><th>진료·처방</th><td><span class="x">✕</span> 비의료</td><td><span class="x">✕</span> 코칭=안내</td><td><span class="x">✕</span> 코칭=안내</td><td class="us"><span class="o">○</span> 비대면 진료·처방</td></tr>
-          <tr><th>약점</th><td>치료연결 단절</td><td>CGM 비용·진입장벽</td><td>고비용 구독→이탈, 고령 소외</td><td class="us">관리 USP만 채우면 유일 사업자</td></tr>
+          <tr><th>약점</th><td>치료연결 단절</td><td>CGM 비용·진입장벽</td><td>고비용→이탈, 고령 소외</td><td class="us">관리 USP만 채우면 유일 사업자</td></tr>
         </tbody>
       </table>
-      <div class="callout" style="margin-top:2.2vh"><div class="big">!</div><p>경쟁사는 <b>관리는 잘하지만 "병원 가세요"에서 끊기고</b>, 우리는 <b>진료는 되지만 매일 쓸 이유가 없다</b>. 빈칸은 정확히 하나 — <b>우리에게 '당뇨 관리 USP'를 채우는 것</b>.</p></div>
-      <p class="note">출처: 각 사 App Store·공식, 바이오타임즈·메디칼타임즈·서울경제·디라이트. CGM 급여는 1형·인슐린 한정(2형 대다수 비급여, 국민건강보험공단). 단가·리텐션 일부 추정.</p>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">04 / 15</span></div>
+      <div class="callout" style="margin-top:2vh"><div class="big">!</div><p>경쟁사는 <b>"병원 가세요"에서 끊기고</b>, 우리는 <b>매일 쓸 이유가 없다</b>. 빈칸은 하나 — <b>우리에게 '당뇨 관리 USP'를 채우는 것</b>.</p></div>
+      <p class="note">출처: 각 사 App Store·공식, 바이오타임즈·메디칼타임즈·서울경제·디라이트. CGM 급여는 1형·인슐린 한정(2형 대다수 비급여). 단가·리텐션 일부 추정.</p>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">04 / 17</span></div>
     </section>
 
-    <!-- 5. USP 정의 (벤 구조) -->
+    <!-- 5. USP venn -->
     <section class="slide">
       <div class="slide-head">
         <span class="kicker"><span class="dot"></span>USP 정의 · 누구도 동시에 못 가진 것</span>
@@ -281,217 +305,250 @@
           <div class="it no">✕ 매일 쓸 관리 USP 없음</div>
         </div>
       </div>
-      <div class="callout" style="margin-top:1.8vh"><div class="big">★</div><p>이 결합이 USP다 — <b>"관리하다 위험하면 그 자리에서 의사에게 연결되는 유일한 당뇨 앱"</b>. 관리 앱은 따라올 수 없고(의료법), 진료 앱은 관리 자산이 없다.</p></div>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">05 / 15</span></div>
+      <div class="callout" style="margin-top:1.6vh"><div class="big">★</div><p>USP = <b>"관리하다 위험하면 그 자리에서 의사에게 연결되는 유일한 당뇨 앱"</b>. 관리 앱은 따라올 수 없고(의료법), 진료 앱은 관리 자산이 없다.</p></div>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">05 / 17</span></div>
     </section>
 
-    <!-- 6. 프로덕트: 관리 기능 이식 = USP의 실체 -->
+    <!-- 6. 프로덕트 이식 (스크린샷 스트립) -->
     <section class="slide">
       <div class="slide-head">
-        <span class="kicker"><span class="dot"></span>프로덕트 · USP의 실체 (이식)</span>
-        <h2>필라이즈·당뇨관리 서비스의 <span class="hl">관리 기능을 이식</span>한다</h2>
+        <span class="kicker"><span class="dot"></span>프로덕트 · USP의 실체 (관리 기능 이식)</span>
+        <h2>이 관리 기능들을 가져와 <span class="hl">'진료로 닫히는' 당뇨케어</span>로</h2>
       </div>
-      <table class="ctable">
-        <thead><tr><th>벤치마킹 원천</th><th>이식할 관리 기능</th><th class="us">USP·환전 포인트</th></tr></thead>
-        <tbody>
-          <tr><th>필라이즈 AI코칭</th><td>처방·혈당목표 학습 AI의 일별 미션(측정·복약·식단)</td><td class="us"><span class="term">리텐션 3~4배<span class="tip"><b>필라이즈 벤치</b> · AI코칭 사용자 약 85%가 1개월 후 유지 — 일반 기록앱 대비 리텐션 3~4배(머니투데이·다음).</span></span> + 위험신호→진료 에스컬레이션</td></tr>
-          <tr><th>필라이즈 식단스캔</th><td>식후혈당 식단관리 "이 식사가 혈당을 얼마나 올릴까"</td><td class="us">반복 고혈당 → "약 조정 상담" CTA</td></tr>
-          <tr><th>파스타 CGM 연동</th><td>(옵션) CGM 실시간 + 비CGM은 간편기록 병행</td><td class="us">CGM 없이도 진입 가능 → 2형 비용장벽 회피</td></tr>
-          <tr><th>닥터다이어리 리포트</th><td>HbA1c·혈당 추이 '나의 당뇨 리포트'</td><td class="us">재검 알림 → 검사·재진 연계, 진료 사전문진 자료</td></tr>
-          <tr><th>필라이즈 챌린지</th><td>혈당 챌린지 + <span class="term">닥터캐시<span class="tip"><b>닥터캐시</b> · 나만의닥터가 이미 운영하는 리워드. 기존 자산을 당뇨 미션에 재배치한다.</span></span> 리워드</td><td class="us">보상을 진료·검사 쿠폰으로 → 챌린지가 곧 진료 유입</td></tr>
-        </tbody>
-      </table>
-      <p class="note">우선순위(가설): 1순위 AI코칭+식후혈당(리텐션), 2순위 당뇨리포트(진료 근거), 3순위 챌린지(기존 리워드 결합). 출처: 필라이즈·닥터다이어리·파스타 기능 분석 + 사용자 제공 나만의닥터 자산.</p>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">06 / 15</span></div>
+      <div class="strip">
+        <div class="it"><div class="ph"><img src="assets/ref-pillyze.jpeg" alt="필라이즈"/></div><div class="cap"><b>필라이즈 · AI코칭/식단</b><span>식후혈당 식단관리 + 일별 미션. <b>리텐션 3~4배</b>의 폐루프 엔진</span></div></div>
+        <div class="it"><div class="ph"><img src="assets/ref-pasta.jpeg" alt="파스타"/></div><div class="cap"><b>파스타 · CGM 연동</b><span>(옵션) 실시간 혈당. 비CGM은 간편기록 병행 → 비용장벽 회피</span></div></div>
+        <div class="it"><div class="ph"><img src="assets/ref-drdiary.jpeg" alt="닥터다이어리"/></div><div class="cap"><b>닥터다이어리 · 리포트</b><span>HbA1c·혈당 추이 '나의 당뇨 리포트' → 진료 사전문진 자료</span></div></div>
+      </div>
+      <div class="callout" style="margin-top:2vh"><div class="big">→</div><p>이식의 핵심은 단 하나 — <b>'다음 행동'의 종착지를 영양제·코칭이 아니라 '비대면 진료·재진'으로 치환</b>. 그러면 동일 관리 엔진이 의료 전환 깔때기가 된다.</p></div>
+      <p class="note">실제 서비스 캡처(필라이즈·파스타몰·닥터다이어리, 2026.6). 우선순위(가설): 1순위 AI코칭+식후혈당, 2순위 당뇨리포트, 3순위 챌린지(기존 닥터캐시 결합).</p>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">06 / 17</span></div>
     </section>
 
-    <!-- 7. USP가 왜 모객 무기인가 -->
+    <!-- 7. USP→모객 로직 -->
     <section class="slide">
       <div class="slide-head">
         <span class="kicker"><span class="dot"></span>USP → 모객 연결 로직</span>
         <h2>관리 USP는 <span class="hl">폭발적 모객의 '입구'</span>입니다</h2>
       </div>
       <div class="flow">
-        <div class="node hot"><div class="nt">① 무료 관리 미끼</div><div class="nd">매일 쓰는 관리 기능을 무료로 열어 신규를 끌어온다</div></div>
+        <div class="node hot"><div class="nt">① 무료 관리 미끼</div><div class="nd">매일 쓰는 관리 기능을 무료로 열어 신규 유입</div></div>
         <div class="arr">→</div>
-        <div class="node"><div class="nt">② 습관·데이터</div><div class="nd">매일 기록이 습관이 되고 혈당 데이터가 쌓인다</div></div>
+        <div class="node"><div class="nt">② 습관·데이터</div><div class="nd">매일 기록이 습관, 혈당 데이터 축적</div></div>
         <div class="arr">→</div>
-        <div class="node"><div class="nt">③ 진료 근거</div><div class="nd">쌓인 데이터가 "조절 안 됨" 근거 → 진료 마찰↓</div></div>
+        <div class="node"><div class="nt">③ 진료 근거</div><div class="nd">데이터가 "조절 안 됨" 근거 → 진료 마찰↓</div></div>
         <div class="arr">→</div>
         <div class="node dark"><div class="nt">④ 진료·재진 환전</div><div class="nd">비대면 진료·처방 → 분기 재진 루프</div></div>
       </div>
-      <div class="g3 grid" style="margin-top:2.2vh">
-        <div class="card"><div class="ci">🪝</div><h3>미끼가 강하다</h3><p>"진료받으세요"는 거부감, "무료로 내 혈당 관리"는 누구나 시작 — 진입 마찰이 낮다.</p></div>
-        <div class="card"><div class="ci">📈</div><h3>전환이 자연스럽다</h3><p>관리 데이터가 진료 필요를 스스로 증명 → 광고가 아니라 데이터가 설득한다.</p></div>
-        <div class="card"><div class="ci">🔒</div><h3>리텐션이 붙는다</h3><p>매일 여는 습관 + 만성질환 재진 = 단발 모객이 LTV로 환전된다.</p></div>
+      <div class="g3 grid" style="margin-top:2vh">
+        <div class="card"><div class="ci">🪝</div><h3>미끼가 강하다</h3><p>"진료받으세요"는 거부감, "무료 혈당관리"는 누구나 시작 — 진입 마찰↓.</p></div>
+        <div class="card"><div class="ci">📈</div><h3>전환이 자연스럽다</h3><p>관리 데이터가 진료 필요를 스스로 증명 → 광고가 아니라 데이터가 설득.</p></div>
+        <div class="card"><div class="ci">🔒</div><h3>리텐션이 붙는다</h3><p>매일 여는 습관 + 만성질환 재진 = 단발 모객이 LTV로 환전.</p></div>
       </div>
-      <p class="note">즉, 관리 USP가 없으면 모객 이벤트는 '일회성 유입'에 그치고, 있으면 '매일 쓰는 입구 → 진료 전환 → 재진'으로 환전된다.</p>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">07 / 15</span></div>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">07 / 17</span></div>
     </section>
 
-    <!-- 8. 모객 전략 마스터 (레퍼런스 한눈에) -->
+    <!-- 8. 페르소나 & 검색 동선 (네이버 캡처) -->
     <section class="slide">
       <div class="slide-head">
-        <span class="kicker"><span class="dot"></span>폭발적 모객 · 6대 전략 = 6개 레퍼런스</span>
-        <h2>모든 전략에 <span class="hl">검증된 벤치마킹 레퍼런스</span>를 붙였습니다</h2>
+        <span class="kicker"><span class="dot"></span>페르소나 & 검색 동선</span>
+        <h2>그들이 검색하는 곳엔 <span class="hl">'센서·영양제 광고'뿐, 진료가 없다</span></h2>
+      </div>
+      <div class="twocol" style="grid-template-columns:.82fr 1.18fr">
+        <div class="persona">
+          <div class="pcard"><div class="pt">박정현 · 58 · 2형 5년차</div><div class="pq">약 먹는데 혈당이 들쑥날쑥, 병원은 분기 1회</div><span class="pk">검색: "혈당 낮추는 음식 · 당화혈색소 정상수치"</span></div>
+          <div class="pcard"><div class="pt">이수민 · 41 · 전당뇨</div><div class="pq">검진서 '공복혈당 주의' — 병원 갈 정돈가 고민</div><span class="pk">검색: "공복혈당 110 · 전당뇨 관리"</span></div>
+          <div class="pcard"><div class="pt">김도윤 · 34 · 보호자</div><div class="pq">멀리 사는 아버지 당뇨가 늘 걱정</div><span class="pk">검색: "부모님 당뇨 관리 앱 · 혈당 원격 확인"</span></div>
+        </div>
+        <div class="annot">
+          <div class="shotbig"><img src="assets/ref-naver-search.jpeg" alt="네이버 '혈당 낮추는 방법' 검색결과 광고"/></div>
+          <div class="pin" style="top:6%;right:3%">실제 캡처 · 네이버 "혈당 낮추는 방법"</div>
+        </div>
+      </div>
+      <p class="note">＂혈당 낮추는 방법＂ 검색 시 상단 광고는 전부 <b>리브레 센서몰·혈당관리 영양제(라이킷 '100% 환불보장')·당뇨 영양제</b> — <b>'관리하다 위험하면 의사에게'를 파는 곳이 한 곳도 없다</b>. 이 검색 결과의 빈칸이 정확히 우리 USP의 자리(실제 캡처, 2026.6).</p>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">08 / 17</span></div>
+    </section>
+
+    <!-- 9. Paid 전략 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>모객 · Paid 전략 (채널 × 소구점)</span>
+        <h2>검색·노출 신호별로 <span class="hl">소구점을 다르게</span> 친다</h2>
       </div>
       <table class="ctable">
-        <thead><tr><th>전략</th><th>벤치마킹 레퍼런스</th><th>가져오는 한 가지</th><th class="us">관리 USP와 결합</th></tr></thead>
+        <thead><tr><th>채널</th><th>타겟·신호</th><th class="us">광고 소구점 (메시지)</th><th>소재·랜딩</th></tr></thead>
         <tbody>
-          <tr><th>① 무료 진단 퍼널</th><td>Noom (진단퀴즈→전환)</td><td>가격 노출 전 commitment 축적</td><td class="us">당뇨위험 진단 → 무료 관리 시작 → 고위험 진료</td></tr>
-          <tr><th>② 리워드 미션</th><td>캐시워크·토스 만보기</td><td>일상 건강행동을 캐시로 보상</td><td class="us">기존 만보기·닥터캐시를 혈당·복약 미션에 재배치</td></tr>
-          <tr><th>③ 챌린지 환급</th><td>챌린저스·다노</td><td>예치금 손실회피로 행동 강제</td><td class="us">혈당 챌린지 = 진성 환자 모객 + 관리 습관</td></tr>
-          <tr><th>④ CGM 체험단</th><td>글루코핏·파스타</td><td>실측 데이터의 충격 = 전환 트리거</td><td class="us">체험 → 데이터 충격 → 처방·코칭 (소구 한정)</td></tr>
-          <tr><th>⑤ 추천·후기 바이럴</th><td>토스 추천 / 닥다 커뮤니티</td><td>추천 리워드 + UGC 신뢰</td><td class="us">가족 당뇨 추천(부모-자녀) + 관리 성공 후기</td></tr>
-          <tr><th>⑥ 오프라인 제휴</th><td>HD메디·삼성생명</td><td>확진 고밀도 풀을 직접 송출</td><td class="us">검진 이상소견·약국 수령자에 관리툴+재진 쿠폰</td></tr>
+          <tr><th>네이버 검색광고</th><td>"혈당·당화혈색소·공복혈당·당뇨 초기증상" 검색자</td><td class="us">"측정만 하지 말고, <b>위험하면 바로 의사에게</b> — 처방까지 한 앱에서"</td><td>파워링크 → 무료 진단 랜딩</td></tr>
+          <tr><th>메타 (IG·FB)</th><td>45–65 당뇨·전당뇨 관심 + <b>보호자(자녀) 리타겟</b></td><td class="us">"부모님 혈당, 멀리서도 챙기세요" / "집에서 혈당관리+처방"</td><td>환자 후기 릴스·캐러셀</td></tr>
+          <tr><th>유튜브</th><td>당뇨 콘텐츠 시청자 · 인스트림/디스커버리</td><td class="us">"내 혈당이 음식에 어떻게 반응하는지 <b>2주만</b> 보세요"</td><td>30초 환자 후기 영상</td></tr>
+          <tr><th>카카오 모먼트</th><td>중장년 대량 도달 · 카카오 검색</td><td class="us">"<b>3분 당뇨위험 자가진단</b> → 결과 무료 리포트"</td><td>비즈보드 무료진단 훅</td></tr>
         </tbody>
       </table>
-      <p class="note">다음 3개 슬라이드에서 6대 전략을 레퍼런스 → 벤치마킹 포인트 → 적용 → 작동원리로 상세화. 출처: 각 레퍼런스 사례(Noom·챌린저스·캐시워크·글루코핏/파스타·토스·HD메디/삼성생명).</p>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">08 / 15</span></div>
+      <p class="note">공통 원칙 — 소구의 끝은 항상 <b>관리 미끼(무료 진단·관리툴)</b>로 보내고, 진료·처방은 데이터가 쌓인 뒤 제안. ⚠ 의료광고·식약처 규제상 효능 단정·"당뇨 완치" 류 표현 금지.</p>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">09 / 17</span></div>
     </section>
 
-    <!-- 9. 전략 1·2 상세 -->
+    <!-- 10. 시딩 전략 -->
     <section class="slide">
       <div class="slide-head">
-        <span class="kicker"><span class="dot"></span>모객 전략 상세 ① · 저비용 유입 엔진</span>
-        <h2>무료 진단 퍼널 + 리워드 미션 <span class="hl">(기존 자산으로 즉시)</span></h2>
+        <span class="kicker"><span class="dot"></span>모객 · 시딩(Organic) 전략</span>
+        <h2>광고가 닿기 전, <span class="hl">환자가 모인 곳에 먼저 스며든다</span></h2>
       </div>
-      <div class="strat-grid">
-        <div class="strat">
-          <div class="sh"><span class="si">🧩</span><span class="stt">전략 1 · 무료 당뇨위험 진단</span></div>
-          <span class="ref">레퍼런스 · <b>Noom</b></span>
-          <div class="blk"><span class="lbl">벤치마킹 포인트</span><div class="t">10문항 퀴즈로 가격·진료 노출 전에 사용자의 시간·감정 투자(commitment)를 쌓아 전환율을 끌어올린 퍼널.</div></div>
-          <div class="blk"><span class="lbl">나만의닥터 적용</span><div class="t">"3분 당뇨위험 자가진단" → 개인화 리스크 리포트 → 무료 관리툴 시작 → 고위험자에 비대면 진료 CTA.</div></div>
-          <div class="work">미끼: 무료 진단 → 관리: 리포트로 관리 시작 → 환전: 고위험 진료</div>
-        </div>
-        <div class="strat">
-          <div class="sh"><span class="si">👟</span><span class="stt">전략 2 · 걷기·복약 캐시 미션</span></div>
-          <span class="ref">레퍼런스 · <b>캐시워크 · 토스 만보기</b></span>
-          <div class="blk"><span class="lbl">벤치마킹 포인트</span><div class="t">100걸음=1캐시처럼 일상 건강행동을 소액 보상으로 게임화해 '매일 여는 습관'과 거대 DAU를 만든 모델.</div></div>
-          <div class="blk"><span class="lbl">나만의닥터 적용</span><div class="t">이미 보유한 <b>만보기·닥터캐시를 '혈당측정·복약 인증' 미션</b>에 재배치 → 추가 비용 없이 당뇨 관리 습관화.</div></div>
-          <div class="work">미끼: 캐시 → 관리: 측정·복약 습관 → 환전: 누적 캐시로 진료비 할인</div>
-        </div>
-      </div>
-      <p class="note">두 전략 모두 <b>기존 자산(진단·만보기·닥터캐시)으로 6개월 내 즉시 구현</b> 가능 → 비용·시간 효율 최고. 출처: Noom 퍼널 분석(RevenueCat 등), 캐시워크(넛지헬스케어)·토스 공개사례.</p>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">09 / 15</span></div>
+      <table class="ctable">
+        <thead><tr><th>시딩 채널</th><th>어디에·누구에게</th><th class="us">소구·콘텐츠 톤</th></tr></thead>
+        <tbody>
+          <tr><th>네이버 카페·지식인</th><td>당뇨 환자/보호자 카페('당뇨와 친구들' 등)·맘카페 부모건강, 지식인 "당화혈색소 높을 때"</td><td class="us">정보형 답변 + 실사용 후기로 "관리하다 위험하면 비대면 진료" 자연 노출</td></tr>
+          <tr><th>유튜브·인플루언서</th><td>당뇨 관리 유튜버 · 약사/의사 크리에이터</td><td class="us">관리 USP 체험 협업 — '내돈내산' 진정성 톤</td></tr>
+          <tr><th>인스타·블로그 체험단</th><td>혈당 챌린지 참가자 UGC</td><td class="us">"2주 혈당 인증" 해시태그 챌린지 + 닥터캐시 리워드</td></tr>
+          <tr><th>약국·검진센터(오프라인)</th><td>당뇨약 수령자·검진 이상소견자</td><td class="us">관리툴+재진 쿠폰 QR 배포 → 비대면 재진 연결</td></tr>
+        </tbody>
+      </table>
+      <div class="callout" style="margin-top:1.8vh"><div class="big">＂</div><p>시딩의 핵심은 <b>'광고'가 아니라 '후기·정보'</b>로 신뢰를 먼저 쌓는 것. ⚠ 의료광고법상 환자 유인·후기 광고 규제가 있어 <b>정보성·체험 톤과 표기 가이드</b>를 반드시 준수.</p></div>
+      <p class="note">레퍼런스: 닥터다이어리 커뮤니티(환자 UGC 자산화), HD메디 아이당뇨(약국 거점), 토스/캐시워크(리워드 기반 UGC). 채널·카페명은 예시.</p>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">10 / 17</span></div>
     </section>
 
-    <!-- 10. 전략 3·4 상세 -->
+    <!-- 11. 모객 메커니즘 마스터 -->
     <section class="slide">
       <div class="slide-head">
-        <span class="kicker"><span class="dot"></span>모객 전략 상세 ② · 폭발력 큰 캠페인</span>
-        <h2>챌린지 환급 + CGM 체험단 <span class="hl">(진성 모객·임팩트)</span></h2>
+        <span class="kicker"><span class="dot"></span>모객 메커니즘 · 6대 전략 = 6개 레퍼런스</span>
+        <h2>채널에 실을 <span class="hl">오퍼(미끼)마다 검증된 레퍼런스</span>를 붙였습니다</h2>
       </div>
-      <div class="strat-grid">
-        <div class="strat">
-          <div class="sh"><span class="si">🏆</span><span class="stt">전략 3 · 혈당 챌린지 + 캐시 환급</span></div>
-          <span class="ref">레퍼런스 · <b>챌린저스 · 다노</b></span>
-          <div class="blk"><span class="lbl">벤치마킹 포인트</span><div class="t">예치금을 걸고 달성 시 환급, 실패 벌금을 성공자에 재분배. 손실회피로 행동을 강제하고 진성 유저를 필터링.</div></div>
-          <div class="blk"><span class="lbl">나만의닥터 적용</span><div class="t">닥터캐시 예치 → 2주 혈당측정·식단 인증 챌린지. 시즌제로 주기적 복귀, 챌린지 중 진료 상담 자연 삽입.</div></div>
-          <div class="work">미끼: 환급 → 관리: 인증 습관 → 환전: 챌린지 내 진료·다음 시즌 재참여</div>
-        </div>
-        <div class="strat">
-          <div class="sh"><span class="si">📟</span><span class="stt">전략 4 · CGM 2주 무료 체험단</span></div>
-          <span class="ref">레퍼런스 · <b>글루코핏 · 파스타</b></span>
-          <div class="blk"><span class="lbl">벤치마킹 포인트</span><div class="t">CGM으로 실측한 '내 혈당 스파이크'의 시각적 충격이 가장 강력한 행동 전환 트리거로 작동.</div></div>
-          <div class="blk"><span class="lbl">나만의닥터 적용</span><div class="t">당뇨·전당뇨 대상 2주 체험 → 데이터 충격 → 처방·코칭 진료 연계. 체험 후 관리툴+재진으로 흡수.</div></div>
-          <div class="work warn">⚠ 식약처 광고규제(비당뇨 다이어트 소구 금지)·센서 원가 → '당뇨/전당뇨 관리'로 한정</div>
-        </div>
-      </div>
-      <p class="note">전략 4는 임팩트가 가장 크나 규제·원가 리스크가 커서 소규모 A/B 선행 권장. 출처: 챌린저스 약관·나무위키, 글루코핏·파스타 공식, 식약처 2024.10 CGM 다이어트 광고 경고(전자신문).</p>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">10 / 15</span></div>
+      <table class="ctable">
+        <thead><tr><th>오퍼 전략</th><th>벤치마킹 레퍼런스</th><th>가져오는 한 가지</th><th class="us">관리 USP와 결합</th></tr></thead>
+        <tbody>
+          <tr><th>① 무료 진단 퍼널</th><td>Noom</td><td>가격 노출 전 commitment 축적</td><td class="us">당뇨위험 진단 → 무료 관리 → 고위험 진료</td></tr>
+          <tr><th>② 리워드 미션</th><td>캐시워크·토스</td><td>일상 건강행동을 캐시로 보상</td><td class="us">기존 만보기·닥터캐시를 혈당·복약 미션에</td></tr>
+          <tr><th>③ 챌린지 환급</th><td>챌린저스·다노</td><td>예치금 손실회피로 행동 강제</td><td class="us">혈당 챌린지 = 진성 환자 + 관리 습관</td></tr>
+          <tr><th>④ CGM 체험단</th><td>글루코핏·파스타</td><td>실측 데이터의 충격 = 전환 트리거</td><td class="us">체험 → 충격 → 처방·코칭 (소구 한정)</td></tr>
+          <tr><th>⑤ 추천·후기 바이럴</th><td>토스 추천·닥다 커뮤니티</td><td>추천 리워드 + UGC 신뢰</td><td class="us">가족 당뇨 추천(부모-자녀) + 후기</td></tr>
+          <tr><th>⑥ 오프라인 제휴</th><td>HD메디·삼성생명</td><td>확진 고밀도 풀 직접 송출</td><td class="us">검진·약국 수령자에 관리툴+재진 쿠폰</td></tr>
+        </tbody>
+      </table>
+      <p class="note">다음 2개 슬라이드에서 핵심 4개를 실제 캡처 + 적용으로 상세화. 출처: 각 레퍼런스 사례.</p>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">11 / 17</span></div>
     </section>
 
-    <!-- 11. 전략 5·6 상세 -->
+    <!-- 12. 전략 상세 A (noom + cashwalk 캡처) -->
     <section class="slide">
       <div class="slide-head">
-        <span class="kicker"><span class="dot"></span>모객 전략 상세 ③ · 신뢰·고밀도 채널</span>
-        <h2>추천·후기 바이럴 + 오프라인 제휴 <span class="hl">(확장·신뢰)</span></h2>
+        <span class="kicker"><span class="dot"></span>전략 상세 ① · 저비용 유입 (기존 자산으로 즉시)</span>
+        <h2>무료 진단 퍼널 + 리워드 미션 <span class="hl">— 레퍼런스 캡처</span></h2>
       </div>
-      <div class="strat-grid">
-        <div class="strat">
-          <div class="sh"><span class="si">🔁</span><span class="stt">전략 5 · 가족 추천 + 후기 UGC</span></div>
-          <span class="ref">레퍼런스 · <b>토스 추천 · 닥다 커뮤니티</b></span>
-          <div class="blk"><span class="lbl">벤치마킹 포인트</span><div class="t">추천 리워드의 바이럴 계수 + 실사용 <span class="term">UGC<span class="tip"><b>UGC</b> · 사용자 생성 콘텐츠. 실제 환자 후기는 광고보다 의료 신뢰 장벽을 효과적으로 낮춘다.</span></span>가 의료 신뢰 장벽을 낮춰 전환을 높인 구조.</div></div>
-          <div class="blk"><span class="lbl">나만의닥터 적용</span><div class="t"><b>고령 부모-자녀 추천</b>(자녀가 부모 당뇨 관리 대신 설정) + 관리 성공 후기를 진입부에 노출.</div></div>
-          <div class="work">미끼: 추천 캐시 → 관리: 가족이 대신 세팅 → 환전: 고령 당뇨 진료 유입</div>
+      <div class="g2 grid" style="flex:1;min-height:0">
+        <div class="scard">
+          <div class="thumb"><span class="ref">레퍼런스 · <b>Noom</b></span><img src="assets/ref-noom.jpeg" alt="Noom 무료체험 퍼널"/></div>
+          <div class="body">
+            <div class="stt">전략 1 · 무료 당뇨위험 진단</div>
+            <div class="blk"><span class="lbl">벤치마킹</span> <span class="t">'7일 무료 체험'·행동심리 퀴즈로 가격 노출 전 commitment를 쌓아 전환.</span></div>
+            <div class="work">3분 진단 → 개인화 리포트 → 무료 관리 시작 → 고위험 진료 CTA</div>
+          </div>
         </div>
-        <div class="strat">
-          <div class="sh"><span class="si">🏥</span><span class="stt">전략 6 · 검진·약국·보험 제휴</span></div>
-          <span class="ref">레퍼런스 · <b>HD메디 아이당뇨 · 삼성생명</b></span>
-          <div class="blk"><span class="lbl">벤치마킹 포인트</span><div class="t">약국을 당뇨 상담 거점화(HD메디), 검진·투약 데이터 기반 만성질환 프로그램(삼성생명) — 이미 확진된 고밀도 풀을 직접 확보.</div></div>
-          <div class="blk"><span class="lbl">나만의닥터 적용</span><div class="t">검진 이상소견자·약국 당뇨약 수령자에게 <b>관리툴 무료 + 재진 쿠폰</b> 송출 → 비대면 재진으로 연결.</div></div>
-          <div class="work warn">⚠ 제휴 난이도·개인정보 동의·약사회 이해관계 → 파일럿으로 검증</div>
+        <div class="scard">
+          <div class="thumb"><span class="ref">레퍼런스 · <b>캐시워크</b></span><img src="assets/ref-cashwalk.jpeg" alt="캐시워크 걷기 리워드"/></div>
+          <div class="body">
+            <div class="stt">전략 2 · 걷기·복약 캐시 미션</div>
+            <div class="blk"><span class="lbl">벤치마킹</span> <span class="t">'걸으면 돈' — 일상 건강행동을 소액 보상으로 게임화해 거대 DAU·매일 여는 습관.</span></div>
+            <div class="work">기존 만보기·닥터캐시를 '혈당측정·복약 인증' 미션에 재배치</div>
+          </div>
         </div>
       </div>
-      <p class="note">전략 5는 고령 당뇨(유병률 최고)를 자녀 추천으로 흡수하는 핵심. 출처: 토스 추천 리워드 사례, 닥터다이어리 커뮤니티, HD메디 아이당뇨(브레인 건강뉴스)·삼성생명 헬스케어(약사공론).</p>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">11 / 15</span></div>
+      <p class="note">두 전략 모두 <b>기존 자산으로 6개월 내 즉시 구현</b> → 비용·시간 효율 최고. 캡처: noom.com·cashwalk.com(2026.6).</p>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">12 / 17</span></div>
     </section>
 
-    <!-- 12. DON'T -->
+    <!-- 13. 전략 상세 B (challengers 카드 + glucofit 캡처) -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>전략 상세 ② · 폭발력 큰 캠페인</span>
+        <h2>챌린지 환급 + CGM 체험단 <span class="hl">— 진성 모객·임팩트</span></h2>
+      </div>
+      <div class="g2 grid" style="flex:1;min-height:0">
+        <div class="scard plain">
+          <div class="thumb"><span class="ref">레퍼런스 · <b>챌린저스 · 다노</b></span><div class="ph">예치금 환급 챌린지<span>달성 시 전액 환급 · 실패 벌금 재분배 = 손실회피</span></div></div>
+          <div class="body">
+            <div class="stt">전략 3 · 혈당 챌린지 + 캐시 환급</div>
+            <div class="blk"><span class="lbl">벤치마킹</span> <span class="t">예치금 손실회피로 행동을 강제하고 진성 유저를 필터링.</span></div>
+            <div class="work">닥터캐시 예치 → 2주 측정·식단 인증 → 챌린지 중 진료 상담 삽입</div>
+          </div>
+        </div>
+        <div class="scard">
+          <div class="thumb"><span class="ref">레퍼런스 · <b>글루코핏</b></span><img src="assets/ref-glucofit.jpeg" alt="글루코핏 CGM 혈당케어"/></div>
+          <div class="body">
+            <div class="stt">전략 4 · CGM 2주 무료 체험단</div>
+            <div class="blk"><span class="lbl">벤치마킹</span> <span class="t">실측 '내 혈당 스파이크'의 시각적 충격이 가장 강력한 전환 트리거.</span></div>
+            <div class="work warn">⚠ 식약처 광고규제(비당뇨 다이어트 소구 금지)·센서 원가 → '당뇨/전당뇨'로 한정</div>
+          </div>
+        </div>
+      </div>
+      <p class="note">전략 4는 임팩트 최대지만 규제·원가 리스크 → 소규모 A/B 선행. 캡처: glucofit.co.kr(2026.6). 챌린저스는 사이트 접속 불가로 개념 카드 대체.</p>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">13 / 17</span></div>
+    </section>
+
+    <!-- 14. DON'T -->
     <section class="slide">
       <div class="slide-head">
         <span class="kicker"><span class="dot"></span>지양해야 할 액션 · DON'T</span>
         <h2>이 4가지는 단기 숫자를 올리고 <span class="hl">USP를 망가뜨립니다</span></h2>
       </div>
       <div class="panel dont" style="flex:1">
-        <div class="pitem"><span class="mk">✕</span><div class="pt">관리 USP 없이 '진료 광고'부터 태우기<span>매일 쓸 이유가 없으면 일회성 유입에 그침. 관리 미끼 → 진료 순서를 지켜야 환전된다.</span></div></div>
+        <div class="pitem"><span class="mk">✕</span><div class="pt">관리 USP 없이 '진료 광고'부터 태우기<span>매일 쓸 이유가 없으면 일회성 유입. 관리 미끼 → 진료 순서를 지켜야 환전된다.</span></div></div>
         <div class="pitem"><span class="mk">✕</span><div class="pt">캐시 미끼로 '관리도 진료도 안 하는 허수' 부풀리기<span>리워드 비용만 늘고 전환 안 됨. 보상은 측정·복약·진료 '행동'에만 연결.</span></div></div>
-        <div class="pitem"><span class="mk">✕</span><div class="pt">CGM 체험을 '다이어트·살 빠지는 혈당'으로 소구<span>식약처가 비당뇨 CGM 다이어트 광고에 경고(2024.10). 소구를 '당뇨·전당뇨 관리'로 한정.</span></div></div>
-        <div class="pitem"><span class="mk">✕</span><div class="pt">GLP-1 비만약 의존 / 고령 당뇨 소외<span>규제 노출 성분에 모객을 묶지 말 것. 유병률 최고인 65세+를 위해 간소모드·가족추천·병원연결 필수.</span></div></div>
+        <div class="pitem"><span class="mk">✕</span><div class="pt">CGM 체험·소재를 '다이어트·살 빠지는 혈당'으로 소구<span>식약처가 비당뇨 CGM 다이어트 광고에 경고(2024.10). 의료광고법상 효능 단정·환자 유인 표현 금지.</span></div></div>
+        <div class="pitem"><span class="mk">✕</span><div class="pt">GLP-1 비만약 의존 / 고령 당뇨 소외<span>규제 노출 성분에 모객을 묶지 말 것. 65세+ 위해 간소모드·가족추천·병원연결 필수.</span></div></div>
       </div>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">12 / 15</span></div>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">14 / 17</span></div>
     </section>
 
-    <!-- 13. 6개월 로드맵 -->
+    <!-- 15. 로드맵 -->
     <section class="slide">
       <div class="slide-head">
         <span class="kicker"><span class="dot"></span>실행 로드맵 · 6 Months</span>
-        <h2>관리 USP를 깔고 <span class="hl">모객을 단계적으로 폭발</span>시킨다</h2>
+        <h2>관리 USP를 깔고 <span class="hl">채널 모객을 단계적으로 폭발</span>시킨다</h2>
       </div>
       <div class="tl">
         <div class="phase"><div class="ph-top"><span class="wk">M1–2</span><h3>USP·미끼 세팅</h3></div>
-          <ul><li>당뇨 관리 MVP(식후혈당·AI코칭) 베타</li><li>무료 당뇨위험 진단퀴즈 런칭</li><li>만보기·닥터캐시를 당뇨 미션으로 재배치</li></ul>
-          <div class="goal">→ 저비용 유입·관리 습관 기준선</div></div>
+          <ul><li>당뇨 관리 MVP(식후혈당·AI코칭) 베타</li><li>무료 당뇨위험 진단퀴즈 + 랜딩</li><li>네이버 SA·카카오 무료진단 훅 ON</li><li>만보기·닥터캐시를 당뇨 미션으로</li></ul>
+          <div class="goal">→ 저비용 유입·전환 기준선</div></div>
         <div class="phase"><div class="ph-top"><span class="wk">M3–4</span><h3>모객 폭발</h3></div>
-          <ul><li>혈당 챌린지 + 캐시 환급 시즌1</li><li>CGM 2주 체험단(당뇨 소구 한정) A/B</li><li>가족 추천·후기 UGC 캠페인 가동</li></ul>
-          <div class="goal">→ 신규 유입 급증 · 진료 전환율 측정</div></div>
+          <ul><li>혈당 챌린지+캐시 환급 시즌1</li><li>CGM 2주 체험단(당뇨 한정) A/B</li><li>메타·유튜브 후기 소재 풀퍼널</li><li>카페·지식인 시딩 + 가족추천</li></ul>
+          <div class="goal">→ 신규 급증 · 진료 전환율 측정</div></div>
         <div class="phase"><div class="ph-top"><span class="wk">M5–6</span><h3>환전·확장</h3></div>
-          <ul><li>재진 자동 푸시(약·재검 시점) 정식화</li><li>검진·약국·보험 제휴 파일럿</li><li>이긴 채널 스케일업 + 신환유치 상품 결합</li></ul>
+          <ul><li>재진 자동 푸시(약·재검 시점) 정식화</li><li>검진·약국·보험 제휴 파일럿</li><li>이긴 채널 스케일업 + 신환유치 결합</li></ul>
           <div class="goal">→ 반복 가능한 당뇨 모객 공식</div></div>
       </div>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">13 / 15</span></div>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">15 / 17</span></div>
     </section>
 
-    <!-- 14. 측정 -->
+    <!-- 16. 측정 -->
     <section class="slide">
       <div class="slide-head">
         <span class="kicker"><span class="dot"></span>측정 체계 · 성공 정의</span>
-        <h2>모객 '수'가 아니라 <span class="hl">'관리→진료→재진으로 환전됐는가'</span></h2>
+        <h2>모객 '수'가 아니라 <span class="hl">'관리→진료→재진 환전'</span>을 본다</h2>
       </div>
       <div class="nsm">
         <div><div class="lab"><span class="term up">North Star Metric<span class="tip"><b>북극성 지표(NSM)</b> · 사업 성공을 가장 잘 대표하는 단 하나의 핵심 지표.</span></span></div><div class="val">매일 관리하며 진료·재진까지 이어진 당뇨 환자 수</div></div>
       </div>
       <div class="metric-grid">
-        <div class="metric"><div class="mh">관리 활성률(WAU)</div><div class="md">매일 쓰는 USP가 작동하는지 · 모객의 질</div><div class="mk2">↑ 상향</div></div>
+        <div class="metric"><div class="mh">관리 활성률(WAU)</div><div class="md">매일 쓰는 USP 작동 · 모객의 질</div><div class="mk2">↑ 상향</div></div>
         <div class="metric"><div class="mh">관리→진료 전환율</div><div class="md">미끼 유입이 진료로 환전되는 비율</div><div class="mk2">↑ 상향</div></div>
-        <div class="metric"><div class="mh">재진·재처방율</div><div class="md">분기 재진 루프 작동 · LTV 선행</div><div class="mk2">↑ 상향</div></div>
-        <div class="metric"><div class="mh"><span class="term up">LTV / CAC<span class="tip"><b>LTV/CAC</b> · 생애가치 ÷ 획득비용. 보통 3 이상을 건강하다고 본다.</span></span></div><div class="md">캐시·CGM 출혈 대비 회수 — 채널 성패</div><div class="mk2">↑ 상향</div></div>
+        <div class="metric"><div class="mh">재진·재처방율</div><div class="md">분기 재진 루프 · LTV 선행</div><div class="mk2">↑ 상향</div></div>
+        <div class="metric"><div class="mh">채널별 <span class="term up">LTV / CAC<span class="tip"><b>LTV/CAC</b> · 생애가치 ÷ 획득비용. 보통 3 이상을 건강하다고 본다.</span></span></div><div class="md">Paid·CGM 출혈 대비 회수 — 채널 성패</div><div class="mk2">↑ 상향</div></div>
       </div>
-      <div class="callout" style="margin-top:1.9vh"><div class="big">＝</div><p>이 지표들이 함께 오르면 <b>'사오는 모객'이 '관리로 붙잡아 진료로 환전되는 모객'으로 바뀌고 있다</b>는 뜻 — 그것이 성공 정의입니다.</p></div>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">14 / 15</span></div>
+      <div class="callout" style="margin-top:1.7vh"><div class="big">＝</div><p>이 지표들이 함께 오르면 <b>'사오는 모객'이 '관리로 붙잡아 진료로 환전되는 모객'</b>으로 바뀌고 있다는 뜻 — 성공 정의입니다.</p></div>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">16 / 17</span></div>
     </section>
 
-    <!-- 15. 클로징 -->
+    <!-- 17. 클로징 -->
     <section class="slide closing">
       <span class="glow a"></span>
       <div style="position:relative;z-index:2">
         <span class="kicker" style="background:rgba(255,255,255,.12);color:#cfe0ff"><span class="dot" style="background:#7aa6ff"></span>맺음말</span>
-        <h2>관리를 USP로 쥐면,<br><span style="color:#a9c5ff">당뇨 환자는 폭발적으로 따라옵니다</span></h2>
-        <p class="lead">필라이즈·당뇨관리 서비스의 관리 기능을 이식해 <b style="color:#fff">"매일 관리 + 즉시 진료"라는 누구도 못 가진 USP</b>를 만들고, Noom·캐시워크·챌린저스·글루코핏·토스·HD메디에서 <b style="color:#fff">검증된 모객 장치</b>를 그 USP에 결합해, 6개월 안에 <b style="color:#fff">'관리로 모아 진료로 환전'</b>하는 공식을 증명하겠습니다.</p>
+        <h2>관리를 USP로 쥐고,<br><span style="color:#a9c5ff">그들이 검색하는 곳에서 모읍니다</span></h2>
+        <p class="lead">관리 기능을 이식해 <b style="color:#fff">"매일 관리 + 즉시 진료"라는 누구도 못 가진 USP</b>를 만들고, 당뇨 페르소나가 검색하는 채널에서 Noom·캐시워크·글루코핏 등 <b style="color:#fff">검증된 장치</b>로 모객해, 6개월 안에 <b style="color:#fff">'관리로 모아 진료로 환전'</b>하는 공식을 증명하겠습니다.</p>
         <div class="sign">제안 · Marketing Lead 지원자 &nbsp;|&nbsp; <b>이도형</b> &nbsp;·&nbsp; 5년차 그로스 마케터</div>
       </div>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">15 / 15</span></div>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">17 / 17</span></div>
     </section>
 
   </div>
@@ -499,7 +556,7 @@
 
 <div class="nav">
   <button id="prev" aria-label="이전">◀</button>
-  <span class="ind"><span id="cur">1</span> / 15</span>
+  <span class="ind"><span id="cur">1</span> / 17</span>
   <button id="next" aria-label="다음">▶</button>
 </div>
 <div class="hint">← → 또는 클릭으로 이동 · 단어 위 점선에 마우스/탭하면 뜻이 나옵니다 · F 전체화면</div>
