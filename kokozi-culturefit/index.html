@@ -40,22 +40,25 @@
   .foot .logo .dot{color:var(--green);}
 
   .cover{background:var(--navy); color:#fff; justify-content:center; padding:70px 82px;}
-  .cover h1{color:#fff; font-size:52px; position:relative; z-index:1;}
+  .cover .coverbody{position:relative; z-index:2; max-width:700px;}
+  .cover h1{color:#fff; font-size:45px;}
   .cover h1 .q{color:var(--yellow);}
-  .cover .wordmark{font-size:23px; font-weight:800; letter-spacing:.02em; margin-bottom:28px; position:relative; z-index:1;}
+  .cover .wordmark{font-size:22px; font-weight:800; letter-spacing:.02em; margin-bottom:26px;}
   .cover .wordmark .mk{background:var(--yellow);color:var(--navy);border-radius:9px;padding:3px 11px;letter-spacing:-.5px;}
-  .cover .sub{color:#c5cbd6; font-size:19px; margin-top:22px; max-width:640px; position:relative; z-index:1;}
+  .cover .sub{color:#c5cbd6; font-size:18px; margin-top:20px; max-width:660px;}
   .cover .sub b{color:#fff;}
   .cover .em,.cover .bigorange{color:var(--yellow);}
   .cover .glow{position:absolute; width:560px; height:560px; right:-110px; top:-150px;
-    background:radial-gradient(circle, rgba(251,210,78,.40), transparent 62%); filter:blur(10px);}
+    background:radial-gradient(circle, rgba(251,210,78,.40), transparent 62%); filter:blur(10px); z-index:0;}
   .cover .glow2{position:absolute; width:380px; height:380px; left:-120px; bottom:-160px;
-    background:radial-gradient(circle, rgba(87,169,44,.30), transparent 65%); filter:blur(10px);}
-  .cover .meta{position:relative; z-index:1; margin-top:34px; display:flex; gap:28px; font-size:14px; color:#94a0b4; font-weight:600;}
+    background:radial-gradient(circle, rgba(87,169,44,.30), transparent 65%); filter:blur(10px); z-index:0;}
+  .cover .meta{margin-top:30px; display:flex; gap:26px; font-size:14px; color:#94a0b4; font-weight:600;}
   .cover .meta b{color:#fff; font-weight:700; display:block; font-size:15.5px; margin-top:5px;}
-  .coverkv{position:absolute; right:70px; top:50%; transform:translateY(-50%); width:386px; height:480px;
-    border-radius:18px; object-fit:cover; object-position:18% center; box-shadow:0 24px 70px rgba(0,0,0,.55);
+  .coverkv{position:absolute; right:60px; top:50%; transform:translateY(-50%); width:346px; height:486px;
+    border-radius:18px; object-fit:cover; object-position:30% center; box-shadow:0 24px 70px rgba(0,0,0,.55);
     border:1px solid rgba(255,255,255,.14); z-index:0;}
+  .cover .scrim{position:absolute; inset:0; z-index:1; pointer-events:none;
+    background:linear-gradient(90deg, var(--navy) 50%, rgba(30,42,69,.70) 64%, rgba(30,42,69,0) 78%);}
 
   .row{display:flex; gap:18px;} .col{flex:1; min-width:0;}
   .card{background:var(--soft); border:1px solid var(--line); border-radius:18px; padding:20px 22px;}
@@ -130,15 +133,18 @@
 
   <!-- 1. COVER -->
   <section class="slide active cover">
-    <div class="glow"></div><div class="glow2"></div>
     <img class="coverkv" src="images/cf-trevari.jpg" alt="이도형" />
-    <div class="wordmark"><span class="mk">Culture Fit</span> <span style="color:#8896ac; font-weight:600;">이도형 · 그로스 마케터 지원</span></div>
-    <h1>코코지가 찾는<br><span class="q">"자율과 책임으로, 함께 성장하는 사람"</span></h1>
-    <p class="sub">스스로 문제를 찾아 움직이고, <b>서로 존중하며 함께 큰다</b> —<br>그게 제가 일해온 방식이고, 합류하면 <b>'듣는 즐거움으로 세상을 더 따뜻하게'</b>에 한 사람으로 기여하겠습니다.</p>
-    <div class="meta">
-      <div>지원<b>그로스 마케터</b></div>
-      <div>회사<b>코코지 · KOKOZI</b></div>
-      <div>주제<b>저의 일하는 방식 = 컬쳐핏</b></div>
+    <div class="scrim"></div>
+    <div class="glow"></div><div class="glow2"></div>
+    <div class="coverbody">
+      <div class="wordmark"><span class="mk">Culture Fit</span> <span style="color:#8896ac; font-weight:600;">이도형 · 그로스 마케터 지원</span></div>
+      <h1>코코지가 찾는<br><span class="q">"자율과 책임으로,<br>함께 성장하는 사람"</span></h1>
+      <p class="sub">스스로 문제를 찾아 움직이고, <b>서로 존중하며 함께 큰다</b> —<br>그게 제가 일해온 방식이고, 합류하면 <b>'듣는 즐거움으로 세상을 더 따뜻하게'</b>에<br>한 사람으로 기여하겠습니다.</p>
+      <div class="meta">
+        <div>지원<b>그로스 마케터</b></div>
+        <div>회사<b>코코지 · KOKOZI</b></div>
+        <div>주제<b>저의 일하는 방식 = 컬쳐핏</b></div>
+      </div>
     </div>
   </section>
 
