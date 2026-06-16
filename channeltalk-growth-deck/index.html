@@ -14,7 +14,8 @@
   --blue:#1B66FF; --blue-d:#0F4FD6; --blue-soft:#E7EFFF;
   --violet:#6E4BFF; --violet-d:#5436E0; --violet-soft:#ECE6FF;
   --teal:#00B5A3; --teal-d:#019184; --teal-soft:#DBF5F1;
-  --amber:#F59E0B; --amber-soft:#FDF0D5;
+  --amber:#F59E0B; --amber-soft:#FDF0D5; --amber-d:#b9770a;
+  --rose:#E0533D; --rose-soft:#FCE7E2;
   --radius:20px;
   --shadow:0 12px 40px rgba(21,23,28,.10);
   --font:"Pretendard","Noto Sans KR",-apple-system,system-ui,sans-serif;
@@ -23,22 +24,21 @@
 html,body{height:100%;background:#22252C;font-family:var(--font);-webkit-font-smoothing:antialiased}
 #stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .deck{position:relative;width:1280px;height:720px;transform-origin:center center}
-.slide{position:absolute;inset:0;background:var(--bg);display:none;flex-direction:column;
-  padding:46px 64px;overflow:hidden}
+.slide{position:absolute;inset:0;background:var(--bg);display:none;flex-direction:column;padding:46px 64px;overflow:hidden}
 .slide.active{display:flex;animation:fade .5s ease}
 @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
-.kicker{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:700;letter-spacing:.04em;
-  color:var(--blue-d);text-transform:uppercase;margin-bottom:11px}
-.kicker.vio{color:var(--violet-d)} .kicker.teal{color:var(--teal-d)} .kicker.amber{color:#b9770a} .kicker.gray{color:var(--gray)}
-h1{font-size:53px;font-weight:800;line-height:1.14;color:var(--ink);letter-spacing:-.02em}
-h2{font-size:34px;font-weight:800;line-height:1.18;color:var(--ink);letter-spacing:-.02em}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:700;letter-spacing:.04em;color:var(--blue-d);text-transform:uppercase;margin-bottom:11px}
+.kicker.vio{color:var(--violet-d)} .kicker.teal{color:var(--teal-d)} .kicker.amber{color:var(--amber-d)} .kicker.rose{color:#c0402c} .kicker.gray{color:var(--gray)}
+h1{font-size:51px;font-weight:800;line-height:1.15;color:var(--ink);letter-spacing:-.02em}
+h2{font-size:33px;font-weight:800;line-height:1.18;color:var(--ink);letter-spacing:-.02em}
 h3{font-size:20px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
 p,li{font-size:16.5px;line-height:1.6;color:#2C313C}
 .lead{font-size:20px;line-height:1.62;color:var(--gray2);font-weight:500}
 .hl{background:linear-gradient(transparent 58%, var(--blue-soft) 58%);font-weight:800;color:var(--ink)}
 .hl.vio{background:linear-gradient(transparent 58%, var(--violet-soft) 58%)}
 .hl.teal{background:linear-gradient(transparent 58%, var(--teal-soft) 58%)}
+.hl.rose{background:linear-gradient(transparent 58%, var(--rose-soft) 58%)}
 b,strong{font-weight:800;color:var(--ink)}
 .mono{font-variant-numeric:tabular-nums}
 
@@ -48,7 +48,7 @@ b,strong{font-weight:800;color:var(--ink)}
 
 .grid{display:grid;gap:15px}
 .card{background:var(--soft);border-radius:var(--radius);padding:19px 21px;border:1px solid transparent}
-.card.blue{background:var(--blue-soft)} .card.vio{background:var(--violet-soft)} .card.teal{background:var(--teal-soft)} .card.amber{background:var(--amber-soft)}
+.card.blue{background:var(--blue-soft)} .card.vio{background:var(--violet-soft)} .card.teal{background:var(--teal-soft)} .card.amber{background:var(--amber-soft)} .card.rose{background:var(--rose-soft)}
 .card.out{background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}
 .card.dark{background:var(--ink)} .card.dark h3{color:#fff} .card.dark p,.card.dark li{color:#D5D9E2}
 .card h3{margin-bottom:5px}
@@ -63,7 +63,7 @@ b,strong{font-weight:800;color:var(--ink)}
 .goal b{color:#8FB6FF}
 
 .metric .big{font-size:38px;font-weight:800;letter-spacing:-.02em;line-height:1.05;color:var(--ink)}
-.metric .big.blue{color:var(--blue-d)} .metric .big.vio{color:var(--violet-d)} .metric .big.teal{color:var(--teal-d)}
+.metric .big.blue{color:var(--blue-d)} .metric .big.vio{color:var(--violet-d)} .metric .big.teal{color:var(--teal-d)} .metric .big.rose{color:var(--rose)} .metric .big.amber{color:var(--amber-d)}
 .metric .lab{font-size:13.5px;color:var(--gray2);margin-top:7px;font-weight:600;line-height:1.4}
 
 table{width:100%;border-collapse:collapse;font-size:14.5px}
@@ -71,7 +71,7 @@ th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);verti
 th{font-size:12.5px;color:var(--gray);font-weight:700;letter-spacing:.02em}
 td b{font-weight:800}
 tr.hi td{background:var(--blue-soft)}
-.chk{color:var(--teal-d);font-weight:800} .x{color:#E0533D;font-weight:800}
+.chk{color:var(--teal-d);font-weight:800} .x{color:var(--rose);font-weight:800}
 
 .shot{border-radius:13px;border:1px solid var(--line);box-shadow:var(--shadow);width:100%;display:block}
 .cap{font-size:12px;color:var(--gray);margin-top:7px;text-align:center;line-height:1.4}
@@ -81,26 +81,24 @@ tr.hi td{background:var(--blue-soft)}
 .callout{background:var(--ink);color:#fff;border-radius:var(--radius);padding:17px 23px}
 .callout h3{color:#fff} .callout p{color:#D5D9E2}
 .quote{background:linear-gradient(120deg,#1A1F2E,#241C4A);color:#fff;border-radius:var(--radius);padding:24px 28px}
-.quote .q{font-size:26px;font-weight:800;line-height:1.34;color:#fff}
+.quote .q{font-size:25px;font-weight:800;line-height:1.36;color:#fff}
 .quote .q .g{background:linear-gradient(90deg,#8FB6FF,#B9A6FF,#7FE6DA);-webkit-background-clip:text;background-clip:text;color:transparent}
 
 .flag{font-size:12.5px;color:var(--gray);font-style:italic}
 .src{font-size:11.5px;color:var(--gray);line-height:1.5}
 .src b{color:var(--gray2);font-weight:700}
-.foot{position:absolute;left:64px;right:64px;bottom:18px;display:flex;justify-content:space-between;
-  font-size:11.5px;color:var(--gray);border-top:1px solid var(--line);padding-top:9px;gap:20px}
+.foot{position:absolute;left:64px;right:64px;bottom:18px;display:flex;justify-content:space-between;font-size:11.5px;color:var(--gray);border-top:1px solid var(--line);padding-top:9px;gap:20px}
 .foot .src{flex:1}
 
 ul.clean{list-style:none}
 ul.clean li{position:relative;padding-left:23px;margin-bottom:8px;font-size:15.5px}
 ul.clean li:before{content:"";position:absolute;left:4px;top:9px;width:7px;height:7px;border-radius:2px;background:var(--blue)}
-ul.clean.vio li:before{background:var(--violet)} ul.clean.teal li:before{background:var(--teal)}
+ul.clean.vio li:before{background:var(--violet)} ul.clean.teal li:before{background:var(--teal)} ul.clean.rose li:before{background:var(--rose)}
 
 .flow{display:flex;align-items:stretch;gap:0}
 .flow .step{flex:1;background:var(--soft);border-radius:13px;padding:12px;text-align:center}
 .flow .arr{display:flex;align-items:center;padding:0 7px;font-size:19px;color:var(--gray);font-weight:800}
 
-/* campaign mockup */
 .adcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 13px;box-shadow:var(--shadow)}
 .adcard .ad{font-size:9px;font-weight:800;color:var(--teal-d);border:1px solid var(--teal);border-radius:4px;padding:1px 5px;display:inline-block;margin-bottom:5px}
 .adcard .u{font-size:10px;color:var(--gray)}
@@ -127,13 +125,13 @@ ul.clean.vio li:before{background:var(--violet)} ul.clean.teal li:before{backgro
 <section class="slide active" style="justify-content:center;background:
   radial-gradient(900px 520px at 84% -10%, var(--blue-soft) 0%, transparent 55%),
   radial-gradient(720px 520px at -5% 110%, var(--violet-soft) 0%, transparent 55%), #fff">
-  <div class="logo" style="margin-bottom:32px"><span class="ic">💬</span>채널톡 · Channel Talk</div>
+  <div class="logo" style="margin-bottom:30px"><span class="ic">💬</span>채널톡 · Channel Talk</div>
   <div class="kicker">마케팅 전략 제안 · Growth Marketer</div>
-  <h1>'상담툴'이라는 인식을 넘어,<br>채널톡을 <span class="hl">'매출 엔진'</span>으로 — <span class="hl vio">수요를 만들겠습니다</span></h1>
-  <p class="lead" style="margin-top:22px;max-width:900px">
-    공고가 정의한 역할(데이터·고객 인사이트로 리드를 만드는 그로스)을 출발점으로 —
-    채널톡의 페인포인트 → 경쟁사 → USP → <b>전달 전략·실집행</b> → 기대 효과까지 제안합니다.</p>
-  <div style="margin-top:36px;display:flex;gap:10px">
+  <h1>고객이 원하는 건 '빠른 응대'가 아니라<br><span class="hl">문의가 안 생기는 것</span> — 채널톡으로 <span class="hl vio">CS 인입을 줄이겠습니다</span></h1>
+  <p class="lead" style="margin-top:22px;max-width:920px">
+    "도입해도 문의(인입)가 안 준다"는 시장의 진짜 불만에서 출발 —
+    <b>왜 타 CS 솔루션은 못 줄이고 채널톡은 줄일 수 있는지</b>, 그래서 어떤 증분을 만드는지 제안합니다.</p>
+  <div style="margin-top:34px;display:flex;gap:10px">
     <span class="pill k">채널코퍼레이션 · 채널톡</span>
     <span class="pill blue">Growth Marketer 지원</span>
     <span class="pill vio">이도형</span>
@@ -151,21 +149,21 @@ ul.clean.vio li:before{background:var(--violet)} ul.clean.teal li:before{backgro
     <div class="card out"><div class="num">⑤ 세일즈 협업</div><h3 style="font-size:16px">리드 핸드오프</h3><p style="margin-top:5px;font-size:13.5px">IS/FS와 리드 퀄리티·핸드오프 캘리브레이션</p></div>
   </div>
   <div class="callout" style="margin-top:16px;display:flex;align-items:center;gap:22px">
-    <h3 style="white-space:nowrap">그래서 이 발표는</h3>
-    <p>위 5가지 역할을 <b style="color:#fff">채널톡에 어떻게 적용해 '리드(수요)'를 만들지</b>를 — 페인포인트부터 실집행 캠페인까지 구체적으로 보여드립니다.</p>
+    <h3 style="white-space:nowrap">이 발표의 출발점</h3>
+    <p>리드는 <b style="color:#fff">'시장의 진짜 수요'</b>에서 나옵니다. 그래서 먼저 — <b style="color:#fff">고객이 채널톡(CS 솔루션)에 진짜 바라는 것</b>이 무엇인지부터 짚습니다.</p>
   </div>
   <div class="foot"><span class="src"><b>출처</b> · 채널톡 Growth Marketer 채용공고(원티드 wd/358219)</span><span>02</span></div>
 </section>
 
 <!-- 3 채널톡이란 -->
 <section class="slide">
-  <div class="head"><div><div class="kicker">먼저, 채널톡은 어떤 제품일까요</div><h2>'올인원 AI 메신저' —<br>상담·CRM 마케팅·팀챗·AI를 하나로</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
+  <div class="head"><div><div class="kicker">먼저, 채널톡은 어떤 제품일까요</div><h2>'올인원 AI 메신저' —<br>상담·CRM 마케팅·팀챗·커머스를 하나로</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
   <div style="display:flex;gap:36px;flex:1;align-items:center">
     <div style="flex:1.02">
       <ul class="clean" style="margin-bottom:14px">
-        <li><b>무엇</b> — 채팅 상담 + CRM 마케팅 + 팀 메신저(미트) + AI 상담 에이전트 <b>알프(ALF)</b>를 한 곳에</li>
-        <li><b>타깃</b> — 이커머스·소상공인·B2B (LG·오뚜기·대웅제약·SPAO 등 도입)</li>
-        <li><b>도입</b> — 누적 <b>약 18만 개사·22개국</b>, 일본이 최대 해외시장(+50% 성장)</li>
+        <li><b>무엇</b> — 채팅 상담 + <b>CRM 마케팅</b> + 팀 메신저 + <b>커머스(주문·배송) 연동</b> + AI 알프(ALF)를 한 곳에</li>
+        <li><b>타깃</b> — 이커머스·소상공인·B2B (LG·오뚜기·대웅제약·SPAO 등)</li>
+        <li><b>도입</b> — 누적 약 <b>18만 개사·22개국</b>, 일본 +50% 성장</li>
       </ul>
       <div class="grid" style="grid-template-columns:repeat(3,1fr)">
         <div class="card metric blue"><div class="big blue">매출 350억</div><div class="lab">2025년(제3자 집계)<br>영업현금흐름 첫 흑자</div></div>
@@ -175,216 +173,213 @@ ul.clean.vio li:before{background:var(--violet)} ul.clean.teal li:before{backgro
     </div>
     <div style="flex:.9">
       <div class="shotwrap"><span class="badge">channel.io</span><img class="shot" src="images/channel-hero.png" alt="채널톡 홈"></div>
-      <div class="cap">홈 카피 = <b>"한국 No.1 고객 상담 솔루션"</b> — 바로 여기서 기회를 봤습니다 (다음 장)</div>
+      <div class="cap">단, 핵심 강점인 <b>CRM 마케팅·커머스 연동</b>이 이번 전략의 열쇠입니다 (뒤에서)</div>
     </div>
   </div>
   <div class="foot"><span class="src"><b>출처</b> · channel.io · 매출/손익=제3자 감사보고서 집계(newsepoch 2026-04) · 도입사·성장률=자사 발표 · 발표 시 최신 재확인</span><span>03</span></div>
 </section>
 
-<!-- 4 페인포인트 -->
+<!-- 4 페인포인트: 도입해도 인입이 안 준다 -->
 <section class="slide">
-  <div class="head"><div><div class="kicker amber">페인포인트 · 그로스 마케터 관점</div><h2>제품은 '올인원 AI'인데,<br>시장은 아직 '상담툴'로만 압니다</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
-  <div class="grid" style="grid-template-columns:repeat(2,1fr);flex:1">
-    <div class="card amber"><div class="num">페인 ①</div><h3>'상담 솔루션'으로 인식 고정</h3>
-      <p style="margin-top:6px">홈 카피부터 <b>"고객 상담 솔루션"</b>. CRM 마케팅·팀챗·AI까지 묶인 가치가 저평가 → <b>리드의 폭이 좁고 업셀이 어렵다</b>.</p></div>
-    <div class="card amber"><div class="num">페인 ②</div><h3>글로벌 경쟁사의 'AI ROI' 선점</h3>
-      <p style="margin-top:6px">Intercom·Zendesk가 <b>"AI가 해결한 만큼 과금"(성과 과금)</b>으로 ROI를 숫자로 마케팅. 채널톡은 ROI 언어가 상대적으로 약하다.</p></div>
-    <div class="card amber"><div class="num">페인 ③</div><h3>무료 대체재 대비 가치 증명</h3>
-      <p style="margin-top:6px">카카오톡 채널·알림톡 등 <b>저비용 대안</b>과 매번 비교당함 → "왜 굳이 채널톡?"의 답을 리드 단계에서 줘야 한다.</p></div>
-    <div class="card amber"><div class="num">페인 ④</div><h3>국내 성숙 → 리드 하방 압박</h3>
-      <p style="margin-top:6px">성장엔진이 일본·해외로 이동하는 신호. 국내는 <b>리드 목표 '하방 방어'</b>가 그로스의 숙제(공고 핵심 업무와 직결).</p></div>
+  <div class="head"><div><div class="kicker rose">시장 수요 진단 · 페인포인트</div><h2>"도입해도 CS 인입(문의량)이 안 줄어든다"</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:14px">
+    <div class="card metric out"><div class="big rose">14%</div><div class="lab">셀프서비스 <b>시도는 73%</b>지만<br>완전 해결은 14%뿐 (Gartner)</div></div>
+    <div class="card metric out"><div class="big rose">60%</div><div class="lab">고객의 60%가<br><b>챗봇에 자주 실망</b> (Zendesk)</div></div>
+    <div class="card metric out"><div class="big amber">재문의</div><div class="lab">봇을 포기해도 '해결'로 집계 →<br><b>24~48시간 내 다시 문의</b></div></div>
   </div>
-  <div class="foot"><span class="src"><b>출처</b> · channel.io 홈 카피 · Salesforce의 Intercom 인수(2026-06)·Zendesk Resolution Platform · 서울경제(2026-06, 일본 +50%) · ②③④는 관찰 신호(가설), 내부 데이터로 검증</span><span>04</span></div>
+  <div class="callout" style="display:flex;align-items:center;gap:22px">
+    <h3 style="white-space:nowrap">핵심 진단</h3>
+    <p>AI·챗봇은 <b style="color:#fff">'응대(resolution)'를 빠르게</b> 할 뿐, <b style="color:#fff">'인입(volume)' 자체는 안 줄입니다.</b> 같은 문의가 계속 들어오죠. (실제로 한 쇼핑몰은 챗봇 도입 후 "오히려 CS가 늘었다") → <b style="color:#fff">고객이 진짜 원하는 건 '빨리 처리'가 아니라 '안 묻게 되는 것'</b>입니다.</p>
+  </div>
+  <div class="foot"><span class="src"><b>출처</b> · Gartner 셀프서비스 조사(2024-08, CX Today 경유, n=5,728) · Zendesk CX Trends 2022 · "deflection≠resolution" 업계 논의 · 블랙홀릭 챗봇 사례(dktechin, 벤더 케이스)</span><span>04</span></div>
 </section>
 
-<!-- 5 경쟁사 -->
+<!-- 5 진짜 수요 -->
+<section class="slide" style="background:linear-gradient(180deg,#fff,var(--blue-soft) 480%)">
+  <div class="head"><div><div class="kicker">그래서 시장의 진짜 수요는</div><h2>문의의 대부분은 '안 물어도 될' 반복 문의입니다</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
+  <div style="display:flex;gap:30px;flex:1;align-items:center">
+    <div style="flex:1.15">
+      <div class="grid" style="grid-template-columns:1fr 1fr;margin-bottom:14px">
+        <div class="card blue metric"><div class="big blue">약 70%</div><div class="lab" style="margin-top:6px">커머스 CS 문의 중 <b>배송예정일·주문확인·취소 등 단순·반복</b> 비중 (채널톡)</div></div>
+        <div class="card teal metric"><div class="big teal">35.1%</div><div class="lab" style="margin-top:6px">한국 쇼핑객 배송 만족 1위 요인 = <b>교환·반품·환불 편리성</b>(속도보다)</div></div>
+      </div>
+      <ul class="clean">
+        <li><b>"내 주문 어디(WISMO)"</b>·"언제 와요"·"취소해 주세요" — 예측 가능하고 반복되는 문의</li>
+        <li>이런 문의는 <b>답을 잘 하는 것</b>보다 <b>애초에 안 묻게 만드는 것</b>이 정답</li>
+      </ul>
+      <div class="callout" style="margin-top:13px"><p>즉 수요는 <b style="color:#fff">"문의를 잘 처리해줘"가 아니라 "문의가 안 생기게 해줘"</b> — 이걸 푸는 회사가 시장을 가져갑니다.</p></div>
+    </div>
+    <div style="flex:.62">
+      <div class="card out" style="text-align:center"><div style="font-size:40px">📦</div><h3 style="margin-top:8px;font-size:17px">"제 주문 어디쯤이에요?"</h3>
+        <p style="margin-top:8px;font-size:14px;color:var(--gray2)">가장 많고, 가장 예측 가능하고,<br>가장 <b style="color:var(--ink)">안 물어도 되게 만들 수 있는</b> 문의</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="src"><b>출처</b> · 채널톡 ALF 출시글(2024-04, 단순·반복 70%=자사 6년 관찰) · 컨슈머인사이트×한양대(교환·반품 35.1%, 데일리팝 경유) · WISMO=이커머스 최대 문의 카테고리(업계 추정)</span><span>05</span></div>
+</section>
+
+<!-- 6 경쟁사: 해결만, 인입은 못 줄임 -->
 <section class="slide">
-  <div class="head"><div><div class="kicker">경쟁사는 이렇게 풀고 있다</div><h2>글로벌은 'AI 성과(ROI)'를 숫자로 판다</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
+  <div class="head"><div><div class="kicker">경쟁사는 이렇게 한다</div><h2>타 CS 솔루션은 '해결' 경쟁 — '인입'은 그대로</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
   <div style="display:flex;gap:26px;flex:1;align-items:center">
     <div style="flex:.82">
       <div class="shotwrap"><span class="badge">Intercom · Fin</span><img class="shot" src="images/fin.png" alt="Intercom Fin"></div>
-      <div class="cap">Intercom <b>Fin</b> — "The #1 AI Agent" · <b>해결 건당 $0.99 성과 과금</b>으로 ROI를 전면에</div>
+      <div class="cap">Intercom <b>Fin</b> — "해결 건당 $0.99" · Zendesk는 <b>'Resolution(해결) Platform'</b>으로 재정의</div>
     </div>
     <div style="flex:1.18">
-      <ul class="clean" style="margin-bottom:0">
-        <li><b>Intercom(Fin)</b> — "AI가 해결한 만큼만 과금($0.99/건)"으로 <b>ROI 보장</b>을 메시지화 · Salesforce가 36억$에 인수(2026-06)</li>
-        <li><b>Zendesk</b> — 'Resolution Platform'으로 재정의, AI가 최대 80% 자율 해결 + 성과 과금</li>
-        <li><b>Tidio(Lyro)</b> — SMB·이커머스 저가 올인원, AI 67% 자동화로 직접 경쟁축</li>
-        <li><b>카카오톡 채널 / 해피톡</b> — 국내 저비용·가격 투명으로 SMB 잠식</li>
-      </ul>
-      <div class="callout" style="margin-top:13px"><p>읽어낸 핵심 — 경쟁은 <b style="color:#fff">'AI가 만든 성과(ROI) 숫자'</b>로 싸웁니다. 채널톡도 강점을 <b style="color:#fff">ROI 언어</b>로 번역해 전달해야 합니다.</p></div>
+      <table>
+        <tr><th style="width:34%">관점</th><th style="width:33%">타 CS 솔루션</th><th style="width:33%">진짜 수요</th></tr>
+        <tr class="hi"><td><b>무엇을 판다</b></td><td>'해결(resolution)' — 빨리 답한다</td><td><b>'인입 감소' — 안 묻게</b></td></tr>
+        <tr><td><b>선제(proactive) 차단</b></td><td>유료 애드온·상한 <span class="x">약함</span></td><td>네이티브로 필요</td></tr>
+        <tr><td><b>커머스·주문 컨텍스트</b></td><td>한국형(알림톡·Cafe24) <span class="x">없음</span></td><td>WISMO 차단의 핵심</td></tr>
+        <tr><td><b>마케팅·CRM 결합</b></td><td>CS 중심, 별도 SKU <span class="x">분리</span></td><td>선제 안내·근본원인에 필요</td></tr>
+      </table>
+      <p style="font-size:14.5px;color:var(--gray2);margin-top:12px"><b style="color:var(--ink)">읽어낸 핵심</b> — 글로벌 강자(Intercom·Zendesk)는 <b style="color:var(--ink)">'해결 속도·자동화'</b>로 싸웁니다. 하지만 <b style="color:var(--ink)">인입을 '생기기 전에' 줄이는 무기(선제·커머스·마케팅 통합)</b>는 비어 있습니다.</p>
     </div>
   </div>
-  <div class="foot"><span class="src"><b>출처</b> · fin.ai/intercom.com · zendesk.com · tidio.com · 성과 과금 단가·해결률은 각사 발표/언론(단일출처 포함) · Drift는 2026-03 단종(제외)</span><span>05</span></div>
+  <div class="foot"><span class="src"><b>출처</b> · fin.ai/intercom.com(Fin $0.99/건·Proactive는 별도 애드온) · zendesk.com(Resolution Platform·벌크 메시지는 애드온) · 한국 커머스 컨텍스트 부재는 제품 구조 기반 비교</span><span>06</span></div>
 </section>
 
-<!-- 6 USP -->
-<section class="slide" style="background:linear-gradient(180deg,#fff,var(--blue-soft) 460%)">
-  <div class="head"><div><div class="kicker vio">채널톡만의 USP</div><h2>"흩어진 4개 툴 vs 채널톡 하나" —<br>통합·로컬·AI가 진짜 무기</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
-  <div class="grid" style="grid-template-columns:repeat(4,1fr);flex:1">
-    <div class="card blue"><div class="num">USP ①</div><h3 style="font-size:17px">올인원 통합</h3><p style="margin-top:5px;font-size:14px">상담+CRM 마케팅+팀챗+AI를 <b>한 계정</b>에. 경쟁사는 CS만, 카카오는 발송만.</p></div>
-    <div class="card vio"><div class="num">USP ②</div><h3 style="font-size:17px">이커머스·SMB 친화</h3><p style="margin-top:5px;font-size:14px">국내 쇼핑몰 주문·예약·CS 워크플로우 최적화. 글로벌은 엔터프라이즈향.</p></div>
-    <div class="card teal"><div class="num">USP ③</div><h3 style="font-size:17px">한국·일본 현지화</h3><p style="margin-top:5px;font-size:14px">일본 2만+ 고객사·+50% 성장. 글로벌 SaaS가 못 따라오는 <b>로컬 해자</b>.</p></div>
-    <div class="card amber"><div class="num">USP ④</div><h3 style="font-size:17px">알프(ALF)가 일을 처리</h3><p style="margin-top:5px;font-size:14px">Q&A를 넘어 <b>예약·취소·반품 Task 실행</b>, 반복 문의 80% 처리(자사).</p></div>
-  </div>
-  <div class="callout" style="margin-top:14px;display:flex;align-items:center;gap:20px">
-    <h3 style="white-space:nowrap">한 문장</h3>
-    <p><b style="color:#fff">"여러 툴 비용·이탈을 하나로 줄이고, AI가 80%를 처리하며, 그 안에서 매출(CRM 마케팅)까지 만든다"</b> — 이게 ROI 언어로 번역한 채널톡입니다.</p>
-  </div>
-  <div class="foot"><span class="src"><b>출처</b> · channel.io 제품 구성 · ALF 처리율 80%·해결률은 자사 발표 · 일본 고객사·성장률 자사/언론</span><span>06</span></div>
-</section>
-
-<!-- 7 USP 심화: AI 한계를 USP로 -->
-<section class="slide">
-  <div class="head"><div><div class="kicker vio">USP 심화 · AI의 한계를 USP로</div><h2>"AI가 다 해결"은 환상 —<br>채널톡은 '정확하고 책임지는' 하이브리드</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
-  <div class="goal">🎯 발상 전환 · <b>&nbsp;직접 써보니 보인 한계를, '신뢰'라는 무기로 뒤집는다</b></div>
+<!-- 7 USP: 채널톡만 인입을 근본에서 줄인다 -->
+<section class="slide" style="background:linear-gradient(180deg,#fff,var(--violet-soft) 520%)">
+  <div class="head"><div><div class="kicker vio">채널톡만의 USP · 왜 채널톡은 줄일 수 있나</div><h2>'올인원'이라 문의를 '생기기 전에' 차단합니다</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
+  <div class="goal">🎯 USP · <b>&nbsp;상담·CRM 마케팅·커머스가 한 곳에 있어, '응대'가 아니라 '인입 감소'를 설계할 수 있다</b></div>
   <div style="display:flex;gap:18px;flex:1;align-items:stretch">
-    <div class="card amber" style="flex:.92">
-      <div class="num" style="color:#b9770a">실사용에서 본 한계 (우리 회사도 사용 중)</div>
-      <ul class="clean" style="margin-top:8px">
-        <li style="font-size:14.5px"><b>텍스트 맥락 파악·CS 카테고리화</b>가 정확하지 않다</li>
-        <li style="font-size:14.5px">AI만으로는 <b>케이스별 명확한 답</b>에 한계가 있다</li>
-      </ul>
-      <p style="font-size:13px;color:#8a6a1f;margin-top:10px">경쟁사(Fin 등)는 <b>"AI가 100% 해결"</b>을 약속 — 하지만 모호한 케이스에선 <b>오답·불신 리스크</b>가 따라옵니다.</p>
-    </div>
-    <div style="flex:1.45;display:flex;flex-direction:column;gap:10px">
-      <div class="grid" style="grid-template-columns:repeat(3,1fr)">
-        <div class="card blue"><div class="num">극복 ①</div><h3 style="font-size:15.5px">사람–AI 학습 루프</h3><p style="margin-top:4px;font-size:13px">상담원이 푼 모호 케이스를 AI가 <b>학습·자동 태깅</b> → 카테고리가 쓸수록 정교해짐</p></div>
-        <div class="card teal"><div class="num">극복 ②</div><h3 style="font-size:15.5px">올인원 컨텍스트</h3><p style="margin-top:4px;font-size:13px">주문·CRM·이전 대화로 <b>맥락 보강</b> — 채널톡은 한 곳에 다 있어 가능</p></div>
-        <div class="card vio"><div class="num">극복 ③</div><h3 style="font-size:15.5px">확신도 기반 라우팅</h3><p style="margin-top:4px;font-size:13px">AI가 자신 없으면 <b>오답 대신 즉시 사람에게</b> → '틀린 자동응대' 0</p></div>
-      </div>
-      <div class="callout" style="flex:1;display:flex;flex-direction:column;justify-content:center">
-        <h3 style="margin-bottom:6px">그래서 USP는 —</h3>
-        <p><b style="color:#fff">"100% 자동화 환상이 아니라, AI 80% + 사람이 책임지는 20% + 쓸수록 똑똑해지는 학습."</b> 정확·신뢰를 파는 메시지는 채널톡 카피 <b style="color:#fff">"결국 중요한 상담은 사람이 해야 합니다 / 쓸수록 똑똑해지는 AI"</b>와 정확히 맞닿습니다.</p>
-      </div>
+    <div style="flex:1.35"><div class="grid" style="grid-template-columns:repeat(2,1fr);height:100%">
+      <div class="card blue"><div class="num">① 선제 알림 (마케팅·CRM)</div><h3 style="font-size:16px">묻기 전에 먼저 알려준다</h3><p style="margin-top:4px;font-size:13.5px">알림톡·SMS·온사이트로 <b>배송·주문 상태 선제 안내</b> → "어디쯤?" 문의 차단</p></div>
+      <div class="card teal"><div class="num">② 커머스·주문 연동</div><h3 style="font-size:16px">채팅 안에서 스스로 해결</h3><p style="margin-top:4px;font-size:13.5px">주문조회·<b>예상배송일·취소</b>를 위젯에서(Cafe24·스마트스토어) → 상담 없이 끝</p></div>
+      <div class="card vio"><div class="num">③ 알프(ALF) + FAQ</div><h3 style="font-size:16px">반복 문의를 흡수</h3><p style="margin-top:4px;font-size:13.5px">상담 데이터에서 <b>FAQ 자동 추출</b>·AI 자율응대(반복문의 처리)</p></div>
+      <div class="card amber"><div class="num">④ 근본원인 개선</div><h3 style="font-size:16px">'왜 묻는지'를 고친다</h3><p style="margin-top:4px;font-size:13.5px">인입 데이터를 <b>제품·운영·마케팅</b>에 피드백(올인원이라 한 데이터로)</p></div>
+    </div></div>
+    <div style="flex:.85;display:flex;flex-direction:column;justify-content:center">
+      <div class="shotwrap"><span class="badge">실제 자산 · ALF</span><img class="shot" src="images/channel-alf.png" alt="채널톡 ALF 80%"></div>
+      <div class="cap"><b>"100건 문의 = AI가 80% 처리"</b> + 주문·배송 연동 → '응대'를 넘어 '인입'까지 줄이는 구조</div>
     </div>
   </div>
-  <div class="foot"><span class="src"><b>출처</b> · 실사용 관찰(자사 운영 경험) · channel.io 카피 · 극복안은 실행 가설(제품·CS팀 협업 전제), 마케팅은 이 강점을 메시지화</span><span>07</span></div>
+  <div class="foot"><span class="src"><b>출처</b> · channel.io 도움말(마케팅 캠페인·온사이트, Commerce/Shopify Hub: Order/Estimated Shipping/Cancel) · ALF FAQ 자동추출(자사 블로그) · 선제차단·근본원인은 기능 구조 기반 합성 논거</span><span>07</span></div>
 </section>
 
-<!-- 8 전달 전략 1: 메시지·채널 -->
+<!-- 8 실제 사례 (참고자료) -->
 <section class="slide">
-  <div class="head"><div><div class="kicker">USP 전달 ① · 메시지 × 채널</div><h2>잠재 고객의 '의도'가 있는 곳에서<br>ROI 언어로 만난다</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
-  <div class="goal">🎯 핵심 메시지 · <b>&nbsp;"상담툴이 아니라, 비용을 줄이고 매출을 만드는 올인원 AI"</b></div>
+  <div class="head"><div><div class="kicker teal">근거 · 실제로 인입이 줄었다</div><h2>이스타항공 — 홈페이지 문의 6개월 -44%</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
+  <div style="display:flex;gap:28px;flex:1;align-items:center">
+    <div style="flex:1.05">
+      <div class="grid" style="grid-template-columns:1fr 1fr;margin-bottom:14px">
+        <div class="card teal metric"><div class="big teal">-44%</div><div class="lab" style="margin-top:6px">6개월 후 <b>홈페이지 문의 인입</b><br>(1개월 -23%·전화 -19%)</div></div>
+        <div class="card vio metric"><div class="big vio">74%</div><div class="lab" style="margin-top:6px">현재 <b>AI(알프) 자동 해결률</b><br>(반복 문의 흡수)</div></div>
+      </div>
+      <ul class="clean teal">
+        <li><b>인입이 '처리'가 아니라 '감소'</b>했습니다 — 선제 안내 + 셀프 해결 + AI 흡수의 결과</li>
+        <li>알프 1년 누적 <b>130만 건</b> 상담, 2,000+ 사 도입 (자사 발표)</li>
+      </ul>
+      <p style="font-size:13.5px;color:var(--gray2);margin-top:8px">→ "도입해도 안 준다"의 예외가 채널톡 — <b style="color:var(--ink)">이게 마케팅으로 증명할 '시장 수요의 답'</b>입니다.</p>
+    </div>
+    <div style="flex:.85">
+      <div class="shotwrap"><span class="badge">유니콘팩토리 · 2025-11</span><img class="shot" src="images/estar.png" alt="채널톡 알프 사례 기사"></div>
+      <div class="cap">"알프, 1년 만에 130만 건 상담" · 채널콘 2025 'AI: REAL CASES ONLY'</div>
+    </div>
+  </div>
+  <div class="foot"><span class="src"><b>출처</b> · 유니콘팩토리(머니투데이) 2025-11-06 (이스타항공 -44%·AI 74%·알프 130만 건) · 채널톡 PR 경유, 수치는 자사 발표 기준 · 발표 시 재확인</span><span>08</span></div>
+</section>
+
+<!-- 9 전달 전략: 메시지·채널 -->
+<section class="slide">
+  <div class="head"><div><div class="kicker">USP 전달 ① · 메시지 × 채널</div><h2>"처리하지 말고, 안 생기게" — 수요 언어로 만난다</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
+  <div class="goal">🎯 핵심 메시지 · <b>&nbsp;"문의를 빨리 처리하는 툴은 많다. 채널톡은 문의를 '줄이는' 툴이다"</b></div>
   <table>
     <tr><th style="width:16%">채널</th><th style="width:30%">타깃 & 의도</th><th style="width:32%">핵심 메시지</th><th style="width:22%">소재 / 콘텐츠</th></tr>
-    <tr class="hi"><td><b>Google 검색</b></td><td>"인터콤 대안"·"카카오 상담 한계"·"고객상담 자동화" 검색 = 높은 의도</td><td>"Intercom보다 가볍고, 카카오보다 똑똑한 <b>올인원 AI</b>"</td><td>비교 랜딩 + ROI 계산기</td></tr>
-    <tr><td><b>Naver</b></td><td>국내 SMB·이커머스 사장님</td><td>"문의 80%는 AI가, 매출은 CRM이"</td><td>업종별 사례·검색광고</td></tr>
-    <tr><td><b>Meta / IG</b></td><td>이커머스 운영자(리타겟·룩어라이크)</td><td>도입 후 <b>응대시간↓·재구매↑</b> 사례</td><td>고객사례 영상·캐러셀</td></tr>
-    <tr><td><b>LinkedIn</b></td><td>mid-market·일본·CX/CS 리더</td><td>"AI가 80% 처리, 사람은 중요한 20%"</td><td>리더십 콘텐츠·ABM</td></tr>
+    <tr class="hi"><td><b>Google 검색</b></td><td>"CS 문의 줄이기"·"챗봇 도입 효과 없음"·"인터콤 대안"</td><td>"AI로 답만 빨라졌나요? <b>인입을 줄이세요</b>"</td><td>인입 진단 + 이스타 -44% 사례</td></tr>
+    <tr><td><b>Naver</b></td><td>국내 이커머스·쇼핑몰 사장님</td><td>"배송 문의, <b>묻기 전에</b> 알림톡으로 끝"</td><td>업종별 인입 감소 사례</td></tr>
+    <tr><td><b>Meta / IG</b></td><td>이커머스 운영자(리타겟·룩어라이크)</td><td>도입 후 <b>문의량↓·CS 인력 여유↑</b></td><td>고객사례 영상·Before/After</td></tr>
+    <tr><td><b>LinkedIn</b></td><td>CX/CS 리더·mid-market·일본</td><td>"해결률 말고 <b>'문의당 비용·인입률'</b>을 보라"</td><td>리더십 콘텐츠·ABM</td></tr>
   </table>
-  <p style="font-size:15px;color:var(--gray2);margin-top:13px"><b style="color:var(--ink)">왜 이렇게?</b> — 경쟁사가 'AI ROI'를 선점하니, 채널톡은 <b style="color:var(--ink)">'통합으로 줄인 비용 + AI가 만든 시간 + CRM이 만든 매출'</b>을 채널별 의도에 맞춰 번역해 전달합니다.</p>
-  <div class="foot"><span class="src"><b>출처</b> · 공고 명시 채널(Google·Meta·Naver·LinkedIn) · 메시지는 USP(전 장)의 ROI 번역 · 키워드·소재는 실집행 시 A/B로 검증</span><span>08</span></div>
+  <p style="font-size:15px;color:var(--gray2);margin-top:13px"><b style="color:var(--ink)">왜 이렇게?</b> — 경쟁사가 '해결(resolution)'을 외칠 때, 채널톡은 <b style="color:var(--ink)">고객이 진짜 원하는 '인입 감소'</b>를 선점하는 메시지로 차별화합니다.</p>
+  <div class="foot"><span class="src"><b>출처</b> · 공고 명시 채널(Google·Meta·Naver·LinkedIn) · 메시지=수요(인입 감소)의 번역 · 키워드·소재는 실집행 시 A/B로 검증</span><span>09</span></div>
 </section>
 
-<!-- 8 전달 전략 2: 실집행 캠페인 -->
-<section class="slide" style="background:linear-gradient(180deg,#fff,var(--violet-soft) 520%)">
-  <div class="head"><div><div class="kicker vio">USP 전달 ② · 이렇게 '실제로' 집행합니다</div><h2>검색 의도 → 사례로 증명 → 14일 체험 → 세일즈</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
-  <div style="display:flex;gap:22px;flex:1;align-items:center">
-    <div style="flex:1.12">
-      <div style="display:flex;align-items:stretch;gap:8px;margin-bottom:12px">
-        <div class="adcard" style="flex:1">
-          <span class="ad">광고 · Google</span>
-          <div class="u">channel.io/ai</div>
-          <div class="ti">Intercom 대안, 올인원 AI 채널톡</div>
-          <div class="ds">문의 80%는 AI가 처리, 매출은 CRM이. 카드 없이 14일 무료.</div>
-        </div>
-        <div class="flow" style="flex:0 0 auto"><div class="arr">→</div></div>
-        <div class="stepbox" style="flex:1"><div class="n">② 랜딩</div><h4>ROI 계산기 + 사례</h4><p>"우리 문의량이면 월 ○○시간·○○원 절감" + 아임웹 80%·이지듀 71% 사례</p></div>
-      </div>
-      <div class="flow">
-        <div class="stepbox"><div class="n">③ 전환</div><h4>카드 없는 14일 체험</h4><p>진입장벽 0 — PLG 전환 트리거</p></div>
-        <div class="arr">→</div>
-        <div class="stepbox"><div class="n">④ 리드</div><h4>스코어링·핸드오프</h4><p>행동 데이터로 SQL 선별 → IS/FS 전달</p></div>
-        <div class="arr">→</div>
-        <div class="stepbox"><div class="n">⑤ 측정</div><h4>GA4·Hex·Salesforce</h4><p>채널→체험→상담→계약 기여도 추적</p></div>
-      </div>
-      <p style="font-size:13.5px;color:var(--gray2);margin-top:11px"><b style="color:var(--ink)">핵심 자산 활용</b> — 채널톡이 이미 가진 <b>고객사례(알프 해결률)·채널콘·마케팅 레시피</b>를 페이드·오가닉의 'ROI 증거'로 재활용합니다.</p>
+<!-- 10 실집행 캠페인 -->
+<section class="slide" style="background:linear-gradient(180deg,#fff,var(--blue-soft) 520%)">
+  <div class="head"><div><div class="kicker vio">USP 전달 ② · 이렇게 '실제로' 집행합니다</div><h2>검색 의도 → 인입 진단·사례 → 14일 체험 → 세일즈</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
+  <div style="display:flex;align-items:stretch;gap:8px;margin-bottom:12px">
+    <div class="adcard" style="flex:1">
+      <span class="ad">광고 · Google</span>
+      <div class="u">channel.io/cs-인입줄이기</div>
+      <div class="ti">챗봇 깔아도 문의 그대로? 인입을 줄이세요</div>
+      <div class="ds">선제 알림+주문연동으로 '묻기 전에' 해결. 이스타항공 문의 -44%. 카드 없이 14일.</div>
     </div>
-    <div style="flex:.78">
-      <div class="shotwrap"><span class="badge">실제 자산 · ALF</span><img class="shot" src="images/channel-alf.png" alt="채널톡 ALF 80%"></div>
-      <div class="cap"><b>"100건 문의 = 상담원 20건, AI가 80% 처리"</b> + 대형 고객 로고 → 그대로 ROI 증거 소재로</div>
-    </div>
+    <div class="flow" style="flex:0 0 auto"><div class="arr">→</div></div>
+    <div class="stepbox" style="flex:1"><div class="n">② 랜딩</div><h4>인입 진단 + 사례</h4><p>"우리 문의의 몇 %가 배송·주문 반복?" 진단 → 이스타 -44%·알프 80% 사례로 증명</p></div>
   </div>
-  <div class="foot"><span class="src"><b>출처</b> · 광고/랜딩은 제안 예시 · 알프 해결률(아임웹 80%·이지듀 71%)·"80% 처리"=자사 발표 · 채널콘·마케팅 레시피=실제 운영 자산(channel.io)</span><span>09</span></div>
+  <div class="flow">
+    <div class="stepbox"><div class="n">③ 전환</div><h4>카드 없는 14일 체험</h4><p>선제 알림·주문연동 즉시 셋업</p></div>
+    <div class="arr">→</div>
+    <div class="stepbox"><div class="n">④ 리드</div><h4>스코어링·핸드오프</h4><p>인입 많은(=ROI 큰) 고객을 SQL로 → IS/FS</p></div>
+    <div class="arr">→</div>
+    <div class="stepbox"><div class="n">⑤ 측정</div><h4>GA4·Hex·Salesforce</h4><p>채널→체험→인입감소→계약 기여도</p></div>
+  </div>
+  <p style="font-size:13.5px;color:var(--gray2);margin-top:11px"><b style="color:var(--ink)">핵심 자산 활용</b> — 채널톡이 이미 가진 <b>고객사례(이스타 -44%·알프 해결률)·채널콘·마케팅 레시피</b>를 '인입 감소'를 증명하는 ROI 증거로 재활용합니다.</p>
+  <div class="foot"><span class="src"><b>출처</b> · 광고/랜딩/진단은 제안 예시 · 이스타 -44%·알프 80%=자사 발표 · 채널콘·마케팅 레시피=실제 운영 자산(channel.io)</span><span>10</span></div>
 </section>
 
-<!-- 9 로드맵 -->
-<section class="slide">
-  <div class="head"><div><div class="kicker teal">실행 · 입사 후 30·60·90일</div><h2>작게 검증하며, 리드를 데이터로 키운다</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
-  <div class="grid" style="grid-template-columns:repeat(3,1fr);flex:1">
-    <div class="card blue"><div class="num">0–30일 · 진단</div><h3>고객·데이터 정렬</h3>
-      <ul class="clean" style="margin-top:9px"><li style="font-size:13.5px">고객 인터뷰·세일즈 콜 섀도잉</li><li style="font-size:13.5px">GA4·Hex 퍼널·어트리뷰션 점검</li><li style="font-size:13.5px">ICP·메시지 가설 정리</li></ul></div>
-    <div class="card vio"><div class="num">30–60일 · Quick Win</div><h3>의도 캡처·사례 엔진</h3>
-      <ul class="clean vio" style="margin-top:9px"><li style="font-size:13.5px">Google·Naver 고의도 키워드 캡처</li><li style="font-size:13.5px">사례·ROI 랜딩 + 14일 체험 전환</li><li style="font-size:13.5px">리드 스코어링·핸드오프 정의</li></ul></div>
-    <div class="card teal"><div class="num">60–90일 · 확장</div><h3>채널·ABM 확장</h3>
-      <ul class="clean teal" style="margin-top:9px"><li style="font-size:13.5px">LinkedIn 일본·mid-market ABM</li><li style="font-size:13.5px">ROI 메시지 A/B·소재 고도화</li><li style="font-size:13.5px">세일즈 핸드오프 캘리브레이션</li></ul></div>
-  </div>
-  <div class="callout" style="margin-top:14px;display:flex;align-items:center;gap:20px">
-    <h3 style="white-space:nowrap">단계별 KPI</h3>
-    <p style="font-size:15px">리드 수·<b style="color:#fff">리드 퀄리티(SQL 전환율)</b> · 채널별 CPL·CAC · 14일 체험 전환율 · <b style="color:#fff">파이프라인 기여(어트리뷰션)</b></p>
-  </div>
-  <div class="foot"><span class="src">공고 핵심 업무(리드젠 하방방어·페이드·오퍼레이션·세일즈 협업)에 맞춘 단계 설계 · 내부 기준값 확인 후 목표치 확정</span><span>10</span></div>
-</section>
-
-<!-- 10 기대 포인트 -->
-<section class="slide" style="background:linear-gradient(180deg,#fff,var(--blue-soft) 480%)">
-  <div class="head"><div><div class="kicker">기대 포인트 · 성공했을 때</div><h2>포지셔닝이 바뀌면, 리드의 질과 매출이 바뀝니다</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
-  <div class="flow" style="margin-bottom:18px">
-    <div class="step"><div style="font-size:22px">🔁</div><h3 style="font-size:14.5px;margin-top:4px">포지셔닝 전환</h3><p style="font-size:11.5px;color:var(--gray2)">상담툴→올인원 AI</p></div>
+<!-- 11 기대 증분 -->
+<section class="slide" style="background:linear-gradient(180deg,#fff,var(--teal-soft) 520%)">
+  <div class="head"><div><div class="kicker teal">기대 증분 · 성공했을 때</div><h2>인입이 줄면, 비용은 내려가고 매출은 올라갑니다</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
+  <div class="flow" style="margin-bottom:16px">
+    <div class="step"><div style="font-size:22px">📉</div><h3 style="font-size:14.5px;margin-top:4px">인입 ↓</h3><p style="font-size:11.5px;color:var(--gray2)">선제·셀프·AI</p></div>
     <div class="arr">→</div>
-    <div class="step"><div style="font-size:22px">🎯</div><h3 style="font-size:14.5px;margin-top:4px">리드 질 ↑</h3><p style="font-size:11.5px;color:var(--gray2)">ICP 적합 리드</p></div>
+    <div class="step"><div style="font-size:22px">💸</div><h3 style="font-size:14.5px;margin-top:4px">상담 비용 ↓</h3><p style="font-size:11.5px;color:var(--gray2)">셀프 $1.84 vs 유인 $13.5</p></div>
     <div class="arr">→</div>
-    <div class="step" style="background:var(--blue-soft)"><div style="font-size:22px">💳</div><h3 style="font-size:14.5px;margin-top:4px">전환·업셀 ↑</h3><p style="font-size:11.5px;color:var(--blue-d)">14일→유료·상위</p></div>
+    <div class="step"><div style="font-size:22px">😊</div><h3 style="font-size:14.5px;margin-top:4px">CSAT ↑</h3><p style="font-size:11.5px;color:var(--gray2)">중요 상담에 집중</p></div>
     <div class="arr">→</div>
-    <div class="step" style="background:var(--violet-soft)"><div style="font-size:22px">📈</div><h3 style="font-size:14.5px;margin-top:4px">파이프라인·ARR ↑</h3><p style="font-size:11.5px;color:var(--violet-d)">CAC↓·하방 방어</p></div>
+    <div class="step" style="background:var(--blue-soft)"><div style="font-size:22px">🛒</div><h3 style="font-size:14.5px;margin-top:4px">상담→매출 ↑</h3><p style="font-size:11.5px;color:var(--blue-d)">CRM 마케팅 전환</p></div>
+    <div class="arr">→</div>
+    <div class="step" style="background:var(--violet-soft)"><div style="font-size:22px">📈</div><h3 style="font-size:14.5px;margin-top:4px">LTV·리텐션 ↑</h3><p style="font-size:11.5px;color:var(--violet-d)">해지 방어</p></div>
   </div>
-  <div class="grid" style="grid-template-columns:1.3fr 1fr;flex:1">
+  <div class="grid" style="grid-template-columns:1.25fr 1fr;flex:1">
     <div class="card out"><h3>무엇을 보고 판단할까 (KPI)</h3>
       <table style="margin-top:6px;font-size:14px">
-        <tr><th>구간</th><th>핵심 지표</th></tr>
-        <tr><td>인지·획득</td><td>고의도 키워드 점유 · 채널별 CPL</td></tr>
-        <tr><td>리드 질</td><td>MQL→SQL 전환율 · ICP 적합도</td></tr>
-        <tr class="hi"><td><b>전환(★)</b></td><td><b>14일 체험→유료 전환율 · CAC</b></td></tr>
-        <tr><td>매출</td><td>파이프라인 기여·ARR · 상위플랜 업셀</td></tr>
+        <tr><th>관점</th><th>핵심 지표</th></tr>
+        <tr class="hi"><td><b>인입(★)</b></td><td><b>인입률(문의 수 ÷ 주문 수) · 재접촉률</b></td></tr>
+        <tr><td>자동화</td><td>선제 차단율 · AI 자동 해결률</td></tr>
+        <tr><td>비용</td><td>문의 1건당 비용 · 상담원당 처리량</td></tr>
+        <tr><td>매출</td><td>상담→구매 전환 · CRM 캠페인 매출</td></tr>
       </table></div>
-    <div class="card dark"><h3>한 지표만 꼽는다면</h3>
-      <p style="margin-top:8px;font-size:15.5px">바로 <b style="color:#fff">'리드 퀄리티(SQL 전환율)'</b>입니다. 양보다 질이 오르면 세일즈 효율과 <b style="color:#fff">CAC·파이프라인</b>이 함께 좋아집니다 — 공고의 '리드젠 하방 방어'에 직접 답합니다.</p>
-      <p style="margin-top:9px;font-size:12.5px;color:#aeb4c2">목표치는 내부 기준값 확인 후 확정.</p></div>
+    <div class="card dark"><h3>마케터의 한 줄</h3>
+      <p style="margin-top:8px;font-size:15.5px">"해결률(resolution)이 아니라 <b style="color:#fff">인입률(volume)</b>을 KPI로 — 그래야 고객의 진짜 ROI를 증명하고, 그게 곧 채널톡의 <b style="color:#fff">차별화된 리드</b>가 됩니다."</p>
+      <p style="margin-top:9px;font-size:12.5px;color:#aeb4c2">※ 인입 감소엔 CSAT 가드레일 필수(무리한 차단 방지). 목표치는 내부 기준값 확인 후 확정.</p></div>
   </div>
-  <div class="foot"><span class="src">인과는 가설 · 채널별·단계별 A/B와 어트리뷰션으로 검증</span><span>11</span></div>
+  <div class="foot"><span class="src"><b>출처</b> · Gartner(셀프 $1.84 vs 유인 $13.50, as cited) · Forrester(proactive 챗 +105% ROI, 2019)·챗 전환 10~20% · 인과는 가설, A/B로 검증</span><span>11</span></div>
 </section>
 
-<!-- 11 왜 나 -->
+<!-- 12 왜 나 -->
 <section class="slide">
-  <div class="head"><div><div class="kicker">왜 나여야 하는가 · 공고 요건 1:1</div><h2>'데이터로 검증하는 커머스 그로스'를<br>그대로 가져갑니다</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
+  <div class="head"><div><div class="kicker">왜 나여야 하는가 · 공고 요건 1:1</div><h2>'데이터로 근본원인을 찾는 커머스 그로스'</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
   <table>
     <tr><th style="width:42%">공고가 원하는 것</th><th style="width:58%">제 포트폴리오 증거</th></tr>
     <tr class="hi"><td><b>페이드미디어 직접 운영</b>(Google·Meta·Naver…)</td><td>커머스에서 매체 직접 운영·ROAS/CAC 최적화, Web2App 브릿지로 전환의 '질' 개선</td></tr>
-    <tr class="hi"><td><b>고객을 직접 만난 경험</b></td><td>마케터로서 고객·세일즈 맥락을 직접 듣고 메시지·USP로 옮긴 다수 전략 작업</td></tr>
-    <tr class="hi"><td><b>GA4·Amplitude·Hex + SQL</b></td><td><b>BigQuery로 실구매·CAC·재구매율 직접 산출</b>, 라스트터치 한계 인지·코호트 리텐션 분석</td></tr>
-    <tr><td><b>데이터로 인과 검증</b></td><td>등급제·쿠폰 ROI를 <b>인과까지 따져 재검증</b>(selection bias 교정) — 숫자를 과장하지 않음</td></tr>
+    <tr class="hi"><td><b>고객을 직접 만난 경험</b></td><td>실제 채널톡 사용 중 — <b>'인입이 안 준다'는 페인을 직접 체감</b>해 이 전략을 도출</td></tr>
+    <tr class="hi"><td><b>GA4·Amplitude·Hex + SQL</b></td><td><b>BigQuery로 실구매·CAC·재구매율 직접 산출</b>, 라스트터치 한계 인지·코호트 분석</td></tr>
+    <tr><td><b>데이터로 인과 검증</b></td><td>등급제·쿠폰 ROI를 <b>인과까지 따져 재검증</b> — '인입의 근본원인'도 같은 방식으로 분석</td></tr>
     <tr><td><b>AI 활용 / 가설-실험-학습</b></td><td>AI로 분석·콘텐츠·전략 자산을 빠르게 만들고, 한 번에 하나씩 A/B로 검증</td></tr>
   </table>
   <div class="callout" style="margin-top:14px;display:flex;align-items:center;gap:20px">
     <h3 style="white-space:nowrap">한마디</h3>
-    <p>"리포트를 위한 리포트가 아니라 <b style="color:#fff">숫자·결과로 말하는 마케터</b>" — 채널톡이 찾는 사람이 제가 일해온 방식입니다.</p>
+    <p>"리포트를 위한 리포트가 아니라 <b style="color:#fff">숫자·결과로 말하는 마케터</b>" — 게다가 <b style="color:#fff">채널톡을 직접 쓰는 고객의 시선</b>까지 가졌습니다.</p>
   </div>
   <div class="foot"><span class="src">포트폴리오 = 커버링(뷰티 커머스) 그로스 · 일부 수치는 내부 데이터로 공개는 범위 내에서 · 공고 자격요건 기준 매핑</span><span>12</span></div>
 </section>
 
-<!-- 12 지원동기 + 포부 -->
+<!-- 13 지원동기 + 포부 -->
 <section class="slide" style="justify-content:center;background:
   radial-gradient(840px 520px at 85% 110%, var(--blue-soft) 0%, transparent 55%),
   radial-gradient(720px 470px at 0% -10%, var(--violet-soft) 0%, transparent 55%), #fff">
   <div class="logo" style="margin-bottom:24px"><span class="ic">💬</span>채널톡 · Channel Talk</div>
-  <h1>'상담툴'을 넘어 <span class="hl">'매출 만드는 올인원 AI'</span>로 —<br>그 전환을 <span class="hl vio">리드로 증명</span>하겠습니다</h1>
-  <p class="lead" style="margin-top:20px;max-width:920px">
-    채널톡의 미션은 <b>'고객의 지속가능한 성장'</b>입니다. 저는 커머스에서 <b>데이터로 성장을 검증</b>하고,
-    <b>신뢰를 설계해 전환을 높이는</b> 일을 해왔습니다. 채널톡이 가진 통합·로컬·AI라는 무기를
-    <b>ROI 언어와 고객 의도</b>에 맞춰 전달하면, '상담툴'이라는 인식을 '매출 엔진'으로 바꿀 수 있다고 믿습니다.</p>
-  <p style="font-size:16px;color:var(--gray2);margin-top:16px;max-width:920px">
-    고객을 직접 만나고, 가설을 세우고, 숫자로 증명하는 그로스 — 직접 써보고, 데이터로 증명하겠습니다. 감사합니다.</p>
+  <h1>'응대를 잘하는 툴'이 아니라 <span class="hl">'문의를 줄이는 툴'</span>로 —<br>시장 수요를 <span class="hl vio">리드로 증명</span>하겠습니다</h1>
+  <p class="lead" style="margin-top:20px;max-width:930px">
+    채널톡의 미션은 <b>'고객의 지속가능한 성장'</b>입니다. 고객이 진짜 원하는 건 빠른 응대가 아니라
+    <b>문의가 안 생기는 것</b>이고, 채널톡은 <b>올인원(마케팅·커머스·CS)</b>이라 그걸 해낼 수 있습니다.
+    저는 이 <b>'인입 감소'라는 수요</b>를 마케팅 메시지·캠페인으로 번역해, '해결' 경쟁에 지친 시장에서 <b>차별화된 리드</b>를 만들겠습니다.</p>
+  <p style="font-size:16px;color:var(--gray2);margin-top:16px;max-width:930px">
+    채널톡을 직접 써본 고객으로서, 데이터로 근본원인을 찾고 숫자로 증명하는 그로스 — 직접 증명하겠습니다. 감사합니다.</p>
   <div style="margin-top:30px;display:flex;gap:10px">
     <span class="pill k">이도형 · Growth Marketer</span>
     <span class="pill blue">채널코퍼레이션 · 채널톡</span>
