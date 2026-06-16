@@ -117,8 +117,18 @@ tr.hi td{background:var(--sage-soft)}
 .gradebar{display:flex;gap:3px;margin-bottom:6px}
 .gradebar .g{flex:1;text-align:center;font-size:8px;font-weight:800;padding:4px 0;border-radius:6px;background:var(--soft);color:var(--gray)}
 .gradebar .g.on{background:var(--sage);color:#fff}
+.pemoji{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:46px;line-height:1}
+.pprice{position:absolute;right:7px;top:7px;background:#fff;border-radius:6px;padding:2px 6px;font-size:8px;font-weight:700;color:var(--gray2)}
+.pprice b{color:var(--ink);font-weight:800}
+.ratebar{background:var(--cream);border:1px solid var(--line);border-radius:8px;padding:6px 9px;font-size:9px;font-weight:800;color:var(--ink);margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
+.ratebar span{color:var(--gray);font-weight:600}
+.rava{display:inline-flex;width:14px;height:14px;border-radius:50%;background:var(--camel-soft);color:var(--camel-d);font-size:7px;font-weight:800;align-items:center;justify-content:center;margin-right:4px;vertical-align:middle}
 .thumbs{display:flex;gap:4px;margin-bottom:6px}
-.thumbs .th{flex:1;height:30px;border-radius:6px;background:linear-gradient(135deg,#E7E2D8,#F0E7D8)}
+.thumbs .th{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px}
+.thumbs .th .box{width:100%;height:30px;border-radius:6px;background:linear-gradient(135deg,#E7E2D8,#F0E7D8);display:flex;align-items:center;justify-content:center;font-size:14px}
+.thumbs .th small{font-size:7px;color:var(--gray);font-weight:700}
+.pushitem{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border-radius:8px;padding:6px 8px;margin-top:6px}
+.pushitem .pe{font-size:20px;line-height:1}
 
 .callout{background:var(--ink);color:#fff;border-radius:var(--radius);padding:17px 23px}
 .callout h3{color:#fff} .callout p{color:#D5D9E2}
@@ -286,12 +296,12 @@ ul.clean.sage li:before{background:var(--sage)} ul.clean.navy li:before{backgrou
     <div class="phone">
       <div class="top"><div class="notch"></div></div>
       <div class="scr">
-        <div class="mhead"><div class="t">INSTANTFUNK 자켓</div><span class="badge2 rose">재고 1점</span></div>
-        <div class="pimg"><span class="badge2 camel">아울렛 -62%</span></div>
-        <div style="margin-bottom:6px"><span class="chip on">이 브랜드 · 아우터 후기 24</span><span class="chip">전체</span></div>
-        <div class="rev">⭐4.8 · <b>"인스턴트펑크 아우터, 핏 정사이즈"</b> 165cm/평소 M → M 딱 맞음</div>
-        <div class="rev">⭐4.6 · <b>"원단 도톰, 봉제 깔끔"</b> 같은 브랜드 코트도 만족</div>
-        <div class="rev">⭐5.0 · "아울렛인데 새것 같아요"</div>
+        <div class="mhead"><div class="t">INSTANTFUNK · 울 블레이저</div><span class="badge2 rose">재고 1점</span></div>
+        <div class="pimg"><span class="pemoji">🧥</span><span class="badge2 camel">아울렛 -62%</span><span class="pprice">318,000→<b>121,000</b></span></div>
+        <div class="ratebar"><span style="color:var(--ink)">이 브랜드·아우터 ⭐4.8</span><span>후기 24개</span></div>
+        <div style="margin-bottom:6px"><span class="chip on">이 브랜드·아우터 24</span><span class="chip">전체 320</span></div>
+        <div class="rev"><span class="rava">지</span><b>⭐4.8 "핏 정사이즈"</b> 165·평소 M → M 딱 맞아요</div>
+        <div class="rev"><span class="rava">현</span><b>⭐4.6 "원단 도톰·봉제 깔끔"</b> 같은 브랜드 코트도 만족</div>
       </div>
       <div class="tabbar"><div class="t on"><div class="d"></div>홈</div><div class="t"><div class="d"></div>찜</div><div class="t"><div class="d"></div>MY</div></div>
     </div>
@@ -313,7 +323,7 @@ ul.clean.sage li:before{background:var(--sage)} ul.clean.navy li:before{backgrou
         <div class="field">사이즈 · M / 95 <span style="color:var(--camel-d)">＋</span></div>
         <div class="field">예산 · ~15만원 <span style="color:var(--camel-d)">＋</span></div>
         <div class="field">입고 시 알림 받기 <span class="toggle"></span></div>
-        <div class="push" style="margin-top:8px">🔔 <b>찾던 매물이 떴어요</b><br>INSTANTFUNK 아우터 · M · 12만원 · 재고 1점</div>
+        <div class="push" style="margin-top:8px">🔔 <b>찾던 매물이 떴어요</b><div class="pushitem"><span class="pe">🧥</span><div>INSTANTFUNK 울 블레이저 · M<br>121,000원 · 재고 1점 · 지금 보기 ›</div></div></div>
       </div>
       <div class="tabbar"><div class="t on"><div class="d"></div>홈</div><div class="t"><div class="d"></div>알림</div><div class="t"><div class="d"></div>MY</div></div>
     </div>
@@ -353,12 +363,18 @@ ul.clean.sage li:before{background:var(--sage)} ul.clean.navy li:before{backgrou
     <div class="phone">
       <div class="top"><div class="notch"></div></div>
       <div class="scr">
-        <div class="mhead"><div class="t">컨디션 리포트</div><span class="badge2 sage">거의 새것</span></div>
-        <div class="gradebar"><span class="g on">S</span><span class="g">A</span><span class="g">B</span></div>
+        <div class="mhead"><div class="t">INSTANTFUNK · 울 블레이저</div><span class="badge2 sage">거의 새것</span></div>
+        <div class="pimg" style="height:64px"><span class="pemoji" style="font-size:32px">🧥</span><span class="pprice">280,000→<b>106,000</b></span></div>
+        <div class="gradebar" style="margin-top:7px"><span style="color:var(--ink)">컨디션 등급</span><span style="color:var(--sage)"><b style="color:var(--sage)">S</b> · A · B 중</span></div>
         <div class="field" style="font-size:8px">제조연도 · <b style="color:var(--ink)">2025 F/W</b> <span style="color:var(--sage)">최신</span></div>
         <div class="field" style="font-size:8px">상태 · 미착용 전시품 · 택 보관</div>
-        <div style="font-size:8px;font-weight:800;color:var(--gray2);margin:4px 0 4px">디테일 확대 (검수 7항목 ✓)</div>
-        <div class="thumbs"><span class="th"></span><span class="th"></span><span class="th"></span><span class="th"></span></div>
+        <div style="font-size:8px;font-weight:800;color:var(--gray2);margin:5px 0 4px">디테일 확대 (검수 7항목 ✓)</div>
+        <div class="thumbs">
+          <span class="th"><span class="box">🧥</span><small>정면</small></span>
+          <span class="th"><span class="box">🔍</span><small>지퍼</small></span>
+          <span class="th"><span class="box">🏷️</span><small>택</small></span>
+          <span class="th"><span class="box">🧵</span><small>안감</small></span>
+        </div>
         <div class="rev" style="background:var(--sage-soft);color:#2c5e47"><b>감가 거의 없음</b> · 정가 대비 -62%, 컨디션 S</div>
       </div>
       <div class="tabbar"><div class="t on"><div class="d"></div>홈</div><div class="t"><div class="d"></div>찜</div><div class="t"><div class="d"></div>MY</div></div>
@@ -367,28 +383,7 @@ ul.clean.sage li:before{background:var(--sage)} ul.clean.navy li:before{backgrou
   <div class="foot"><span class="src"><b>출처</b> · 뉴시스(2024-12, 번개케어 +300%, 자사)·StockX(99.95%, 자사)·The RealReal IR(재구매 82%·NPS 70) · 목업은 제안 예시</span><span>09</span></div>
 </section>
 
-<!-- 10 전략3 보강 · 중고 거래 신뢰 장치 -->
-<section class="slide">
-  <div class="head"><div><div class="kicker">전략 3 보강 · 중고 거래의 신뢰 장치</div><h2>중고 거래는 이렇게 '신뢰'를 만듭니다<br>— 리웨이크도 차용</h2></div><div class="logo"><span class="ic">↻</span>RE:WAKE</div></div>
-  <div style="display:flex;gap:28px;flex:1;align-items:center">
-    <div style="flex:.92">
-      <div class="shotwrap"><span class="badge">번개장터</span><img class="shot" src="images/bunjang-trust.png" alt="번개장터 정품 검수"></div>
-      <div class="cap"><b>번개장터</b> — 'CARE' 검수 배지 + "정품 인증까지 안전하게 결제금액 보관"</div>
-    </div>
-    <div style="flex:1.08">
-      <div class="grid" style="grid-template-columns:1fr 1fr">
-        <div class="card cream"><h3 style="font-size:16px">🔍 검수·감정</h3><p style="margin-top:5px;font-size:14px">번개장터 <b>최대 18단계·154항목</b> · 트렌비 AI 감정 '마르스' · 에픽원·크림 한정판 검수</p></div>
-        <div class="card cream"><h3 style="font-size:16px">🏷️ 컨디션 등급</h3><p style="margin-top:5px;font-size:14px">차란 <b>8단계+5등급</b>(최상~판매불가)으로 상태를 한눈에 표준화</p></div>
-        <div class="card cream"><h3 style="font-size:16px">🛡️ 보증·보상</h3><p style="margin-top:5px;font-size:14px">가품 시 <b>최대 300% 보상</b> · 정품 확인까지 <b>안전결제 보관</b></p></div>
-        <div class="card cream"><h3 style="font-size:16px">⭐ 인증 배지·후기</h3><p style="margin-top:5px;font-size:14px">'CARE' 같은 <b>검수 배지</b>·거래 후기로 "믿을 만하다"는 사회적 증거</p></div>
-      </div>
-      <div class="callout" style="margin-top:13px"><p>리웨이크는 <b style="color:#fff">이미 직접 입고·검수</b>합니다 — 이 신뢰 장치(<b style="color:#fff">컨디션 등급·검수 항목·보증 배지</b>)를 '보이게'만 하면, <b style="color:#fff">'아울렛인데 안심된다'</b>가 곧 차별점이 됩니다.</p></div>
-    </div>
-  </div>
-  <div class="foot"><span class="src"><b>출처</b> · 번개장터 정품검수 기획전(2026-06 캡처)·패션비즈(2026, 154항목)·트렌비 유니콘팩토리(2025-06)·에픽원(epicone, 컬렉터블 검수·AI시세)·차란 시사저널e(2023-11, 컨디션 등급)</span><span>10</span></div>
-</section>
-
-<!-- 11 BM -->
+<!-- 10 BM -->
 <section class="slide">
   <div class="head"><div><div class="kicker camel">BM · 추가 매출 창출</div><h2>'상품 마진'에서 '다층 매출'로</h2></div><div class="logo"><span class="ic">↻</span>RE:WAKE</div></div>
   <div class="aisb">
@@ -404,7 +399,7 @@ ul.clean.sage li:before{background:var(--sage)} ul.clean.navy li:before{backgrou
     <tr><td><b>큐레이션 커머스</b></td><td>취향 기반 스타일링 큐레이션·기획전</td><td>29CM(객단가 ~23만)</td><td><span class="chk">검증</span></td></tr>
     <tr><td><b>수요·가격 데이터 판매</b></td><td>"어떤 옷이 언제·얼마에 팔리는지"를 브랜드에 제공</td><td>리웨이크 고유 자산(AI 가격)</td><td><span class="x">신규</span></td></tr>
   </table>
-  <div class="foot"><span class="src"><b>출처</b> · Mirakl(앱 내 광고 마진 70~90%)·29CM 분석·eBay/번개케어·쿠팡(2024 와우) · 데이터 판매는 수수료·가격 비공개(신규 가설)</span><span>11</span></div>
+  <div class="foot"><span class="src"><b>출처</b> · Mirakl(앱 내 광고 마진 70~90%)·29CM 분석·eBay/번개케어·쿠팡(2024 와우) · 데이터 판매는 수수료·가격 비공개(신규 가설)</span><span>10</span></div>
 </section>
 
 <!-- 11 로드맵 -->
@@ -424,7 +419,7 @@ ul.clean.sage li:before{background:var(--sage)} ul.clean.navy li:before{backgrou
     <h3 style="white-space:nowrap">단계별 KPI</h3>
     <p style="font-size:15px">설치→가입률 · <b style="color:#fff">알림 동의율·구매 전환율</b> · 30일 재구매율(현 63%→↑) · 광고효율(ROAS)·고객획득비(CAC) · <b style="color:#fff">1인당 매출·광고/멤버십 비중</b></p>
   </div>
-  <div class="foot"><span class="src">JD(구글·META·카카오·네이버 광고, 데이터 분석·광고효율, 앱 내 프로모션)에 맞춘 단계 설계 · 내부 기준값 확인 후 목표치 확정</span><span>12</span></div>
+  <div class="foot"><span class="src">JD(구글·META·카카오·네이버 광고, 데이터 분석·광고효율, 앱 내 프로모션)에 맞춘 단계 설계 · 내부 기준값 확인 후 목표치 확정</span><span>11</span></div>
 </section>
 
 <!-- 12 기대효과 -->
@@ -454,7 +449,7 @@ ul.clean.sage li:before{background:var(--sage)} ul.clean.navy li:before{backgrou
       <p style="margin-top:8px;font-size:15.5px">바로 <b style="color:#fff">'구매 전환율'</b>과 <b style="color:#fff">'재구매율'</b>입니다. 신뢰·알림으로 이 둘이 오르면 <b style="color:#fff">쓸 수 있는 광고비(허용 CAC)</b>가 늘어 마케팅 여력이 커집니다.</p>
       <p style="margin-top:9px;font-size:12.5px;color:#aeb4c2">목표치는 내부 기준값 측정 후 확정 (가정치로 과장하지 않겠습니다).</p></div>
   </div>
-  <div class="foot"><span class="src"><b>출처</b> · 리뷰·알림·검수 전환 벤치마크(전 장 종합) · 인과는 가설, A/B로 검증</span><span>13</span></div>
+  <div class="foot"><span class="src"><b>출처</b> · 리뷰·알림·검수 전환 벤치마크(전 장 종합) · 인과는 가설, A/B로 검증</span><span>12</span></div>
 </section>
 
 <!-- 13 Closing 포부 + 지원동기 -->
@@ -477,7 +472,7 @@ ul.clean.sage li:before{background:var(--sage)} ul.clean.navy li:before{backgrou
 
 </div></div>
 
-<div id="nav"><button id="prev">‹</button><span class="ct"><span id="cur">1</span> / <span id="tot">14</span></span><button id="next">›</button></div>
+<div id="nav"><button id="prev">‹</button><span class="ct"><span id="cur">1</span> / <span id="tot">13</span></span><button id="next">›</button></div>
 <div class="hint">← → 또는 Space · F 전체화면</div>
 
 <script>
