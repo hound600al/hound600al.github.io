@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>채널톡 그로스 마케팅 전략 제안 · 이도형</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+:root{
+  --ink:#15171C; --navy:#1A1F2E; --black:#0E1118;
+  --gray:#8A8F99; --gray2:#5B6170;
+  --bg:#FFFFFF; --soft:#F4F6FA; --line:#E7EBF1;
+  --blue:#1B66FF; --blue-d:#0F4FD6; --blue-soft:#E7EFFF;
+  --violet:#6E4BFF; --violet-d:#5436E0; --violet-soft:#ECE6FF;
+  --teal:#00B5A3; --teal-d:#019184; --teal-soft:#DBF5F1;
+  --amber:#F59E0B; --amber-soft:#FDF0D5;
+  --radius:20px;
+  --shadow:0 12px 40px rgba(21,23,28,.10);
+  --font:"Pretendard","Noto Sans KR",-apple-system,system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:#22252C;font-family:var(--font);-webkit-font-smoothing:antialiased}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.deck{position:relative;width:1280px;height:720px;transform-origin:center center}
+.slide{position:absolute;inset:0;background:var(--bg);display:none;flex-direction:column;
+  padding:46px 64px;overflow:hidden}
+.slide.active{display:flex;animation:fade .5s ease}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:700;letter-spacing:.04em;
+  color:var(--blue-d);text-transform:uppercase;margin-bottom:11px}
+.kicker.vio{color:var(--violet-d)} .kicker.teal{color:var(--teal-d)} .kicker.amber{color:#b9770a} .kicker.gray{color:var(--gray)}
+h1{font-size:53px;font-weight:800;line-height:1.14;color:var(--ink);letter-spacing:-.02em}
+h2{font-size:34px;font-weight:800;line-height:1.18;color:var(--ink);letter-spacing:-.02em}
+h3{font-size:20px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+p,li{font-size:16.5px;line-height:1.6;color:#2C313C}
+.lead{font-size:20px;line-height:1.62;color:var(--gray2);font-weight:500}
+.hl{background:linear-gradient(transparent 58%, var(--blue-soft) 58%);font-weight:800;color:var(--ink)}
+.hl.vio{background:linear-gradient(transparent 58%, var(--violet-soft) 58%)}
+.hl.teal{background:linear-gradient(transparent 58%, var(--teal-soft) 58%)}
+b,strong{font-weight:800;color:var(--ink)}
+.mono{font-variant-numeric:tabular-nums}
+
+.head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:18px}
+.logo{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:17px;letter-spacing:-.01em;color:var(--ink)}
+.logo .ic{width:25px;height:25px;border-radius:8px;background:linear-gradient(135deg,#1B66FF,#6E4BFF);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px}
+
+.grid{display:grid;gap:15px}
+.card{background:var(--soft);border-radius:var(--radius);padding:19px 21px;border:1px solid transparent}
+.card.blue{background:var(--blue-soft)} .card.vio{background:var(--violet-soft)} .card.teal{background:var(--teal-soft)} .card.amber{background:var(--amber-soft)}
+.card.out{background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}
+.card.dark{background:var(--ink)} .card.dark h3{color:#fff} .card.dark p,.card.dark li{color:#D5D9E2}
+.card h3{margin-bottom:5px}
+.card .num{font-size:13.5px;font-weight:800;color:var(--gray);margin-bottom:5px}
+.card p{font-size:15px;line-height:1.55}
+.tag{display:inline-block;font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--gray2)}
+.pill{display:inline-block;font-size:13px;font-weight:800;padding:6px 13px;border-radius:999px}
+.pill.k{background:var(--ink);color:#fff}
+.pill.blue{background:var(--blue-soft);color:var(--blue-d)} .pill.vio{background:var(--violet-soft);color:var(--violet-d)} .pill.teal{background:var(--teal-soft);color:var(--teal-d)}
+
+.goal{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;border-radius:999px;padding:8px 16px;font-size:13.5px;font-weight:800;margin-bottom:13px}
+.goal b{color:#8FB6FF}
+
+.metric .big{font-size:38px;font-weight:800;letter-spacing:-.02em;line-height:1.05;color:var(--ink)}
+.metric .big.blue{color:var(--blue-d)} .metric .big.vio{color:var(--violet-d)} .metric .big.teal{color:var(--teal-d)}
+.metric .lab{font-size:13.5px;color:var(--gray2);margin-top:7px;font-weight:600;line-height:1.4}
+
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font-size:12.5px;color:var(--gray);font-weight:700;letter-spacing:.02em}
+td b{font-weight:800}
+tr.hi td{background:var(--blue-soft)}
+.chk{color:var(--teal-d);font-weight:800} .x{color:#E0533D;font-weight:800}
+
+.shot{border-radius:13px;border:1px solid var(--line);box-shadow:var(--shadow);width:100%;display:block}
+.cap{font-size:12px;color:var(--gray);margin-top:7px;text-align:center;line-height:1.4}
+.shotwrap{position:relative}
+.shotwrap .badge{position:absolute;left:10px;top:10px;background:var(--ink);color:#fff;font-size:11.5px;font-weight:800;padding:4px 10px;border-radius:999px}
+
+.callout{background:var(--ink);color:#fff;border-radius:var(--radius);padding:17px 23px}
+.callout h3{color:#fff} .callout p{color:#D5D9E2}
+.quote{background:linear-gradient(120deg,#1A1F2E,#241C4A);color:#fff;border-radius:var(--radius);padding:24px 28px}
+.quote .q{font-size:26px;font-weight:800;line-height:1.34;color:#fff}
+.quote .q .g{background:linear-gradient(90deg,#8FB6FF,#B9A6FF,#7FE6DA);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+.flag{font-size:12.5px;color:var(--gray);font-style:italic}
+.src{font-size:11.5px;color:var(--gray);line-height:1.5}
+.src b{color:var(--gray2);font-weight:700}
+.foot{position:absolute;left:64px;right:64px;bottom:18px;display:flex;justify-content:space-between;
+  font-size:11.5px;color:var(--gray);border-top:1px solid var(--line);padding-top:9px;gap:20px}
+.foot .src{flex:1}
+
+ul.clean{list-style:none}
+ul.clean li{position:relative;padding-left:23px;margin-bottom:8px;font-size:15.5px}
+ul.clean li:before{content:"";position:absolute;left:4px;top:9px;width:7px;height:7px;border-radius:2px;background:var(--blue)}
+ul.clean.vio li:before{background:var(--violet)} ul.clean.teal li:before{background:var(--teal)}
+
+.flow{display:flex;align-items:stretch;gap:0}
+.flow .step{flex:1;background:var(--soft);border-radius:13px;padding:12px;text-align:center}
+.flow .arr{display:flex;align-items:center;padding:0 7px;font-size:19px;color:var(--gray);font-weight:800}
+
+/* campaign mockup */
+.adcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 13px;box-shadow:var(--shadow)}
+.adcard .ad{font-size:9px;font-weight:800;color:var(--teal-d);border:1px solid var(--teal);border-radius:4px;padding:1px 5px;display:inline-block;margin-bottom:5px}
+.adcard .u{font-size:10px;color:var(--gray)}
+.adcard .ti{font-size:13px;font-weight:800;color:#1a0dab;line-height:1.3;margin:2px 0}
+.adcard .ds{font-size:10.5px;color:#4a4f5e;line-height:1.4}
+.stepbox{background:var(--soft);border-radius:12px;padding:12px 13px;flex:1}
+.stepbox .n{font-size:11px;font-weight:800;color:var(--blue-d)}
+.stepbox h4{font-size:13.5px;font-weight:800;color:var(--ink);margin:3px 0 4px}
+.stepbox p{font-size:12px;color:#4a4f5e;line-height:1.45}
+
+@media print{.slide{display:flex!important;page-break-after:always}#nav,#bar,.hint{display:none}}
+#nav{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;background:rgba(21,23,28,.62);backdrop-filter:blur(8px);padding:8px 16px;border-radius:999px;z-index:50}
+#nav button{background:none;border:none;color:#fff;font-size:17px;cursor:pointer;opacity:.85;line-height:1}
+#nav .ct{color:#fff;font-size:13px;font-weight:600;min-width:54px;text-align:center;font-variant-numeric:tabular-nums}
+#bar{position:fixed;top:0;left:0;height:3px;background:var(--blue);z-index:60;transition:width .3s}
+.hint{position:fixed;bottom:20px;right:22px;color:#8b8d94;font-size:12px;z-index:50}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="stage"><div class="deck" id="deck">
+
+<!-- 1 TITLE -->
+<section class="slide active" style="justify-content:center;background:
+  radial-gradient(900px 520px at 84% -10%, var(--blue-soft) 0%, transparent 55%),
+  radial-gradient(720px 520px at -5% 110%, var(--violet-soft) 0%, transparent 55%), #fff">
+  <div class="logo" style="margin-bottom:32px"><span class="ic">💬</span>채널톡 · Channel Talk</div>
+  <div class="kicker">마케팅 전략 제안 · Growth Marketer</div>
+  <h1>'상담툴'이라는 인식을 넘어,<br>채널톡을 <span class="hl">'매출 엔진'</span>으로 — <span class="hl vio">수요를 만들겠습니다</span></h1>
+  <p class="lead" style="margin-top:22px;max-width:900px">
+    공고가 정의한 역할(데이터·고객 인사이트로 리드를 만드는 그로스)을 출발점으로 —
+    채널톡의 페인포인트 → 경쟁사 → USP → <b>전달 전략·실집행</b> → 기대 효과까지 제안합니다.</p>
+  <div style="margin-top:36px;display:flex;gap:10px">
+    <span class="pill k">채널코퍼레이션 · 채널톡</span>
+    <span class="pill blue">Growth Marketer 지원</span>
+    <span class="pill vio">이도형</span>
+  </div>
+</section>
+
+<!-- 2 역할 정의 -->
+<section class="slide">
+  <div class="head"><div><div class="kicker">공고가 정의한 '나의 역할'</div><h2>데이터·고객 인사이트로 '수요(리드)'를 만들고,<br>세일즈와 함께 파이프라인을 키우는 그로스</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
+  <div class="grid" style="grid-template-columns:repeat(5,1fr);flex:1">
+    <div class="card out"><div class="num">① 고객 중심</div><h3 style="font-size:16px">ICP·메시지 가설</h3><p style="margin-top:5px;font-size:13.5px">고객 인터뷰·CS/세일즈 피드백·행동 데이터로 타깃·메시지 갱신</p></div>
+    <div class="card out"><div class="num">② 리드젠</div><h3 style="font-size:16px">하방 방어</h3><p style="margin-top:5px;font-size:13.5px">월·분기 리드 목표를 분해하고 중단기 플랜으로 사수</p></div>
+    <div class="card out"><div class="num">③ 페이드미디어</div><h3 style="font-size:16px">채널 운영</h3><p style="margin-top:5px;font-size:13.5px">Google·Meta·Naver·LinkedIn 전략·집행·최적화</p></div>
+    <div class="card out"><div class="num">④ 오퍼레이션</div><h3 style="font-size:16px">퍼널·어트리뷰션</h3><p style="margin-top:5px;font-size:13.5px">GA4·Salesforce·Hex로 퍼널 리포팅·기여도 체계 운영</p></div>
+    <div class="card out"><div class="num">⑤ 세일즈 협업</div><h3 style="font-size:16px">리드 핸드오프</h3><p style="margin-top:5px;font-size:13.5px">IS/FS와 리드 퀄리티·핸드오프 캘리브레이션</p></div>
+  </div>
+  <div class="callout" style="margin-top:16px;display:flex;align-items:center;gap:22px">
+    <h3 style="white-space:nowrap">그래서 이 발표는</h3>
+    <p>위 5가지 역할을 <b style="color:#fff">채널톡에 어떻게 적용해 '리드(수요)'를 만들지</b>를 — 페인포인트부터 실집행 캠페인까지 구체적으로 보여드립니다.</p>
+  </div>
+  <div class="foot"><span class="src"><b>출처</b> · 채널톡 Growth Marketer 채용공고(원티드 wd/358219)</span><span>02</span></div>
+</section>
+
+<!-- 3 채널톡이란 -->
+<section class="slide">
+  <div class="head"><div><div class="kicker">먼저, 채널톡은 어떤 제품일까요</div><h2>'올인원 AI 메신저' —<br>상담·CRM 마케팅·팀챗·AI를 하나로</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
+  <div style="display:flex;gap:36px;flex:1;align-items:center">
+    <div style="flex:1.02">
+      <ul class="clean" style="margin-bottom:14px">
+        <li><b>무엇</b> — 채팅 상담 + CRM 마케팅 + 팀 메신저(미트) + AI 상담 에이전트 <b>알프(ALF)</b>를 한 곳에</li>
+        <li><b>타깃</b> — 이커머스·소상공인·B2B (LG·오뚜기·대웅제약·SPAO 등 도입)</li>
+        <li><b>도입</b> — 누적 <b>약 18만 개사·22개국</b>, 일본이 최대 해외시장(+50% 성장)</li>
+      </ul>
+      <div class="grid" style="grid-template-columns:repeat(3,1fr)">
+        <div class="card metric blue"><div class="big blue">매출 350억</div><div class="lab">2025년(제3자 집계)<br>영업현금흐름 첫 흑자</div></div>
+        <div class="card metric vio"><div class="big vio">18만+</div><div class="lab">누적 도입사<br>(자사 발표)</div></div>
+        <div class="card metric teal"><div class="big teal">무료 + 14일</div><div class="lab">무료 플랜·카드 없는<br>14일 체험(PLG)</div></div>
+      </div>
+    </div>
+    <div style="flex:.9">
+      <div class="shotwrap"><span class="badge">channel.io</span><img class="shot" src="images/channel-hero.png" alt="채널톡 홈"></div>
+      <div class="cap">홈 카피 = <b>"한국 No.1 고객 상담 솔루션"</b> — 바로 여기서 기회를 봤습니다 (다음 장)</div>
+    </div>
+  </div>
+  <div class="foot"><span class="src"><b>출처</b> · channel.io · 매출/손익=제3자 감사보고서 집계(newsepoch 2026-04) · 도입사·성장률=자사 발표 · 발표 시 최신 재확인</span><span>03</span></div>
+</section>
+
+<!-- 4 페인포인트 -->
+<section class="slide">
+  <div class="head"><div><div class="kicker amber">페인포인트 · 그로스 마케터 관점</div><h2>제품은 '올인원 AI'인데,<br>시장은 아직 '상담툴'로만 압니다</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
+  <div class="grid" style="grid-template-columns:repeat(2,1fr);flex:1">
+    <div class="card amber"><div class="num">페인 ①</div><h3>'상담 솔루션'으로 인식 고정</h3>
+      <p style="margin-top:6px">홈 카피부터 <b>"고객 상담 솔루션"</b>. CRM 마케팅·팀챗·AI까지 묶인 가치가 저평가 → <b>리드의 폭이 좁고 업셀이 어렵다</b>.</p></div>
+    <div class="card amber"><div class="num">페인 ②</div><h3>글로벌 경쟁사의 'AI ROI' 선점</h3>
+      <p style="margin-top:6px">Intercom·Zendesk가 <b>"AI가 해결한 만큼 과금"(성과 과금)</b>으로 ROI를 숫자로 마케팅. 채널톡은 ROI 언어가 상대적으로 약하다.</p></div>
+    <div class="card amber"><div class="num">페인 ③</div><h3>무료 대체재 대비 가치 증명</h3>
+      <p style="margin-top:6px">카카오톡 채널·알림톡 등 <b>저비용 대안</b>과 매번 비교당함 → "왜 굳이 채널톡?"의 답을 리드 단계에서 줘야 한다.</p></div>
+    <div class="card amber"><div class="num">페인 ④</div><h3>국내 성숙 → 리드 하방 압박</h3>
+      <p style="margin-top:6px">성장엔진이 일본·해외로 이동하는 신호. 국내는 <b>리드 목표 '하방 방어'</b>가 그로스의 숙제(공고 핵심 업무와 직결).</p></div>
+  </div>
+  <div class="foot"><span class="src"><b>출처</b> · channel.io 홈 카피 · Salesforce의 Intercom 인수(2026-06)·Zendesk Resolution Platform · 서울경제(2026-06, 일본 +50%) · ②③④는 관찰 신호(가설), 내부 데이터로 검증</span><span>04</span></div>
+</section>
+
+<!-- 5 경쟁사 -->
+<section class="slide">
+  <div class="head"><div><div class="kicker">경쟁사는 이렇게 풀고 있다</div><h2>글로벌은 'AI 성과(ROI)'를 숫자로 판다</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
+  <div style="display:flex;gap:26px;flex:1;align-items:center">
+    <div style="flex:.82">
+      <div class="shotwrap"><span class="badge">Intercom · Fin</span><img class="shot" src="images/fin.png" alt="Intercom Fin"></div>
+      <div class="cap">Intercom <b>Fin</b> — "The #1 AI Agent" · <b>해결 건당 $0.99 성과 과금</b>으로 ROI를 전면에</div>
+    </div>
+    <div style="flex:1.18">
+      <ul class="clean" style="margin-bottom:0">
+        <li><b>Intercom(Fin)</b> — "AI가 해결한 만큼만 과금($0.99/건)"으로 <b>ROI 보장</b>을 메시지화 · Salesforce가 36억$에 인수(2026-06)</li>
+        <li><b>Zendesk</b> — 'Resolution Platform'으로 재정의, AI가 최대 80% 자율 해결 + 성과 과금</li>
+        <li><b>Tidio(Lyro)</b> — SMB·이커머스 저가 올인원, AI 67% 자동화로 직접 경쟁축</li>
+        <li><b>카카오톡 채널 / 해피톡</b> — 국내 저비용·가격 투명으로 SMB 잠식</li>
+      </ul>
+      <div class="callout" style="margin-top:13px"><p>읽어낸 핵심 — 경쟁은 <b style="color:#fff">'AI가 만든 성과(ROI) 숫자'</b>로 싸웁니다. 채널톡도 강점을 <b style="color:#fff">ROI 언어</b>로 번역해 전달해야 합니다.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="src"><b>출처</b> · fin.ai/intercom.com · zendesk.com · tidio.com · 성과 과금 단가·해결률은 각사 발표/언론(단일출처 포함) · Drift는 2026-03 단종(제외)</span><span>05</span></div>
+</section>
+
+<!-- 6 USP -->
+<section class="slide" style="background:linear-gradient(180deg,#fff,var(--blue-soft) 460%)">
+  <div class="head"><div><div class="kicker vio">채널톡만의 USP</div><h2>"흩어진 4개 툴 vs 채널톡 하나" —<br>통합·로컬·AI가 진짜 무기</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
+  <div class="grid" style="grid-template-columns:repeat(4,1fr);flex:1">
+    <div class="card blue"><div class="num">USP ①</div><h3 style="font-size:17px">올인원 통합</h3><p style="margin-top:5px;font-size:14px">상담+CRM 마케팅+팀챗+AI를 <b>한 계정</b>에. 경쟁사는 CS만, 카카오는 발송만.</p></div>
+    <div class="card vio"><div class="num">USP ②</div><h3 style="font-size:17px">이커머스·SMB 친화</h3><p style="margin-top:5px;font-size:14px">국내 쇼핑몰 주문·예약·CS 워크플로우 최적화. 글로벌은 엔터프라이즈향.</p></div>
+    <div class="card teal"><div class="num">USP ③</div><h3 style="font-size:17px">한국·일본 현지화</h3><p style="margin-top:5px;font-size:14px">일본 2만+ 고객사·+50% 성장. 글로벌 SaaS가 못 따라오는 <b>로컬 해자</b>.</p></div>
+    <div class="card amber"><div class="num">USP ④</div><h3 style="font-size:17px">알프(ALF)가 일을 처리</h3><p style="margin-top:5px;font-size:14px">Q&A를 넘어 <b>예약·취소·반품 Task 실행</b>, 반복 문의 80% 처리(자사).</p></div>
+  </div>
+  <div class="callout" style="margin-top:14px;display:flex;align-items:center;gap:20px">
+    <h3 style="white-space:nowrap">한 문장</h3>
+    <p><b style="color:#fff">"여러 툴 비용·이탈을 하나로 줄이고, AI가 80%를 처리하며, 그 안에서 매출(CRM 마케팅)까지 만든다"</b> — 이게 ROI 언어로 번역한 채널톡입니다.</p>
+  </div>
+  <div class="foot"><span class="src"><b>출처</b> · channel.io 제품 구성 · ALF 처리율 80%·해결률은 자사 발표 · 일본 고객사·성장률 자사/언론</span><span>06</span></div>
+</section>
+
+<!-- 7 전달 전략 1: 메시지·채널 -->
+<section class="slide">
+  <div class="head"><div><div class="kicker">USP 전달 ① · 메시지 × 채널</div><h2>잠재 고객의 '의도'가 있는 곳에서<br>ROI 언어로 만난다</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
+  <div class="goal">🎯 핵심 메시지 · <b>&nbsp;"상담툴이 아니라, 비용을 줄이고 매출을 만드는 올인원 AI"</b></div>
+  <table>
+    <tr><th style="width:16%">채널</th><th style="width:30%">타깃 & 의도</th><th style="width:32%">핵심 메시지</th><th style="width:22%">소재 / 콘텐츠</th></tr>
+    <tr class="hi"><td><b>Google 검색</b></td><td>"인터콤 대안"·"카카오 상담 한계"·"고객상담 자동화" 검색 = 높은 의도</td><td>"Intercom보다 가볍고, 카카오보다 똑똑한 <b>올인원 AI</b>"</td><td>비교 랜딩 + ROI 계산기</td></tr>
+    <tr><td><b>Naver</b></td><td>국내 SMB·이커머스 사장님</td><td>"문의 80%는 AI가, 매출은 CRM이"</td><td>업종별 사례·검색광고</td></tr>
+    <tr><td><b>Meta / IG</b></td><td>이커머스 운영자(리타겟·룩어라이크)</td><td>도입 후 <b>응대시간↓·재구매↑</b> 사례</td><td>고객사례 영상·캐러셀</td></tr>
+    <tr><td><b>LinkedIn</b></td><td>mid-market·일본·CX/CS 리더</td><td>"AI가 80% 처리, 사람은 중요한 20%"</td><td>리더십 콘텐츠·ABM</td></tr>
+  </table>
+  <p style="font-size:15px;color:var(--gray2);margin-top:13px"><b style="color:var(--ink)">왜 이렇게?</b> — 경쟁사가 'AI ROI'를 선점하니, 채널톡은 <b style="color:var(--ink)">'통합으로 줄인 비용 + AI가 만든 시간 + CRM이 만든 매출'</b>을 채널별 의도에 맞춰 번역해 전달합니다.</p>
+  <div class="foot"><span class="src"><b>출처</b> · 공고 명시 채널(Google·Meta·Naver·LinkedIn) · 메시지는 USP(전 장)의 ROI 번역 · 키워드·소재는 실집행 시 A/B로 검증</span><span>07</span></div>
+</section>
+
+<!-- 8 전달 전략 2: 실집행 캠페인 -->
+<section class="slide" style="background:linear-gradient(180deg,#fff,var(--violet-soft) 520%)">
+  <div class="head"><div><div class="kicker vio">USP 전달 ② · 이렇게 '실제로' 집행합니다</div><h2>검색 의도 → 사례로 증명 → 14일 체험 → 세일즈</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
+  <div style="display:flex;gap:22px;flex:1;align-items:center">
+    <div style="flex:1.12">
+      <div style="display:flex;align-items:stretch;gap:8px;margin-bottom:12px">
+        <div class="adcard" style="flex:1">
+          <span class="ad">광고 · Google</span>
+          <div class="u">channel.io/ai</div>
+          <div class="ti">Intercom 대안, 올인원 AI 채널톡</div>
+          <div class="ds">문의 80%는 AI가 처리, 매출은 CRM이. 카드 없이 14일 무료.</div>
+        </div>
+        <div class="flow" style="flex:0 0 auto"><div class="arr">→</div></div>
+        <div class="stepbox" style="flex:1"><div class="n">② 랜딩</div><h4>ROI 계산기 + 사례</h4><p>"우리 문의량이면 월 ○○시간·○○원 절감" + 아임웹 80%·이지듀 71% 사례</p></div>
+      </div>
+      <div class="flow">
+        <div class="stepbox"><div class="n">③ 전환</div><h4>카드 없는 14일 체험</h4><p>진입장벽 0 — PLG 전환 트리거</p></div>
+        <div class="arr">→</div>
+        <div class="stepbox"><div class="n">④ 리드</div><h4>스코어링·핸드오프</h4><p>행동 데이터로 SQL 선별 → IS/FS 전달</p></div>
+        <div class="arr">→</div>
+        <div class="stepbox"><div class="n">⑤ 측정</div><h4>GA4·Hex·Salesforce</h4><p>채널→체험→상담→계약 기여도 추적</p></div>
+      </div>
+      <p style="font-size:13.5px;color:var(--gray2);margin-top:11px"><b style="color:var(--ink)">핵심 자산 활용</b> — 채널톡이 이미 가진 <b>고객사례(알프 해결률)·채널콘·마케팅 레시피</b>를 페이드·오가닉의 'ROI 증거'로 재활용합니다.</p>
+    </div>
+    <div style="flex:.78">
+      <div class="shotwrap"><span class="badge">실제 자산 · ALF</span><img class="shot" src="images/channel-alf.png" alt="채널톡 ALF 80%"></div>
+      <div class="cap"><b>"100건 문의 = 상담원 20건, AI가 80% 처리"</b> + 대형 고객 로고 → 그대로 ROI 증거 소재로</div>
+    </div>
+  </div>
+  <div class="foot"><span class="src"><b>출처</b> · 광고/랜딩은 제안 예시 · 알프 해결률(아임웹 80%·이지듀 71%)·"80% 처리"=자사 발표 · 채널콘·마케팅 레시피=실제 운영 자산(channel.io)</span><span>08</span></div>
+</section>
+
+<!-- 9 로드맵 -->
+<section class="slide">
+  <div class="head"><div><div class="kicker teal">실행 · 입사 후 30·60·90일</div><h2>작게 검증하며, 리드를 데이터로 키운다</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr);flex:1">
+    <div class="card blue"><div class="num">0–30일 · 진단</div><h3>고객·데이터 정렬</h3>
+      <ul class="clean" style="margin-top:9px"><li style="font-size:13.5px">고객 인터뷰·세일즈 콜 섀도잉</li><li style="font-size:13.5px">GA4·Hex 퍼널·어트리뷰션 점검</li><li style="font-size:13.5px">ICP·메시지 가설 정리</li></ul></div>
+    <div class="card vio"><div class="num">30–60일 · Quick Win</div><h3>의도 캡처·사례 엔진</h3>
+      <ul class="clean vio" style="margin-top:9px"><li style="font-size:13.5px">Google·Naver 고의도 키워드 캡처</li><li style="font-size:13.5px">사례·ROI 랜딩 + 14일 체험 전환</li><li style="font-size:13.5px">리드 스코어링·핸드오프 정의</li></ul></div>
+    <div class="card teal"><div class="num">60–90일 · 확장</div><h3>채널·ABM 확장</h3>
+      <ul class="clean teal" style="margin-top:9px"><li style="font-size:13.5px">LinkedIn 일본·mid-market ABM</li><li style="font-size:13.5px">ROI 메시지 A/B·소재 고도화</li><li style="font-size:13.5px">세일즈 핸드오프 캘리브레이션</li></ul></div>
+  </div>
+  <div class="callout" style="margin-top:14px;display:flex;align-items:center;gap:20px">
+    <h3 style="white-space:nowrap">단계별 KPI</h3>
+    <p style="font-size:15px">리드 수·<b style="color:#fff">리드 퀄리티(SQL 전환율)</b> · 채널별 CPL·CAC · 14일 체험 전환율 · <b style="color:#fff">파이프라인 기여(어트리뷰션)</b></p>
+  </div>
+  <div class="foot"><span class="src">공고 핵심 업무(리드젠 하방방어·페이드·오퍼레이션·세일즈 협업)에 맞춘 단계 설계 · 내부 기준값 확인 후 목표치 확정</span><span>09</span></div>
+</section>
+
+<!-- 10 기대 포인트 -->
+<section class="slide" style="background:linear-gradient(180deg,#fff,var(--blue-soft) 480%)">
+  <div class="head"><div><div class="kicker">기대 포인트 · 성공했을 때</div><h2>포지셔닝이 바뀌면, 리드의 질과 매출이 바뀝니다</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
+  <div class="flow" style="margin-bottom:18px">
+    <div class="step"><div style="font-size:22px">🔁</div><h3 style="font-size:14.5px;margin-top:4px">포지셔닝 전환</h3><p style="font-size:11.5px;color:var(--gray2)">상담툴→올인원 AI</p></div>
+    <div class="arr">→</div>
+    <div class="step"><div style="font-size:22px">🎯</div><h3 style="font-size:14.5px;margin-top:4px">리드 질 ↑</h3><p style="font-size:11.5px;color:var(--gray2)">ICP 적합 리드</p></div>
+    <div class="arr">→</div>
+    <div class="step" style="background:var(--blue-soft)"><div style="font-size:22px">💳</div><h3 style="font-size:14.5px;margin-top:4px">전환·업셀 ↑</h3><p style="font-size:11.5px;color:var(--blue-d)">14일→유료·상위</p></div>
+    <div class="arr">→</div>
+    <div class="step" style="background:var(--violet-soft)"><div style="font-size:22px">📈</div><h3 style="font-size:14.5px;margin-top:4px">파이프라인·ARR ↑</h3><p style="font-size:11.5px;color:var(--violet-d)">CAC↓·하방 방어</p></div>
+  </div>
+  <div class="grid" style="grid-template-columns:1.3fr 1fr;flex:1">
+    <div class="card out"><h3>무엇을 보고 판단할까 (KPI)</h3>
+      <table style="margin-top:6px;font-size:14px">
+        <tr><th>구간</th><th>핵심 지표</th></tr>
+        <tr><td>인지·획득</td><td>고의도 키워드 점유 · 채널별 CPL</td></tr>
+        <tr><td>리드 질</td><td>MQL→SQL 전환율 · ICP 적합도</td></tr>
+        <tr class="hi"><td><b>전환(★)</b></td><td><b>14일 체험→유료 전환율 · CAC</b></td></tr>
+        <tr><td>매출</td><td>파이프라인 기여·ARR · 상위플랜 업셀</td></tr>
+      </table></div>
+    <div class="card dark"><h3>한 지표만 꼽는다면</h3>
+      <p style="margin-top:8px;font-size:15.5px">바로 <b style="color:#fff">'리드 퀄리티(SQL 전환율)'</b>입니다. 양보다 질이 오르면 세일즈 효율과 <b style="color:#fff">CAC·파이프라인</b>이 함께 좋아집니다 — 공고의 '리드젠 하방 방어'에 직접 답합니다.</p>
+      <p style="margin-top:9px;font-size:12.5px;color:#aeb4c2">목표치는 내부 기준값 확인 후 확정.</p></div>
+  </div>
+  <div class="foot"><span class="src">인과는 가설 · 채널별·단계별 A/B와 어트리뷰션으로 검증</span><span>10</span></div>
+</section>
+
+<!-- 11 왜 나 -->
+<section class="slide">
+  <div class="head"><div><div class="kicker">왜 나여야 하는가 · 공고 요건 1:1</div><h2>'데이터로 검증하는 커머스 그로스'를<br>그대로 가져갑니다</h2></div><div class="logo"><span class="ic">💬</span>채널톡</div></div>
+  <table>
+    <tr><th style="width:42%">공고가 원하는 것</th><th style="width:58%">제 포트폴리오 증거</th></tr>
+    <tr class="hi"><td><b>페이드미디어 직접 운영</b>(Google·Meta·Naver…)</td><td>커머스에서 매체 직접 운영·ROAS/CAC 최적화, Web2App 브릿지로 전환의 '질' 개선</td></tr>
+    <tr class="hi"><td><b>고객을 직접 만난 경험</b></td><td>마케터로서 고객·세일즈 맥락을 직접 듣고 메시지·USP로 옮긴 다수 전략 작업</td></tr>
+    <tr class="hi"><td><b>GA4·Amplitude·Hex + SQL</b></td><td><b>BigQuery로 실구매·CAC·재구매율 직접 산출</b>, 라스트터치 한계 인지·코호트 리텐션 분석</td></tr>
+    <tr><td><b>데이터로 인과 검증</b></td><td>등급제·쿠폰 ROI를 <b>인과까지 따져 재검증</b>(selection bias 교정) — 숫자를 과장하지 않음</td></tr>
+    <tr><td><b>AI 활용 / 가설-실험-학습</b></td><td>AI로 분석·콘텐츠·전략 자산을 빠르게 만들고, 한 번에 하나씩 A/B로 검증</td></tr>
+  </table>
+  <div class="callout" style="margin-top:14px;display:flex;align-items:center;gap:20px">
+    <h3 style="white-space:nowrap">한마디</h3>
+    <p>"리포트를 위한 리포트가 아니라 <b style="color:#fff">숫자·결과로 말하는 마케터</b>" — 채널톡이 찾는 사람이 제가 일해온 방식입니다.</p>
+  </div>
+  <div class="foot"><span class="src">포트폴리오 = 커버링(뷰티 커머스) 그로스 · 일부 수치는 내부 데이터로 공개는 범위 내에서 · 공고 자격요건 기준 매핑</span><span>11</span></div>
+</section>
+
+<!-- 12 지원동기 + 포부 -->
+<section class="slide" style="justify-content:center;background:
+  radial-gradient(840px 520px at 85% 110%, var(--blue-soft) 0%, transparent 55%),
+  radial-gradient(720px 470px at 0% -10%, var(--violet-soft) 0%, transparent 55%), #fff">
+  <div class="logo" style="margin-bottom:24px"><span class="ic">💬</span>채널톡 · Channel Talk</div>
+  <h1>'상담툴'을 넘어 <span class="hl">'매출 만드는 올인원 AI'</span>로 —<br>그 전환을 <span class="hl vio">리드로 증명</span>하겠습니다</h1>
+  <p class="lead" style="margin-top:20px;max-width:920px">
+    채널톡의 미션은 <b>'고객의 지속가능한 성장'</b>입니다. 저는 커머스에서 <b>데이터로 성장을 검증</b>하고,
+    <b>신뢰를 설계해 전환을 높이는</b> 일을 해왔습니다. 채널톡이 가진 통합·로컬·AI라는 무기를
+    <b>ROI 언어와 고객 의도</b>에 맞춰 전달하면, '상담툴'이라는 인식을 '매출 엔진'으로 바꿀 수 있다고 믿습니다.</p>
+  <p style="font-size:16px;color:var(--gray2);margin-top:16px;max-width:920px">
+    고객을 직접 만나고, 가설을 세우고, 숫자로 증명하는 그로스 — 직접 써보고, 데이터로 증명하겠습니다. 감사합니다.</p>
+  <div style="margin-top:30px;display:flex;gap:10px">
+    <span class="pill k">이도형 · Growth Marketer</span>
+    <span class="pill blue">채널코퍼레이션 · 채널톡</span>
+  </div>
+</section>
+
+</div></div>
+
+<div id="nav"><button id="prev">‹</button><span class="ct"><span id="cur">1</span> / <span id="tot">12</span></span><button id="next">›</button></div>
+<div class="hint">← → 또는 Space · F 전체화면</div>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let i=0;const tot=slides.length;
+document.getElementById('tot').textContent=tot;
+function show(n){i=Math.max(0,Math.min(tot-1,n));
+  slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+  document.getElementById('cur').textContent=i+1;
+  document.getElementById('bar').style.width=((i+1)/tot*100)+'%';}
+function next(){show(i+1)} function prev(){show(i-1)}
+document.getElementById('next').onclick=next;
+document.getElementById('prev').onclick=prev;
+addEventListener('keydown',e=>{
+  if(['ArrowRight',' ','PageDown'].includes(e.key)){next();e.preventDefault();}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){prev();e.preventDefault();}
+  else if(e.key==='Home')show(0); else if(e.key==='End')show(tot-1);
+  else if(e.key.toLowerCase()==='f'){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen();}
+});
+let tx=0;addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-tx;if(d<-50)next();else if(d>50)prev();});
+function fit(){const d=document.getElementById('deck');
+  const s=Math.min(innerWidth/1280,innerHeight/720);
+  d.style.transform='scale('+s+')';}
+addEventListener('resize',fit);fit();show(0);
+</script>
+</body>
+</html>
