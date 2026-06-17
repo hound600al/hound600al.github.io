@@ -138,11 +138,12 @@
 
   /* screenshot card */
   .scard{background:var(--bg);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
-  .scard .thumb{height:19vh;overflow:hidden;border-bottom:1px solid var(--line);background:#fff;position:relative}
-  .scard .thumb img{width:100%;height:100%;object-fit:cover;object-position:top left}
+  .scard .thumb{flex:1;min-height:0;overflow:hidden;border-bottom:1px solid var(--line);background:#fff;position:relative}
+  .scard .thumb img{width:100%;height:100%;object-fit:cover;object-position:top center}
+  .scard .hi{position:absolute;bottom:.65vw;right:.65vw;background:var(--warn);color:#fff;font-size:.8vw;font-weight:800;padding:.4em .85em;border-radius:100px;box-shadow:0 6px 16px -4px rgba(255,106,77,.6);letter-spacing:-.01em}
   .scard .ref{position:absolute;top:.55vw;left:.55vw;font-size:.74vw;font-weight:800;color:#fff;background:rgba(22,27,43,.86);padding:.3em .7em;border-radius:100px;letter-spacing:-.01em}
   .scard .ref b{color:#a9c5ff}
-  .scard .body{padding:1vw 1.1vw;display:flex;flex-direction:column;gap:.45vw;flex:1}
+  .scard .body{padding:.9vw 1.1vw;display:flex;flex-direction:column;gap:.4vw;flex:none}
   .scard .stt{font-size:1.12vw;font-weight:800;letter-spacing:-.02em;line-height:1.2}
   .scard .blk{font-size:.86vw;line-height:1.42}
   .scard .blk .lbl{font-weight:800;color:var(--blue);font-size:.74vw}
@@ -162,8 +163,8 @@
   /* product strip */
   .strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1vw}
   .strip .it{background:var(--bg);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
-  .strip .it .ph{height:16vh;overflow:hidden;background:#fff;border-bottom:1px solid var(--line)}
-  .strip .it .ph img{width:100%;height:100%;object-fit:cover;object-position:top left}
+  .strip .it .ph{height:23vh;overflow:hidden;background:#fff;border-bottom:1px solid var(--line)}
+  .strip .it .ph img{width:100%;height:100%;object-fit:cover;object-position:top center}
   .strip .it .cap{padding:.8vw .9vw}
   .strip .it .cap b{font-size:1vw;font-weight:800;letter-spacing:-.02em;display:block}
   .strip .it .cap span{font-size:.84vw;color:var(--muted);font-weight:500;line-height:1.4;display:block;margin-top:.2vw}
@@ -213,11 +214,11 @@
         <p class="lead">관리 기능을 이식해 <b style="color:#fff">USP</b>로 만들고, 당뇨 페르소나가 검색하는 곳에서 <b style="color:#fff">Paid·시딩</b>으로 폭발적으로 모객합니다. 모든 전략에는 <b style="color:#fff">실제 캡처한 벤치마킹 레퍼런스</b>가 붙습니다.</p>
         <div class="meta">
           <div>대상<b>나만의닥터 (메라키플레이스)</b></div>
-          <div>핵심<b>관리 USP → 검색 채널 모객 → 재진 환전</b></div>
-          <div>구성<b>USP → 페르소나·채널 → 전략 17p</b></div>
+          <div>핵심<b>관리 USP → 채널 모객 → 구독 BM 환전</b></div>
+          <div>구성<b>USP → 모객 → 구독 BM·프로젝션 21p</b></div>
         </div>
       </div>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">01 / 17</span></div>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">01 / 21</span></div>
     </section>
 
     <!-- 2. 인사이트 -->
@@ -240,7 +241,7 @@
         </div>
       </div>
       <p class="note">전제: 나만의닥터는 비대면 진료·처방·병원연결·리워드(닥터캐시·만보기) 보유 — 진료 역량은 있으나 '매일 쓰는 당뇨 관리 USP'가 비어 있다는 점이 출발점(공개정보 기반).</p>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">02 / 17</span></div>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">02 / 21</span></div>
     </section>
 
     <!-- 3. 시장 -->
@@ -259,7 +260,7 @@
         <p>당뇨는 <b>분기 재진·90일 처방이 질환에 내장</b>(1인 연 진료비 ≈ 30.7만 원)된 <span class="term up">LTV<span class="tip"><b>LTV(고객 생애 가치)</b> · 평생 관리 질환이라 한 환자의 누적 가치가 본질적으로 길다.</span></span>가 긴 시장.</p>
       </div>
       <p class="note">출처: 대한당뇨병학회 Diabetes Fact Sheet 2024, 한화생명 실손분석 2025, 건강보험심사평가원 당뇨 진료현황 2024, 보건복지부 비대면진료 제도화(2026.12.24 시행). 환자 수는 추정치.</p>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">03 / 17</span></div>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">03 / 21</span></div>
     </section>
 
     <!-- 4. 경쟁 빈틈 -->
@@ -278,7 +279,7 @@
       </table>
       <div class="callout" style="margin-top:2vh"><div class="big">!</div><p>경쟁사는 <b>"병원 가세요"에서 끊기고</b>, 우리는 <b>매일 쓸 이유가 없다</b>. 빈칸은 하나 — <b>우리에게 '당뇨 관리 USP'를 채우는 것</b>.</p></div>
       <p class="note">출처: 각 사 App Store·공식, 바이오타임즈·메디칼타임즈·서울경제·디라이트. CGM 급여는 1형·인슐린 한정(2형 대다수 비급여). 단가·리텐션 일부 추정.</p>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">04 / 17</span></div>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">04 / 21</span></div>
     </section>
 
     <!-- 5. USP venn -->
@@ -306,7 +307,7 @@
         </div>
       </div>
       <div class="callout" style="margin-top:1.6vh"><div class="big">★</div><p>USP = <b>"관리하다 위험하면 그 자리에서 의사에게 연결되는 유일한 당뇨 앱"</b>. 관리 앱은 따라올 수 없고(의료법), 진료 앱은 관리 자산이 없다.</p></div>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">05 / 17</span></div>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">05 / 21</span></div>
     </section>
 
     <!-- 6. 프로덕트 이식 (스크린샷 스트립) -->
@@ -322,7 +323,7 @@
       </div>
       <div class="callout" style="margin-top:2vh"><div class="big">→</div><p>이식의 핵심은 단 하나 — <b>'다음 행동'의 종착지를 영양제·코칭이 아니라 '비대면 진료·재진'으로 치환</b>. 그러면 동일 관리 엔진이 의료 전환 깔때기가 된다.</p></div>
       <p class="note">실제 서비스 캡처(필라이즈·파스타몰·닥터다이어리, 2026.6). 우선순위(가설): 1순위 AI코칭+식후혈당, 2순위 당뇨리포트, 3순위 챌린지(기존 닥터캐시 결합).</p>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">06 / 17</span></div>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">06 / 21</span></div>
     </section>
 
     <!-- 7. USP→모객 로직 -->
@@ -345,7 +346,7 @@
         <div class="card"><div class="ci">📈</div><h3>전환이 자연스럽다</h3><p>관리 데이터가 진료 필요를 스스로 증명 → 광고가 아니라 데이터가 설득.</p></div>
         <div class="card"><div class="ci">🔒</div><h3>리텐션이 붙는다</h3><p>매일 여는 습관 + 만성질환 재진 = 단발 모객이 LTV로 환전.</p></div>
       </div>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">07 / 17</span></div>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">07 / 21</span></div>
     </section>
 
     <!-- 8. 페르소나 & 검색 동선 (네이버 캡처) -->
@@ -366,7 +367,7 @@
         </div>
       </div>
       <p class="note">＂혈당 낮추는 방법＂ 검색 시 상단 광고는 전부 <b>리브레 센서몰·혈당관리 영양제(라이킷 '100% 환불보장')·당뇨 영양제</b> — <b>'관리하다 위험하면 의사에게'를 파는 곳이 한 곳도 없다</b>. 이 검색 결과의 빈칸이 정확히 우리 USP의 자리(실제 캡처, 2026.6).</p>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">08 / 17</span></div>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">08 / 21</span></div>
     </section>
 
     <!-- 9. Paid 전략 -->
@@ -385,7 +386,7 @@
         </tbody>
       </table>
       <p class="note">공통 원칙 — 소구의 끝은 항상 <b>관리 미끼(무료 진단·관리툴)</b>로 보내고, 진료·처방은 데이터가 쌓인 뒤 제안. ⚠ 의료광고·식약처 규제상 효능 단정·"당뇨 완치" 류 표현 금지.</p>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">09 / 17</span></div>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">09 / 21</span></div>
     </section>
 
     <!-- 10. 시딩 전략 -->
@@ -405,7 +406,7 @@
       </table>
       <div class="callout" style="margin-top:1.8vh"><div class="big">＂</div><p>시딩의 핵심은 <b>'광고'가 아니라 '후기·정보'</b>로 신뢰를 먼저 쌓는 것. ⚠ 의료광고법상 환자 유인·후기 광고 규제가 있어 <b>정보성·체험 톤과 표기 가이드</b>를 반드시 준수.</p></div>
       <p class="note">레퍼런스: 닥터다이어리 커뮤니티(환자 UGC 자산화), HD메디 아이당뇨(약국 거점), 토스/캐시워크(리워드 기반 UGC). 채널·카페명은 예시.</p>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">10 / 17</span></div>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">10 / 21</span></div>
     </section>
 
     <!-- 11. 모객 메커니즘 마스터 -->
@@ -426,7 +427,7 @@
         </tbody>
       </table>
       <p class="note">다음 2개 슬라이드에서 핵심 4개를 실제 캡처 + 적용으로 상세화. 출처: 각 레퍼런스 사례.</p>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">11 / 17</span></div>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">11 / 21</span></div>
     </section>
 
     <!-- 12. 전략 상세 A (noom + cashwalk 캡처) -->
@@ -437,7 +438,7 @@
       </div>
       <div class="g2 grid" style="flex:1;min-height:0">
         <div class="scard">
-          <div class="thumb"><span class="ref">레퍼런스 · <b>Noom</b></span><img src="assets/ref-noom.jpeg" alt="Noom 무료체험 퍼널"/></div>
+          <div class="thumb"><span class="ref">레퍼런스 · <b>Noom</b></span><img src="assets/ref-noom.jpeg" alt="Noom 무료체험 퍼널"/><span class="hi">우상단 "7일 무료 체험" = 진입 미끼</span></div>
           <div class="body">
             <div class="stt">전략 1 · 무료 당뇨위험 진단</div>
             <div class="blk"><span class="lbl">벤치마킹</span> <span class="t">'7일 무료 체험'·행동심리 퀴즈로 가격 노출 전 commitment를 쌓아 전환.</span></div>
@@ -445,7 +446,7 @@
           </div>
         </div>
         <div class="scard">
-          <div class="thumb"><span class="ref">레퍼런스 · <b>캐시워크</b></span><img src="assets/ref-cashwalk.jpeg" alt="캐시워크 걷기 리워드"/></div>
+          <div class="thumb"><span class="ref">레퍼런스 · <b>캐시워크</b></span><img src="assets/ref-cashwalk.jpeg" alt="캐시워크 걷기 리워드"/><span class="hi">"걸으면 돈" · 2,000만 가입</span></div>
           <div class="body">
             <div class="stt">전략 2 · 걷기·복약 캐시 미션</div>
             <div class="blk"><span class="lbl">벤치마킹</span> <span class="t">'걸으면 돈' — 일상 건강행동을 소액 보상으로 게임화해 거대 DAU·매일 여는 습관.</span></div>
@@ -454,7 +455,7 @@
         </div>
       </div>
       <p class="note">두 전략 모두 <b>기존 자산으로 6개월 내 즉시 구현</b> → 비용·시간 효율 최고. 캡처: noom.com·cashwalk.com(2026.6).</p>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">12 / 17</span></div>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">12 / 21</span></div>
     </section>
 
     <!-- 13. 전략 상세 B (challengers 카드 + glucofit 캡처) -->
@@ -473,7 +474,7 @@
           </div>
         </div>
         <div class="scard">
-          <div class="thumb"><span class="ref">레퍼런스 · <b>글루코핏</b></span><img src="assets/ref-glucofit.jpeg" alt="글루코핏 CGM 혈당케어"/></div>
+          <div class="thumb"><span class="ref">레퍼런스 · <b>글루코핏</b></span><img src="assets/ref-glucofit.jpeg" alt="글루코핏 CGM 혈당케어"/><span class="hi">팔에 부착한 CGM = 실측 충격</span></div>
           <div class="body">
             <div class="stt">전략 4 · CGM 2주 무료 체험단</div>
             <div class="blk"><span class="lbl">벤치마킹</span> <span class="t">실측 '내 혈당 스파이크'의 시각적 충격이 가장 강력한 전환 트리거.</span></div>
@@ -482,10 +483,97 @@
         </div>
       </div>
       <p class="note">전략 4는 임팩트 최대지만 규제·원가 리스크 → 소규모 A/B 선행. 캡처: glucofit.co.kr(2026.6). 챌린저스는 사이트 접속 불가로 개념 카드 대체.</p>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">13 / 17</span></div>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">13 / 21</span></div>
     </section>
 
-    <!-- 14. DON'T -->
+    <!-- 14. 신규 BM: 구독 모델 설계 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>신규 BM ① · 관리를 '구독'으로</span>
+        <h2>관리 USP를 <span class="hl">월 구독(MRR)</span>으로 — 단발 진료를 넘어선다</h2>
+      </div>
+      <div class="g3 grid" style="flex:1;align-content:center">
+        <div class="card soft"><span class="tag" style="background:#fff;color:var(--muted);border:1px solid var(--line)">월 9,900원</span><h3 style="margin-top:.8vw">케어 베이직 · 관리</h3><p>AI 식후혈당 코칭 · 당뇨리포트 · 복약/측정 알림. <b>무료 사용자를 업셀</b>하는 입구.</p></div>
+        <div class="card" style="border:2px solid var(--blue)"><span class="tag" style="background:var(--blue-050);color:var(--blue-600)">월 19,900원 · 핵심</span><h3 style="margin-top:.8vw">케어 플러스 · 관리+진료</h3><p>+ 비대면 <span class="term">재진 우선예약<span class="tip"><b>재진 우선예약</b> · 구독자에게 비대면 재진 슬롯·전문가 응답을 우선 제공. 진료가 구독 안으로 들어오는 핵심.</span></span> · 전문가 채팅 Q&A · 처방 리필 관리. <b>USP가 완성되는 등급.</b></p></div>
+        <div class="card soft"><span class="tag" style="background:#fff;color:var(--muted);border:1px solid var(--line)">월 39,900원~</span><h3 style="margin-top:.8vw">케어 프리미엄 · CGM 번들</h3><p>+ CGM 센서 정기배송 · 심화 코칭. 필라이즈 <span class="term">슈가케어<span class="tip"><b>슈가케어</b> · 필라이즈의 'CGM 센서 정기배송 + 멤버십' 번들(약 10만 원대). 하드웨어+구독 결합 모델.</span></span>형 결합.</p></div>
+      </div>
+      <div class="callout"><div class="big">↻</div><p>당뇨는 평생 관리라 <b>이탈해도 의료적 필요로 돌아온다</b> — 구독과 궁합 최상. 단발 진료 수수료를 <b>예측가능한 반복매출(<span class="term up">MRR<span class="tip"><b>MRR(월 반복매출)</b> · 매달 들어오는 구독 매출. 변동 큰 단발 매출과 달리 예측 가능해 사업의 '바닥'을 만든다.</span></span>)</b>으로 바꿔 LTV를 극대화한다.</p></div>
+      <p class="note">가격은 벤치마크 기반 가설 — 필라이즈 플러스 월 15,900원·슈가케어 번들(약 10만 원대), 글루코핏 멤버십, Noom 구독. 실제 단가는 지불의향(WTP) 테스트로 확정 필요.</p>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">14 / 21</span></div>
+    </section>
+
+    <!-- 15. 신규 BM: 질병 패키징 라인업 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>신규 BM ② · 질병 패키징</span>
+        <h2>당뇨를 시작으로 <span class="hl">만성질환 관리를 구독 라인업</span>으로 확장</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1vw;flex:1;min-height:0;justify-content:center">
+        <p class="sub" style="font-size:1vw;font-weight:700;color:var(--ink)">관리(반복 재진·기록)가 필요한 만성질환 후보 — <span style="color:var(--blue)">당뇨로 검증 후 순차 확장</span></p>
+        <div class="grid g3" style="gap:.9vw">
+          <div class="card soft" style="padding:1vw 1.1vw"><h3 style="font-size:1.06vw">🩸 당뇨 <span style="color:var(--blue);font-size:.8vw">★시작</span></h3><p style="font-size:.86vw;margin-top:.2vw">혈당·식단·HbA1c</p></div>
+          <div class="card soft" style="padding:1vw 1.1vw"><h3 style="font-size:1.06vw">💗 고혈압</h3><p style="font-size:.86vw;margin-top:.2vw">혈압 기록·약 리필</p></div>
+          <div class="card soft" style="padding:1vw 1.1vw"><h3 style="font-size:1.06vw">🧈 이상지질혈증</h3><p style="font-size:.86vw;margin-top:.2vw">콜레스테롤·재검</p></div>
+          <div class="card soft" style="padding:1vw 1.1vw"><h3 style="font-size:1.06vw">⚖️ 비만·체중</h3><p style="font-size:.86vw;margin-top:.2vw">체중·식이(GLP-1 분리)</p></div>
+          <div class="card soft" style="padding:1vw 1.1vw"><h3 style="font-size:1.06vw">🦋 갑상선</h3><p style="font-size:.86vw;margin-top:.2vw">호르몬·정기 추적</p></div>
+          <div class="card soft" style="padding:1vw 1.1vw"><h3 style="font-size:1.06vw">🦴 골다공증</h3><p style="font-size:.86vw;margin-top:.2vw">중장년 여성 타겟</p></div>
+        </div>
+        <p class="sub" style="font-size:1vw;font-weight:700;color:var(--ink);margin-top:.3vw">구독 패키징 전략 — 묶을수록 객단가가 오른다</p>
+        <div class="grid g3" style="gap:.9vw">
+          <div class="card" style="border:2px solid var(--blue);padding:1.1vw"><span class="tag" style="background:var(--blue-050);color:var(--blue-600)">핵심</span><h3 style="font-size:1.1vw;margin-top:.45vw">대사증후군 통합 케어</h3><p style="font-size:.86vw">당뇨+고혈압+이상지질혈증은 <span class="term">동반유병<span class="tip"><b>동반유병(comorbidity)</b> · 한 환자가 여러 만성질환을 함께 앓는 것. 대사증후군군은 당뇨·고혈압·고지혈이 같이 온다.</span></span>↑ → 한 환자가 여러 질환을 묶음 구독.</p></div>
+          <div class="card soft" style="padding:1.1vw"><span class="tag" style="background:#fff;color:var(--muted);border:1px solid var(--line)">확장</span><h3 style="font-size:1.1vw;margin-top:.45vw">가족 케어 구독</h3><p style="font-size:.86vw">부모 관리 + 자녀 모니터링 대시보드. 보호자(김도윤)를 결제자로 끌어온다.</p></div>
+          <div class="card soft" style="padding:1.1vw"><span class="tag" style="background:#fff;color:var(--muted);border:1px solid var(--line)">시작</span><h3 style="font-size:1.1vw;margin-top:.45vw">단일질환 구독</h3><p style="font-size:.86vw">당뇨케어 단독부터 시작 → 검증 후 라인업 순차 확장.</p></div>
+        </div>
+      </div>
+      <p class="note">핵심 논리: 만성질환은 <b>동반유병</b>이 흔해 한 명이 여러 구독으로 확장(cross-sell) → ARPU·LTV 상승. 당뇨로 엔진을 검증한 뒤 동일 구조를 타 질환에 복제. 질환 선정은 비대면 처방 가능·재진 빈도 기준 가설.</p>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">15 / 21</span></div>
+    </section>
+
+    <!-- 16. 신규 BM: 구독 기능 요건 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>신규 BM ③ · 구독 기능 요건</span>
+        <h2>구독이 성립하려면 <span class="hl">이 5가지가 구축</span>돼야 합니다</h2>
+      </div>
+      <div class="grid g3" style="margin-bottom:1.1vw">
+        <div class="card"><div class="ci">🔗</div><h3>① 데이터 수집·연동</h3><p>혈당·혈압·체중·복약 기록, CGM·가정용 기기 연동, 국가건강검진 기록 연동.</p></div>
+        <div class="card"><div class="ci">🧠</div><h3>② 인텔리전스</h3><p>질환별 AI 코칭·맞춤 리포트, 위험신호 자동 감지·알림(저혈당·목표 미달).</p></div>
+        <div class="card"><div class="ci">🩺</div><h3>③ 의료 연결</h3><p>비대면 재진 우선예약, 처방 리필 자동화, 전문가(의사·영양사) Q&A, 병원·약국 연계.</p></div>
+      </div>
+      <div class="grid g2">
+        <div class="card"><div class="ci">🔁</div><h3>④ 리텐션·운영</h3><p>복약·재검 리마인드, 가족 공유 대시보드, 닥터캐시 리워드 연계, 구독 결제·등급·해지 관리(<span class="term">처닝<span class="tip"><b>처닝(churn) 관리</b> · 구독 해지 방지. 해지 시점 예측·리마인드·다운그레이드 옵션으로 이탈을 줄인다.</span></span> 방지).</p></div>
+        <div class="card" style="border-left:4px solid var(--warn)"><div class="ci">🛡️</div><h3>⑤ 신뢰·규제</h3><p>민감 의료정보 보안·동의 관리, 비의료/의료 경계와 의료광고법 준수 — <b>구독 고지·환불 정책 명확화</b>(전자상거래법).</p></div>
+      </div>
+      <p class="note">우선 구축순서(가설): ①데이터·②AI코칭(USP 핵심) → ③의료연결(플러스 등급 성립) → ④⑤(스케일·리스크 관리). 기존 비대면진료·리워드 자산이 ③④의 토대.</p>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">16 / 21</span></div>
+    </section>
+
+    <!-- 17. 신규 BM: 매출 증분 프로젝션 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>신규 BM ④ · 매출 증분 프로젝션</span>
+        <h2>구독 도입 시 <span class="hl">연 8억~84억 매출 증분</span> (가정 기반 3 시나리오)</h2>
+      </div>
+      <table class="ctable">
+        <thead><tr><th>항목 (6개월 후 기준)</th><th>보수</th><th class="us">기본</th><th>공격</th></tr></thead>
+        <tbody>
+          <tr><th>당뇨 관리 활성자(무료)</th><td>15만</td><td class="us">25만</td><td>40만</td></tr>
+          <tr><th>무료→구독 전환율</th><td>3%</td><td class="us">5%</td><td>8%</td></tr>
+          <tr><th>구독자 수</th><td>4,500</td><td class="us">12,500</td><td>32,000</td></tr>
+          <tr><th>블렌디드 ARPU(월)</th><td>15,000원</td><td class="us">18,000원</td><td>22,000원</td></tr>
+          <tr><th>월 구독매출(MRR)</th><td>약 0.7억</td><td class="us"><b>약 2.3억</b></td><td>약 7.0억</td></tr>
+          <tr><th>연 환산 구독매출</th><td>약 8억</td><td class="us"><b>약 27억</b></td><td>약 84억</td></tr>
+        </tbody>
+      </table>
+      <div class="g2 grid" style="margin-top:1.2vw">
+        <div class="card soft"><h3 style="color:var(--blue);font-size:1.1vw">구독 매출은 시작일 뿐</h3><p style="font-size:.9vw;margin-top:.4vw">동반 증분 = ① 구독자 분기 <b>재진 연결 수수료</b> ② <b>CGM·식품 커머스 마진</b> ③ 리텐션↑로 <span class="term up">LTV<span class="tip"><b>LTV</b> · 기본 시나리오 ARPU 18,000원 × 평균 구독 10개월 ≈ 1인 18만 원. 단발 진료 대비 수 배.</span></span> 약 18만/인(기본).</p></div>
+        <div class="card" style="background:var(--navy);border-color:var(--navy)"><h3 style="color:#fff;font-size:1.1vw">왜 중요한가</h3><p style="font-size:.9vw;margin-top:.4vw;color:#c2d2f2">단발 진료 매출의 변동성을 <b style="color:#a9c5ff">예측가능한 MRR + 동반 진료·커머스</b>로 바꿔 <b style="color:#fff">매출의 '바닥'</b>을 만든다 — 규제·시즌에 덜 흔들리는 구조.</p></div>
+      </div>
+      <p class="note">⚠ <b>약속이 아닌 시뮬레이션</b>. 전환율 3~8%는 Noom·필라이즈 freemium 벤치 가설, ARPU는 경쟁 구독가 기반, 활성자는 공개 MAU(100만+)·6개월 모객 목표 가정. 실제 내부 데이터로 보정 필수.</p>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">17 / 21</span></div>
+    </section>
+
+    <!-- 18. DON'T -->
     <section class="slide">
       <div class="slide-head">
         <span class="kicker"><span class="dot"></span>지양해야 할 액션 · DON'T</span>
@@ -497,7 +585,7 @@
         <div class="pitem"><span class="mk">✕</span><div class="pt">CGM 체험·소재를 '다이어트·살 빠지는 혈당'으로 소구<span>식약처가 비당뇨 CGM 다이어트 광고에 경고(2024.10). 의료광고법상 효능 단정·환자 유인 표현 금지.</span></div></div>
         <div class="pitem"><span class="mk">✕</span><div class="pt">GLP-1 비만약 의존 / 고령 당뇨 소외<span>규제 노출 성분에 모객을 묶지 말 것. 65세+ 위해 간소모드·가족추천·병원연결 필수.</span></div></div>
       </div>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">14 / 17</span></div>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">18 / 21</span></div>
     </section>
 
     <!-- 15. 로드맵 -->
@@ -517,7 +605,7 @@
           <ul><li>재진 자동 푸시(약·재검 시점) 정식화</li><li>검진·약국·보험 제휴 파일럿</li><li>이긴 채널 스케일업 + 신환유치 결합</li></ul>
           <div class="goal">→ 반복 가능한 당뇨 모객 공식</div></div>
       </div>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">15 / 17</span></div>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">19 / 21</span></div>
     </section>
 
     <!-- 16. 측정 -->
@@ -536,7 +624,7 @@
         <div class="metric"><div class="mh">채널별 <span class="term up">LTV / CAC<span class="tip"><b>LTV/CAC</b> · 생애가치 ÷ 획득비용. 보통 3 이상을 건강하다고 본다.</span></span></div><div class="md">Paid·CGM 출혈 대비 회수 — 채널 성패</div><div class="mk2">↑ 상향</div></div>
       </div>
       <div class="callout" style="margin-top:1.7vh"><div class="big">＝</div><p>이 지표들이 함께 오르면 <b>'사오는 모객'이 '관리로 붙잡아 진료로 환전되는 모객'</b>으로 바뀌고 있다는 뜻 — 성공 정의입니다.</p></div>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">16 / 17</span></div>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">20 / 21</span></div>
     </section>
 
     <!-- 17. 클로징 -->
@@ -548,7 +636,7 @@
         <p class="lead">관리 기능을 이식해 <b style="color:#fff">"매일 관리 + 즉시 진료"라는 누구도 못 가진 USP</b>를 만들고, 당뇨 페르소나가 검색하는 채널에서 Noom·캐시워크·글루코핏 등 <b style="color:#fff">검증된 장치</b>로 모객해, 6개월 안에 <b style="color:#fff">'관리로 모아 진료로 환전'</b>하는 공식을 증명하겠습니다.</p>
         <div class="sign">제안 · Marketing Lead 지원자 &nbsp;|&nbsp; <b>이도형</b> &nbsp;·&nbsp; 5년차 그로스 마케터</div>
       </div>
-      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">17 / 17</span></div>
+      <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">21 / 21</span></div>
     </section>
 
   </div>
@@ -556,7 +644,7 @@
 
 <div class="nav">
   <button id="prev" aria-label="이전">◀</button>
-  <span class="ind"><span id="cur">1</span> / 17</span>
+  <span class="ind"><span id="cur">1</span> / 21</span>
   <button id="next" aria-label="다음">▶</button>
 </div>
 <div class="hint">← → 또는 클릭으로 이동 · 단어 위 점선에 마우스/탭하면 뜻이 나옵니다 · F 전체화면</div>
