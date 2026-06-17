@@ -115,6 +115,16 @@
 
   .note{font-size:.76vw;color:var(--muted-2);font-weight:500;margin-top:.9vh;line-height:1.5}
 
+  /* payback timeline */
+  .pay{display:grid;grid-template-columns:repeat(8,1fr);gap:.55vw}
+  .payc{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:.85vw .4vw;text-align:center;position:relative}
+  .payc .m{font-size:.82vw;font-weight:800;color:var(--muted-2)}
+  .payc .v{font-size:1.05vw;font-weight:800;letter-spacing:-.02em;margin-top:.28vw;font-variant-numeric:tabular-nums}
+  .payc.neg .v{color:var(--warn)}
+  .payc.pos{background:var(--go-bg);border-color:#c3eed8}.payc.pos .v{color:#0a8a52}
+  .payc.be{background:var(--go-bg);border:2px solid var(--go)}.payc.be .v{color:#0a8a52}
+  .payc .be2{font-size:.66vw;font-weight:800;color:#0a8a52;margin-top:.15vw}
+
   .ctable{width:100%;border-collapse:separate;border-spacing:0;font-size:.9vw;border:1px solid var(--line);border-radius:16px;overflow:hidden}
   .ctable th,.ctable td{padding:.75vw .95vw;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.4}
   .ctable thead th{background:var(--navy);color:#fff;font-weight:800;font-size:.92vw;letter-spacing:-.01em}
@@ -700,23 +710,27 @@
     <!-- 23. ROI 프로젝션: 무료 회수 -->
     <section class="slide">
       <div class="slide-head">
-        <span class="kicker"><span class="dot"></span>ROI 프로젝션 · 무료를 어떻게 회수하나</span>
-        <h2><span class="hl">'조건부 무료'</span>라야 회수된다 (LTV 1년 기준)</h2>
+        <span class="kicker"><span class="dot"></span>ROI 프로젝션 · 설계 2 (조건부 무료)</span>
+        <h2>첫 1개월 무료, <span class="hl">5개월차에 회수</span>된다</h2>
       </div>
-      <table class="ctable">
-        <thead><tr><th>항목 (무료신청 1인 기준)</th><th>설계 1 · 무조건 무료</th><th class="us">설계 2 · 조건부 무료 (권장)</th></tr></thead>
-        <tbody>
-          <tr><th>미디어 CPA(신청)</th><td>₩15,000</td><td class="us">₩25,000</td></tr>
-          <tr><th>무료 CGM 원가(1개월)</th><td>₩40,000</td><td class="us">₩40,000</td></tr>
-          <tr><th>신청 1인당 비용</th><td>₩55,000</td><td class="us">₩65,000</td></tr>
-          <tr><th>무료→유료 전환율</th><td>20%</td><td class="us"><b>50%</b> · 카드등록·자동전환</td></tr>
-          <tr><th>유료 1인 1년 LTV</th><td>₩250,000</td><td class="us">₩250,000</td></tr>
-          <tr><th>신청 1인당 기대 LTV</th><td>₩50,000</td><td class="us">₩125,000</td></tr>
-          <tr><th>신청 1인당 손익 · 회수</th><td><span class="x">−₩5,000 · 회수 불가</span></td><td class="us"><b>+₩60,000 · ROAS 1.9x · ~6개월</b></td></tr>
-        </tbody>
-      </table>
-      <div class="callout" style="margin-top:1.3vh"><div class="big">!</div><p>핵심 레버 = <b>전환율</b>. '무조건' 뿌리면 적자, <b>진단퀴즈 필터 + 카드 등록 + 1개월 후 자동 전환(해지 자유)</b>으로 전환율을 끌어올리면 1년 안에 회수된다.</p></div>
-      <p class="note">LTV(유료 1년) ≈ ₩250,000 = 구독 마진(₩19,900×약 9개월) + 센서 재구매 마진 + 분기 비대면 진료 연결 수수료. ⚠ 전부 <b>가정 기반 시뮬레이션</b> — CPA·원가·전환율·잔존은 소규모 A/B로 검증 후 확정. 센서 원가는 국산 ODM 가정.</p>
+      <div class="stats" style="margin-bottom:1.6vh">
+        <div class="stat"><div class="n dark">₩13.0만</div><div class="l">유료 전환자 1명 획득비용 = 신청 1인 비용(CPA ₩2.5만+센서 ₩4만) ÷ 전환율 50%</div></div>
+        <div class="stat"><div class="n dark">₩2.75만</div><div class="l">유료 1인 월 기여이익 = 구독 마진 + 센서 재구매 마진 + 분기 진료 수수료</div></div>
+        <div class="stat"><div class="n">5개월차</div><div class="l">누적 손익이 +로 전환되는 회수 시점 (₩13.0만 ÷ ₩2.75만 ≈ 4.7개월)</div></div>
+      </div>
+      <p class="sub" style="font-size:.94vw;font-weight:700;color:var(--ink);margin-bottom:.65vw">유료 전환자 1명 기준 · 월별 누적 손익</p>
+      <div class="pay">
+        <div class="payc neg"><div class="m">M0</div><div class="v">−13.0만</div></div>
+        <div class="payc neg"><div class="m">M1</div><div class="v">−10.3만</div></div>
+        <div class="payc neg"><div class="m">M2</div><div class="v">−7.5만</div></div>
+        <div class="payc neg"><div class="m">M3</div><div class="v">−4.8만</div></div>
+        <div class="payc neg"><div class="m">M4</div><div class="v">−2.0만</div></div>
+        <div class="payc be"><div class="m">M5</div><div class="v">+0.8만</div><div class="be2">✅ 회수</div></div>
+        <div class="payc pos"><div class="m">M6</div><div class="v">+3.5만</div></div>
+        <div class="payc pos"><div class="m">M7</div><div class="v">+6.3만</div></div>
+      </div>
+      <div class="callout" style="margin-top:1.6vh"><div class="big">✅</div><p><b>5개월차에 무료 비용 회수, 이후는 순이익.</b> 1년 기준 유료 1인 LTV ₩25만 → <b>순이익 +₩12만 · ROAS 1.9x</b>. 회수의 핵심 레버 = <b>전환율 50%</b>(진단 필터·카드 등록·자동 전환)와 잔존.</p></div>
+      <p class="note">설계 2 = 조건부 무료(진단퀴즈 필터 + 카드 등록 + 1개월 후 자동 전환·해지 자유). 월 기여 ₩2.75만 = 구독료 ₩19,900(마진 80%)+센서 재구매 마진+진료 수수료. ⚠ 가정 기반 시뮬레이션 — CPA·센서원가(국산 ODM)·전환율·잔존을 소규모 A/B로 검증 후 확정.</p>
       <div class="foot"><span class="brand">나만의닥터 · 당뇨 Growth Strategy</span><span class="pageno">23 / 27</span></div>
     </section>
 
