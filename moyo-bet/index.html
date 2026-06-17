@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>모요 · 확률 높은 베팅으로, 다음 점프를 (마케팅 리드 지원)</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+  :root{
+    --blue:#516AEC;--blue-600:#3A4FD0;--blue-050:#EEF1FE;--blue-100:#DBE1FC;
+    --navy:#171B2E;--navy-2:#222848;--ink:#1C2230;--muted:#5C6577;--muted-2:#8A93A6;
+    --line:#E6E9F5;--bg:#F4F6FC;--white:#FFFFFF;
+    --warn:#FA5252;--warn-bg:#FFECEC;--go:#12B886;--go-bg:#E6F8F1;--amber:#F5A623;
+    --shadow:0 18px 48px -18px rgba(23,27,46,.28);--shadow-sm:0 8px 24px -12px rgba(23,27,46,.22);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{font-family:'Pretendard',-apple-system,system-ui,sans-serif;background:#0c1018;color:var(--ink);-webkit-font-smoothing:antialiased;overflow:hidden}
+  .deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+  .stage{position:relative;width:100vw;height:100vh;max-width:177.78vh;max-height:56.25vw;background:var(--white);overflow:hidden}
+  .slide{position:absolute;inset:0;padding:4.8% 5.8%;display:none;flex-direction:column;animation:fade .5s ease}
+  .slide.active{display:flex}
+  @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+  .kicker{display:inline-flex;align-items:center;gap:7px;font-size:.98vw;font-weight:700;color:var(--blue);background:var(--blue-050);padding:.5em 1em;border-radius:100px;letter-spacing:-.01em;width:fit-content}
+  .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--blue)}
+  h1{font-size:4.1vw;font-weight:800;letter-spacing:-.035em;line-height:1.12}
+  h2{font-size:2.45vw;font-weight:800;letter-spacing:-.03em;line-height:1.2;color:var(--ink)}
+  h2 .hl{color:var(--blue)}
+  h2 .rd{color:var(--warn)}
+  .sub{font-size:1.24vw;color:var(--muted);font-weight:500;line-height:1.55;letter-spacing:-.01em}
+  .slide-head{margin-bottom:1.7vh}
+  .slide-head h2{margin-top:.85vh}
+  p{line-height:1.6}
+  b,strong{font-weight:700}
+
+  .foot{position:absolute;left:5.8%;right:5.8%;bottom:2.5vh;display:flex;justify-content:space-between;align-items:center;font-size:.86vw;color:var(--muted-2);font-weight:600;letter-spacing:-.01em}
+  .foot .brand{color:var(--blue);font-weight:800}
+  .pageno{font-variant-numeric:tabular-nums}
+
+  .term{position:relative;border-bottom:1.6px dotted var(--blue);cursor:help;white-space:nowrap;color:inherit}
+  .term .tip{position:absolute;bottom:142%;left:50%;transform:translateX(-50%) translateY(5px);background:var(--navy);color:#fff;padding:.8em 1em;border-radius:11px;font-size:.8vw;font-weight:500;line-height:1.5;width:max-content;max-width:24vw;white-space:normal;opacity:0;visibility:hidden;transition:.16s;z-index:40;box-shadow:0 14px 34px -10px rgba(0,0,0,.45);text-align:left;letter-spacing:-.01em;border:1px solid rgba(255,255,255,.08)}
+  .term .tip b{color:#aeb9ff}
+  .term .tip:after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:7px solid transparent;border-top-color:var(--navy)}
+  .term.down .tip{bottom:auto;top:142%;transform:translateX(-50%) translateY(-5px)}
+  .term.down .tip:after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--navy)}
+  .term:hover .tip,.term.show .tip{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+  .cover .term,.closing .term{border-bottom-color:#aeb9ff}
+
+  .grid{display:grid;gap:1.1vw}
+  .g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:1.35vw;box-shadow:var(--shadow-sm)}
+  .card.soft{background:var(--bg);box-shadow:none}
+  .card .ci{font-size:1.45vw;margin-bottom:.45vw}
+  .card h3{font-size:1.24vw;font-weight:800;letter-spacing:-.02em;margin-bottom:.4vw;line-height:1.25}
+  .card p{font-size:.94vw;color:var(--muted);font-weight:500;letter-spacing:-.01em}
+  .tag{display:inline-block;font-size:.8vw;font-weight:700;padding:.28em .7em;border-radius:7px;letter-spacing:-.01em}
+
+  .cover{background:linear-gradient(135deg,#141833 0%,#2A3170 55%,#516AEC 130%);color:#fff;justify-content:center}
+  .cover .kicker{background:rgba(255,255,255,.14);color:#d3dbff}.cover .kicker .dot{background:#aeb9ff}
+  .cover h1{color:#fff;margin:2.1vh 0}
+  .cover h1 .hl{background:linear-gradient(90deg,#aeb9ff,#dfe5ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .cover h1 .rd{color:#FF8787}
+  .cover .lead{font-size:1.34vw;color:#bcc5ea;font-weight:500;line-height:1.6;max-width:74%}
+  .cover .meta{margin-top:3.6vh;display:flex;gap:2.1vw;font-size:.95vw;color:#8e98c9;font-weight:600}
+  .cover .meta b{color:#fff;font-weight:700;display:block;font-size:1.08vw;margin-top:.3vw}
+  .glow{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5}
+  .glow.a{width:30vw;height:30vw;background:#516AEC;right:-8vw;top:-8vw}
+  .glow.b{width:22vw;height:22vw;background:#FA5252;right:14vw;bottom:-10vw;opacity:.22}
+
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2vw}
+  .stat{background:var(--bg);border-radius:16px;padding:1.35vw 1.45vw;border:1px solid var(--line)}
+  .stat .n{font-size:2.2vw;font-weight:800;letter-spacing:-.03em;color:var(--blue);line-height:1.05;font-variant-numeric:tabular-nums}
+  .stat .n.dark{color:var(--ink)}.stat .n.rd{color:var(--warn)}
+  .stat .l{font-size:.9vw;color:var(--muted);font-weight:600;margin-top:.55vw;line-height:1.4}
+
+  .rows{display:flex;flex-direction:column;gap:.8vw}
+  .row{display:flex;gap:1vw;align-items:flex-start;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:1vw 1.25vw}
+  .row .ix{flex:none;min-width:1.95vw;height:1.95vw;padding:0 .4vw;border-radius:9px;display:grid;place-items:center;font-weight:800;font-size:.86vw;color:#fff;background:var(--blue)}
+  .row .ix.rd{background:var(--warn)}
+  .row .tx h4{font-size:1.1vw;font-weight:800;letter-spacing:-.02em;margin-bottom:.2vw}
+  .row .tx p{font-size:.92vw;color:var(--muted);font-weight:500;line-height:1.46}
+
+  .panel{border-radius:20px;padding:1.5vw 1.9vw;display:flex;flex-direction:column;justify-content:center}
+  .panel.dont{background:var(--warn-bg);border:1px solid #ffd2d2}
+
+  .tl{display:grid;grid-template-columns:repeat(4,1fr);gap:1.05vw;flex:1;align-content:stretch}
+  .phase{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:1.25vw;display:flex;flex-direction:column}
+  .phase .wk{font-size:.8vw;font-weight:800;color:#fff;background:var(--blue);padding:.32em .7em;border-radius:8px;width:fit-content;margin-bottom:.7vw}
+  .phase h3{font-size:1.12vw;font-weight:800;letter-spacing:-.02em;line-height:1.25}
+  .phase p{font-size:.88vw;color:var(--muted);font-weight:500;line-height:1.45;margin-top:.4vw}
+  .phase .bet{margin-top:auto;padding-top:.7vw;font-size:.8vw;font-weight:800;color:var(--go);border-top:1px dashed var(--line)}
+
+  .callout{background:var(--navy);color:#fff;border-radius:20px;padding:1.6vw 2vw;display:flex;gap:1.4vw;align-items:center}
+  .callout .big{font-size:2.9vw;font-weight:800;color:#aeb9ff;line-height:1;flex:none}
+  .callout p{font-size:1.2vw;font-weight:600;line-height:1.5;letter-spacing:-.01em}
+  .callout p b{color:#aeb9ff}
+  .callout p b.rd{color:#FF8787}
+
+  .twocol{display:grid;grid-template-columns:1.05fr .95fr;gap:1.8vw;flex:1;min-height:0;align-items:center}
+
+  .flow{display:flex;align-items:stretch;gap:.7vw}
+  .flow .node{flex:1;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:1.05vw;text-align:center;display:flex;flex-direction:column;justify-content:center}
+  .flow .node .nt{font-size:1.02vw;font-weight:800;letter-spacing:-.02em}
+  .flow .node .nd{font-size:.82vw;color:var(--muted);font-weight:500;margin-top:.35vw;line-height:1.4}
+  .flow .node.hot{background:var(--blue-050);border-color:var(--blue-100)}.flow .node.hot .nt{color:var(--blue)}
+  .flow .node.dark{background:var(--navy);border-color:var(--navy)}.flow .node.dark .nt{color:#fff}.flow .node.dark .nd{color:#aeb9ff}
+  .flow .arr{flex:none;display:grid;place-items:center;color:var(--muted-2);font-size:1.3vw;font-weight:800}
+
+  .note{font-size:.76vw;color:var(--muted-2);font-weight:500;margin-top:.9vh;line-height:1.5}
+
+  .ctable{width:100%;border-collapse:separate;border-spacing:0;font-size:.9vw;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .ctable th,.ctable td{padding:.78vw .95vw;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.42}
+  .ctable thead th{background:var(--navy);color:#fff;font-weight:800;font-size:.92vw}
+  .ctable thead th.us{background:var(--blue)}
+  .ctable tbody th{background:var(--bg);font-weight:800;color:var(--ink);width:9vw}
+  .ctable td{color:var(--muted);font-weight:500}
+  .ctable td.us{background:var(--blue-050);color:var(--ink);font-weight:600}
+  .ctable tr:last-child th,.ctable tr:last-child td{border-bottom:none}
+
+  /* SKT spotlight */
+  .spot{display:grid;grid-template-columns:1.15fr .85fr;gap:1.6vw;flex:1;min-height:0;align-items:center}
+  .bigwin{background:linear-gradient(135deg,#2A3170,#516AEC);color:#fff;border-radius:20px;padding:1.7vw 1.9vw;box-shadow:var(--shadow)}
+  .bigwin .t{font-size:1.04vw;color:#d3dbff;font-weight:700}
+  .bigwin .wins{display:flex;gap:1.6vw;margin:1vw 0}
+  .bigwin .win .v{font-size:2.5vw;font-weight:800;letter-spacing:-.03em;line-height:1;color:#fff}
+  .bigwin .win .k{font-size:.84vw;color:#bcc5ea;font-weight:600;margin-top:.35vw}
+  .bigwin .d{font-size:.92vw;color:#dfe5ff;font-weight:500;line-height:1.5;border-top:1px solid rgba(255,255,255,.16);padding-top:.9vw}
+
+  .closing{background:linear-gradient(135deg,#141833 0%,#2A3170 60%,#516AEC 130%);color:#fff;justify-content:center}
+  .closing h2{color:#fff;font-size:2.7vw}
+  .closing .lead{font-size:1.34vw;color:#c6cdee;font-weight:500;line-height:1.65;margin-top:2.1vh;max-width:80%}
+  .closing .lead b{color:#fff}
+  .closing .sign{margin-top:3.6vh;font-size:1vw;color:#8e98c9;font-weight:600}
+  .closing .sign b{color:#fff}
+
+  .nav{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;background:rgba(15,17,28,.78);backdrop-filter:blur(10px);padding:9px 16px;border-radius:100px;z-index:50}
+  .nav button{background:none;border:none;color:#fff;font-size:15px;cursor:pointer;opacity:.85;display:grid;place-items:center;padding:2px 4px}
+  .nav button:hover{opacity:1}
+  .nav .ind{color:#fff;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:.02em;min-width:46px;text-align:center}
+  .progress{position:fixed;top:0;left:0;height:3px;background:var(--blue);z-index:60;transition:width .4s ease}
+  .hint{position:fixed;bottom:22px;right:22px;font-size:12px;color:rgba(255,255,255,.5);z-index:50}
+  @media(max-width:760px){.hint{display:none}.term .tip{max-width:62vw;font-size:11px}}
+</style>
+</head>
+<body>
+<div class="progress" id="bar"></div>
+<div class="deck">
+  <div class="stage">
+
+    <!-- 1 COVER -->
+    <section class="slide active cover">
+      <span class="glow a"></span><span class="glow b"></span>
+      <div style="position:relative;z-index:2">
+        <span class="kicker"><span class="dot"></span>모요 마케팅 리드 지원 · 컬쳐핏</span>
+        <h1>제품으로 다진 모요,<br>이제 <span class="rd">'베팅'</span>의 차례입니다</h1>
+        <p class="lead">모요는 제품·실험으로 알뜰폰 비교 1위를 만들었습니다. 다음 퀀텀점프는 검증된 실험이 아니라 <b style="color:#fff">확률 높은 마케팅 베팅</b>에서 나옵니다. 그 베팅을 설계하고 책임지는 사람으로 지원합니다.</p>
+        <div class="meta">
+          <div>지원<b>마케팅 리드 (Growth)</b></div>
+          <div>관점<b>제품 강점 위에 '베팅 레버'를 얹는다</b></div>
+          <div>지원자<b>이도형 · 5년차 그로스 마케터</b></div>
+        </div>
+      </div>
+      <div class="foot"><span class="brand">모요 · Marketing Lead 제안</span><span class="pageno">01 / 12</span></div>
+    </section>
+
+    <!-- 2 관점 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>이 발표의 관점</span>
+        <h2>모요는 <span class="hl">'실험으로 풀리는 것'은 이미 다 풀었습니다</span></h2>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="n">번호이동 ~¼</div><div class="l">번호이동 가입자 약 4명 중 1명이 모요 경유(자체 발표·추정). 카테고리 1위</div></div>
+        <div class="stat"><div class="n dark">매출 100억·BEP</div><div class="l">2025년 매출 약 100억·손익분기 달성(언론 인용). 1,700+ 요금제·평균 25분 개통</div></div>
+        <div class="stat"><div class="n dark">제품 DNA</div><div class="l">토스·리멤버·쿠팡 출신 팀 — 데이터·가설검증·빠른 실험 문화의 직계</div></div>
+      </div>
+      <div class="callout" style="margin-top:2.2vh">
+        <div class="big">＝</div>
+        <p><b><span class="term">AB 테스트<span class="tip"><b>AB 테스트</b> · 두 안을 나눠 보여주고 성과 좋은 쪽을 채택하는 실험. 전환율·UX 최적화엔 강력하지만, '아직 안 들어온 대중'을 데려오는 일은 검증하기 어렵다.</span></span>·<span class="term"><span class="term">증분<span class="tip"><b>증분(Incremental)</b> · 그 액션이 '추가로' 만든 성과. 작게 쪼개 검증 가능한 영역에만 집중하게 만든다.</span></span></span></b>으로 검증되는 영역(전환율·UX)은 모요가 이미 최적화했습니다. 그래서 남은 성장은 <b class="rd">'실험으로는 검증되지 않는 큰 레버'</b>에 있습니다.</p>
+      </div>
+      <p class="note">출처: 플래텀·블로터(번호이동 경유·투자), 혁신의숲(개통 80만), 언론 인용(매출·BEP), 안동건 대표 이력. 일부 지표는 모요 자체 발표 인용으로 외부 검증 전 추정.</p>
+      <div class="foot"><span class="brand">모요 · Marketing Lead 제안</span><span class="pageno">02 / 12</span></div>
+    </section>
+
+    <!-- 3 진단: 로컬 맥시멈 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>진단 · 제품 조직의 함정</span>
+        <h2>리스크를 줄이려다 <span class="hl">'<span class="term">로컬 맥시멈<span class="tip"><b>로컬 맥시멈(Local Maximum)</b> · 지금 서 있는 작은 언덕의 정상. AB테스트로 한 걸음씩 오르면 이 정상엔 빨리 닿지만, 더 큰 산으로 '건너뛰는 점프'는 실험으로 검증되지 않아 놓치기 쉽다.</span></span>'에 갇힙니다</span></h2>
+      </div>
+      <div class="twocol" style="grid-template-columns:.62fr 1.38fr">
+        <div>
+          <div class="callout" style="flex-direction:column;align-items:flex-start;gap:.7vw">
+            <p style="font-size:1.22vw">검증 가능한 한 걸음은 잘 오릅니다. 하지만 <b class="rd">더 큰 산으로의 점프</b>는 쪼갠 실험으로 증명되지 않습니다.</p>
+            <p style="font-size:.9vw;color:#aeb9ff;font-weight:600">그 점프는 아래 4개 사각지대에 있습니다.</p>
+          </div>
+        </div>
+        <div class="grid g2">
+          <div class="card"><span class="tag" style="background:var(--blue-050);color:var(--blue-600)">사각지대 ①</span><h3 style="margin-top:.5vw">대세감 (ToFu)</h3><p>들어온 유저는 잘 굴리는데, '모요를 모르는 대중'을 데려오는 베팅이 없다.</p></div>
+          <div class="card"><span class="tag" style="background:var(--blue-050);color:var(--blue-600)">사각지대 ②</span><h3 style="margin-top:.5vw">락인 베팅</h3><p>한 번 개통하면 1~2년 안 온다. 묶어둘 혜택을 '선지출'할 판을 못 짰다.</p></div>
+          <div class="card"><span class="tag" style="background:var(--warn-bg);color:#D6452B">사각지대 ③</span><h3 style="margin-top:.5vw">시의성 기동</h3><p>이슈 터진 그 주에 쓸어담는 베팅. 실험을 기다리다 타이밍을 놓친다.</p></div>
+          <div class="card"><span class="tag" style="background:var(--blue-050);color:var(--blue-600)">사각지대 ④</span><h3 style="margin-top:.5vw">대형 제휴</h3><p>외부 자산(제휴·번들)을 톱다운으로 끌어오는 외연 확장이 소극적이다.</p></div>
+        </div>
+      </div>
+      <div class="foot"><span class="brand">모요 · Marketing Lead 제안</span><span class="pageno">03 / 12</span></div>
+    </section>
+
+    <!-- 4 사각지대 1: 대세감 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>사각지대 ① · 대세감 / 인지</span>
+        <h2>들어온 유저는 잘 굴리는데, <span class="hl">'모르는 대중'을 못 데려온다</span></h2>
+      </div>
+      <div class="twocol">
+        <div class="rows">
+          <div class="row"><div class="ix rd">장벽</div><div class="tx"><h4>대중의 1번 장벽은 가격이 아니라 '불안'</h4><p>"통신3사보다 혜택 적다" 66% · "품질 떨어진다" 43% · "AS 원활" 응답 29%. 오히려 <b>써본 사람이 더 부정적</b>(혜택 적다: 사용자 81% vs 미사용 60%).</p></div></div>
+          <div class="row"><div class="ix rd">공백</div><div class="tx"><h4>1,020만 시장인데 '대명사 브랜드'가 없다</h4><p>"알뜰폰 갈아탈 땐 무조건 ○○"가 비어 있음. 리브엠은 BTS·에스파, 토스모바일은 토스 신뢰로 매스 인지 — <b>모요의 매스 브랜딩은 공개적으로 확인되지 않음</b>.</p></div></div>
+          <div class="row"><div class="ix">베팅</div><div class="tx"><h4>전환율 1→1.5%가 아니라, 모수 10배</h4><p>"알뜰폰 비교=모요"를 <b>행동으로 점유</b>하는 대세감 캠페인. 토스가 "송금=토스"를 각인시킨 플레이북.</p></div></div>
+        </div>
+        <div>
+          <div class="callout" style="flex-direction:column;align-items:flex-start;gap:.8vw">
+            <p style="font-size:1.28vw">＂제품은 '1,700개 비교·25분 개통'이라는 <b>기능 언어</b>를 말합니다. 대중은 '<b class="rd">불안</b>'이라는 <b>감정 언어</b>로 망설입니다.＂</p>
+            <p style="font-size:.9vw;color:#aeb9ff;font-weight:600">감정 장벽은 앱 안의 문구 실험으로 못 깬다 — 시장을 흔드는 베팅이 필요.</p>
+          </div>
+        </div>
+      </div>
+      <p class="note">출처: 한국리서치 알뜰폰 인식조사(혜택·품질·AS 인식), 컨슈머인사이트(만족도), KB리브모바일·토스모바일 마케팅(나무위키·더벨), 정보통신정책 1,020만 가입(이데일리). 모요 매스브랜딩은 '공개 확인 불가'.</p>
+      <div class="foot"><span class="brand">모요 · Marketing Lead 제안</span><span class="pageno">04 / 12</span></div>
+    </section>
+
+    <!-- 5 사각지대 2: 락인 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>사각지대 ② · 락인 베팅</span>
+        <h2>한 번 개통하면 1~2년 안 온다 — <span class="hl">묶어둘 판을 안 짰다</span></h2>
+      </div>
+      <table class="ctable">
+        <thead><tr><th>벤치마크</th><th>무엇을 했나 (선지출 베팅)</th><th class="us">모요 적용 기회</th></tr></thead>
+        <tbody>
+          <tr><th>쿠팡 와우</th><td>혜택에 5.8조 선투자 → 회비 58% 인상에도 이탈 없음</td><td class="us" rowspan="3">개통자에게만 주는 <b>독점 번들·멤버십을 먼저 태워</b> 락인 → 재개통·인터넷·자급제 교차판매로 <span class="term">LTV<span class="tip"><b>LTV</b> · 고객 생애 가치. 저빈도 개통을 반복 관계로 바꾸면 한 명의 가치가 커진다.</span></span> 회수</td></tr>
+          <tr><th>토스</th><td>무료송금 건당 400~500원 자체 흡수 → 슈퍼앱 락인 → 첫 흑자</td></tr>
+          <tr><th>네이버+넷플릭스</th><td>OTT 번들로 신규 1.5배·멤버십 리텐션 95%+</td></tr>
+        </tbody>
+      </table>
+      <div class="callout" style="margin-top:1.8vh">
+        <div class="big">!</div>
+        <p>결정적 빈틈 — 통신3사 OTT 결합은 <b class="rd">약관상 알뜰폰을 배제</b>합니다. 알뜰폰 이용자의 OTT 사각지대를, 35개사·1,700요금제 협상력을 가진 <b>모요만이 메울 수 있습니다.</b></p>
+      </div>
+      <p class="note">출처: 더벨·이데일리(쿠팡 와우), 토스피드·바이라인(토스), ZDNet(네이버+넷플릭스), KT 약관(알뜰폰 OTT 결합 배제). 모요 락인 기능은 공개 확인 안 됨. 기대효과는 검증 전 가설.</p>
+      <div class="foot"><span class="brand">모요 · Marketing Lead 제안</span><span class="pageno">05 / 12</span></div>
+    </section>
+
+    <!-- 6 사각지대 3: 시의성 (SKT) ★ -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>사각지대 ③ · 시의성 — 모요는 '이미 증명'했습니다</span>
+        <h2>SKT 해킹 때, 모요는 <span class="hl">AB 테스트를 돌리지 않았습니다</span></h2>
+      </div>
+      <div class="spot">
+        <div class="bigwin">
+          <div class="t">2025.4 SKT 유심 해킹 사태 — 모요의 즉시 베팅</div>
+          <div class="wins">
+            <div class="win"><div class="v">+338.6%</div><div class="k">개통 신청 (전월 대비)</div></div>
+            <div class="win"><div class="v">+261.3%</div><div class="k">일일 방문자 (직전 주 대비)</div></div>
+          </div>
+          <div class="d">사건 당주에 <b>540+ 요금제 무료 유심 배송 · 당일 퀵 · eSIM 즉시 개통</b>을 깔았다. '불안 → 즉시 개통'의 마찰을 그 자리에서 제거 — 검증이 아니라 <b>베팅이 정답</b>이었던 순간.</div>
+        </div>
+        <div class="rows">
+          <div class="row" style="background:var(--warn-bg);border-color:#ffd2d2"><div class="ix rd">반전</div><div class="tx"><h4>그런데 이건 '사건이 떠먹여준' 1회성</h4><p>반응형이었고, 사건이 없었으면 안 켜졌다.</p></div></div>
+          <div class="row"><div class="ix">반복</div><div class="tx"><h4>이런 모먼트는 분기마다 온다</h4><p>단통법 폐지(2025.7), 통신 먹통, 제4이통 무산… 통신은 이슈에 극도로 민감.</p></div></div>
+          <div class="row"><div class="ix">베팅</div><div class="tx"><h4>'운'이 아니라 '시스템'으로</h4><p>상시 이슈 레이더 + 48시간 출시 플레이북으로 SKT를 <b>반복 가능</b>하게.</p></div></div>
+        </div>
+      </div>
+      <p class="note">출처: 뉴시스·서울경제(모요 개통 +338.6%·방문 +261.3%·무료유심), 디지털데일리·한국일보(번호이동 급증·위약금 면제), 모요 콘텐츠(단통법 폐지), 전자신문(제4이통 무산). 완벽한 검증을 기다렸다면 4월 말~5월 초 피크를 통째로 놓쳤을 사례.</p>
+      <div class="foot"><span class="brand">모요 · Marketing Lead 제안</span><span class="pageno">06 / 12</span></div>
+    </section>
+
+    <!-- 7 사각지대 4: 제휴 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>사각지대 ④ · 대형 제휴 / 크로스마케팅</span>
+        <h2>외부 자산을 <span class="hl">톱다운으로 끌어오는 외연 확장</span>이 약하다</h2>
+      </div>
+      <div class="g3 grid" style="margin-bottom:1.2vw">
+        <div class="card"><div class="ci">🏦</div><h3>KB리브엠 × KB</h3><p>통신비 자동납부 → 청년도약계좌 우대금리 +0.3%p, 은행 창구 판매. 가입 43.7만.</p></div>
+        <div class="card"><div class="ci">💸</div><h3>토스모바일 × 토스·CU</h3><p>토스 앱 안에서 관리 + CU 결제 20% 할인. 모회사 트래픽·제휴를 그대로 레버리지.</p></div>
+        <div class="card"><div class="ci">🎬</div><h3>OTT 결합 (3사 전용)</h3><p>넷플릭스·티빙 결합은 통신3사만. 알뜰폰은 배제 = 모요가 묶어줄 빈자리.</p></div>
+      </div>
+      <div class="callout">
+        <div class="big">↔</div>
+        <p>모요는 <b>35개 MVNO·1,700요금제·통신 데이터</b>를 쥐고 있습니다. 개별 알뜰폰사는 못 만드는 <b>규모의 번들</b>을, 카드·페이·커머스·OTT와 <b class="rd">톱다운 제휴</b>로 모요가 중개하면 외연이 한 번에 커집니다.</p>
+      </div>
+      <p class="note">출처: 이코노미스트·아시아투데이(KB리브엠), 아주경제(토스모바일·CU), KT 약관(OTT 결합 배제). "내부 데이터로만 검증하려다 판을 못 키우는" 전형 — 때론 톱다운으로 체결하고 결과를 만들어야 함.</p>
+      <div class="foot"><span class="brand">모요 · Marketing Lead 제안</span><span class="pageno">07 / 12</span></div>
+    </section>
+
+    <!-- 8 통찰: 전환점 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>통찰 · 전환점</span>
+        <h2>모요엔 <span class="hl">'베팅 DNA'가 이미 있습니다</span> — 다만 '사건' 때만 켜졌습니다</h2>
+      </div>
+      <div class="flow">
+        <div class="node hot"><div class="nt">증거</div><div class="nd">SKT 사태에 즉시 베팅 → 개통 +338%</div></div>
+        <div class="arr">→</div>
+        <div class="node"><div class="nt">한계</div><div class="nd">사건이 떠먹여준 반응형·1회성</div></div>
+        <div class="arr">→</div>
+        <div class="node"><div class="nt">필요</div><div class="nd">사건 없이도 확률 읽어 '먼저' 베팅</div></div>
+        <div class="arr">→</div>
+        <div class="node dark"><div class="nt">= 그 사람</div><div class="nd">베팅을 시스템으로 반복하는 마케터</div></div>
+      </div>
+      <div class="callout" style="margin-top:2.4vh">
+        <div class="big">＂</div>
+        <p>모요는 베팅하면 터진다는 걸 스스로 증명했습니다. 이제 필요한 건 <b>사건을 기다리지 않고, 4대 사각지대에 먼저 베팅을 거는 사람</b> — 그게 제가 이 자리에 지원한 이유입니다.</p>
+      </div>
+      <div class="foot"><span class="brand">모요 · Marketing Lead 제안</span><span class="pageno">08 / 12</span></div>
+    </section>
+
+    <!-- 9 Why me 1: 베팅 운영체제 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>왜 저인가 ① · 베팅 운영체제</span>
+        <h2>저는 '도박'이 아니라 <span class="hl">'확률 높은 베팅'</span>을 합니다</h2>
+      </div>
+      <div class="g4 grid" style="flex:1;align-content:center">
+        <div class="card"><div class="ci">⚖️</div><h3><span class="term">비대칭<span class="tip"><b>비대칭 리스크</b> · 잃을 건 작게(downside 제한), 얻을 건 크게(upside) 설계. 져도 본전, 이기면 판을 바꾼다.</span></span> 설계</h3><p>져도 본전(이미 되는 일)·이기면 큰 판. 손실을 먼저 막고 베팅한다.</p></div>
+        <div class="card"><div class="ci">⚡</div><h3>80%면 선집행</h3><p>완벽한 검증을 기다리지 않는다. 80% 확신이면 먼저 지르고 결과로 100%를 증명.</p></div>
+        <div class="card"><div class="ci">🎯</div><h3>데이터로 적중률 보정</h3><p>무모함이 아니다. 제품팀의 데이터를 '조준경'으로 써 베팅의 명중률을 높인다.</p></div>
+        <div class="card"><div class="ci">🏁</div><h3>결과주의 실행</h3><p>의견이 아니라 숫자로 끝낸다. 이기는 베팅은 키우고, 지는 베팅은 빠르게 접는다.</p></div>
+      </div>
+      <div class="callout"><div class="big">↳</div><p><b>이 발표 자체가 증거입니다.</b> 내부 데이터 없이 공개 자료만으로 모요의 4대 사각지대를 찾고, 비대칭 베팅으로 설계했습니다 — 입사하면 내부 데이터로 적중률을 더 끌어올립니다.</p></div>
+      <div class="foot"><span class="brand">모요 · Marketing Lead 제안</span><span class="pageno">09 / 12</span></div>
+    </section>
+
+    <!-- 10 Why me 2: 시너지 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>왜 저인가 ② · 제품과의 시너지</span>
+        <h2>충돌이 아니라, <span class="hl">제품이 다진 기초 위에 얹는 베팅</span></h2>
+      </div>
+      <div class="g2 grid" style="flex:1;align-content:center">
+        <div class="card soft" style="border-left:4px solid var(--blue)">
+          <span class="tag" style="background:var(--blue-050);color:var(--blue-600)">모요가 가진 것</span>
+          <h3 style="margin-top:.7vw">높은 전환 효율 · 탄탄한 제품</h3>
+          <p>1,700요금제 비교·25분 개통·번호이동 1위. 들어온 유저를 매출로 바꾸는 '깔때기'는 완성형.</p>
+        </div>
+        <div class="card" style="border-left:4px solid var(--warn)">
+          <span class="tag" style="background:var(--warn-bg);color:#D6452B">제가 더할 것</span>
+          <h3 style="margin-top:.7vw">모수·락인·시의성·제휴 베팅</h3>
+          <p>완성된 깔때기에 <b>더 큰 입구(대세감)·더 긴 관계(락인)·더 빠른 기동(시의성)·더 넓은 외연(제휴)</b>을 베팅으로 연결.</p>
+        </div>
+      </div>
+      <div class="callout"><div class="big">×</div><p><b>높은 전환율(제품) × 폭발적 유입·락인(베팅) = 퀀텀점프.</b> 제품팀이 만든 데이터가 곧 제 베팅의 조준경이 됩니다 — 둘은 곱셈입니다.</p></div>
+      <p class="note">※ 발표 시 여기서 본인 실제 성과 1~2개를 '비대칭 베팅' 프레임으로 1줄씩 인용(예: 적은 예산으로 ○○ 채널 선점 → ROAS/유입 ○배). 5년차 그로스: 퍼포먼스·CRM·브랜딩 전 퍼널 운영 경험.</p>
+      <div class="foot"><span class="brand">모요 · Marketing Lead 제안</span><span class="pageno">10 / 12</span></div>
+    </section>
+
+    <!-- 11 입사 후 베팅 포트폴리오 -->
+    <section class="slide">
+      <div class="slide-head">
+        <span class="kicker"><span class="dot"></span>입사하면 · 첫 베팅 포트폴리오</span>
+        <h2>4대 사각지대에 <span class="hl">비대칭 베팅을 겁니다</span></h2>
+      </div>
+      <div class="tl">
+        <div class="phase"><span class="wk">베팅 ①</span><h3>'알뜰폰=모요' 대세감</h3><p>약정 만료 트리거를 노린 매스 캠페인 + 사회적 증거("4명 중 1명이 모요로").</p><div class="bet">↓ 모수 10배 · 인지 점유</div></div>
+        <div class="phase"><span class="wk">베팅 ②</span><h3>시의성 시스템</h3><p>통신 이슈 레이더 + 48시간 출시 플레이북. SKT를 운이 아닌 반복 역량으로.</p><div class="bet">↓ 모먼트마다 트래픽 수확</div></div>
+        <div class="phase"><span class="wk">베팅 ③</span><h3>독점 OTT·혜택 번들</h3><p>알뜰폰 OTT 사각지대를 모요 경유 개통자에게만 선지출 번들로 락인.</p><div class="bet">↓ LTV·재방문 락인</div></div>
+        <div class="phase"><span class="wk">베팅 ④</span><h3>톱다운 제휴</h3><p>카드·페이·커머스·OTT와 규모의 번들 제휴. 획득비를 제휴사가 분담.</p><div class="bet">↓ 외연 확장·CAC 절감</div></div>
+      </div>
+      <p class="note">각 베팅은 <b>downside 제한·upside 큼</b> 구조로 설계 — 작게 시작해 데이터로 적중률을 확인하고, 이기는 베팅에 예산을 몰아줍니다. 우선순위·예산은 입사 후 내부 지표로 확정.</p>
+      <div class="foot"><span class="brand">모요 · Marketing Lead 제안</span><span class="pageno">11 / 12</span></div>
+    </section>
+
+    <!-- 12 Closing -->
+    <section class="slide closing">
+      <span class="glow a"></span><span class="glow b"></span>
+      <div style="position:relative;z-index:2">
+        <span class="kicker" style="background:rgba(255,255,255,.14);color:#d3dbff"><span class="dot" style="background:#aeb9ff"></span>맺음말</span>
+        <h2>제품으로 1위를 만들었으니,<br><span style="color:#aeb9ff">이제 베팅으로 '대세'를 만들 차례입니다</span></h2>
+        <p class="lead">모요가 단단한 기초 체력과 높은 전환 효율을 만들었기에, <b>결과 중심의 과감한 베팅</b>이 들어갔을 때 폭발적 시너지가 날 타이밍입니다. 검증된 액션만으로는 갈 수 없는 <b>넥스트 레벨</b>로 모요를 끌어올리겠습니다. 자신 있게 베팅하겠습니다.</p>
+        <div class="sign">모요 마케팅 리드 지원 &nbsp;|&nbsp; <b>이도형</b> &nbsp;·&nbsp; 5년차 그로스 마케터</div>
+      </div>
+      <div class="foot"><span class="brand">모요 · Marketing Lead 제안</span><span class="pageno">12 / 12</span></div>
+    </section>
+
+  </div>
+</div>
+
+<div class="nav">
+  <button id="prev" aria-label="이전">◀</button>
+  <span class="ind"><span id="cur">1</span> / 12</span>
+  <button id="next" aria-label="다음">▶</button>
+</div>
+<div class="hint">← → 또는 클릭으로 이동 · 점선 단어에 마우스/탭하면 뜻 · F 전체화면</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  const bar=document.getElementById('bar');
+  const cur=document.getElementById('cur');
+  const terms=[...document.querySelectorAll('.term')];
+  let i=0;
+  function closeTips(){terms.forEach(t=>t.classList.remove('show'))}
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+    bar.style.width=((i+1)/slides.length*100)+'%';
+    cur.textContent=i+1;
+    closeTips();
+  }
+  document.getElementById('next').onclick=e=>{e.stopPropagation();show(i+1)};
+  document.getElementById('prev').onclick=e=>{e.stopPropagation();show(i-1)};
+  terms.forEach(t=>t.addEventListener('click',e=>{
+    e.stopPropagation();
+    const open=t.classList.contains('show');
+    closeTips();
+    if(!open)t.classList.add('show');
+  }));
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' ')show(i+1);
+    else if(e.key==='ArrowLeft'||e.key==='PageUp')show(i-1);
+    else if(e.key==='Home')show(0);
+    else if(e.key==='End')show(slides.length-1);
+    else if(e.key==='f'||e.key==='F'){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen();}
+  });
+  document.querySelector('.stage').addEventListener('click',e=>{
+    if(e.target.closest('.nav')||e.target.closest('.term'))return;
+    const x=e.clientX/window.innerWidth;
+    if(x>0.5)show(i+1);else show(i-1);
+  });
+  show(0);
+</script>
+</body>
+</html>
