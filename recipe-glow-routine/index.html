@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>RE:CIPE · 데일리 光케어 루틴 전략 ｜ 이도형</title>
+<title>RE:CIPE · 광노화 풀디펜스 루틴 전략 ｜ 이도형</title>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
 <style>
@@ -11,7 +11,7 @@
     --gold:#BE8A3D;--gold-d:#9A6E2A;--gold-050:#FAF3E6;--gold-100:#F0E2C6;
     --ink:#2A2018;--ink2:#4A3C30;--muted:#7A6E60;--muted-2:#A89C8C;
     --line:#ECE4D8;--bg:#FFFFFF;--soft:#FAF6EF;--soft2:#F3ECE0;
-    --sage:#5E8A6B;--sage-bg:#E9F1EA;--rose:#C2766A;--rose-bg:#F8EBE7;--amber:#E0A33C;
+    --sage:#5E8A6B;--sage-bg:#E9F1EA;--rose:#C2766A;--rose-bg:#F8EBE7;--amber:#E0A33C;--blue:#5A7BAE;
     --shadow:0 18px 48px -18px rgba(42,32,24,.26);--shadow-sm:0 8px 22px -13px rgba(42,32,24,.18);
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -19,27 +19,27 @@
   body{font-family:'Pretendard',-apple-system,system-ui,sans-serif;background:#1a130b;color:var(--ink);-webkit-font-smoothing:antialiased;overflow:hidden}
   .deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
   .stage{position:relative;width:100vw;height:100vh;max-width:177.78vh;max-height:56.25vw;container-type:size;background:var(--bg);overflow:hidden}
-  .slide{position:absolute;inset:0;padding:5.2% 6.2%;display:none;flex-direction:column;animation:fade .5s ease}
+  .slide{position:absolute;inset:0;padding:5.0% 6.0%;display:none;flex-direction:column;animation:fade .5s ease}
   .slide.active{display:flex}
   @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
-  .kicker{display:inline-flex;align-items:center;gap:7px;font-size:1.02cqw;font-weight:700;color:var(--gold-d);background:var(--gold-050);padding:.5em 1em;border-radius:100px;letter-spacing:-.01em;width:fit-content}
+  .kicker{display:inline-flex;align-items:center;gap:7px;font-size:1.0cqw;font-weight:700;color:var(--gold-d);background:var(--gold-050);padding:.5em 1em;border-radius:100px;letter-spacing:-.01em;width:fit-content}
   .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--gold)}
-  h1{font-size:4.1cqw;font-weight:800;letter-spacing:-.035em;line-height:1.15}
-  h2{font-size:2.55cqw;font-weight:800;letter-spacing:-.03em;line-height:1.2;color:var(--ink)}
+  h1{font-size:4.0cqw;font-weight:800;letter-spacing:-.035em;line-height:1.15}
+  h2{font-size:2.45cqw;font-weight:800;letter-spacing:-.03em;line-height:1.2;color:var(--ink)}
   h2 .hl{color:var(--gold-d)}
-  .sub{font-size:1.26cqw;color:var(--muted);font-weight:500;line-height:1.6;letter-spacing:-.01em}
-  .slide-head{margin-bottom:1.9cqh}
-  .slide-head h2{margin-top:1cqh}
-  p{line-height:1.6}
+  .sub{font-size:1.2cqw;color:var(--muted);font-weight:500;line-height:1.55;letter-spacing:-.01em}
+  .slide-head{margin-bottom:1.5cqh}
+  .slide-head h2{margin-top:.9cqh}
+  p{line-height:1.55}
   b,strong{font-weight:700}
 
-  .foot{position:absolute;left:6.2%;right:6.2%;bottom:3cqh;display:flex;justify-content:space-between;align-items:center;font-size:.9cqw;color:var(--muted-2);font-weight:600;letter-spacing:-.01em}
+  .foot{position:absolute;left:6.0%;right:6.0%;bottom:2.6cqh;display:flex;justify-content:space-between;align-items:center;font-size:.86cqw;color:var(--muted-2);font-weight:600;letter-spacing:-.01em}
   .foot .brand{color:var(--gold-d);font-weight:800}
   .pageno{font-variant-numeric:tabular-nums}
 
   .term{position:relative;border-bottom:1.6px dotted var(--gold);cursor:help;white-space:nowrap;color:inherit}
-  .term .tip{position:absolute;bottom:142%;left:50%;transform:translateX(-50%) translateY(5px);background:var(--ink);color:#fff;padding:.8em 1em;border-radius:11px;font-size:.82cqw;font-weight:500;line-height:1.5;width:max-content;max-width:24cqw;white-space:normal;opacity:0;visibility:hidden;transition:.16s;z-index:40;box-shadow:0 14px 34px -10px rgba(0,0,0,.45);text-align:left;letter-spacing:-.01em}
+  .term .tip{position:absolute;bottom:142%;left:50%;transform:translateX(-50%) translateY(5px);background:var(--ink);color:#fff;padding:.8em 1em;border-radius:11px;font-size:.8cqw;font-weight:500;line-height:1.5;width:max-content;max-width:24cqw;white-space:normal;opacity:0;visibility:hidden;transition:.16s;z-index:40;box-shadow:0 14px 34px -10px rgba(0,0,0,.45);text-align:left;letter-spacing:-.01em}
   .term .tip b{color:#f0cd84}
   .term .tip:after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:7px solid transparent;border-top-color:var(--ink)}
   .term.down .tip{bottom:auto;top:142%;transform:translateX(-50%) translateY(-5px)}
@@ -47,96 +47,98 @@
   .term:hover .tip,.term.show .tip{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
   .cover .term,.closing .term{border-bottom-color:#f0cd84}
 
-  .grid{display:grid;gap:1.2cqw}
+  .grid{display:grid;gap:1.1cqw}
   .g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
-  .card{background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:1.4cqw;box-shadow:var(--shadow-sm)}
+  .card{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:1.25cqw;box-shadow:var(--shadow-sm)}
   .card.soft{background:var(--soft);box-shadow:none}
-  .card .ci{font-size:1.6cqw;margin-bottom:.4cqw}
-  .card h3{font-size:1.28cqw;font-weight:800;letter-spacing:-.02em;margin-bottom:.4cqw;line-height:1.26;color:var(--ink)}
-  .card p{font-size:.98cqw;color:var(--muted);font-weight:500;letter-spacing:-.01em;line-height:1.48}
+  .card .ci{font-size:1.5cqw;margin-bottom:.35cqw}
+  .card h3{font-size:1.2cqw;font-weight:800;letter-spacing:-.02em;margin-bottom:.35cqw;line-height:1.26;color:var(--ink)}
+  .card p{font-size:.92cqw;color:var(--muted);font-weight:500;letter-spacing:-.01em;line-height:1.45}
   .card p b{color:var(--ink)}
 
   .cover{background:linear-gradient(135deg,#241808 0%,#6B4A1C 52%,#C8943F 128%);color:#fff;justify-content:center}
   .cover .kicker{background:rgba(255,255,255,.15);color:#f5e7c8}.cover .kicker .dot{background:#f0cd84}
-  .cover h1{color:#fff;margin:2.2cqh 0}
+  .cover h1{color:#fff;margin:2.0cqh 0}
   .cover h1 .hl{color:#f3d189}
-  .cover .lead{font-size:1.4cqw;color:#e9dcc2;font-weight:500;line-height:1.65;max-width:76%}
+  .cover .lead{font-size:1.34cqw;color:#e9dcc2;font-weight:500;line-height:1.6;max-width:78%}
   .cover .lead b{color:#fff}
-  .cover .meta{margin-top:4.2cqh;display:flex;gap:2.2cqw;font-size:1cqw;color:#cbbb9a;font-weight:600}
-  .cover .meta b{color:#fff;font-weight:700;display:block;font-size:1.14cqw;margin-top:.3cqw}
+  .cover .meta{margin-top:3.6cqh;display:flex;gap:2.0cqw;font-size:.96cqw;color:#cbbb9a;font-weight:600}
+  .cover .meta b{color:#fff;font-weight:700;display:block;font-size:1.08cqw;margin-top:.3cqw}
 
-  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1cqw}
-  .stat{background:var(--soft);border-radius:16px;padding:1.3cqw;border:1px solid var(--line)}
-  .stat .n{font-size:1.85cqw;font-weight:800;letter-spacing:-.03em;color:var(--gold-d);line-height:1.08;font-variant-numeric:tabular-nums}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.0cqw}
+  .stat{background:var(--soft);border-radius:14px;padding:1.2cqw;border:1px solid var(--line)}
+  .stat .n{font-size:1.75cqw;font-weight:800;letter-spacing:-.03em;color:var(--gold-d);line-height:1.08;font-variant-numeric:tabular-nums}
   .stat .n.dark{color:var(--ink)}
-  .stat .l{font-size:.88cqw;color:var(--muted);font-weight:600;margin-top:.55cqw;line-height:1.4}
+  .stat .l{font-size:.84cqw;color:var(--muted);font-weight:600;margin-top:.5cqw;line-height:1.38}
 
-  .rows{display:flex;flex-direction:column;gap:.8cqw}
-  .row{display:flex;gap:1.0cqw;align-items:flex-start;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:.95cqw 1.25cqw;box-shadow:var(--shadow-sm)}
-  .row .ix{flex:none;min-width:2.1cqw;height:2.1cqw;padding:0 .4cqw;border-radius:9px;display:grid;place-items:center;font-weight:800;font-size:.92cqw;color:#fff;background:var(--gold)}
+  .rows{display:flex;flex-direction:column;gap:.7cqw}
+  .row{display:flex;gap:.95cqw;align-items:flex-start;background:var(--bg);border:1px solid var(--line);border-radius:13px;padding:.85cqw 1.15cqw;box-shadow:var(--shadow-sm)}
+  .row .ix{flex:none;min-width:2.0cqw;height:2.0cqw;padding:0 .4cqw;border-radius:8px;display:grid;place-items:center;font-weight:800;font-size:.86cqw;color:#fff;background:var(--gold)}
   .row.warn .ix{background:var(--rose)}.row.mint .ix{background:var(--sage)}
-  .row .tx h4{font-size:1.12cqw;font-weight:800;letter-spacing:-.02em;margin-bottom:.18cqw;color:var(--ink)}
-  .row .tx p{font-size:.93cqw;color:var(--muted);font-weight:500;line-height:1.46}
+  .row .tx h4{font-size:1.05cqw;font-weight:800;letter-spacing:-.02em;margin-bottom:.15cqw;color:var(--ink)}
+  .row .tx p{font-size:.88cqw;color:var(--muted);font-weight:500;line-height:1.42}
   .row .tx p b{color:var(--ink)}
   .row.hot{background:var(--gold-050);border-color:var(--gold-100);box-shadow:none}
 
-  .callout{background:var(--ink);color:#fff;border-radius:20px;padding:1.5cqw 2cqw;display:flex;gap:1.4cqw;align-items:center}
-  .callout .big{font-size:2.8cqw;font-weight:800;color:#f0cd84;line-height:1;flex:none}
-  .callout p{font-size:1.22cqw;font-weight:600;line-height:1.5;letter-spacing:-.01em}
+  .callout{background:var(--ink);color:#fff;border-radius:18px;padding:1.3cqw 1.7cqw;display:flex;gap:1.3cqw;align-items:center}
+  .callout .big{font-size:2.6cqw;font-weight:800;color:#f0cd84;line-height:1;flex:none}
+  .callout p{font-size:1.14cqw;font-weight:600;line-height:1.48;letter-spacing:-.01em}
   .callout p b{color:#f3d189}
 
-  .twocol{display:grid;grid-template-columns:1.05fr .95fr;gap:1.7cqw;flex:1;min-height:0;align-items:center}
+  .twocol{display:grid;grid-template-columns:1.05fr .95fr;gap:1.5cqw;flex:1;min-height:0;align-items:center}
 
-  .lever-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1cqw}
-  .lever{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:1.15cqw 1.3cqw}
-  .lever .ln{font-size:.84cqw;font-weight:800;color:var(--gold-d);background:var(--gold-050);width:fit-content;padding:.22em .6em;border-radius:7px}
-  .lever .lt{font-size:1.12cqw;font-weight:800;letter-spacing:-.02em;margin:.5cqw 0 .35cqw;line-height:1.25;color:var(--ink)}
-  .lever .ld{font-size:.9cqw;color:var(--muted);font-weight:500;line-height:1.45}
-  .lever .ld b{color:var(--ink)}
-
-  .flow{display:flex;align-items:stretch;gap:.55cqw}
-  .flow .node{flex:1;background:var(--soft);border:1px solid var(--line);border-radius:13px;padding:.95cqw .85cqw;display:flex;flex-direction:column}
+  .flow{display:flex;align-items:stretch;gap:.5cqw}
+  .flow .node{flex:1;background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:.9cqw .8cqw;display:flex;flex-direction:column}
   .flow .node.hot{background:linear-gradient(160deg,#FBEED2,#F3D88E);border-color:var(--gold);box-shadow:0 10px 26px -14px rgba(190,138,61,.7)}
-  .flow .node .stg{font-size:.78cqw;font-weight:800;color:var(--gold-d);letter-spacing:.02em}
+  .flow .node .stg{font-size:.74cqw;font-weight:800;color:var(--gold-d);letter-spacing:.02em}
   .flow .node.hot .stg{color:#7a5414}
-  .flow .node .nt{font-size:1.0cqw;font-weight:800;letter-spacing:-.02em;margin:.32cqw 0 .26cqw;color:var(--ink);line-height:1.2}
-  .flow .node .nd{font-size:.78cqw;color:var(--muted);font-weight:500;line-height:1.36}
+  .flow .node .nt{font-size:.96cqw;font-weight:800;letter-spacing:-.02em;margin:.3cqw 0 .24cqw;color:var(--ink);line-height:1.2}
+  .flow .node .nd{font-size:.74cqw;color:var(--muted);font-weight:500;line-height:1.34}
   .flow .node.hot .nd{color:#6b5326}
-  .flow .arr{flex:none;display:grid;place-items:center;color:var(--gold);font-size:1.15cqw;font-weight:800}
+  .flow .arr{flex:none;display:grid;place-items:center;color:var(--gold);font-size:1.1cqw;font-weight:800}
 
-  .pchip{display:inline-block;font-size:.82cqw;font-weight:700;color:var(--gold-d);background:var(--gold-050);border:1px solid var(--gold-100);border-radius:7px;padding:.24em .6em;margin:.28cqw .28cqw 0 0}
-
-  .ctable{width:100%;border-collapse:separate;border-spacing:0;font-size:.92cqw}
-  .ctable th,.ctable td{text-align:left;padding:.72cqw .85cqw;border-bottom:1px solid var(--line);vertical-align:middle}
-  .ctable thead th{font-size:.82cqw;font-weight:800;color:var(--muted);background:var(--soft);letter-spacing:-.01em}
-  .ctable thead th:first-child{border-top-left-radius:12px}.ctable thead th:last-child{border-top-right-radius:12px}
+  .ctable{width:100%;border-collapse:separate;border-spacing:0;font-size:.86cqw}
+  .ctable th,.ctable td{text-align:left;padding:.62cqw .8cqw;border-bottom:1px solid var(--line);vertical-align:middle}
+  .ctable thead th{font-size:.78cqw;font-weight:800;color:var(--muted);background:var(--soft);letter-spacing:-.01em}
+  .ctable thead th:first-child{border-top-left-radius:11px}.ctable thead th:last-child{border-top-right-radius:11px}
   .ctable td{font-weight:600;color:var(--ink2);letter-spacing:-.01em}
   .ctable td b{color:var(--ink)}
   .ctable tr.hot td{background:var(--gold-050)}
   .ctable .bn{font-weight:800;color:var(--ink)}
   .ctable .gap{color:var(--rose);font-weight:700}
+  .ctable .ok{color:var(--sage);font-weight:800}
+  .ctable .no{color:var(--muted-2);font-weight:700}
 
-  .metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1cqw}
-  .metric{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:1.15cqw}
-  .metric .mh{font-size:1.0cqw;font-weight:800;letter-spacing:-.02em;margin-bottom:.35cqw;color:var(--ink)}
-  .metric .md{font-size:.84cqw;color:var(--muted);font-weight:500;line-height:1.42}
-  .metric .mk2{font-size:.8cqw;font-weight:800;color:var(--gold-d);margin-top:.45cqw}
+  .metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.0cqw}
+  .metric{background:var(--soft);border:1px solid var(--line);border-radius:13px;padding:1.05cqw}
+  .metric .mh{font-size:.96cqw;font-weight:800;letter-spacing:-.02em;margin-bottom:.3cqw;color:var(--ink)}
+  .metric .md{font-size:.8cqw;color:var(--muted);font-weight:500;line-height:1.4}
+  .metric .mk2{font-size:.78cqw;font-weight:800;color:var(--gold-d);margin-top:.4cqw}
 
-  .fbar{display:flex;flex-direction:column;gap:.65cqw}
-  .fstep{display:flex;align-items:center;gap:1cqw}
-  .fstep .fl{font-size:.94cqw;font-weight:700;color:var(--ink);width:15cqw}
-  .fstep .ftrack{flex:1;height:1.8cqw;background:var(--soft2);border-radius:8px;overflow:hidden}
+  .fbar{display:flex;flex-direction:column;gap:.6cqw}
+  .fstep{display:flex;align-items:center;gap:.9cqw}
+  .fstep .fl{font-size:.9cqw;font-weight:700;color:var(--ink);width:15cqw}
+  .fstep .ftrack{flex:1;height:1.7cqw;background:var(--soft2);border-radius:8px;overflow:hidden}
   .fstep .ffill{height:100%;background:linear-gradient(90deg,var(--gold-d),var(--amber));border-radius:8px}
-  .fstep .fv{font-size:.94cqw;font-weight:800;color:var(--gold-d);width:8cqw;text-align:right;font-variant-numeric:tabular-nums}
+  .fstep .fv{font-size:.9cqw;font-weight:800;color:var(--gold-d);width:9cqw;text-align:right;font-variant-numeric:tabular-nums}
 
-  .note{font-size:.8cqw;color:var(--muted-2);font-weight:500;margin-top:.9cqh;line-height:1.5}
+  .chips{display:flex;flex-wrap:wrap;gap:.4cqw;margin-top:.5cqw}
+  .chip{font-size:.78cqw;font-weight:700;color:var(--gold-d);background:var(--gold-050);border:1px solid var(--gold-100);border-radius:7px;padding:.24em .6em}
+  .chip.b{color:var(--blue);background:#EDF1F7;border-color:#D9E2EF}
+
+  .contentbox{background:var(--ink);color:#fff;border-radius:12px;padding:.85cqw 1.1cqw;margin-top:.7cqw}
+  .contentbox .cl{font-size:.74cqw;font-weight:800;color:#f0cd84;letter-spacing:.03em;text-transform:uppercase}
+  .contentbox p{font-size:.9cqw;font-weight:600;line-height:1.45;margin-top:.2cqw;color:#f3ecdf}
+  .contentbox p b{color:#fff}
+
+  .note{font-size:.76cqw;color:var(--muted-2);font-weight:500;margin-top:.8cqh;line-height:1.48}
   .note b{color:var(--muted)}
 
   .closing{background:linear-gradient(135deg,#241808 0%,#6B4A1C 58%,#C8943F 128%);color:#fff;justify-content:center}
-  .closing h2{color:#fff;font-size:2.7cqw}.closing h2 .hl{color:#f3d189}
-  .closing .lead{font-size:1.36cqw;color:#e9dcc2;font-weight:500;line-height:1.66;margin-top:2.1cqh;max-width:82%}
+  .closing h2{color:#fff;font-size:2.6cqw}.closing h2 .hl{color:#f3d189}
+  .closing .lead{font-size:1.3cqw;color:#e9dcc2;font-weight:500;line-height:1.62;margin-top:1.9cqh;max-width:84%}
   .closing .lead b{color:#fff}
-  .closing .sign{margin-top:3.4cqh;font-size:1.05cqw;color:#cbbb9a;font-weight:600}.closing .sign b{color:#fff}
+  .closing .sign{margin-top:3.0cqh;font-size:1.0cqw;color:#cbbb9a;font-weight:600}.closing .sign b{color:#fff}
 
   .nav{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;background:rgba(36,24,8,.82);backdrop-filter:blur(10px);padding:9px 16px;border-radius:100px;z-index:50}
   .nav button{background:none;border:none;color:#fff;font-size:15px;cursor:pointer;opacity:.85;padding:2px 4px}
@@ -163,314 +165,381 @@
   <!-- 1 COVER -->
   <section class="slide active cover">
     <span class="kicker"><span class="dot"></span>RE:CIPE 마케팅 지원 · 이도형 · 2026.06</span>
-    <h1>선케어를 버린 자리에,<br><span class="hl">다시 빛을 켜겠습니다</span></h1>
-    <p class="lead">11년·8천만 개의 선케어 자산을 자사몰에서 0개로 방치한 <b>'레시피의 역설'</b>을 풉니다. 흩어진 3제품을 <b>크리스탈 선크림을 심장으로 한 데일리 光케어 루틴</b>으로 묶어, 단품 고객을 루틴 고객으로 전환시키는 전략입니다.</p>
+    <h1>막는 브랜드는 많습니다.<br><span class="hl">'막고, 되돌리는' 브랜드는 레시피뿐입니다</span></h1>
+    <p class="lead">11년·8천만 개 선케어 자산과 광노화 케어(스타레놀)를 가진 레시피가, 정작 자사몰 전면에선 이를 <b>흩어진 단품</b>으로 두고 있습니다. 이를 <b>'차단+회복'을 한 번에 푸는 광(光)노화 풀디펜스 루틴</b>으로 묶어, 단품 고객을 루틴 고객으로 전환시키는 전략입니다.</p>
     <div class="meta">
-      <div>대상<b>RE:CIPE 자사몰 · 선케어 자산 재활성화</b></div>
-      <div>구성<b>진단 → 기회 → 포지셔닝 → 크로스셀 → 미디어믹스</b></div>
+      <div>대상<b>RE:CIPE 자사몰 · 선케어/광노화 자산 재활성화</b></div>
+      <div>구성<b>진단 → 광노화 빈틈 → 성분 USP → 미디어믹스 → 증분</b></div>
       <div>슬로건<b>빛을 넘어, 본연으로</b></div>
     </div>
-    <div class="foot"><span class="brand">RE:CIPE · 光 Care Routine</span><span class="pageno">01 / 18</span></div>
+    <div class="foot"><span class="brand">RE:CIPE · 光 Defense Routine</span><span class="pageno">01 / 21</span></div>
   </section>
 
-  <!-- 2 문제정의: 역설 -->
+  <!-- 2 역설 (정정) -->
   <section class="slide" style="justify-content:center">
     <div class="slide-head"><span class="kicker"><span class="dot"></span>문제 정의 · 레시피의 역설</span>
-      <h2>가장 강한 자산을, <span class="hl">가장 중요한 채널에서 지웠습니다</span></h2></div>
+      <h2>자산은 있는데, <span class="hl">자사몰 전면에선 흩어져 있습니다</span></h2></div>
     <div class="twocol">
       <div class="rows">
-        <div class="row mint"><div class="ix">자산</div><div class="tx"><h4>11년 선케어 1위 · 누적 8천만 개</h4><p>크리스탈 선스프레이만 누적 <b>7천만 개+</b>, 2023년 한 해 <b>650만 개</b> 판매. K-선케어를 대표하던 신뢰 자산.</p></div></div>
-        <div class="row warn"><div class="ix">단절</div><div class="tx"><h4>그런데 자사몰엔 선케어가 '0개'</h4><p>자사몰에서 <b>'선'·'크리스탈' 검색 시 선크림 0건.</b> 선케어는 올리브영·롯데몰·다이소 등 외부 채널에만 있고, 자사몰은 베이스·세럼·크림만 판매.</p></div></div>
-        <div class="row warn"><div class="ix">결과</div><div class="tx"><h4>선케어 고객 → 신제품 고객 동선이 끊김</h4><p>선케어로 들어온 8천만 명의 신뢰가 <b>자사몰 신제품 매출로 이어지지 않음.</b> 자산이 D2C로 자본화되지 못하고 휘발.</p></div></div>
+        <div class="row mint"><div class="ix">자산</div><div class="tx"><h4>선케어 + 광노화 케어, 둘 다 보유</h4><p>11년 선케어 1위·누적 <b>8천만 개</b>(크리스탈 선스틱·선크림·선스프레이, 선몬랩) + 광노화 케어 <b>스타레놀</b>(코스맥스 차세대 소재)까지 갖춘 드문 브랜드.</p></div></div>
+        <div class="row warn"><div class="ix">단절</div><div class="tx"><h4>그런데 자사몰 메인·BEST는 신제품 단품뿐</h4><p>자사몰 전면 동선(메인·BEST·SHOP)은 그릭요거트 베이스·세럼·크림·PDRN 라인 중심. <b>선케어 본품과 신제품이 '하나의 루틴'으로 연결돼 있지 않음.</b></p></div></div>
+        <div class="row warn"><div class="ix">결과</div><div class="tx"><h4>8천만 명의 신뢰가 객단가로 안 이어짐</h4><p>선케어로 쌓은 신뢰가 <b>신제품 매출·재구매로 전환되지 못하고</b> 단품으로 흩어진다 — D2C 자산화 실패.</p></div></div>
       </div>
-      <div class="callout" style="flex-direction:column;align-items:flex-start;gap:.9cqw">
+      <div class="callout" style="flex-direction:column;align-items:flex-start;gap:.8cqw">
         <div class="big">"</div>
-        <p>레시피는 선케어를 <b>버린 게 아니라</b>, 자사몰에서 <b>'숨겨'</b> 두었습니다.<br>그 빛을 다시 켜는 것이 이 전략의 출발점입니다.</p>
+        <p>문제는 제품이 <b>없는 것</b>이 아니라, 있는 자산이 <b>'따로 노는'</b> 것입니다.<br>흩어진 자산을 하나의 루틴으로 꿰는 것이 출발점입니다.</p>
       </div>
     </div>
-    <p class="note"><b>출처</b> · 자사몰 직접 조사(recipecosmetics.com BEST·검색 2026.06), 선케어 누적 판매 뉴스와이어 2025. '11년 1위·8천만 개'는 자사 발표 수치(채널·기준은 4p에서 별도 검증).</p>
-    <div class="foot"><span class="brand">RE:CIPE · 光 Care Routine</span><span class="pageno">02 / 18</span></div>
+    <p class="note"><b>출처</b> · 자사몰 직접 조사(recipecosmetics.com SHOP 20종·플래그십 12종·BEST 2026.06), 선케어 누적·스타레놀 코스맥스 소재(뉴스와이어·더kbs 2024~25). '11년 1위·8천만 개'는 자사 발표(채널·기준 한정 필요).</p>
+    <div class="foot"><span class="brand">RE:CIPE · 光 Defense Routine</span><span class="pageno">02 / 21</span></div>
   </section>
 
-  <!-- 3 약점 3종 진단 -->
+  <!-- 3 약점 3종 -->
   <section class="slide" style="justify-content:center">
     <div class="slide-head"><span class="kicker"><span class="dot"></span>진단 · 자사몰의 3가지 약점</span>
-      <h2>지금 자사몰은 <span class="hl">'선케어 브랜드'로도, '루틴 브랜드'로도</span> 안 보인다</h2></div>
+      <h2>지금은 <span class="hl">'선케어 강자'로도, '루틴 브랜드'로도</span> 안 보인다</h2></div>
     <div class="g3 grid">
-      <div class="card" style="border-top:4px solid var(--rose)"><div class="ci">🌗</div><h3>① 정체성 희석</h3><p><b>선케어 1위 DNA가 자사몰에서 증발.</b> "그릭요거트 베이스 파는 곳"으로만 인식 — 11년 신뢰를 신제품 설득에 못 쓰고 있음.</p></div>
-      <div class="card" style="border-top:4px solid var(--rose)"><div class="ci">🧩</div><h3>② 루틴·연결 부재</h3><p>세럼·크림·베이스가 <b>각자 단품으로</b> 놓여 있을 뿐. "무엇 다음에 무엇"이라는 <span class="term">루틴<span class="tip">제품을 사용 순서·단계로 묶어 함께 쓰게 만드는 구조. <b>객단가·재구매</b>를 동시에 끌어올린다</span></span> 동선이 없어 <span class="term">크로스셀<span class="tip"><b>Cross-sell</b>: 한 제품 구매자에게 연관 제품을 추가로 파는 것</span></span>이 안 일어남.</p></div>
-      <div class="card" style="border-top:4px solid var(--rose)"><div class="ci">❓</div><h3>③ '왜 자사 제품만' 부재</h3><p>각 제품이 좋은 이유는 있어도, <b>"이 셋을 함께 써야 하는 이유"</b>가 없음. 타사 세럼+레시피 베이스를 섞어도 무방 → 라인 락인 실패.</p></div>
+      <div class="card" style="border-top:4px solid var(--rose)"><div class="ci">🌗</div><h3>① 정체성 분산</h3><p>선케어 1위·광노화 케어 자산이 자사몰 전면에서 <b>'그릭요거트 베이스 파는 곳'</b>으로만 인식. 11년 신뢰를 신제품 설득에 못 씀.</p></div>
+      <div class="card" style="border-top:4px solid var(--rose)"><div class="ci">🧩</div><h3>② 루틴·연결 부재</h3><p>제품이 <b>각자 단품</b>으로 진열. "무엇 다음 무엇"이라는 <span class="term">루틴<span class="tip">제품을 사용 순서·단계로 묶어 함께 쓰게 만드는 구조. <b>객단가·재구매</b>를 동시에 끌어올린다</span></span> 동선이 없어 <span class="term">크로스셀<span class="tip"><b>Cross-sell</b>: 한 제품 구매자에게 연관 제품을 추가로 파는 것</span></span>이 안 일어남.</p></div>
+      <div class="card" style="border-top:4px solid var(--rose)"><div class="ci">❓</div><h3>③ '왜 자사 제품만' 부재</h3><p>제품이 좋은 이유는 있어도 <b>"이 셋을 함께 써야 하는 이유"</b>가 없음. 타사 제품과 섞어 써도 무방 → 라인 락인 실패.</p></div>
     </div>
-    <div class="callout" style="margin-top:1.5cqh"><div class="big">→</div><p>세 약점의 뿌리는 하나 — <b>"빛(선케어)"이라는 브랜드의 중심축이 자사몰에서 빠져 있다.</b> 축을 되돌리면 셋이 동시에 풀립니다.</p></div>
-    <p class="note"><b>출처</b> · 자사몰 BEST 12개 SKU 리뷰수·구성 직접 분석(2026.06). 그릭요거트 베이스 리뷰 397 / 스타레놀 크림 157 / 워터필 세럼 133.</p>
-    <div class="foot"><span class="brand">RE:CIPE · 光 Care Routine</span><span class="pageno">03 / 18</span></div>
+    <div class="callout" style="margin-top:1.3cqh"><div class="big">→</div><p>세 약점의 뿌리는 하나 — <b>'빛(光)'이라는 브랜드 중심축이 자사몰 루틴으로 구현돼 있지 않다.</b> 축을 세우면 셋이 동시에 풀린다.</p></div>
+    <p class="note"><b>출처</b> · 자사몰 BEST·SHOP SKU 리뷰수·구성 직접 분석(2026.06). 그릭요거트 베이스 리뷰 397 / 스타레놀 크림 157 / 워터필 세럼 133.</p>
+    <div class="foot"><span class="brand">RE:CIPE · 光 Defense Routine</span><span class="pageno">03 / 21</span></div>
   </section>
 
   <!-- 4 왜 지금 (시장) -->
   <section class="slide" style="justify-content:center">
     <div class="slide-head"><span class="kicker"><span class="dot"></span>기회 · 왜 지금인가</span>
-      <h2>시장은 이미 <span class="hl">'선케어를 루틴으로'</span> 사고 있다</h2></div>
-    <div class="stats" style="margin-bottom:1.4cqh">
-      <div class="stat"><div class="n">+26~37%</div><div class="l">올리브영 여름 선케어 <b>다품목 중복구매</b> 고객 증가 (2024 +37% → 2025 +26%, 연속)</div></div>
+      <h2>시장은 이미 <span class="hl">'차단을 넘어 광노화 케어'</span>로 이동했다</h2></div>
+    <div class="stats" style="margin-bottom:1.2cqh">
       <div class="stat"><div class="n">7.5배</div><div class="l">선+안티에이징·미백 <b>복합기능성</b> 선케어 생산(3.2조)이 단일기능(4,299억)의 7.5배</div></div>
-      <div class="stat"><div class="n">114억$</div><div class="l">2025 K-뷰티 화장품 수출 <b>역대 최대·세계 2위</b> — 선케어가 핵심 견인</div></div>
-      <div class="stat"><div class="n dark">+695%</div><div class="l">올리브영 <b>PDRN</b> 검색 급증 — 더마·기능성 성분 중심 소비 가속</div></div>
+      <div class="stat"><div class="n">+26~37%</div><div class="l">올리브영 여름 선케어 <b>다품목 중복구매</b> 고객 증가(2024 +37%→2025 +26%)</div></div>
+      <div class="stat"><div class="n">+695%</div><div class="l">올리브영 <b>PDRN</b> 검색 급증 · 펩타이드 +72% — 광노화 '회복' 성분 수요 폭증</div></div>
+      <div class="stat"><div class="n dark">2/3</div><div class="l">EWG 2026: 시판 SPF30+ 선크림의 약 <b>2/3가 UVA 방어 불충분</b> — 시장 공백</div></div>
     </div>
     <div class="g2 grid">
-      <div class="card soft"><div class="ci">🪟</div><h3>'Over the Makeup' — 경계의 소멸</h3><p>올리브영 2026 트렌드 키워드. <b>메이크업·스킨케어 경계가 무너지며</b> 선케어+베이스 겸용 수요가 공식 트렌드로 격상. 'Layered K-Routine'(레이어링)도 동반 부상.</p></div>
-      <div class="card soft"><div class="ci">⏳</div><h3>'차단지수는 기본값' — 경쟁축 이동</h3><p>SPF50+가 대중화된 지금, 선택 기준은 <b>"얼마나 편하게, 루틴 안에서 쓰느냐"</b>로 이동. 20대 안티에이징 성장률이 40대 초과 — '광노화 방어=매일 바르기'가 핵심.</p></div>
+      <div class="card soft"><div class="ci">🪟</div><h3>'Over the Makeup' — 경계의 소멸</h3><p>올리브영 2026 트렌드. 메이크업·스킨케어 경계가 무너지며 <b>선케어+베이스+안티에이징을 하나로</b> 쓰는 수요가 공식 트렌드로 격상.</p></div>
+      <div class="card soft"><div class="ci">⏳</div><h3>'얼리 안티에이징' — 광노화 선제 투자</h3><p>20대 안티에이징 성장률이 40대 초과. <b>'광노화 방어=매일'</b> 인식 확산 — 차단만이 아니라 '되돌리는' 제품을 찾는다.</p></div>
     </div>
-    <p class="note"><b>출처</b> · CJ올리브영 트렌드 리포트(2025)·올영세일 분석, 식약처 2024 화장품 생산 통계, KDI 2026, 화해 인사이트 2026. 일부는 자사발표(올리브영) — 다중구매는 복수 제형 동시구매 기준.</p>
-    <div class="foot"><span class="brand">RE:CIPE · 光 Care Routine</span><span class="pageno">04 / 18</span></div>
+    <p class="note"><b>출처</b> · 식약처 2024 생산통계, CJ올리브영 트렌드·올영세일 분석(2025), EWG 2026 Annual Sunscreen Guide. 일부 자사발표(올리브영) — 다중구매는 복수 제형 동시구매 기준.</p>
+    <div class="foot"><span class="brand">RE:CIPE · 光 Defense Routine</span><span class="pageno">04 / 21</span></div>
   </section>
 
-  <!-- 5 경쟁 지형 -->
+  <!-- 5 선크림 미해결 페인 -->
   <section class="slide" style="justify-content:center">
-    <div class="slide-head"><span class="kicker"><span class="dot"></span>경쟁 지형 · 경쟁사는 어떻게 루틴을 파는가</span>
-      <h2>모두 '세트'는 만들지만, <span class="hl">선케어를 그냥 '끝에 붙였을 뿐'</span></h2></div>
-    <table class="ctable">
-      <thead><tr><th>브랜드</th><th>루틴/번들 플레이</th><th>선케어 연결 방식</th><th>구조적 약점</th></tr></thead>
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>기회 · 기존 선크림이 못 푼 것</span>
+      <h2>소비자는 <span class="hl">'바르는 것' 자체에 5가지 불만</span>을 갖고 있다</h2></div>
+    <div class="g3 grid" style="margin-bottom:1.0cqh">
+      <div class="row warn" style="box-shadow:none"><div class="ix">30%</div><div class="tx"><h4>백탁</h4><p>선크림 리뷰의 <b>약 30%</b>가 '백탁' 언급 (화해 빅데이터)</p></div></div>
+      <div class="row warn" style="box-shadow:none"><div class="ix">6%</div><div class="tx"><h4>재도포 안 함</h4><p>권장 2~3h 주기 준수 <b>6%</b>뿐. "메이크업 때문에 적게 바름" 40%(1위)</p></div></div>
+      <div class="row warn" style="box-shadow:none"><div class="ix">👁</div><div class="tx"><h4>눈시림·답답함</h4><p>유기자차 자극·무거운 제형 — 흡수감 불만</p></div></div>
+      <div class="row warn" style="box-shadow:none"><div class="ix">💄</div><div class="tx"><h4>메이크업 무너짐</h4><p>피막제(필름포머) 부재로 시간 지나면 밀림·뭉침</p></div></div>
+      <div class="row warn" style="box-shadow:none"><div class="ix">⏳</div><div class="tx"><h4>광노화 '회복' 부재</h4><p>대부분 '막기'에만 집중 — 이미 생긴 손상은 방치</p></div></div>
+      <div class="row hot" style="box-shadow:none"><div class="ix">★</div><div class="tx"><h4>레시피의 기회</h4><p>이 5개를 <b>4단계 루틴</b>으로 분담 해결 (14p)</p></div></div>
+    </div>
+    <div class="callout"><div class="big">!</div><p>핵심 통찰: 불만의 본질은 <b>"선크림 한 통으로는 차단·유지·회복을 다 못 한다"</b> — 그렇다면 <b>루틴</b>이 답이다.</p></div>
+    <p class="note"><b>출처</b> · 화해 빅데이터(백탁 비중), CMN 대전대 설문 300명 2024(재도포 6%·사용량 40%), fneyefocus(눈시림 성분), 코스인코리아·CJK 2025(필름포머). 일부 정성·단일출처 — 방향성 근거.</p>
+    <div class="foot"><span class="brand">RE:CIPE · 光 Defense Routine</span><span class="pageno">05 / 21</span></div>
+  </section>
+
+  <!-- 6 광노화 경쟁 구도 -->
+  <section class="slide" style="justify-content:center">
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>경쟁 지형 · 광노화 케어 시장</span>
+      <h2>모두 <span class="hl">'차단'이나 '회복' 중 하나</span>에만 강하다</h2></div>
+    <table class="ctable" style="margin-bottom:.6cqh">
+      <thead><tr><th>제품</th><th>가격</th><th>SPF/PA</th><th>차단</th><th>광노화 회복</th><th>한계</th></tr></thead>
       <tbody>
-        <tr><td class="bn">토리든</td><td>다이브인 4종 세트(세럼+토너+크림+선크림) <b>39% 할인</b> 업셀</td><td>같은 수분 라인 '마지막 단계'로 선크림 추가</td><td class="gap">성분 시너지 서사 없음 (그냥 같은 브랜드)</td></tr>
-        <tr><td class="bn">라운드랩</td><td>자작나무 선크림 <b>올영 선케어 4년 연속 1위</b> + 크림 기획</td><td>선크림에 수분크림 끼워팔기</td><td class="gap">독도·자작나무 라인 분리 → 통합 루틴 부재</td></tr>
-        <tr><td class="bn">셀퓨전씨</td><td>선케어를 기능별로 세분화한 자체 레짐</td><td>선케어 '전문'(올영 6년 수상)</td><td class="gap">스킨케어·베이스 빈약 → 선케어에 갇힘</td></tr>
-        <tr><td class="bn">넘버즈인</td><td>1·3·5·9 <b>번호 체계</b>로 고민별 조합, 1~2만원대</td><td>선크림을 '3번(결)' 라인에만 연결</td><td class="gap">선크림이 특정 번호에만 묶여 확장성 낮음</td></tr>
-        <tr><td class="bn">에스트라</td><td>아토베리어365 크림 중심 장벽 루틴(올영 크림 1위)</td><td>—</td><td class="gap">선케어 자체가 없어 루틴이 크림에서 끊김</td></tr>
+        <tr><td class="bn">싸이닉 UV 엑스퍼트 선에센스</td><td>24,000</td><td>50+/++++</td><td class="ok">강</td><td class="no">흔적개선 클레임</td><td class="gap">고강도 재생성분 없음</td></tr>
+        <tr><td class="bn">헤라 UV 프로텍터 톤업</td><td>~42,000</td><td>50+/++++</td><td class="ok">강(5중)</td><td class="no">없음</td><td class="gap">예방만·고가·톤업 중심</td></tr>
+        <tr><td class="bn">셀퓨전씨 레이저 UV 썬세럼</td><td>—</td><td>50+/++++</td><td class="ok">강</td><td class="no">모공·아데노신</td><td class="gap">색소·주름축 커버 미흡</td></tr>
+        <tr><td class="bn">오휘 데이쉴드 콜라겐 선</td><td>48,000</td><td>50+/++++</td><td class="ok">강</td><td class="no">미백 중심</td><td class="gap">탄력·주름 회복 약함·고가</td></tr>
+        <tr><td class="bn">COSRX·CKD 레티놀</td><td>~2만</td><td class="no">없음(야간)</td><td class="no">없음</td><td class="ok">강(레티놀)</td><td class="gap">광분해 → 낮·선크림과 불가</td></tr>
+        <tr><td class="bn">메디큐브 PDRN</td><td>—</td><td class="no">없음</td><td class="no">없음</td><td class="ok">재생</td><td class="gap">SPF 라인 없음 → 단절</td></tr>
+        <tr class="hot"><td class="bn">RE:CIPE 光 루틴 ★</td><td>루틴</td><td class="ok">50+/++++</td><td class="ok">차단+회복 동시</td><td class="ok">스타레놀</td><td><b>유일하게 둘 다</b></td></tr>
       </tbody>
     </table>
-    <p class="note"><b>출처</b> · 각 사 공식몰·올리브영 브랜드관 직접 조사(2026.06), 화해 비즈니스, 시사매거진·뷰티누리. 약점은 공식 채널 기준 관찰(오프라인 POP 등 예외 가능).</p>
-    <div class="foot"><span class="brand">RE:CIPE · 光 Care Routine</span><span class="pageno">05 / 18</span></div>
+    <p class="note"><b>출처</b> · 각 사 공식·보도자료(일간스포츠·한국경제·서울경제·뉴스와이어·ZDNet 2025~26). 임상수치(오휘 41.13% 등)는 자사발표·표본 미공개. 레시피 행은 4p~13p 전략의 종합.</p>
+    <div class="foot"><span class="brand">RE:CIPE · 光 Defense Routine</span><span class="pageno">06 / 21</span></div>
   </section>
 
-  <!-- 6 GAP -->
+  <!-- 7 GAP -->
   <section class="slide" style="justify-content:center">
-    <div class="slide-head"><span class="kicker"><span class="dot"></span>기회 · 경쟁사가 못 푼 빈틈</span>
-      <h2>아무도 <span class="hl">'세럼 → 베이스 → 선케어'를 한 몸으로</span> 묶지 못했다</h2></div>
-    <div class="g2 grid" style="margin-bottom:1.2cqh">
-      <div class="card" style="border-left:4px solid var(--rose)"><div class="ci">🔗</div><h3>GAP 1 · 성분 연속성의 부재</h3><p>경쟁사 누구도 <b>"앞 단계 성분이 선케어 효과를 더 오래 유지시킨다"</b>는 과학적 서사를 쓰지 못함. 선크림은 그저 '같은 브랜드 제품'.</p></div>
-      <div class="card" style="border-left:4px solid var(--rose)"><div class="ci">💄</div><h3>GAP 2 · 선케어 → 베이스 연결 공백</h3><p>톤업선=프라이머 단편 포지션은 있어도, <b>세럼부터 메이크업 마감까지 '모닝 풀 루틴'</b>을 하나의 서사로 묶은 브랜드는 없음.</p></div>
-      <div class="card" style="border-left:4px solid var(--gold);background:var(--gold-050)"><div class="ci">🧴</div><h3>GAP 5 · 베이스·스킨케어 경계 통합 ★</h3><p>레시피의 <b>그릭요거트 프렙 베이스(스킨케어+베이스 경계 제품)</b>는 이 공백에 정확히 들어맞는 무기. 경쟁사엔 이런 카드가 없음.</p></div>
-      <div class="card" style="border-left:4px solid var(--sage)"><div class="ci">🔁</div><h3>GAP 4 · 루틴 구독 락인 공백</h3><p>메디큐브(디바이스)만 구독 생태계 보유. <b>순수 스킨케어 '루틴 3종 정기배송'</b>을 하는 인디 K뷰티는 사실상 없음 → 선점 기회.</p></div>
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>기회 · 아무도 못 푼 구조적 빈틈</span>
+      <h2><span class="hl">'낮에 차단하며 광노화를 되돌리는'</span> 제품이 없다</h2></div>
+    <div class="g3 grid" style="margin-bottom:1.0cqh">
+      <div class="card soft" style="border-top:4px solid var(--blue)"><div class="ci">🛡</div><h3>차단 진영</h3><p>싸이닉·헤라·셀퓨전씨·라운드랩 — <b>막는 데 강하나</b> 회복 성분은 아데노신·콜라겐 수준. 레티놀·PDRN급 재생 없음.</p></div>
+      <div class="card soft" style="border-top:4px solid var(--rose)"><div class="ci">🔁</div><h3>회복 진영</h3><p>레티놀·메디큐브 PDRN — <b>되돌리나 SPF가 없음.</b> 게다가 레티놀은 광분해돼 <b>낮·선크림과 한 제품이 불가능.</b></p></div>
+      <div class="card" style="border-top:4px solid var(--gold);background:var(--gold-050)"><div class="ci">⭐</div><h3>레시피의 자리</h3><p>가장 근접한 리얼베리어(레티놀 광안정성 한계)·리쥬란(PA+++)도 미완. <b>광안정 대체성분(스타레놀)+SPF50+ 결합</b>은 레시피의 빈 땅.</p></div>
     </div>
-    <div class="callout"><div class="big">✓</div><p>레시피는 <b>① 11년 선케어 신뢰 + ② 스킨케어·베이스 경계 제품 + ③ '빛'이라는 통합 서사</b>를 모두 가진 <b>유일한 브랜드</b>. 빈틈이 곧 우리의 자리입니다.</p></div>
-    <p class="note"><b>출처</b> · 경쟁사 6대 GAP 분석(공식몰·올리브영 조사 2026.06), 마리끌레르 K-베이스 트렌드 2025.11. GAP은 공식 채널 기준 관찰적 판단.</p>
-    <div class="foot"><span class="brand">RE:CIPE · 光 Care Routine</span><span class="pageno">06 / 18</span></div>
+    <div class="callout"><div class="big">✓</div><p>레시피는 <b>① 11년 선케어 차단력 + ② 스타레놀(낮에 쓰는 광노화 회복) + ③ '빛' 통합 서사</b>를 모두 가진 <b>유일한 후보</b>. 이 빈틈이 곧 우리의 카테고리다.</p></div>
+    <p class="note"><b>출처</b> · 광노화 경쟁 맵(공식·보도자료 2025~26), 레티놀 광분해(아이오페·얼루어), 바쿠치올 임상 한계(Nature/Sci Rep 2025). 스타레놀 광안정성·효능은 자사발표(임상 미공개) — 검증이 차별화 열쇠.</p>
+    <div class="foot"><span class="brand">RE:CIPE · 光 Defense Routine</span><span class="pageno">07 / 21</span></div>
   </section>
 
-  <!-- 7 핵심 전략: 포지셔닝 재정의 -->
+  <!-- 8 핵심 전략 -->
   <section class="slide" style="justify-content:center">
     <div class="slide-head"><span class="kicker"><span class="dot"></span>핵심 전략 · 포지셔닝 재정의</span>
-      <h2>RE:CIPE = <span class="hl">하루의 '빛'을 관리하는 데일리 光케어 루틴</span></h2></div>
-    <p class="sub" style="margin-bottom:1.5cqh">슬로건 <b>"빛을 넘어, 본연으로"</b>를 제품 진열이 아닌 <b>루틴 구조 자체</b>로 만든다. 빛을 비우고(Reset) → 회복하고(Recover) → 차단하고(Protect) → 본연을 드러낸다(Reveal).</p>
-    <div class="flow" style="margin-bottom:1.4cqh">
-      <div class="node"><div class="stg">RESET</div><div class="nt">워터필 세럼</div><div class="nd">자외선이 남긴 노폐물·각질 비우기. 흡수 베이스 정돈</div></div>
+      <h2>RE:CIPE = <span class="hl">광(光)노화 풀디펜스 루틴</span></h2></div>
+    <p class="sub" style="margin-bottom:1.3cqh">슬로건 <b>"빛을 넘어, 본연으로"</b>를 진열이 아닌 <b>루틴 구조</b>로. 비우고(Reset)→되돌리고(Recover)→막고(Protect)→본연을 드러낸다(Reveal). 차단 한 통이 아니라 <b>'막기+되돌리기'를 한 루틴</b>으로 완성한다.</p>
+    <div class="flow" style="margin-bottom:1.2cqh">
+      <div class="node"><div class="stg">RESET</div><div class="nt">워터필 세럼</div><div class="nd">노폐물·각질 비우기 → 흡수 환경 리셋</div></div>
       <div class="arr">→</div>
-      <div class="node"><div class="stg">RECOVER</div><div class="nt">스타레놀 크림</div><div class="nd">광노화(주름·탄력) 회복 — "빛에 길든 피부 되돌리기"</div></div>
+      <div class="node"><div class="stg">RECOVER</div><div class="nt">스타레놀 크림</div><div class="nd">광노화 회복 — 낮에도 쓰는 저자극 레티놀 대체</div></div>
       <div class="arr">→</div>
-      <div class="node hot"><div class="stg">PROTECT ★자산</div><div class="nt">🔆 크리스탈 선크림</div><div class="nd">자외선 차단 — 11년 1위 본품을 <b>루틴의 심장</b>으로 재소환</div></div>
+      <div class="node hot"><div class="stg">PROTECT ★자산</div><div class="nt">🔆 크리스탈 선크림</div><div class="nd">SPF50+/PA++++ 광대역 차단 — 8천만 개 신뢰</div></div>
       <div class="arr">→</div>
-      <div class="node"><div class="stg">REVEAL</div><div class="nt">그릭요거트 베이스</div><div class="nd">파데프리 톤업·방어막 마감. 본연의 피부결 완성</div></div>
+      <div class="node"><div class="stg">REVEAL</div><div class="nt">그릭요거트 베이스</div><div class="nd">파데프리 마감 + 차단막 무너짐 방지</div></div>
     </div>
-    <div class="callout"><div class="big">☀</div><p>핵심 전환: <b>선케어를 빼지 않고, 신제품으로 '감싼다'.</b> 선크림이 중심에 돌아오는 순간 — 정체성·루틴·'왜 자사'가 한 번에 해결됩니다.</p></div>
-    <p class="note"><b>출처</b> · 제품 성분·클레임 자사몰 조사(2026.06). 신제품 3종은 SPF 미표기 → '선케어 루틴'이 아닌 '선케어를 완성하는 光케어 루틴'으로 정직하게 프레이밍. 차단 기능은 크리스탈 선크림(SPF50+/PA++++)이 담당.</p>
-    <div class="foot"><span class="brand">RE:CIPE · 光 Care Routine</span><span class="pageno">07 / 18</span></div>
+    <div class="callout"><div class="big">☀</div><p>핵심 전환: 선케어를 자사몰 루틴의 <b>'심장'으로 전면 배치</b>하고 신제품으로 감싼다. 정체성·루틴·'왜 자사'가 한 번에 풀린다.</p></div>
+    <p class="note"><b>출처</b> · 제품 클레임·성분 조사(2026.06). 그릭요거트·워터필 SPF 미표기 → '차단'은 크리스탈 선크림(SPF50+/PA++++)이 전담, 나머지는 회복·유지·리셋 역할로 정직하게 배치.</p>
+    <div class="foot"><span class="brand">RE:CIPE · 光 Defense Routine</span><span class="pageno">08 / 21</span></div>
   </section>
 
-  <!-- 8 루틴 재배치 상세 + 선크림 재소환 -->
+  <!-- 9 4단계 + 전면배치 -->
   <section class="slide" style="justify-content:center">
     <div class="slide-head"><span class="kicker"><span class="dot"></span>전략 실행 · 4단계 루틴 설계</span>
-      <h2>흩어진 단품을 <span class="hl">번호가 매겨진 한 세트</span>로 — '光케어 4스텝'</h2></div>
-    <table class="ctable" style="margin-bottom:1.1cqh">
+      <h2>흩어진 단품을 <span class="hl">번호가 매겨진 한 세트</span>로</h2></div>
+    <table class="ctable" style="margin-bottom:1.0cqh">
       <thead><tr><th>STEP</th><th>제품</th><th>가격</th><th>'빛' 서사 속 역할</th></tr></thead>
       <tbody>
-        <tr><td class="bn">1 · RESET</td><td>워터필 레이어-리셋 세럼</td><td>38,400원</td><td>자외선이 남긴 노폐물·묵은 각질을 비워 흡수 통로를 연다</td></tr>
-        <tr><td class="bn">2 · RECOVER</td><td>스타레놀 글로우업 크림</td><td>66,000원</td><td>특허 성분으로 광노화 회복 — 레티놀 자극 없이 탄력·주름</td></tr>
-        <tr class="hot"><td class="bn">3 · PROTECT ★</td><td>🔆 크리스탈 선크림 (자사몰 복귀)</td><td>SPF50+/PA++++</td><td><b>오늘의 빛을 차단 — 루틴의 심장. 8천만 개 신뢰의 정점</b></td></tr>
-        <tr><td class="bn">4 · REVEAL</td><td>그릭요거트 프렙 베이스</td><td>46,000원</td><td>파데프리 톤업·방어막으로 본연의 피부결을 드러낸다</td></tr>
+        <tr><td class="bn">1 · RESET</td><td>워터필 레이어-리셋 세럼</td><td>38,400원</td><td>노폐물·각질을 비워 다음 단계 흡수를 연다</td></tr>
+        <tr><td class="bn">2 · RECOVER</td><td>스타레놀 글로우업 크림</td><td>66,000원</td><td>낮에 쓰는 저자극 광노화 회복(레티놀 대체)</td></tr>
+        <tr class="hot"><td class="bn">3 · PROTECT ★</td><td>🔆 크리스탈 선크림 (전면 배치)</td><td>SPF50+/++++</td><td><b>광대역 차단 — 루틴의 심장. 8천만 개 신뢰</b></td></tr>
+        <tr><td class="bn">4 · REVEAL</td><td>그릭요거트 프렙 베이스</td><td>46,000원</td><td>파데프리 마감 + 차단막 무너짐 방지</td></tr>
       </tbody>
     </table>
     <div class="g2 grid">
-      <div class="card soft"><div class="ci">🛒</div><h3>실행 ① 선크림을 자사몰에 즉시 복귀</h3><p>크리스탈 선크림을 <b>BEST·메인·루틴 세트의 3번 자리</b>에 재입점. "외부에서 사던 그 선크림, 이제 루틴으로."</p></div>
-      <div class="card soft"><div class="ci">🔢</div><h3>실행 ② 단계 번호링 + 4종 번들</h3><p>넘버즈인식 번호 체계로 <b>"내 루틴 몇 단계가 비었나"</b>를 인지시키고, 4종 묶음을 토리든식 할인 번들로 제시.</p></div>
+      <div class="card soft"><div class="ci">🛒</div><h3>실행 ① 선케어를 자사몰 루틴 '3번'에 전면 배치</h3><p>크리스탈 선크림을 <b>메인·BEST·루틴 세트의 중심</b>으로. "외부에서 사던 그 선크림, 이제 루틴 안에서."</p></div>
+      <div class="card soft"><div class="ci">🔢</div><h3>실행 ② 단계 번호링 + 4종 번들</h3><p>넘버즈인식 번호로 <b>"내 루틴 몇 단계가 비었나"</b>를 인지시키고, 4종 묶음을 토리든식 할인 번들(최대 39%)로.</p></div>
     </div>
-    <p class="note"><b>출처</b> · 가격은 자사몰 판매가(2026.06). 단계 번호링=넘버즈인, 4종 할인 번들=토리든(90,000→55,000원, 39%) 벤치마크. 크리스탈 선크림 SPF50+/PA++++는 외부 채널 판매 기준.</p>
-    <div class="foot"><span class="brand">RE:CIPE · 光 Care Routine</span><span class="pageno">08 / 18</span></div>
+    <p class="note"><b>출처</b> · 가격은 자사몰 판매가(2026.06). 단계 번호링=넘버즈인, 4종 할인 번들=토리든(90,000→55,000원, 39%) 벤치마크. 크리스탈 SPF50+/PA++++는 외부 채널 판매 기준.</p>
+    <div class="foot"><span class="brand">RE:CIPE · 光 Defense Routine</span><span class="pageno">09 / 21</span></div>
   </section>
 
-  <!-- 9 제품1 왜 자사 - 세럼 -->
+  <!-- 10 성분USP: 크리스탈 선크림 (PROTECT) -->
   <section class="slide" style="justify-content:center">
-    <div class="slide-head"><span class="kicker"><span class="dot"></span>STEP 1 · RESET — 왜 자사 세럼이어야 하나</span>
-      <h2>워터필 세럼: <span class="hl">선케어가 잘 먹히는 피부</span>를 만드는 1단계</h2></div>
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>STEP 3 · PROTECT — 성분으로 보는 '왜 자사 선크림'</span>
+      <h2>크리스탈 선크림: <span class="hl">'막으면서 되돌리는'</span> 3중기능성 차단</h2></div>
     <div class="twocol">
       <div class="rows">
-        <div class="row hot"><div class="ix">USP</div><div class="tx"><h4>"붉은기 없이, 노폐물만 콕 집어"</h4><p>'레이어-리셋' = 피부 레이어를 비워 <b>다음 단계(크림·선크림) 흡수를 높이는</b> 설계. 루틴의 출발점으로 태생부터 기획됨.</p></div></div>
-        <div class="row"><div class="ix">연결</div><div class="tx"><h4>선케어와의 시너지 (GAP 1 공략)</h4><p>자외선 노출로 쌓인 칙칙함·노폐물을 초기화 → <b>"선크림이 들뜨지 않는 피부"</b>. 경쟁사가 못 쓴 '성분 연속성' 서사의 첫 고리.</p></div></div>
-        <div class="row mint"><div class="ix">vs</div><div class="tx"><h4>왜 타사 각질케어가 아니라 이것?</h4><p>타사 필링은 '비우기'에서 끝남. 워터필은 <b>비움+수분충전을 동시에</b> 해 다음 단계 루틴으로 자연 연결 — 루틴 안에 있을 때 가치가 극대화.</p></div></div>
+        <div class="row hot"><div class="ix">차단</div><div class="tx"><h4><span class="term">티노솔브S<span class="tip"><b>Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine</b>. UVA+UVB 광대역 필터. 2026년 美 FDA가 27년 만에 승인한 신규 필터</span></span> — 광대역·고안정</h4><p>50 MED 조사 후에도 <b>98.4% 유지</b>되는 광안정성. 아보벤존 계열의 '시간 지나면 무너지는' 한계를 보완.</p></div></div>
+        <div class="row mint"><div class="ix">회복</div><div class="tx"><h4>에델바이스 + 나이아신아마이드 + 아데노신</h4><p><span class="term">에델바이스<span class="tip">레온토포디움 알피눔. 블루라이트 수용체 <b>OPN3 경로 차단</b> + MMP-1 억제 + 콜라겐 합성(p&lt;0.01). 특허 KR101740097B1</span></span>(블루라이트 방어·항노화) + 나이아신아마이드(<b>멜라노솜 전달 35~68% 억제</b>) + 아데노신(식약처 주름개선 고시).</p></div></div>
+        <div class="row"><div class="ix">vs</div><div class="tx"><h4>왜 타사 선크림이 아니라 이것?</h4><p>경쟁 차단 제품은 회복 성분이 약하고, EWG 기준 <b>2/3가 UVA 방어 부족.</b> 레시피는 차단+미백+주름의 <b>3중기능성</b>을 한 통에.</p></div></div>
       </div>
       <div>
-        <div class="callout" style="flex-direction:column;align-items:flex-start;gap:.7cqw"><div class="big">1</div><p><b>한 줄 메시지</b><br>"바르기 전에, 비우세요.<br>오늘의 빛을 받을 준비."</p></div>
-        <p class="note" style="margin-top:1.2cqh"><b>리뷰 신호</b> · 자사몰 리뷰 133건, "촉촉매끈" 포지션. 노폐물 제거+보습 동시 클레임.</p>
+        <div class="contentbox"><div class="cl">콘텐츠로 푸는 법</div><p>"내 선크림은 <b>몇 nm까지 막나?</b>" — UVA·블루라이트·근적외선 도식 + 티노솔브S 광안정성 실험 영상. <b>성분 덕후형 숏폼/유튜브 해설</b>로 차단력을 '눈으로' 증명.</p></div>
+        <p class="note" style="margin-top:1.0cqh"><b>주의</b> · 티노솔브S·나이아신아마이드·아데노신은 레시피 선케어 포뮬러(선몬랩 선크림 전성분, incidecoder) 기준. 크리스탈 선크림 전성분(에델바이스·마텔잎)은 다나와 기준 — 발표 전 실물 전성분 1차 확인 권장.</p>
       </div>
     </div>
-    <p class="note"><b>출처</b> · 자사몰 제품 상세·클레임(product_no=33, 2026.06). 성분 정밀 분석은 전성분표 확인 필요(상세가 이미지 기반) — 클레임 기반 포지셔닝.</p>
-    <div class="foot"><span class="brand">RE:CIPE · 光 Care Routine</span><span class="pageno">09 / 18</span></div>
+    <p class="note"><b>출처</b> · incidecoder(선몬랩 전성분), 다나와(크리스탈 성분), 특허 KR101740097B1, BASF 2026(티노솔브S FDA), PMC10004670·BJD 2002(성분 기전). 일부 in vitro·단일출처.</p>
+    <div class="foot"><span class="brand">RE:CIPE · 光 Defense Routine</span><span class="pageno">10 / 21</span></div>
   </section>
 
-  <!-- 10 제품2 왜 자사 - 크림 -->
+  <!-- 11 성분USP: 스타레놀 (RECOVER) -->
   <section class="slide" style="justify-content:center">
-    <div class="slide-head"><span class="kicker"><span class="dot"></span>STEP 2 · RECOVER — 왜 자사 크림이어야 하나</span>
-      <h2>스타레놀 크림: <span class="hl">'빛에 길든 피부'를 되돌리는</span> 브랜드 슬로건의 심장</h2></div>
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>STEP 2 · RECOVER — 성분으로 보는 '왜 자사 크림'</span>
+      <h2>스타레놀: <span class="hl">낮에도 쓰는</span> 광노화 회복 — 선크림이 아닌 '동반자'</h2></div>
     <div class="twocol">
       <div class="rows">
-        <div class="row hot"><div class="ix">USP</div><div class="tx"><h4>"번번이 실패한 레티놀, 정답은 여기"</h4><p>특허 성분으로 <b>레티놀급 안티에이징 + 자극 최소화</b>. 레티놀 트러블 경험자(시장의 큰 미충족 수요)를 정조준.</p></div></div>
-        <div class="row"><div class="ix">연결</div><div class="tx"><h4>'광노화 회복'이 곧 선케어 서사</h4><p>"빛에 의한 탄력 저하를 되돌린다"는 클레임은 <b>슬로건 '빛을 넘어, 본연으로'와 직결.</b> 차단(선크림)과 회복(크림)이 한 쌍이 된다.</p></div></div>
-        <div class="row mint"><div class="ix">vs</div><div class="tx"><h4>왜 타사 레티놀이 아니라 이것?</h4><p>2024~26 시장은 <b><span class="term">바쿠치올<span class="tip">레티놀을 대체하는 식물 유래 성분. 유사 효능에 자극이 적어 '레티놀 후계자'로 부상</span></span> 등 저자극 레티놀 대체</b>가 핵심 트렌드. 레시피는 '자극 없는 회복'을 선케어 신뢰와 묶어 차별화.</p></div></div>
+        <div class="row hot"><div class="ix">소재</div><div class="tx"><h4>코스맥스 개발 차세대 안티에이징 소재</h4><p>"<b>레티놀과 바쿠치올을 잇는</b>" 독자 소재(일본 코스메위크 출품). 레티놀 유사 작용 + 낮은 자극 포지셔닝.</p></div></div>
+        <div class="row mint"><div class="ix">연결</div><div class="tx"><h4>레티놀의 치명적 약점을 푼다</h4><p>레티놀은 <b>광분해 → 낮·선크림과 함께 못 씀.</b> 스타레놀은 '낮에 쓰는 회복'을 표방 → <b>선크림과 한 루틴에 들어갈 수 있는 거의 유일한 회복 카드.</b></p></div></div>
+        <div class="row"><div class="ix">vs</div><div class="tx"><h4>왜 타사 레티놀/PDRN이 아니라?</h4><p>레티놀=야간 한정, PDRN=화장품 투과 한계. 스타레놀은 <b>'차단 루틴 안의 회복'</b>이라는 자리를 차지 — 단품이 아닌 루틴 가치.</p></div></div>
       </div>
       <div>
-        <div class="callout" style="flex-direction:column;align-items:flex-start;gap:.7cqw"><div class="big">2</div><p><b>한 줄 메시지</b><br>"빛은 막는 것만으로 부족합니다.<br>이미 받은 빛은, 되돌리세요."</p></div>
-        <p class="note" style="margin-top:1.2cqh"><b>리뷰 신호</b> · 자사몰 리뷰 157건(신제품 중 2위). "특허성분" 태그·1+2 번들 운영.</p>
+        <div class="contentbox"><div class="cl">콘텐츠로 푸는 법</div><p>"<b>밤에만 쓰던 안티에이징, 낮에도?</b>" — 레티놀 광분해 vs 스타레놀 비교 콘텐츠. "낮 = 차단+회복" 메시지로 <b>레티놀 트러블 경험자</b> 타겟 시딩.</p></div>
+        <p class="note" style="margin-top:1.0cqh"><b>주의</b> · 스타레놀은 INCI명·임상수치 미공개(코스맥스/자사발표). "레티놀 대비 저자극·낮 사용"은 자사 클레임 — 광안정성·효능 임상 확보가 이 전략의 핵심 과제.</p>
       </div>
     </div>
-    <p class="note"><b>출처</b> · 자사몰 상세(product_no=31, 2026.06), 우먼센스 2024(바쿠치올 트렌드). '스타레놀'은 브랜드 네이밍 추정 — 특허·성분 학명 확인 권장(단정 금지).</p>
-    <div class="foot"><span class="brand">RE:CIPE · 光 Care Routine</span><span class="pageno">10 / 18</span></div>
+    <p class="note"><b>출처</b> · 코스맥스 스타레놀 기사(더kbs·코스인코리아 2024~25), 자사몰 제품 상세(product_no=31). 레티놀 광분해(아이오페·폴라초이스), 바쿠치올 임상 한계(Nature/Sci Rep 2025).</p>
+    <div class="foot"><span class="brand">RE:CIPE · 光 Defense Routine</span><span class="pageno">11 / 21</span></div>
   </section>
 
-  <!-- 11 제품3 왜 자사 - 베이스 -->
+  <!-- 12 성분USP: 그릭요거트(REVEAL) + 워터필(RESET) -->
   <section class="slide" style="justify-content:center">
-    <div class="slide-head"><span class="kicker"><span class="dot"></span>STEP 4 · REVEAL — 왜 자사 베이스여야 하나</span>
-      <h2>그릭요거트 베이스: <span class="hl">경쟁사엔 없는</span> '스킨케어 × 메이크업' 경계 무기</h2></div>
-    <div class="twocol">
-      <div class="rows">
-        <div class="row hot"><div class="ix">USP</div><div class="tx"><h4>파데프리 — '메이크업 공복템'</h4><p>파운데이션 없이 <b>톤업·결정리·홍조케어</b>를 한 번에. 자사몰 리뷰 <b>397건(압도적 1위)</b>·3종 라인으로 이미 검증된 히트 SKU.</p></div></div>
-        <div class="row"><div class="ix">연결</div><div class="tx"><h4>선케어 → 베이스 연결 (GAP 2·5 공략)</h4><p>'Over the Makeup' 트렌드의 정답. <b>선크림 위 마지막 방어·마감막</b>으로, 모닝 루틴을 메이크업까지 끊김 없이 잇는다.</p></div></div>
-        <div class="row mint"><div class="ix">vs</div><div class="tx"><h4>왜 타사 프라이머가 아니라 이것?</h4><p>3종(플레인·그린티·홍조진정·스트로베리·생기)으로 <b>피부 고민별 맞춤</b>. 경쟁사 톤업선은 색상 1~2종뿐 — 루틴의 마지막을 개인화하는 카드는 레시피만 보유.</p></div></div>
-      </div>
-      <div>
-        <div class="callout" style="flex-direction:column;align-items:flex-start;gap:.7cqw"><div class="big">4</div><p><b>한 줄 메시지</b><br>"막고, 되돌린 피부 —<br>이제 본연 그대로 빛나게."</p></div>
-        <p class="note" style="margin-top:1.2cqh"><b>리뷰 신호</b> · 자사몰 리뷰 397건(전 SKU 1위)·"화잘먹 0단계 듀오" 번들 이미 운영 중.</p>
-      </div>
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>STEP 4 · REVEAL & STEP 1 · RESET — 루틴의 마감과 시작</span>
+      <h2>경쟁사엔 없는 <span class="hl">'스킨케어 × 메이크업'</span> 양 끝 무기</h2></div>
+    <div class="g2 grid" style="margin-bottom:.8cqh">
+      <div class="card" style="border-top:4px solid var(--gold)"><div class="ci">🧴 STEP 4 · 그릭요거트 베이스</div><h3>파데프리 마감 + 차단막 무너짐 방지</h3><p>자사몰 리뷰 <b>397건(1위)</b>·3종 라인. 'Over the Makeup' 트렌드의 정답으로, <b>선크림 위 마지막 방어·고정막</b> 역할. 선크림 재도포 불편(재도포 6%)을 '안 무너지는 마감'으로 보완.</p>
+        <div class="contentbox"><div class="cl">콘텐츠</div><p>"<b>선크림 위, 안 무너지는 8시간</b>" 타임랩스 + 파데프리 GRWM</p></div></div>
+      <div class="card" style="border-top:4px solid var(--sage)"><div class="ci">💧 STEP 1 · 워터필 세럼</div><h3>노폐물 리셋 → 흡수 환경 최적화</h3><p>"붉은기 없이 노폐물만 삭제". 자외선이 남긴 노폐물·각질을 비워 <b>크림·선크림이 더 잘 먹는 피부</b>를 만든다 — 루틴의 출발점으로 기획된 SKU.</p>
+        <div class="contentbox"><div class="cl">콘텐츠</div><p>"<b>선크림 잘 먹는 피부 만들기</b>" 1단계 루틴 교육 콘텐츠</p></div></div>
     </div>
-    <p class="note"><b>출처</b> · 자사몰 상세·BEST(product_no=32, 2026.06), 올리브영 'Over the Makeup' 트렌드. 베이스 SPF 미표기 → '차단'이 아닌 '방어·마감'으로 표기.</p>
-    <div class="foot"><span class="brand">RE:CIPE · 光 Care Routine</span><span class="pageno">11 / 18</span></div>
+    <div class="callout"><div class="big">↔</div><p>두 제품이 루틴의 <b>시작(흡수)과 끝(마감·유지)</b>을 잡아준다 — 경쟁사가 가진 '선크림+크림'엔 없는 양 끝 무기.</p></div>
+    <p class="note"><b>주의/출처</b> · 그릭요거트·워터필 전성분 미확보(신제품, 화해 미등재) — 기능은 자사 클레임 기반. '무너짐 방지·흡수' 효능은 실험 데이터 확인 필요. 자사몰 상세(2026.06).</p>
+    <div class="foot"><span class="brand">RE:CIPE · 光 Defense Routine</span><span class="pageno">12 / 21</span></div>
   </section>
 
-  <!-- 12 크로스셀 메커니즘 -->
+  <!-- 13 광노화 Why-레시피 (과학) -->
+  <section class="slide" style="justify-content:center">
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>Why RE:CIPE · 광노화의 과학</span>
+      <h2>3대 광선을 막고, <span class="hl">이미 생긴 손상까지 되돌린다</span></h2></div>
+    <table class="ctable" style="margin-bottom:.6cqh">
+      <thead><tr><th>광노화 범인</th><th>피부에 하는 일</th><th>레시피의 대응 성분</th><th>역할</th></tr></thead>
+      <tbody>
+        <tr><td class="bn">UVA/UVB</td><td>MMP 과발현 → 콜라겐 분해·DNA 손상</td><td>티노솔브S 등 광대역 필터(SPF50+/PA++++)</td><td class="ok">막기</td></tr>
+        <tr><td class="bn">블루라이트(HEV)</td><td>OPN3 경로 → 색소침착·MMP-1↑</td><td>에델바이스(OPN3 차단·MMP-1 억제)</td><td class="ok">막기+되돌리기</td></tr>
+        <tr><td class="bn">근적외선(IR-A)</td><td>미토콘드리아 ROS → MMP-1↑(반응자 80%)</td><td>항산화 성분 + 차단막</td><td class="ok">막기</td></tr>
+        <tr><td class="bn">이미 생긴 색소</td><td>멜라노솜 축적</td><td>나이아신아마이드(전달 35~68%↓)</td><td class="ok">되돌리기</td></tr>
+        <tr class="hot"><td class="bn">이미 생긴 주름</td><td>콜라겐 감소</td><td>아데노신(고시)+스타레놀(회복)</td><td class="ok">되돌리기</td></tr>
+      </tbody>
+    </table>
+    <div class="callout"><div class="big">⊕</div><p><b>"막기(크리스탈)+되돌리기(스타레놀·에델바이스·나이아신·아데노신)"</b> — 시장 기존 제품이 둘 중 하나만 할 때, 레시피는 한 루틴에서 둘 다 한다.</p></div>
+    <p class="note"><b>출처</b> · PMC10722227·9307547(광노화 기전), PMC10004670(에델바이스 OPN3), BJD 2002(나이아신아마이드), PMC9804842·식약처(아데노신). in vitro·조건부 데이터 포함 — 광고 표현 시 기능성 고시 범위 내 사용 필수.</p>
+    <div class="foot"><span class="brand">RE:CIPE · 光 Defense Routine</span><span class="pageno">13 / 21</span></div>
+  </section>
+
+  <!-- 14 선크림 페인 -> 성분 돌파 -->
+  <section class="slide" style="justify-content:center">
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>Why RE:CIPE · 페인 → 성분 돌파</span>
+      <h2>5가지 불만을 <span class="hl">루틴의 각 단계가 분담</span>해 푼다</h2></div>
+    <table class="ctable">
+      <thead><tr><th>기존 선크림 불만</th><th>원인</th><th>레시피 루틴의 해법</th></tr></thead>
+      <tbody>
+        <tr><td class="bn">백탁</td><td>무기자차 분산 한계</td><td>티노솔브S 등 광대역 유기필터 + 톤업 베이스로 보정</td></tr>
+        <tr><td class="bn">재도포 안 함(6%)</td><td>메이크업 위 덧바름 불편</td><td class="ok">그릭요거트 베이스가 '안 무너지는 마감'으로 차단 지속</td></tr>
+        <tr><td class="bn">눈시림·답답함</td><td>유기자차 자극·무거움</td><td>워터필 리셋으로 흡수↑ + 다이소 무기자차 옵션(징크+티타늄)</td></tr>
+        <tr><td class="bn">메이크업 무너짐</td><td>피막제 부재</td><td class="ok">그릭요거트 베이스(파데프리 고정막)</td></tr>
+        <tr class="hot"><td class="bn">광노화 회복 부재</td><td>'막기'에만 집중</td><td class="ok">스타레놀+에델바이스+나이아신아마이드로 '되돌리기' 탑재</td></tr>
+      </tbody>
+    </table>
+    <p class="note"><b>출처</b> · 5p 페인 출처 + 10~13p 성분 근거. 다이소 선몬랩=100% 무기자차(징크옥사이드+티타늄디옥사이드, 5,000원, 다이소몰). 효능은 성분 기전·자사 클레임 기반(개별 임상 확인 권장).</p>
+    <div class="foot"><span class="brand">RE:CIPE · 光 Defense Routine</span><span class="pageno">14 / 21</span></div>
+  </section>
+
+  <!-- 15 크로스셀 메커니즘 -->
   <section class="slide" style="justify-content:center">
     <div class="slide-head"><span class="kicker"><span class="dot"></span>전략 · 크로스셀링 메커니즘</span>
-      <h2>단품 고객을 <span class="hl">루틴 고객으로</span> 전환시키는 3개의 장치</h2></div>
-    <div class="g3 grid" style="margin-bottom:1.2cqh">
-      <div class="lever"><div class="ln">장치 1 · 진입</div><div class="lt">내 光케어 루틴 진단 퀴즈</div><div class="ld">피부고민 3~6문항 → <b>"당신에게 비어있는 단계"</b> 진단 → 4스텝 추천을 장바구니에 1클릭. <span class="term">AOV<span class="tip"><b>객단가</b>(Average Order Value): 주문 1건당 평균 구매액</span></span>의 핵심 드라이버.</div></div>
-      <div class="lever"><div class="ln">장치 2 · 묶기</div><div class="lt">단계 번들 + 무료배송 바</div><div class="ld">2종→3종→4종 <b>단계적 할인 업셀</b>(토리든식 39%). 미니카트 무료배송 임박 바·증정으로 가격 저항 완화(Glow Recipe식).</div></div>
-      <div class="lever"><div class="ln">장치 3 · 락인</div><div class="lt">루틴 정기배송 구독 (GAP 4 선점)</div><div class="ld">"매월 다 쓰는 선크림+세럼 자동배송 + 단계 콘텐츠". 순수 스킨케어 루틴 구독은 <b>인디 K뷰티 공백</b> → 리텐션 무기.</div></div>
+      <h2>단품 고객을 <span class="hl">루틴 고객으로</span> 전환시키는 3개 장치</h2></div>
+    <div class="g3 grid" style="margin-bottom:1.0cqh">
+      <div class="card"><div class="ci">🔎</div><h3>장치 1 · 光노화 진단 퀴즈</h3><p>피부고민 3~6문항 → <b>"당신에게 비어있는 단계"</b> 진단 → 4스텝 추천 1클릭 장바구니. <span class="term">AOV<span class="tip"><b>객단가</b>: 주문 1건당 평균 구매액</span></span> 핵심 드라이버.</p><div class="chips"><span class="chip">Kiehl's 퀴즈 전환 +30%</span></div></div>
+      <div class="card"><div class="ci">🎁</div><h3>장치 2 · 단계 번들 + 무료배송 바</h3><p>2→3→4종 <b>단계적 할인 업셀</b>. 미니카트 무료배송 임박 바·증정으로 가격 저항 완화.</p><div class="chips"><span class="chip">토리든 4종 39%</span><span class="chip">번들 AOV +25~40%</span></div></div>
+      <div class="card"><div class="ci">🔁</div><h3>장치 3 · 루틴 정기배송 (빈틈 선점)</h3><p>"다 쓰는 선크림+세럼 자동배송 + 단계 콘텐츠". 순수 스킨케어 루틴 구독은 <b>인디 K뷰티 공백</b>.</p><div class="chips"><span class="chip">번들 LTV 2.7배</span></div></div>
     </div>
-    <div class="callout"><div class="big">∞</div><p>플라이휠: <b>선케어 단품 유입 → 퀴즈로 빈 단계 자각 → 번들로 객단가 ↑ → 구독으로 <span class="term">리텐션<span class="tip">고객이 이탈하지 않고 재구매를 지속하는 비율. D2C 수익성의 핵심</span></span> ↑ → 후기 UGC가 신규 유입</b>.</p></div>
-    <p class="note"><b>출처</b> · The Ordinary 레짐빌더·Glow Recipe 미니카트(DTC Patterns 2024), 토리든 4종 번들, Kiehl's 퀴즈. 효과 수치는 13p 참조.</p>
-    <div class="foot"><span class="brand">RE:CIPE · 光 Care Routine</span><span class="pageno">12 / 18</span></div>
+    <div class="callout"><div class="big">∞</div><p>플라이휠: <b>선케어 유입 → 퀴즈로 빈 단계 자각 → 번들로 AOV↑ → 구독으로 <span class="term">리텐션<span class="tip">재구매를 지속하는 비율. D2C 수익성의 핵심</span></span>↑ → 후기 UGC가 신규 유입</b>.</p></div>
+    <p class="note"><b>출처</b> · Kiehl's(Inference Beauty), 토리든·Glow Recipe(화해·DTC Patterns), 번들 AOV·LTV(ecomhint 2025, 추정). 수치는 벤치마크 기반.</p>
+    <div class="foot"><span class="brand">RE:CIPE · 光 Defense Routine</span><span class="pageno">15 / 21</span></div>
   </section>
 
-  <!-- 13 벤치마킹 -->
+  <!-- 16 미디어믹스 1: 성분 스토리텔링 -->
+  <section class="slide" style="justify-content:center">
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>미디어믹스 ① · 성분 스토리텔링 콘텐츠</span>
+      <h2>차단·회복을 <span class="hl">'눈으로 증명'</span>하는 콘텐츠 퍼널</h2></div>
+    <div class="twocol">
+      <div>
+        <div class="flow" style="margin-bottom:1.0cqh">
+          <div class="node"><div class="stg">1·시딩</div><div class="nt">나노·마이크로 시딩</div><div class="nd">틱톡/릴스 성분 UGC 대량</div></div>
+          <div class="arr">→</div>
+          <div class="node"><div class="stg">2·증폭</div><div class="nt">Spark Ads + 유튜브</div><div class="nd">성과 UGC를 퍼포먼스로 + 피부과 성분해설</div></div>
+          <div class="arr">→</div>
+          <div class="node hot"><div class="stg">3·전환</div><div class="nt">검색→자사몰 LP</div><div class="nd">브랜드 검색 증분 → 루틴 LP 전환</div></div>
+        </div>
+        <div class="rows">
+          <div class="row mint"><div class="ix">캡쳐</div><div class="tx"><h4>경쟁사는 이미 이걸로 컸다</h4><p><b>아누아</b> 어성초 성분스토리 틱톡 24억 뷰 → 매출 +5,382%(’20→’24). <b>조선미녀</b> 선크림 틱톡으로 매출의 35~55%. <b>CeraVe</b> #50억 뷰.</p></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="metric-grid" style="grid-template-columns:1fr 1fr">
+          <div class="metric"><div class="mh">UGC 광고</div><div class="md">vs 브랜드 제작</div><div class="mk2">전환 +29% / CTR 4배</div></div>
+          <div class="metric"><div class="mh">크리에이터</div><div class="md">인게이지먼트</div><div class="mk2">브랜드 대비 6배</div></div>
+          <div class="metric"><div class="mh">브랜드 검색</div><div class="md">성공 캠페인 기준</div><div class="mk2">+20~100%</div></div>
+          <div class="metric"><div class="mh">영상 PDP</div><div class="md">체류시간</div><div class="mk2">2.6배</div></div>
+        </div>
+        <div class="contentbox"><div class="cl">우리가 갈 길</div><p>레시피의 <b>티노솔브S 광안정성·에델바이스 블루라이트 실험</b>은 '성분 덕후 콘텐츠'의 완벽한 소재. 차단력을 <b>눈으로 보여주는</b> 숏폼으로 비브랜드 검색 선점.</p></div>
+      </div>
+    </div>
+    <p class="note"><b>출처</b> · 싱클리·코스모닝(아누아·조선미녀), House of Marketers(CeraVe), syncly.app·get-ryze(콘텐츠 성과, 일부 추정/SaaS 자체데이터).</p>
+    <div class="foot"><span class="brand">RE:CIPE · 光 Defense Routine</span><span class="pageno">16 / 21</span></div>
+  </section>
+
+  <!-- 17 미디어믹스 2: 번들 + 옴니/시즌 -->
+  <section class="slide" style="justify-content:center">
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>미디어믹스 ② · 번들 전환 + 옴니채널 + 시즌</span>
+      <h2><span class="hl">유입은 신뢰로, 전환은 루틴으로, 유지는 구독으로</span></h2></div>
+    <table class="ctable" style="margin-bottom:.6cqh">
+      <thead><tr><th>전략</th><th>채널 조합</th><th>경쟁사 캡쳐 포인트</th><th>기대 증분</th></tr></thead>
+      <tbody>
+        <tr><td class="bn">루틴 번들 전환</td><td>자사몰 번들 LP + 메타·틱톡 리타겟 + 화해 어워즈 검증</td><td>토리든: 어워즈 노출 후 주문 +26% / Glow Recipe 미니카트</td><td class="ok">AOV +25~40%·전환 2~3배</td></tr>
+        <tr><td class="bn">CRM 재구매</td><td>구매 후 104일 리오더 + 루틴 크로스셀 메시지</td><td>로열티 결합 시 재구매 +40%(Jane Iredale)</td><td class="ok">재구매율 30~45%대</td></tr>
+        <tr><td class="bn">옴니채널 체험</td><td>홈쇼핑(CJ)·다이소 + (신규)올영 체험존·QR</td><td>올영 오늘드림 1,499만 건·이용 48%·옴니회원 40%</td><td class="ok">온·오프 연결 구매</td></tr>
+        <tr class="hot"><td class="bn">선케어 시즌 캠페인</td><td>틱톡 Video Shopping Ads + 마이크로 시딩 + DOOH</td><td>Boots 선케어: ROAS +133%·결제비용 -48%·매출 £2.5M 증분</td><td class="ok">뷰티 틱톡 ROAS 4~6x</td></tr>
+      </tbody>
+    </table>
+    <div class="callout"><div class="big">↗</div><p>원칙: <b>선케어 신뢰(Owned·Earned)로 싸게 유입 → 루틴 번들로 객단가 → 구독으로 락인</b> — <span class="term">CAC<span class="tip">고객획득비용</span></span>↓, <span class="term">LTV<span class="tip">고객 생애가치</span></span>↑.</p></div>
+    <p class="note"><b>출처</b> · 화해(토리든), DTC Patterns(Glow Recipe), 이코노미스트(올영 옴니), TikTok for Business·Brands&Agencies(Boots), benly.ai(ROAS, 추정). 레시피 올영 입점은 미확인 → 신규 추진 가정.</p>
+    <div class="foot"><span class="brand">RE:CIPE · 光 Defense Routine</span><span class="pageno">17 / 21</span></div>
+  </section>
+
+  <!-- 18 벤치마킹 종합 -->
   <section class="slide" style="justify-content:center">
     <div class="slide-head"><span class="kicker"><span class="dot"></span>근거 · 무엇을, 왜 벤치마킹했나</span>
-      <h2>전략의 모든 장치엔 <span class="hl">검증된 레퍼런스</span>가 있습니다</h2></div>
+      <h2>전략의 모든 장치엔 <span class="hl">검증된 레퍼런스</span>가 있다</h2></div>
     <table class="ctable">
-      <thead><tr><th>레퍼런스</th><th>벤치마킹한 '바로 그 점'</th><th>성과 근거</th><th>레시피 적용</th></tr></thead>
+      <thead><tr><th>레퍼런스</th><th>벤치마킹한 '바로 그 점'</th><th>성과</th><th>레시피 적용</th></tr></thead>
       <tbody>
-        <tr><td class="bn">The Ordinary</td><td>피부고민 퀴즈 → 레짐 전체 1클릭 장바구니</td><td>다중 SKU 일괄구매가 AOV 드라이버</td><td>光케어 진단 퀴즈(장치1)</td></tr>
-        <tr class="hot"><td class="bn">Kiehl's</td><td>6문항 퀴즈로 5단계 루틴 개인화 추천</td><td><b>전환율 +30%</b></td><td>"비어있는 단계" 추천 로직</td></tr>
-        <tr><td class="bn">토리든</td><td>단품 히트(세럼) 앵커 → 4종 39% 할인 업셀</td><td>멤버십 재구매율 60%대*</td><td>4스텝 단계 번들(장치2)</td></tr>
-        <tr><td class="bn">LRP · ISDIN</td><td>선케어를 '루틴 마지막 단계'로 번호 명시</td><td>피부과 9만명 추천 루틴 세트</td><td>4스텝 번호링 + 선크림 3번</td></tr>
-        <tr><td class="bn">CeraVe</td><td>UGC '루틴 영상'을 퍼포먼스 소재로 재활용 + 비브랜드 검색 선점</td><td><b>UGC 광고 전환 3.5배</b></td><td>미디어믹스 콘텐츠 축(14p)</td></tr>
-        <tr><td class="bn">Sephora</td><td>루틴 기반 크로스셀 추천</td><td><b>크로스셀 매출 +22%</b></td><td>장바구니·메일 크로스셀</td></tr>
+        <tr><td class="bn">아누아</td><td>단일 성분(어성초) 스토리텔링으로 글로벌 바이럴</td><td>틱톡 24억뷰·매출 +5,382%</td><td>티노솔브S·에델바이스 성분 콘텐츠</td></tr>
+        <tr><td class="bn">조선미녀</td><td>선크림을 틱톡 콘텐츠 카테고리로 선점</td><td>선 라인이 매출 35~55%</td><td>선케어 시즌 숏폼 캠페인</td></tr>
+        <tr class="hot"><td class="bn">Kiehl's</td><td>퀴즈로 5단계 루틴 개인화 추천</td><td>전환율 +30%</td><td>光노화 진단 퀴즈</td></tr>
+        <tr><td class="bn">토리든</td><td>히트 단품 앵커 → 4종 39% 번들 업셀</td><td>어워즈 후 주문 +26%</td><td>4스텝 번들·화해 검증</td></tr>
+        <tr><td class="bn">Boots(UK)</td><td>선케어 시즌 틱톡 VSA 집행</td><td>ROAS +133%·£2.5M 증분</td><td>시즌 퍼포먼스 믹스</td></tr>
+        <tr><td class="bn">리얼베리어·리쥬란</td><td>'차단+회복' 결합 시도(미완)</td><td>레티놀 광안정성·PA+++ 한계</td><td>스타레놀+SPF50+로 완성</td></tr>
       </tbody>
     </table>
-    <p class="note"><b>출처</b> · Inference Beauty(Kiehl's), DTC Patterns(The Ordinary·Glow Recipe), 테크M·화해(토리든), LRP/ISDIN 공식, House of Marketers(CeraVe), Science of Retail(Sephora). *토리든 60%는 화해 라운지 가입자 한정. 일부 단일출처 → 방향성 근거로 활용.</p>
-    <div class="foot"><span class="brand">RE:CIPE · 光 Care Routine</span><span class="pageno">13 / 18</span></div>
+    <p class="note"><b>출처</b> · 싱클리·BoF(아누아·조선미녀), Inference Beauty(Kiehl's), 화해(토리든), TikTok for Business(Boots), 마이리얼베리어·다음뷰(리얼베리어·리쥬란). 일부 단일출처 → 방향성 근거.</p>
+    <div class="foot"><span class="brand">RE:CIPE · 光 Defense Routine</span><span class="pageno">18 / 21</span></div>
   </section>
 
-  <!-- 14 미디어믹스 -->
-  <section class="slide" style="justify-content:center">
-    <div class="slide-head"><span class="kicker"><span class="dot"></span>실행 · 미디어 믹스 (풀퍼널)</span>
-      <h2>'선케어 신뢰'를 입구로, <span class="hl">루틴으로 전환·락인</span>하는 채널 설계</h2></div>
-    <table class="ctable" style="margin-bottom:1cqh">
-      <thead><tr><th>퍼널</th><th>채널</th><th>역할 · 메시지</th><th>핵심 KPI</th></tr></thead>
-      <tbody>
-        <tr><td class="bn">인지</td><td>유튜브·릴스·틱톡 (콘텐츠)</td><td>"성분 덕후 아침 루틴 4스텝" UGC·숏폼. 선케어 신뢰를 후킹으로</td><td>조회·저장, 비브랜드 검색량</td></tr>
-        <tr><td class="bn">유입·검색</td><td>네이버·올영 검색·SEO</td><td>"선크림 뭐랑 같이 써요" 비브랜드 루틴 검색 선점(CeraVe식)</td><td>검색 점유·유입 CPC</td></tr>
-        <tr class="hot"><td class="bn">전환</td><td>메타·구글 <span class="term">퍼포먼스<span class="tip">전환(구매)을 목표로 정밀 타겟팅·최적화하는 유료광고</span></span> + 자사몰 번들 LP</td><td>UGC 소재 → '진단 퀴즈/4종 번들' 랜딩으로 직결</td><td>ROAS·전환율·AOV</td></tr>
-        <tr><td class="bn">체험</td><td>올리브영 오프라인 (옴니채널)</td><td>매대 'STEP 1→4' VMD + 피부스캔 → 온라인 장바구니 연결(GAP 6)</td><td>체험→온라인 연결률</td></tr>
-        <tr><td class="bn">유지</td><td>CRM(카톡·앱)·구독</td><td>"3번(선크림) 다 쓸 때 됐어요" 리필 알림·정기배송 전환</td><td>재구매율·구독 전환</td></tr>
-      </tbody>
-    </table>
-    <div class="callout"><div class="big">↗</div><p>핵심 원칙: <b>유료(Paid)로 사지 말고, 선케어 신뢰(Owned·Earned)로 유입한 뒤 루틴으로 전환</b>해 CAC를 낮추고 LTV를 높인다.</p></div>
-    <p class="note"><b>출처</b> · CeraVe(Pinterest·UGC), 올리브영 옴니채널(오늘드림 364만·디지털데일리 2024), 위시트렌드TV 루틴 콘텐츠. <span class="term">CAC<span class="tip">고객획득비용</span></span>/<span class="term">LTV<span class="tip">고객 생애가치</span></span>는 운영 가설.</p>
-    <div class="foot"><span class="brand">RE:CIPE · 光 Care Routine</span><span class="pageno">14 / 18</span></div>
-  </section>
-
-  <!-- 15 캠페인 빅아이디어 -->
-  <section class="slide" style="justify-content:center">
-    <div class="slide-head"><span class="kicker"><span class="dot"></span>크리에이티브 · 캠페인 빅아이디어</span>
-      <h2>통합 컨셉: <span class="hl">"오늘의 빛, 4스텝으로 완성"</span></h2></div>
-    <div class="g3 grid" style="margin-bottom:1.2cqh">
-      <div class="card"><div class="ci">🎬</div><h3>히어로 필름</h3><p>한 사람의 아침 — <b>비우고(1)·되돌리고(2)·막고(3)·빛나는(4)</b> 4컷. "빛을 넘어, 본연으로"가 루틴으로 구현되는 30초.</p></div>
-      <div class="card"><div class="ci">📱</div><h3>UGC 챌린지</h3><p><b>#내光케어4스텝</b> — 인플루언서·고객이 자기 루틴 인증. 토리든 '#루틴 첫 단계'식 인증 UGC를 퍼포먼스 소재로 재활용.</p></div>
-      <div class="card"><div class="ci">🧪</div><h3>성분 스토리텔링</h3><p>"세럼이 선크림을 더 오래 가게 한다"는 <b>GAP 1 과학 서사</b>를 디에디트·디렉터파이류 콘텐츠로. 경쟁사가 못 한 이야기.</p></div>
-    </div>
-    <div class="callout"><div class="big">☀</div><p>모든 소재의 엔딩은 동일 — <b>"3번 자리에 크리스탈 선크림."</b> 흩어졌던 8천만 개의 신뢰를 루틴의 심장으로 매번 각인시킨다.</p></div>
-    <p class="note"><b>출처</b> · 토리든 인스타 '#루틴 첫 단계' 캠페인, CeraVe UGC 전략 벤치마크. 크리에이티브는 제안(가설).</p>
-    <div class="foot"><span class="brand">RE:CIPE · 光 Care Routine</span><span class="pageno">15 / 18</span></div>
-  </section>
-
-  <!-- 16 로드맵 + KPI -->
+  <!-- 19 로드맵 + KPI -->
   <section class="slide" style="justify-content:center">
     <div class="slide-head"><span class="kicker"><span class="dot"></span>실행 · 로드맵 & KPI</span>
-      <h2><span class="hl">6개월</span> 안에 자사몰을 '루틴 커머스'로 전환</h2></div>
-    <div class="g2 grid" style="margin-bottom:1.1cqh">
-      <div class="card soft"><div class="ci">🌱</div><h3>Phase 1 · 0~3개월 — 되돌리기</h3><p><b>① 크리스탈 선크림 자사몰 복귀(3번 자리)</b> · ② 진단 퀴즈·4스텝 번들 LP 구축 · ③ UGC 챌린지 시딩. <br><b>목표</b>: 자사몰 선케어 매출 비중 0 → 유의미, 번들 구매 도입.</p></div>
-      <div class="card soft"><div class="ci">🌳</div><h3>Phase 2 · 3~6개월 — 락인</h3><p>① 루틴 정기배송 론칭 · ② 올영 오프라인 STEP VMD·피부스캔 연동 · ③ 퍼포먼스 풀가동·CRM 리필. <br><b>목표</b>: 재구매·구독 전환 본격화, LTV 개선.</p></div>
+      <h2><span class="hl">6개월</span> 안에 자사몰을 '광노화 루틴 커머스'로</h2></div>
+    <div class="g2 grid" style="margin-bottom:1.0cqh">
+      <div class="card soft"><div class="ci">🌱</div><h3>Phase 1 · 0~3개월 — 세우기</h3><p><b>① 크리스탈 선크림 자사몰 3번 전면 배치</b> · ② 光노화 진단 퀴즈·4스텝 번들 LP · ③ 성분 스토리텔링 UGC 시딩(티노솔브S·에델바이스). <br><b>목표</b>: 선케어 자사몰 매출 비중 회복, 번들 도입.</p></div>
+      <div class="card soft"><div class="ci">🌳</div><h3>Phase 2 · 3~6개월 — 키우기</h3><p>① 루틴 정기배송 론칭 · ② 시즌 틱톡 VSA·DOOH 풀가동 · ③ CRM 리필·(신규)올영 체험 연동. <br><b>목표</b>: 재구매·구독 전환 본격화, LTV 개선.</p></div>
     </div>
     <div class="metric-grid">
       <div class="metric"><div class="mh">AOV</div><div class="md">단품 → 4스텝 번들</div><div class="mk2">목표 +30%↑*</div></div>
-      <div class="metric"><div class="mh">전환율(CVR)</div><div class="md">퀴즈·루틴 LP 도입</div><div class="mk2">목표 +20~30%*</div></div>
-      <div class="metric"><div class="mh">재구매율</div><div class="md">구독·CRM 리필</div><div class="mk2">분기별 우상향</div></div>
-      <div class="metric"><div class="mh">선케어 비중</div><div class="md">자사몰 매출 내</div><div class="mk2">0% → 핵심 축</div></div>
+      <div class="metric"><div class="mh">전환율</div><div class="md">퀴즈·루틴 LP</div><div class="mk2">목표 +20~30%*</div></div>
+      <div class="metric"><div class="mh">재구매율</div><div class="md">구독·CRM</div><div class="mk2">30~45%대*</div></div>
+      <div class="metric"><div class="mh">시즌 ROAS</div><div class="md">틱톡 VSA</div><div class="mk2">4~6x*</div></div>
     </div>
-    <p class="note"><b>출처</b> · *KPI 목표치는 벤치마크 기반 추정(루틴 번들 AOV +30~45%, 퀴즈 CVR +20~40%, Sephora 크로스셀 +22%). 자사 베이스라인 측정 후 확정 필요.</p>
-    <div class="foot"><span class="brand">RE:CIPE · 光 Care Routine</span><span class="pageno">16 / 18</span></div>
+    <p class="note"><b>출처</b> · *KPI 목표는 벤치마크 기반 추정(번들 AOV +25~40%, 퀴즈 CVR +20~40%, 뷰티 틱톡 ROAS 4~6x). 자사 베이스라인 측정 후 확정.</p>
+    <div class="foot"><span class="brand">RE:CIPE · 光 Defense Routine</span><span class="pageno">19 / 21</span></div>
   </section>
 
-  <!-- 17 기대효과 -->
+  <!-- 20 기대효과 증분 -->
   <section class="slide" style="justify-content:center">
-    <div class="slide-head"><span class="kicker"><span class="dot"></span>기대효과 · 왜 이 전략이 숫자를 만드나</span>
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>기대효과 · 어떤 증분으로 이어지나</span>
       <h2>같은 트래픽에서 <span class="hl">객단가·재구매가 동시에</span> 올라간다</h2></div>
-    <div class="fbar" style="margin-bottom:1.3cqh">
-      <div class="fstep"><div class="fl">단품 구매 (현재)</div><div class="ftrack"><div class="ffill" style="width:28%"></div></div><div class="fv">기준</div></div>
-      <div class="fstep"><div class="fl">+ 진단 퀴즈 추천</div><div class="ftrack"><div class="ffill" style="width:52%"></div></div><div class="fv">CVR↑</div></div>
-      <div class="fstep"><div class="fl">+ 4스텝 번들</div><div class="ftrack"><div class="ffill" style="width:74%"></div></div><div class="fv">AOV +30%↑</div></div>
-      <div class="fstep"><div class="fl">+ 루틴 정기배송</div><div class="ftrack"><div class="ffill" style="width:92%"></div></div><div class="fv">LTV↑↑</div></div>
+    <div class="fbar" style="margin-bottom:1.1cqh">
+      <div class="fstep"><div class="fl">단품 구매 (현재)</div><div class="ftrack"><div class="ffill" style="width:26%"></div></div><div class="fv">기준</div></div>
+      <div class="fstep"><div class="fl">+ 光노화 진단 퀴즈</div><div class="ftrack"><div class="ffill" style="width:50%"></div></div><div class="fv">전환 +20~30%</div></div>
+      <div class="fstep"><div class="fl">+ 4스텝 번들</div><div class="ftrack"><div class="ffill" style="width:74%"></div></div><div class="fv">AOV +25~40%</div></div>
+      <div class="fstep"><div class="fl">+ 루틴 정기배송</div><div class="ftrack"><div class="ffill" style="width:93%"></div></div><div class="fv">LTV 2.7배</div></div>
     </div>
     <div class="g3 grid">
-      <div class="card"><div class="ci">💰</div><h3>객단가 (AOV)</h3><p>단품 1개 → 루틴 번들. 벤치마크상 루틴 번들 도입 시 <b>AOV +30~45%</b>(추산).</p></div>
-      <div class="card"><div class="ci">🔁</div><h3>재구매 (Retention)</h3><p>구독·CRM 리필로 <b>D2C 수익성의 핵심</b>인 재구매를 구조적으로 확보.</p></div>
-      <div class="card"><div class="ci">🪙</div><h3>효율 (CAC)</h3><p>선케어 신뢰(Owned)로 유입 → <b>유료의존도·획득비용을 낮춤.</b></p></div>
+      <div class="card"><div class="ci">💰</div><h3>객단가 (AOV)</h3><p>단품 → 루틴 번들. 벤치마크상 <b>+25~40%</b> 증분(추산).</p></div>
+      <div class="card"><div class="ci">🔁</div><h3>재구매·LTV</h3><p>구독·CRM으로 번들 고객 LTV <b>단품의 2.7배</b>(추산).</p></div>
+      <div class="card"><div class="ci">🪙</div><h3>효율 (CAC)</h3><p>선케어 신뢰로 유입 → <b>획득비용·유료의존도 절감.</b></p></div>
     </div>
-    <p class="note"><b>출처</b> · 막대는 벤치마크 기반 개념 시뮬레이션(실측 아님). 루틴 번들 AOV·퀴즈 CVR·크로스셀 리프트는 13p 레퍼런스 인용. 자사 데이터로 검증 전제.</p>
-    <div class="foot"><span class="brand">RE:CIPE · 光 Care Routine</span><span class="pageno">17 / 18</span></div>
+    <p class="note"><b>출처</b> · 막대는 벤치마크 기반 개념 시뮬레이션(실측 아님). 번들 AOV·LTV(ecomhint), 퀴즈 CVR(Kiehl's). 자사 데이터 검증 전제.</p>
+    <div class="foot"><span class="brand">RE:CIPE · 光 Defense Routine</span><span class="pageno">20 / 21</span></div>
   </section>
 
-  <!-- 18 Why me / closing -->
+  <!-- 21 Why me / closing -->
   <section class="slide closing">
     <span class="kicker"><span class="dot"></span>마치며 · Why me</span>
-    <h2>흩어진 자산을 <span class="hl">하나의 루틴으로 잇는 일</span>, 제가 가장 잘합니다</h2>
-    <p class="lead">저는 그동안 <b>데이터로 병목을 찾고, 흩어진 제품·채널을 하나의 서사로 묶어</b> 객단가와 재구매를 만들어왔습니다. 레시피의 과제는 명확합니다 — <b>이미 가진 8천만 개의 빛을, 자사몰에서 다시 켜는 것.</b> 진단 퀴즈부터 선크림 복귀, 4스텝 번들과 구독까지 — <b>입사 첫날부터 실행할 준비가 되어 있습니다.</b></p>
+    <h2>흩어진 자산을 <span class="hl">하나의 루틴으로 잇는 일</span>, 제가 잘합니다</h2>
+    <p class="lead">저는 <b>데이터로 병목을 찾고, 흩어진 제품·채널을 하나의 서사로 묶어</b> 객단가와 재구매를 만들어왔습니다. 레시피의 과제는 분명합니다 — <b>이미 가진 8천만 개의 빛과 광노화 케어를, 자사몰에서 하나의 루틴으로 다시 켜는 것.</b> 진단 퀴즈·선케어 전면 배치·성분 콘텐츠·4스텝 번들·구독까지, <b>입사 첫날부터 실행하겠습니다.</b></p>
     <div class="sign">RE:CIPE 마케팅 지원 · <b>이도형</b> · 2026.06 — "빛을 넘어, 본연으로"를 루틴으로.</div>
-    <div class="foot"><span class="brand" style="color:#f3d189">RE:CIPE · 光 Care Routine</span><span class="pageno">18 / 18</span></div>
+    <div class="foot"><span class="brand" style="color:#f3d189">RE:CIPE · 光 Defense Routine</span><span class="pageno">21 / 21</span></div>
   </section>
 
 </div></div>
 
 <div class="nav">
   <button id="prev">‹</button>
-  <span class="ind" id="ind">1 / 18</span>
+  <span class="ind" id="ind">1 / 21</span>
   <button id="next">›</button>
 </div>
 <div class="hint">← → 또는 스페이스로 이동 · P로 인쇄</div>
