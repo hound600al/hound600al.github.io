@@ -163,12 +163,22 @@
   .blogcard .bcap .applyto{margin-top:auto;font-size:.78cqw;font-weight:700;color:var(--sage);background:var(--sage-bg);border-radius:7px;padding:.45em .6em;line-height:1.4}
   .blogcard .bcap .applyto b{color:#3c6347}
 
-  .benchref{display:flex;gap:.6cqw;align-items:center;margin-top:.7cqw;background:var(--gold-050);border:1px solid var(--gold-100);border-radius:10px;padding:.5cqw .6cqw;text-decoration:none}
-  .benchref img{width:8.6cqw;aspect-ratio:16/9;object-fit:cover;border-radius:6px;flex:none;background:#000}
+  .benchref{display:flex;gap:.8cqw;align-items:center;margin-top:.7cqw;background:var(--gold-050);border:1px solid var(--gold-100);border-radius:10px;padding:.6cqw .7cqw;text-decoration:none}
+  .benchref img{width:15cqw;aspect-ratio:16/9;object-fit:cover;border-radius:7px;flex:none;background:#000}
   .benchref .bx{min-width:0}
-  .benchref .bl{font-size:.66cqw;font-weight:800;color:var(--gold-d);letter-spacing:.03em}
-  .benchref .bt{font-size:.78cqw;font-weight:700;color:var(--ink);line-height:1.26;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-  .benchref .bv{font-size:.7cqw;color:var(--muted-2);font-weight:700;margin-top:.12cqw}
+  .benchref .bl{font-size:.72cqw;font-weight:800;color:var(--gold-d);letter-spacing:.03em}
+  .benchref .bt{font-size:.88cqw;font-weight:800;color:var(--ink);line-height:1.28;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;letter-spacing:-.01em}
+  .benchref .bv{font-size:.76cqw;color:var(--muted-2);font-weight:700;margin-top:.16cqw}
+
+  .mevwrap{display:grid;grid-template-columns:1.08fr .92fr;gap:1.2cqw;flex:1;min-height:0;align-items:stretch}
+  .mevimgs{display:grid;grid-template-columns:1fr 1fr;gap:.7cqw;min-height:0}
+  .mevfig{display:flex;flex-direction:column;background:var(--soft);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow-sm)}
+  .mevfig .mi{flex:1;min-height:0;display:grid;place-items:center;background:#fff;padding:.3cqw}
+  .mevfig .mi img{max-width:100%;max-height:100%;object-fit:contain;display:block}
+  .mevfig figcaption{padding:.45cqw .55cqw;font-size:.74cqw;font-weight:800;color:var(--ink);line-height:1.3;border-top:1px solid var(--line)}
+  .mevx{display:flex;flex-direction:column;justify-content:center;gap:.8cqw}
+  .applyto-big{font-size:.92cqw;font-weight:700;color:#3c6347;background:var(--sage-bg);border-radius:10px;padding:.9cqw 1.0cqw;line-height:1.45}
+  .applyto-big b{color:#2f5238}
 
   .closing{background:linear-gradient(135deg,#241808 0%,#6B4A1C 58%,#C8943F 128%);color:#fff;justify-content:center}
   .closing h2{color:#fff;font-size:2.6cqw}.closing h2 .hl{color:#f3d189}
@@ -567,24 +577,21 @@
     <div class="foot"><span class="brand">RE:CIPE · 光 Recovery Routine</span><span class="pageno">19 / 22</span></div>
   </section>
 
-  <!-- 19B 콘텐츠 레퍼런스: 블로그 -->
+  <!-- 19B 콘텐츠 레퍼런스: 미브잉 한달 후기 블로그 -->
   <section class="slide" style="justify-content:center">
-    <div class="slide-head"><span class="kicker"><span class="dot"></span>콘텐츠 실증 · 이런 후기로 판다 (블로그 레퍼런스)</span>
-      <h2>소비자는 이미 <span class="hl">'시술 대신 홈케어 한달 루틴'</span>으로 후기를 쓴다</h2></div>
-    <div class="g2 grid" style="flex:1;min-height:0;align-items:start">
-      <div class="blogcard">
-        <div class="bbox"><img src="assets/blog-pdrn-a.png" alt="PDRN 한달 후기 블로그 캡처 — 사용 이유" /></div>
-        <div class="bcap"><div class="bt">"피부과 시술 대신 홈케어로" — PDRN 한달 후기</div>
-          <span class="applyto">→ 우리: 스타레놀·PDRN <b>'주사 말고 매일'</b> 메시지를 한달 저널 후기로 시딩</span></div>
+    <div class="slide-head"><span class="kicker"><span class="dot"></span>콘텐츠 실증 · 이런 '한달 후기'로 판다 (미브잉 블로그 벤치마크)</span>
+      <h2>소비자는 <span class="hl">'한 달의 과정'</span>을 기록한다 — 그 포맷을 회복 루틴 후기로</h2></div>
+    <div class="mevwrap">
+      <div class="mevimgs">
+        <figure class="mevfig"><div class="mi"><img src="assets/blog-mevving-a.png" alt="미브잉 한달 후기 — 시작 후기 진입 + 한달 전후" /></div><figcaption>① '시작 후기'로 진입 + 한 달 전·후 비교</figcaption></figure>
+        <figure class="mevfig"><div class="mi"><img src="assets/blog-mevving-b.png" alt="미브잉 한달 후기 — 3주차 변화 기록" /></div><figcaption>② 주차별 변화 기록(3주차) + 전·후</figcaption></figure>
       </div>
-      <div class="blogcard">
-        <div class="bbox"><img src="assets/blog-pdrn-b.png" alt="PDRN 한달 후기 블로그 캡처 — 사용 방법 루틴·1주차" /></div>
-        <div class="bcap"><div class="bt">"사용 방법: 세안→토너→PDRN→크림" + 1주차 후기</div>
-          <span class="applyto">→ 우리: <b>4스텝 루틴을 후기에 자연 노출</b> + 주차별 변화 저널 포맷</span></div>
+      <div class="mevx">
+        <div class="contentbox"><div class="cl">이 '미브잉 한달 후기'가 보여주는 것</div><p>제품 구성·사용법은 <b>'시작 후기'로 진입</b> → <b>1주 미세 · 2주 체감 · 3주 변화 · 4주 확실</b> → <b>한 달 전·후 비교</b>. '결과' 한 장이 아니라 <b>'한 달의 과정'</b>이 신뢰를 만든다.</p></div>
+        <div class="applyto-big">→ <b>RE:CIPE 적용:</b> 스타레놀·PDRN 회복 루틴을 <b>"D0 반신반의 → 주차별 톤·결 변화 → 한 달 전·후"</b> 동일 포맷으로 후기 시딩. <span style="opacity:.8">(타 카테고리지만 '한달 변화 저널'의 정석 포맷 — 그대로 차용)</span></div>
       </div>
     </div>
-    <div class="callout" style="margin-top:1.0cqh;padding:1.0cqw 1.5cqw"><div class="big">✎</div><p>소비자는 스스로 <b>'단품'이 아니라 '한달 루틴'</b>으로 기록한다 — 이 검증된 포맷을 <b>레시피 루틴 후기로 시딩</b>하면 광고가 아닌 '경험'이 된다.</p></div>
-    <p class="note"><b>출처</b> · 네이버 블로그 실제 후기 직접 캡처(2026, blog.naver.com/weachfrontq136). 제3자 후기로 '포맷 레퍼런스' 인용 — 자사 후기는 동일 구조로 제작.</p>
+    <p class="note"><b>출처</b> · 미브잉 한달 후기 직접 캡처(m.blog.naver.com/eter2000/223154433666). 타 카테고리 후기를 <b>'한달 변화 저널 포맷' 벤치마크</b>로 인용 — 자사 후기는 동일 구조로 제작.</p>
     <div class="foot"><span class="brand">RE:CIPE · 光 Recovery Routine</span><span class="pageno">20 / 22</span></div>
   </section>
 
