@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<title>이도형 | 성장 대시보드</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #ffffff;
+    padding: 24px;
+  }
+  .card {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #E5E7EB;
+    padding: 22px 22px 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  }
+  .card h3 { font-size: 15px; font-weight: 700; color: #111827; }
+  .card .desc { font-size: 12px; color: #6B7280; margin-top: 3px; margin-bottom: 16px; }
+  .chart-wrap { position: relative; height: 340px; }
+  .legend-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 14px; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 12px; color: #6B7280; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+  .join-label { font-size: 11px; color: #60A5FA; text-align: center; margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h3>6대 성장 지표 통합 (입사 시점 대비 성장율)</h3>
+  <div class="desc">입사(2024-05) 시점 대비 성장율(%)로 표시 — 절대 수치는 비공개, 성장 추이(예측)만 노출</div>
+  <div class="chart-wrap"><canvas id="chartAll"></canvas></div>
+  <div class="legend-row">
+    <div class="legend-item"><span class="legend-dot" style="background:#DC2626"></span>매출 (예측 성장지수)</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#1A56DB"></span>30DAU</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#10B981"></span>신규 유저</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#8B5CF6"></span>신규 가입자</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#EC4899"></span>첫 이용</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#6366F1"></span>앱 설치수</div>
+  </div>
+  <div class="join-label">▏ 입사 시점 (2024-05) · 점선 좌측은 입사 전 기준선</div>
+</div>
+
+<script>
+const labels = [
+  '2024-01','2024-02','2024-03','2024-04','2024-05','2024-06',
+  '2024-07','2024-08','2024-09','2024-10','2024-11','2024-12',
+  '2025-01','2025-02','2025-03','2025-04','2025-05','2025-06',
+  '2025-07','2025-08','2025-09','2025-10','2025-11','2025-12',
+  '2026-01','2026-02','2026-03','2026-04'
+];
+const JOIN = 4;
+
+// 모든 지표를 입사(2024-05) 시점 대비 성장율(%)로만 노출 — 절대 운영 수치는 비공개
+const revenueIndex = [58,67,71,82,100,93,165,198,191,226,226,240,271,310,356,420,487,562,695,757,784,892,888,1014,1136,1199,1561,1642];
+const dau30 = [-56.58,-41.99,-35,-22.96,0,42.44,88.63,149.91,168.71,198.21,215.58,266.29,292.44,345.48,456.4,587.82,694.85,870.05,1094.4,1196.55,1281.42,1448.66,1469.79,1700.45,1838.99,2098.97,2439.66,2757.88];
+const newUser = [-57.99,-36.57,-42.01,-30.56,0,58.91,109.14,168.63,114.47,123.73,119.1,190.74,211.46,211.57,466.67,569.33,621.64,770.02,1081.83,992.59,876.97,1070.25,918.75,1347.45,1294.79,1397.11,2066.32,2229.05];
+const appInstall = [-56.05,-48.57,-46.36,-44.25,0,71.78,91.75,100.25,72.52,130.99,173.78,253.48,128.42,82.47,237.99,178.84,206.17,302.9,448.66,548.32,469.17,578.1,358.05,499.08,646.97,735.22,1016.23,900.19];
+const newSignup = [-65.16,-50.74,-49.31,-37.56,0,102.07,158.85,188.29,139.17,178.2,173.59,252.17,203.73,165.48,433.78,433.92,516.04,668.2,940.65,938.34,800.97,1026.68,757.97,1028.16,1057.37,1257.93,1884.19,1695.85];
+const firstUse = [-57.99,-30.67,-32.29,-30.56,0,58.91,113.31,174.42,114.47,126.74,117.13,194.56,215.05,212.5,469.56,571.3,628.36,778.12,1092.13,1005.21,902.31,1082.87,931.48,1365.62,1309.95,1418.4,2089.58,2252.78];
+
+const joinLine = {
+  type:'line', xMin:JOIN-0.5, xMax:JOIN-0.5,
+  borderColor:'rgba(96,165,250,0.7)', borderWidth:2, borderDash:[5,4],
+  label:{ display:true, content:'입사', position:'start', color:'#60A5FA', font:{size:10,weight:'bold'}, backgroundColor:'rgba(17,24,39,0.85)', padding:{x:6,y:3}, yAdjust:-8 }
+};
+
+new Chart(document.getElementById('chartAll').getContext('2d'), {
+  type: 'line',
+  data: {
+    labels,
+    datasets: [
+      { label:'매출',     data:revenueIndex.map(v=>v-100), borderColor:'#DC2626', backgroundColor:'transparent', borderWidth:3,   pointRadius:2.5, tension:0.35, yAxisID:'y' },
+      { label:'30DAU',    data:dau30,     borderColor:'#1A56DB', backgroundColor:'transparent', borderWidth:2.5, pointRadius:2, tension:0.35, yAxisID:'y' },
+      { label:'신규 유저', data:newUser,   borderColor:'#10B981', backgroundColor:'transparent', borderWidth:2.5, pointRadius:2, tension:0.35, yAxisID:'y' },
+      { label:'신규 가입자',data:newSignup,borderColor:'#8B5CF6', backgroundColor:'transparent', borderWidth:2,   pointRadius:2, tension:0.35, borderDash:[4,3], yAxisID:'y' },
+      { label:'첫 이용',  data:firstUse,  borderColor:'#EC4899', backgroundColor:'transparent', borderWidth:2,   pointRadius:2, tension:0.35, borderDash:[4,3], yAxisID:'y' },
+      { label:'앱 설치수', data:appInstall,borderColor:'#6366F1', backgroundColor:'transparent', borderWidth:2,   pointRadius:2, tension:0.35, yAxisID:'y' }
+    ]
+  },
+  options: {
+    responsive:true, maintainAspectRatio:false,
+    interaction:{ mode:'index', intersect:false },
+    plugins: {
+      legend:{ display:false },
+      tooltip:{ callbacks:{ label: ctx => {
+        const v = ctx.raw; const s = v >= 0 ? '+' : '';
+        return `${ctx.dataset.label}: ${s}${v.toFixed(0)}% (입사 대비)`;
+      }}},
+      annotation:{ annotations:{ joinLine,
+        zero:{ type:'line', yMin:0, yMax:0, yScaleID:'y', borderColor:'rgba(156,163,175,0.4)', borderWidth:1, borderDash:[3,3] }
+      }}
+    },
+    scales: {
+      x:  { ticks:{ font:{size:9}, maxRotation:45, color:'#9CA3AF' }, grid:{ display:false } },
+      y:  { position:'left',  title:{ display:true, text:'입사 대비 성장율 (%)', font:{size:10}, color:'#9CA3AF' }, ticks:{ font:{size:9}, color:'#9CA3AF', callback: v=>v+'%' }, grid:{ color:'#F3F4F6' } }
+    }
+  }
+});
+</script>
+</body>
+</html>
