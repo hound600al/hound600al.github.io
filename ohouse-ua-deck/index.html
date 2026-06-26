@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<!-- 오늘의집 Growth Marketer(UA) 면접 발표덱 · 이도형 -->
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>오늘의집 Growth Marketer (UA) 전략 제안 · 이도형</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+:root{
+  --ink:#15171C; --navy:#1A1F2E; --black:#0E1118;
+  --gray:#8A8F99; --gray2:#5B6170;
+  --bg:#FFFFFF; --soft:#F4F6FA; --line:#E7EBF1;
+  --radius:20px; --shadow:0 12px 40px rgba(21,23,28,.10);
+  --font:"Pretendard","Noto Sans KR",-apple-system,system-ui,sans-serif;
+  /* 오늘의집 브랜드 톤 — 코발트 블루 + 따뜻한 코랄 */
+  --blue:#3E7BF6; --blue-d:#1B5FE0; --blue-soft:#E9F1FE;
+  --violet:#5A6CF0; --violet-d:#3A4BD6; --violet-soft:#EAECFE;
+  --teal:#0FB6A8; --teal-d:#079184; --teal-soft:#DBF5F1;
+  --amber:#F59E0B; --amber-soft:#FDF0D5; --amber-d:#b9770a;
+  --rose:#FF6F5E; --rose-soft:#FFE6E1;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:#22252C;font-family:var(--font);-webkit-font-smoothing:antialiased}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.deck{position:relative;width:1280px;height:720px;transform-origin:center center}
+.slide{position:absolute;inset:0;background:var(--bg);display:none;flex-direction:column;padding:44px 60px;overflow:hidden}
+.slide.active{display:flex;animation:fade .5s ease}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:700;letter-spacing:.04em;color:var(--blue-d);text-transform:uppercase;margin-bottom:10px}
+.kicker.vio{color:var(--violet-d)} .kicker.teal{color:var(--teal-d)} .kicker.amber{color:var(--amber-d)} .kicker.rose{color:#d8412e} .kicker.gray{color:var(--gray)}
+h1{font-size:49px;font-weight:800;line-height:1.16;color:var(--ink);letter-spacing:-.02em}
+h2{font-size:32px;font-weight:800;line-height:1.18;color:var(--ink);letter-spacing:-.02em}
+h3{font-size:19.5px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+p,li{font-size:16px;line-height:1.6;color:#2C313C}
+.lead{font-size:19.5px;line-height:1.62;color:var(--gray2);font-weight:500}
+.hl{background:linear-gradient(transparent 58%, var(--blue-soft) 58%);font-weight:800;color:var(--ink)}
+.hl.rose{background:linear-gradient(transparent 58%, var(--rose-soft) 58%)}
+.hl.teal{background:linear-gradient(transparent 58%, var(--teal-soft) 58%)}
+.hl.amber{background:linear-gradient(transparent 58%, var(--amber-soft) 58%)}
+b,strong{font-weight:800;color:var(--ink)}
+.mono{font-variant-numeric:tabular-nums}
+
+.head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:16px}
+.logo{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:16.5px;letter-spacing:-.01em;color:var(--ink)}
+.logo .ic{width:24px;height:24px;border-radius:7px;background:var(--blue);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px}
+
+.grid{display:grid;gap:14px}
+.card{background:var(--soft);border-radius:var(--radius);padding:18px 20px;border:1px solid transparent}
+.card.blue{background:var(--blue-soft)} .card.vio{background:var(--violet-soft)} .card.teal{background:var(--teal-soft)} .card.amber{background:var(--amber-soft)} .card.rose{background:var(--rose-soft)}
+.card.out{background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}
+.card.dark{background:var(--ink)} .card.dark h3{color:#fff} .card.dark p,.card.dark li{color:#D5D9E2}
+.card h3{margin-bottom:5px}
+.card .num{font-size:13px;font-weight:800;color:var(--gray);margin-bottom:5px}
+.card p{font-size:14.5px;line-height:1.55}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--gray2)}
+.pill{display:inline-block;font-size:13px;font-weight:800;padding:6px 13px;border-radius:999px}
+.pill.k{background:var(--ink);color:#fff}
+.pill.blue{background:var(--blue-soft);color:var(--blue-d)} .pill.vio{background:var(--violet-soft);color:var(--violet-d)} .pill.teal{background:var(--teal-soft);color:var(--teal-d)}
+
+.goal{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;border-radius:999px;padding:8px 16px;font-size:13.5px;font-weight:800;margin-bottom:12px}
+.goal b{color:#8FB6FF}
+
+.metric .big{font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1.05;color:var(--ink)}
+.metric .big.blue{color:var(--blue-d)} .metric .big.vio{color:var(--violet-d)} .metric .big.teal{color:var(--teal-d)} .metric .big.rose{color:var(--rose)} .metric .big.amber{color:var(--amber-d)}
+.metric .lab{font-size:13px;color:var(--gray2);margin-top:6px;font-weight:600;line-height:1.4}
+
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:8.5px 11px;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font-size:12px;color:var(--gray);font-weight:700;letter-spacing:.02em}
+td b{font-weight:800}
+tr.hi td{background:var(--blue-soft)}
+.chk{color:var(--teal-d);font-weight:800} .x{color:var(--rose);font-weight:800}
+
+.shot{border-radius:13px;border:1px solid var(--line);box-shadow:var(--shadow);width:100%;display:block}
+.cap{font-size:12px;color:var(--gray);margin-top:6px;text-align:center;line-height:1.4}
+.shotwrap{position:relative}
+.shotwrap .badge{position:absolute;left:10px;top:10px;background:var(--ink);color:#fff;font-size:11.5px;font-weight:800;padding:4px 10px;border-radius:999px}
+
+.callout{background:var(--ink);color:#fff;border-radius:var(--radius);padding:16px 22px}
+.callout h3{color:#fff} .callout p{color:#D5D9E2}
+.quote{background:linear-gradient(120deg,#172033,#1E2A4E);color:#fff;border-radius:var(--radius);padding:24px 28px}
+.quote .q{font-size:24px;font-weight:800;line-height:1.38;color:#fff}
+.quote .q .g{background:linear-gradient(90deg,#8FB6FF,#A6B4FF,#7FE6DA);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+.flag{font-size:12px;color:var(--gray);font-style:italic}
+.src{font-size:11px;color:var(--gray);line-height:1.5}
+.src b{color:var(--gray2);font-weight:700}
+.foot{position:absolute;left:60px;right:60px;bottom:16px;display:flex;justify-content:space-between;font-size:11px;color:var(--gray);border-top:1px solid var(--line);padding-top:8px;gap:20px}
+.foot .src{flex:1}
+
+ul.clean{list-style:none}
+ul.clean li{position:relative;padding-left:22px;margin-bottom:7px;font-size:15px}
+ul.clean li:before{content:"";position:absolute;left:4px;top:8px;width:7px;height:7px;border-radius:2px;background:var(--blue)}
+ul.clean.vio li:before{background:var(--violet)} ul.clean.teal li:before{background:var(--teal)} ul.clean.rose li:before{background:var(--rose)}
+
+.flow{display:flex;align-items:stretch;gap:0}
+.flow .step{flex:1;background:var(--soft);border-radius:13px;padding:12px;text-align:center}
+.flow .arr{display:flex;align-items:center;padding:0 7px;font-size:19px;color:var(--gray);font-weight:800}
+
+.adcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 13px;box-shadow:var(--shadow)}
+.adcard .ad{font-size:9px;font-weight:800;color:var(--teal-d);border:1px solid var(--teal);border-radius:4px;padding:1px 5px;display:inline-block;margin-bottom:5px}
+.adcard .u{font-size:10px;color:var(--gray)}
+.adcard .ti{font-size:13px;font-weight:800;color:#1a0dab;line-height:1.3;margin:2px 0}
+.adcard .ds{font-size:10.5px;color:#4a4f5e;line-height:1.4}
+.stepbox{background:var(--soft);border-radius:12px;padding:12px 13px;flex:1}
+.stepbox .n{font-size:11px;font-weight:800;color:var(--blue-d)}
+.stepbox h4{font-size:13.5px;font-weight:800;color:var(--ink);margin:3px 0 4px}
+.stepbox p{font-size:12px;color:#4a4f5e;line-height:1.45}
+
+/* 막대 그래프(MAU) */
+.bars{display:flex;align-items:flex-end;gap:18px;height:150px;padding:0 6px}
+.bar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+.bar .col{width:60%;border-radius:8px 8px 0 0;background:var(--blue)}
+.bar .col.down{background:var(--rose)}
+.bar .v{font-size:14px;font-weight:800;color:var(--ink);margin-bottom:6px}
+.bar .yr{font-size:11.5px;color:var(--gray);margin-top:7px;font-weight:600}
+
+@media print{.slide{display:flex!important;page-break-after:always}#nav,#bar,.hint{display:none}}
+#nav{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;background:rgba(21,23,28,.62);backdrop-filter:blur(8px);padding:8px 16px;border-radius:999px;z-index:50}
+#nav button{background:none;border:none;color:#fff;font-size:17px;cursor:pointer;opacity:.85;line-height:1}
+#nav .ct{color:#fff;font-size:13px;font-weight:600;min-width:54px;text-align:center;font-variant-numeric:tabular-nums}
+#bar{position:fixed;top:0;left:0;height:3px;background:var(--blue);z-index:60;transition:width .3s}
+.hint{position:fixed;bottom:20px;right:22px;color:#8b8d94;font-size:12px;z-index:50}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="stage"><div class="deck" id="deck">
+
+<!-- 1 TITLE -->
+<section class="slide active" style="justify-content:center;background:
+  radial-gradient(900px 520px at 84% -10%, var(--blue-soft) 0%, transparent 55%),
+  radial-gradient(720px 520px at -5% 110%, var(--rose-soft) 0%, transparent 55%), #fff">
+  <div class="logo" style="margin-bottom:28px"><span class="ic">⌂</span>오늘의집</div>
+  <div class="kicker">Growth Marketer (UA) · 전략 제안</div>
+  <h1>흑자는 만들었습니다.<br>다음은 <span class="hl">식은 모객 엔진</span>을 다시 켜는 일입니다.</h1>
+  <p class="lead" style="margin-top:22px;max-width:940px">흑자 전환 이후 가려진 신규 유저 획득(UA)의 빈자리를 — <b>측정·콘텐츠·리텐션</b> 세 개의 레버로 다시 채우는 그로스 전략</p>
+  <div style="margin-top:32px;display:flex;gap:10px">
+    <span class="pill k">버킷플레이스 · 오늘의집</span>
+    <span class="pill blue">Growth Marketer (UA) 지원</span>
+    <span class="pill vio">이도형</span>
+  </div>
+</section>
+
+<!-- 2 회사 현황 -->
+<section class="slide">
+  <div class="head">
+    <div><div class="kicker">CONTEXT · 지금 오늘의집</div><h2>오늘의집은 '흑자'라는 변곡점을 지났습니다</h2></div>
+    <div class="logo"><span class="ic">⌂</span>오늘의집</div>
+  </div>
+  <div class="grid" style="grid-template-columns:1.05fr 1fr;flex:1;align-content:start">
+    <div class="shotwrap">
+      <span class="badge">bucketplace.com · 회사소개</span>
+      <img class="shot" src="images/bucketplace-hero.png" alt="오늘의집 회사소개" />
+      <div class="cap">"'이렇게 살아보고 싶다'는 꿈을 현실로" — 라이프스타일 슈퍼앱으로 포지셔닝</div>
+    </div>
+    <div>
+      <div class="grid" style="grid-template-columns:1fr 1fr;margin-bottom:12px">
+        <div class="card out metric"><div class="big blue">2,879억</div><div class="lab">2024 매출 (+22.3% YoY)<br>창사 첫 영업흑자 +5.7억</div></div>
+        <div class="card out metric"><div class="big">3,215억</div><div class="lab">2025 매출 (+11.7%)<br>영업손실 −147억 (신사업 재투자)</div></div>
+      </div>
+      <div class="card blue">
+        <h3>수익은 3개 축 + 글로벌</h3>
+        <p style="margin-top:4px"><b>커머스</b>(중개수수료·직매입) · <b>광고</b>(리테일미디어, 고마진) · <b>시공중개</b>(누적 거래액 1조+, 파트너 400곳). 일본·미국으로 역직구 확장 중.</p>
+      </div>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:14px">
+    <p style="font-size:15.5px"><b style="color:#fff">하지만</b> &nbsp;성장의 '입구'(신규 유저 유입)에서 신호가 바뀌고 있습니다 — 다음 장에서 진단합니다.</p>
+  </div>
+  <div class="foot">
+    <span class="src"><b>출처</b> 버킷플레이스 공시·바이라인/와우테일 2025.03 [제3자], 벤처스퀘어·아시아경제 2026.04 [자사발표]. BM 비중은 데모데이 추정 [추정].</span>
+    <span>오늘의집 UA · 이도형</span>
+  </div>
+</section>
+
+<!-- 3 ① 페인포인트 -->
+<section class="slide">
+  <div class="head">
+    <div><div class="kicker rose">PAIN POINT ①</div><h2>지금 오늘의집이 겪는 세 가지 페인포인트</h2></div>
+    <div class="logo"><span class="ic">⌂</span>오늘의집</div>
+  </div>
+  <div class="grid" style="grid-template-columns:1fr 1.25fr;flex:1;align-content:start">
+    <div class="card rose">
+      <div class="num">PAIN 1 · 모객 엔진 둔화</div>
+      <h3>새 유저가 예전처럼 들어오지 않는다</h3>
+      <div class="bars" style="margin:14px 0 4px">
+        <div class="bar"><div class="v">590만</div><div class="col" style="height:100%"></div><div class="yr">2021.08 피크</div></div>
+        <div class="bar"><div class="v">368만</div><div class="col down" style="height:62%"></div><div class="yr">2025.11</div></div>
+      </div>
+      <p style="text-align:center"><b style="color:#d8412e">MAU −37%</b> · 국내 이커머스 침투율 약 44%로 포화</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="card amber">
+        <div class="num">PAIN 2 · CAC 상승 + 측정 붕괴</div>
+        <h3>돈은 더 드는데, 어디서 효과 났는지 안 보인다</h3>
+        <p style="margin-top:4px">iOS ATT 옵트인율 <b>15.9%</b>(2024 Q1)까지 하락 → 타겟팅 정확도·라스트터치 기여도 측정이 무너지며 퍼포먼스 광고 효율이 구조적으로 악화.</p>
+      </div>
+      <div class="card blue">
+        <div class="num">PAIN 3 · 자산은 큰데, 모객으로 안 흐른다</div>
+        <h3>1,200만 집들이가 신규 유입으로 환산되지 않는다</h3>
+        <p style="margin-top:4px">집들이 UGC <b>1,200만건</b>·앱 다운로드 <b>3,000만+</b>이라는 자산이 신규 모객 루프로 체계화되지 않음. 게다가 흑자 이후 자원은 시공·AI·결제 등 <b>'수익화'로 쏠려</b> UA 재점화의 빈자리가 생김.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <span class="src"><b>출처</b> MAU 와이즈앱 추산 [제3자], 침투율 KPMG 2024 [제3자], ATT 옵트인 브랜드브리프·AppsFlyer 2024 [제3자], UGC·다운로드 버킷플레이스 [자사발표].</span>
+    <span>오늘의집 UA · 이도형</span>
+  </div>
+</section>
+
+<!-- 4 ② 오늘의집이 이미 하는 액션 -->
+<section class="slide">
+  <div class="head">
+    <div><div class="kicker">ACTION ②</div><h2>오늘의집은 이미 이렇게 대응하고 있습니다</h2></div>
+    <div class="logo"><span class="ic">⌂</span>오늘의집</div>
+  </div>
+  <div class="grid" style="grid-template-columns:1fr 1fr;flex:1;align-content:start">
+    <div class="card out"><div class="num">01 · 타겟·채널 확장</div><h3>20대 코어 → 49세까지, 매체도 다변화</h3><p>FB·IG·Google 중심에서 Kakao·Naver·TikTok까지 확장. 연령대별로 매체와 소재를 최적화하며 모객 볼륨의 천장을 밀어올림.</p></div>
+    <div class="card out"><div class="num">02 · LTV 기반 측정</div><h3>단기 CPA가 아니라 코호트 ROAS로 본다</h3><p>AppsFlyer 코호트 리포트로 7·14·28일 ROAS를 추적, 단기 전환단가가 아닌 LTV 기준으로 매체 믹스를 결정.</p></div>
+    <div class="card out"><div class="num">03 · 증분성 측정 도입</div><h3>리마케팅의 '진짜 기여'를 실험으로</h3><p>2021년부터 AppsFlyer Incrementality 테스트를 도입해 리마케팅 캠페인의 실제 증분 기여도를 측정.</p></div>
+    <div class="card out"><div class="num">04 · 신사업 재투자</div><h3>흑자를 시공·글로벌·AI·결제에 재투자</h3><p>시공(누적 1조+)·일본/미국·AI 엔드투엔드 공간 솔루션·오늘의집페이·리테일미디어로 수익 기반을 확장.</p></div>
+  </div>
+  <div class="foot">
+    <span class="src"><b>출처</b> 채널·타겟·측정 디테일 AppsFlyer 오늘의집 성공사례 [제3자], 신사업 벤처스퀘어·아시아경제·뉴데일리 2026.04 [자사발표/제3자].</span>
+    <span>오늘의집 UA · 이도형</span>
+  </div>
+</section>
+
+<!-- 5 ③ 한계 -->
+<section class="slide">
+  <div class="head">
+    <div><div class="kicker rose">LIMIT ③</div><h2>하지만 지금 방식만으로는 한계가 있습니다</h2></div>
+    <div class="logo"><span class="ic">⌂</span>오늘의집</div>
+  </div>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr);flex:1;align-content:start">
+    <div class="card rose"><div class="num">한계 1</div><h3>퍼포먼스 채널 확장의 천장</h3><p>ATT 이후 신규 설치의 측정·타겟팅이 어려워지며, 글로벌 이커머스 광고비조차 UA→리마케팅으로 이동(iOS UA 비중 17%→8%). <b>신규 모객 자체</b>는 여전히 둔화.</p></div>
+    <div class="card amber"><div class="num">한계 2</div><h3>자원이 '수익화'로 쏠려 있다</h3><p>−147억 영업손실은 시공·결제·가구 등 신사업 투자처. 기존 유저의 객단가·전환을 높이는 데 무게가 실리며, <b>UA 재점화의 전담 동력</b>은 상대적으로 비어 있음.</p></div>
+    <div class="card blue"><div class="num">한계 3</div><h3>콘텐츠·데이터 자산이 잠겨 있다</h3><p>1,200만 UGC와 1st party 데이터가 <b>신규 모객(오가닉 유입·퍼널 전환)</b>으로 체계적으로 환산되는 루프가 아직 설계돼 있지 않음.</p></div>
+  </div>
+  <div class="callout" style="margin-top:14px">
+    <p style="font-size:15.5px">정리하면 — <b style="color:#fff">"더 비싸진 모객을, 무너진 측정 위에서, 잠긴 자산을 두고 돌리는"</b> 상황. 그래서 회사는 이 문제를 풀 사람을 찾고 있습니다.</p>
+  </div>
+  <div class="foot">
+    <span class="src"><b>출처</b> UA→리마케팅 광고비 이동 AppsFlyer 이커머스 리포트 2026(글로벌 기준) [제3자], 영업손실 투자처 아시아경제·뉴데일리 2026.04 [제3자].</span>
+    <span>오늘의집 UA · 이도형</span>
+  </div>
+</section>
+
+<!-- 6 ④ JD가 바라는 것 -->
+<section class="slide">
+  <div class="head">
+    <div><div class="kicker vio">WHAT THEY WANT ④</div><h2>그래서 이 공고는 '이런 사람'을 찾습니다</h2></div>
+    <div class="logo"><span class="ic">⌂</span>오늘의집</div>
+  </div>
+  <p class="lead" style="font-size:16px;margin-bottom:14px">채용공고(Growth Marketer · UA, 경력 5년+) 원문에서 읽은 회사의 진짜 요구 4가지</p>
+  <div class="grid" style="grid-template-columns:1fr 1fr;flex:1;align-content:start">
+    <div class="card out"><h3 style="color:var(--blue-d)">A · 숫자로 책임지는 채널 오너십</h3><p>"월 예산 기획·배분" 필수 + 우대 "<b>월 10억+ Paid 셀프서브 운영</b>" — 실행자가 아니라 채널 P&L을 쥔 오너를 원함.</p></div>
+    <div class="card out"><h3 style="color:var(--blue-d)">B · 데이터→액션 루프를 혼자 돈다</h3><p>"<b>1st Party Data + SQL</b>", "퍼널별 성과 분석 → 지표 개선 액션 실행" — 분석을 남에게 맡기지 않고 직접 닫는 그로스 루프.</p></div>
+    <div class="card out"><h3 style="color:var(--blue-d)">C · 앱 생태계 기술 이해</h3><p>"<b>MMP 택소노미·이벤트 설계, SDK/Pixel 연동, 기여도 분석</b>", 우대 "iOS ATT 전략" — 측정 신뢰도를 직접 다루는 기술형 마케터.</p></div>
+    <div class="card out"><h3 style="color:var(--blue-d)">D · 모객을 넘어 리텐션까지</h3><p>우대 "디자인·<b>CRM</b>·개발 협업으로 신규 회원 <b>온보딩·리텐션 개선</b>" + 대행사·유관부서 조율 — 모객의 뒷단까지 책임.</p></div>
+  </div>
+  <div class="quote" style="margin-top:14px;padding:16px 24px">
+    <div class="q" style="font-size:18px">한 줄 요약: <span class="g">"식은 모객 엔진을, 측정 위에서 다시 켤 데이터형 오너"</span></div>
+  </div>
+  <div class="foot">
+    <span class="src"><b>출처</b> 리멤버 커리어/BizPP/그리팅 공고 원문 교차 확인 [JD원문]. 채용 절차 4단계(서류·직무·조직문화+레퍼런스·처우).</span>
+    <span>오늘의집 UA · 이도형</span>
+  </div>
+</section>
+
+<!-- 7 ⑤ 전략 개요 매핑 -->
+<section class="slide">
+  <div class="head">
+    <div><div class="kicker teal">MY PLAY ⑤</div><h2>제가 하려는 것 — 페인 3 → 액션 3 매핑</h2></div>
+    <div class="logo"><span class="ic">⌂</span>오늘의집</div>
+  </div>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr);flex:1;align-content:start;gap:14px">
+    <div class="card rose">
+      <div class="num">PAIN 2 · 측정 붕괴 / CAC↑</div>
+      <div style="font-size:20px;text-align:center;color:var(--gray);margin:8px 0">↓</div>
+      <h3 style="color:#d8412e">전략 1 · 측정 재정의</h3>
+      <p style="margin-top:4px">1st party + 증분성 + MMM으로 '진짜 기여 채널'에 예산 재배분.</p>
+      <div style="margin-top:8px"><span class="tag">JD B·C 충족</span></div>
+    </div>
+    <div class="card blue">
+      <div class="num">PAIN 1 · 모객 엔진 둔화</div>
+      <div style="font-size:20px;text-align:center;color:var(--gray);margin:8px 0">↓</div>
+      <h3 style="color:var(--blue-d)">전략 2 · UGC 모객 엔진화</h3>
+      <p style="margin-top:4px">1,200만 집들이를 오가닉·SEO/GEO·Web-to-App 무료 모객 엔진으로.</p>
+      <div style="margin-top:8px"><span class="tag">JD 채널믹스 충족</span></div>
+    </div>
+    <div class="card teal">
+      <div class="num">PAIN 3 · 자산 잠김 / 리텐션</div>
+      <div style="font-size:20px;text-align:center;color:var(--gray);margin:8px 0">↓</div>
+      <h3 style="color:var(--teal-d)">전략 3 · LTV 기반 UA</h3>
+      <p style="margin-top:4px">이사 모멘트 공략 + CRM 리텐션으로 비싼 모객을 정당화.</p>
+      <div style="margin-top:8px"><span class="tag">JD D 충족</span></div>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:14px">
+    <p style="font-size:15.5px">USP — 세 전략 모두 <b style="color:#fff">오늘의집만 가진 자산(UGC · 1st party 데이터 · 이사 데이터)</b>을 모객 레버로 전환합니다. 경쟁사가 따라 할 수 없는 구조.</p>
+  </div>
+  <div class="foot">
+    <span class="src"><b>설계 원칙</b> 페인 개수 = 전략 개수(1:1). 각 전략은 외부 벤치마크로 뒷받침(다음 3개 장).</span>
+    <span>오늘의집 UA · 이도형</span>
+  </div>
+</section>
+
+<!-- 8 전략 1 -->
+<section class="slide">
+  <div class="head">
+    <div><div class="kicker rose">STRATEGY 1</div><h2>측정을 다시 세워, '진짜 모객 채널'에 베팅한다</h2></div>
+    <div class="logo"><span class="ic">⌂</span>오늘의집</div>
+  </div>
+  <p class="lead" style="font-size:15.5px;margin-bottom:12px">ATT로 라스트터치가 무너진 환경 → <b>퍼스트파티 + 증분성(인크리멘탈리티) + MMM</b>으로 실제 기여를 측정해 헛돈을 빼고 효율 채널에 재배분</p>
+  <div style="display:flex;gap:10px;margin-bottom:13px">
+    <div class="stepbox"><div class="n">STEP 1</div><h4>측정 기반 정비</h4><p>이벤트 택소노미·서버사이드 정합으로 ATT 손실 보강</p></div>
+    <div class="stepbox"><div class="n">STEP 2</div><h4>증분성 실험</h4><p>Geo-holdout·인크리멘탈리티로 채널별 진짜 기여 분리</p></div>
+    <div class="stepbox"><div class="n">STEP 3</div><h4>MMM 예산 배분</h4><p>미디어믹스모델링으로 상위 예산 의사결정</p></div>
+    <div class="stepbox"><div class="n">STEP 4</div><h4>SQL 주간 루프</h4><p>직접 쿼리한 대시보드로 매주 재배분 액션</p></div>
+  </div>
+  <div class="grid" style="grid-template-columns:1fr 1fr;align-content:start">
+    <div class="card teal"><h3>벤치마크 · 측정이 곧 효율</h3><ul class="clean teal" style="margin-top:6px"><li><b>MMM 도입 YoY +212%</b> — 측정의 무게중심이 어트리뷰션에서 증분·MMM으로 이동 (Google·eMarketer 2025)</li><li>풀퍼널 측정 도입 익명 이커머스 <b>CAC −22%, ROAS 2.3→3.1x</b> (NMS 2025, 단일 출처)</li></ul></div>
+    <div class="card dark"><h3>오늘의집에 주는 효과</h3><p style="margin-top:6px">"같은 예산으로 더 많은 진짜 신규 유저" — 증분 기준으로 비효율 채널을 걷어내고, 흑자 이후 늘릴 마케팅비를 <b style="color:#8FB6FF">근거 있게</b> 집행.</p></div>
+  </div>
+  <div class="foot">
+    <span class="src"><b>출처</b> MMM +212% Google Data-Driven Report·eMarketer 2025 [제3자]. CAC −22% NMSConsulting 2025 [제3자·단일출처, 단정 금지]. <span class="flag">방향성 근거로 인용.</span></span>
+    <span>오늘의집 UA · 이도형</span>
+  </div>
+</section>
+
+<!-- 9 전략 2 -->
+<section class="slide">
+  <div class="head">
+    <div><div class="kicker">STRATEGY 2</div><h2>1,200만 집들이를 '무료 모객 엔진'으로 전환한다</h2></div>
+    <div class="logo"><span class="ic">⌂</span>오늘의집</div>
+  </div>
+  <div class="grid" style="grid-template-columns:1fr 1.15fr;flex:1;align-content:start">
+    <div>
+      <div class="card blue" style="margin-bottom:12px">
+        <h3>무엇을</h3>
+        <p style="margin-top:4px">집들이·리뷰 UGC를 <b>프로그래매틱 SEO + GEO(생성형 엔진 최적화) + 숏폼</b>으로 구조화해 비브랜드 유기 유입을 늘리고, <b>Web-to-App 퍼널</b>을 최적화해 그 트래픽을 앱 설치·첫구매로 전환.</p>
+      </div>
+      <div class="adcard">
+        <span class="ad">유기 검색 결과</span>
+        <div class="u">ohou.se › 집들이 › 6평 원룸</div>
+        <div class="ti">6평 원룸도 이렇게 — 신혼·자취 집들이 1,200만건</div>
+        <div class="ds">실사용자가 올린 공간·상품 사진에서 바로 구매까지. 검색 → 영감 → 설치 → 구매 퍼널 단축.</div>
+      </div>
+      <div class="cap" style="text-align:left;margin-top:8px">자산을 광고비 없이 유입으로 바꾸는 구조</div>
+    </div>
+    <div>
+      <div class="card teal"><h3>벤치마크 · 콘텐츠 = UA 엔진</h3>
+        <ul class="clean teal" style="margin-top:6px">
+          <li><b>Zillow</b> — 자동생성 520만 페이지, 월 유기 방문 <b>3,300만</b></li>
+          <li><b>Airbnb</b> — 프로그래매틱 SEO 월 유기 약 2,000만 방문(브랜드검색 1.1%)</li>
+          <li><b>무신사 스냅</b> — UGC 통한 상품 진입 월 <b>440만건</b></li>
+          <li><b>GEO 전환</b> — ChatGPT 8억 WAU 시대, 전통 SEO CTR −18% → 구조화 콘텐츠가 AI 답변 인용을 가져감</li>
+        </ul>
+      </div>
+      <div class="shotwrap" style="margin-top:12px">
+        <span class="badge">ohou.se · 집들이 피드</span>
+        <img class="shot" src="images/ohouse-service.png" alt="오늘의집 서비스 피드" />
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <span class="src"><b>출처</b> Zillow Daydream/GrackerAI 2024 [제3자], Airbnb Semrush 추정 [추정], 무신사 스냅 뉴스룸 2025 [자사발표], GEO/CTR Semrush 2025 [제3자].</span>
+    <span>오늘의집 UA · 이도형</span>
+  </div>
+</section>
+
+<!-- 10 전략 3 -->
+<section class="slide">
+  <div class="head">
+    <div><div class="kicker teal">STRATEGY 3</div><h2>'이사·입주' 순간을 잡고, 리텐션으로 비싼 모객을 정당화</h2></div>
+    <div class="logo"><span class="ic">⌂</span>오늘의집</div>
+  </div>
+  <div class="grid" style="grid-template-columns:1fr 1.15fr;flex:1;align-content:start">
+    <div>
+      <div class="card teal" style="margin-bottom:12px">
+        <h3>무엇을</h3>
+        <p style="margin-top:4px">인테리어 소비 의향이 가장 높은 <b>이사·입주 모멘트</b>(서비스 내 '이사정보' 탭 보유)를 고의향 세그먼트로 타겟. 모객 후엔 <b>CRM 온보딩·푸시·레퍼럴</b>로 첫구매·리텐션을 끌어올려 <b>LTV가 더 높은 CAC를 정당화</b>. 리테일미디어 광고매출로 모객비 일부를 자체 상쇄.</p>
+      </div>
+      <div class="flow">
+        <div class="step"><div style="font-size:12px;font-weight:800;color:var(--teal-d)">이사 모멘트</div><div style="font-size:11.5px;color:var(--gray2);margin-top:3px">고의향 획득</div></div>
+        <div class="arr">→</div>
+        <div class="step"><div style="font-size:12px;font-weight:800;color:var(--teal-d)">온보딩·CRM</div><div style="font-size:11.5px;color:var(--gray2);margin-top:3px">첫구매 전환</div></div>
+        <div class="arr">→</div>
+        <div class="step"><div style="font-size:12px;font-weight:800;color:var(--teal-d)">리텐션·레퍼럴</div><div style="font-size:11.5px;color:var(--gray2);margin-top:3px">LTV↑ → CAC 정당화</div></div>
+      </div>
+    </div>
+    <div class="card dark">
+      <h3>벤치마크 · 리텐션이 UA를 정당화</h3>
+      <ul class="clean" style="margin-top:6px">
+        <li style="color:#D5D9E2"><b style="color:#fff">Duolingo 스트릭</b> — DAU/MAU 34.7%, 월 이탈 47%→28%</li>
+        <li style="color:#D5D9E2"><b style="color:#fff">Dropbox 레퍼럴</b> — 15개월 가입자 +3,900%, 신규의 35% 기여</li>
+        <li style="color:#D5D9E2"><b style="color:#fff">쿠팡 와우</b> — 멤버십 락인으로 재방문·LTV 제고</li>
+        <li style="color:#D5D9E2"><b style="color:#fff">Amazon $560억 · Instacart 리테일미디어 영업이익률 80%+ · 당근 광고 1,892억(+48%)</b> — 광고로 모객비 내재화</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot">
+    <span class="src"><b>출처</b> Duolingo IR/Lenny's 2024, Dropbox Viral-Loops, Amazon eMarketer 2025, Instacart Statista/Sacra 2024, 당근 중앙이코노미 2025 [제3자]. <span class="flag">쿠팡 혜택·일부 수치 추정 포함.</span></span>
+    <span>오늘의집 UA · 이도형</span>
+  </div>
+</section>
+
+<!-- 11 ⑥ 경쟁사 비교표 -->
+<section class="slide">
+  <div class="head">
+    <div><div class="kicker amber">MARKET ⑥</div><h2>시장은 이 문제를 이렇게 풉니다 — 그리고 빈틈</h2></div>
+    <div class="logo"><span class="ic">⌂</span>오늘의집</div>
+  </div>
+  <table style="margin-top:2px">
+    <thead><tr><th style="width:14%">플레이어</th><th style="width:30%">모객 핵심 무기</th><th style="width:30%">못 가진 것</th><th style="width:26%">UA 시사점</th></tr></thead>
+    <tbody>
+      <tr><td><b>쿠팡</b></td><td>로켓배송·와우 락인(1,400만+)</td><td><span class="x">영감·커뮤니티·시공 연결 없음</span></td><td>속도는 못 이김 → 영감으로 차별</td></tr>
+      <tr><td><b>네이버</b></td><td>검색 트래픽 1위·AI 추천</td><td><span class="x">UGC 커뮤니티 없음</span></td><td>유기 검색은 협업·우회 영역</td></tr>
+      <tr><td><b>당근</b></td><td>하이퍼로컬·광고(흑자)</td><td><span class="x">신상 커머스·영감 없음</span></td><td>리테일미디어 수익화 모델 참고</td></tr>
+      <tr><td><b>무신사·29CM</b></td><td>취향 큐레이션·스냅 UGC</td><td><span class="x">대형 가구·시공 없음</span></td><td>UGC 모객은 직접 경쟁 영역</td></tr>
+      <tr><td><b>컬리</b></td><td>새벽배송·리빙 CNO 영입</td><td><span class="x">영감·커뮤니티 없음</span></td><td>중가 큐레이션 공백 노림</td></tr>
+      <tr><td><b>한샘·이케아</b></td><td>오프라인·AI 플래닝 툴</td><td><span class="x">MAU·커뮤니티 열세</span></td><td>온라인 리드는 오늘의집 우위</td></tr>
+      <tr class="hi"><td><b>오늘의집</b></td><td><span class="chk">UGC 영감 + 시공 신뢰 + 이사 데이터</span></td><td><b>— 셋을 모두 가진 유일한 플레이어</b></td><td><b>이 셋을 UA 레버로 결합 = USP</b></td></tr>
+    </tbody>
+  </table>
+  <div class="callout" style="margin-top:14px">
+    <p style="font-size:15.5px"><b style="color:#fff">빈틈(공백)</b> = 누구도 'UGC 영감 · 시공 신뢰 · 이사 모멘트'를 동시에 신규 모객 엔진으로 결합하지 못함. 오늘의집만 세 자산을 다 가졌고, 그게 제 세 전략의 출발점입니다.</p>
+  </div>
+  <div class="foot">
+    <span class="src"><b>출처</b> 경쟁사 강·약점 데모데이·디지털투데이·뉴데일리·중앙이코노미 2024–2026 [제3자]. 쿠팡 와우 가입자·일부 수치 추정 [추정].</span>
+    <span>오늘의집 UA · 이도형</span>
+  </div>
+</section>
+
+<!-- 12 기대효과 KPI -->
+<section class="slide">
+  <div class="head">
+    <div><div class="kicker">EXPECTED IMPACT</div><h2>기대효과 — 단일 북극성과 증분 구조</h2></div>
+    <div class="logo"><span class="ic">⌂</span>오늘의집</div>
+  </div>
+  <div class="goal">North Star &nbsp;·&nbsp; <b>증분 신규 활성 유저(Verified Incremental New Active User)당 LTV</b></div>
+  <div class="card out" style="margin-bottom:14px">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;font-size:15px;font-weight:800;color:var(--ink)">
+      <span>유기 유입 ↑</span><span style="color:var(--gray)">×</span>
+      <span>Web-to-App 전환 ↑</span><span style="color:var(--gray)">×</span>
+      <span>첫구매 온보딩 ↑</span><span style="color:var(--gray)">×</span>
+      <span>리텐션 LTV ↑</span><span style="color:var(--gray)">÷</span>
+      <span style="color:var(--rose)">증분 CAC ↓</span>
+    </div>
+  </div>
+  <div class="grid" style="grid-template-columns:repeat(4,1fr);flex:1;align-content:start">
+    <div class="card blue metric"><div class="big blue">전략 2</div><div class="lab">UGC 오가닉 유입 비중 ↑ — 광고비 없는 신규 유입 확대</div></div>
+    <div class="card rose metric"><div class="big rose">전략 1</div><div class="lab">증분 ROAS 가시화 — 비효율 채널 컷, 예산 재배분</div></div>
+    <div class="card teal metric"><div class="big teal">전략 3</div><div class="lab">리마케팅 전환 리프트(벤치 +177% AOS) — LTV로 CAC 정당화</div></div>
+    <div class="card amber metric"><div class="big amber">상쇄</div><div class="lab">리테일미디어 광고매출로 모객비 일부 자체 충당</div></div>
+  </div>
+  <div class="callout" style="margin-top:14px">
+    <p style="font-size:15px"><b style="color:#fff">왜 이 NSM인가</b> — '설치 수'가 아니라 '증분으로 검증된 활성 유저당 LTV'를 보면, 측정·콘텐츠·리텐션 세 전략이 하나의 숫자로 묶입니다.</p>
+  </div>
+  <div class="foot">
+    <span class="src"><b>참고</b> 리프트 수치는 글로벌 벤치마크(AppsFlyer 2026) 방향성 [제3자]. <span class="flag">실제 목표·기준선은 입사 후 내부 데이터로 재설정.</span></span>
+    <span>오늘의집 UA · 이도형</span>
+  </div>
+</section>
+
+<!-- 13 ⑦ why me -->
+<section class="slide">
+  <div class="head">
+    <div><div class="kicker vio">WHY ME ⑦</div><h2>왜 저인가 — JD 자격요건과 1:1로</h2></div>
+    <div class="logo"><span class="ic">⌂</span>오늘의집</div>
+  </div>
+  <table style="margin-top:2px">
+    <thead><tr><th style="width:40%">JD가 요구한 것</th><th style="width:60%">제가 이미 한 것</th></tr></thead>
+    <tbody>
+      <tr><td><b>1st Party Data + SQL</b></td><td>BigQuery로 실구매 코호트·CAC를 직접 산출, Airbridge+DB 교차 분석을 운영</td></tr>
+      <tr class="hi"><td><b>인크리멘탈리티 / A/B 테스트</b></td><td>RCT 인과 검증·증분성 실험을 직접 설계·집행 (등급제 인과효과 재검증 등) — <span class="chk">JD '우대'를 디폴트로 수행</span></td></tr>
+      <tr><td><b>MMP · 기여도 · SDK 이해</b></td><td>Airbridge 라스트터치 한계를 인지·운영하며 Airbridge+BigQuery 크로스 검증</td></tr>
+      <tr><td><b>퍼포먼스 5년+ · 월 예산 기획/배분</b></td><td>커머스·뷰티 퍼포먼스 캠페인 예산을 자율 운영(5년차 그로스 마케터)</td></tr>
+      <tr><td><b>AI tool 활용 자동화</b></td><td>효율 시트 자동 갱신·리포트 자동화(작업스케줄러+스크립트)로 생산성 개선</td></tr>
+      <tr><td><b>앱 기반 이커머스 경험</b></td><td>커머스+뷰티 앱 마케팅 실무, CRM 협업 경험 보유</td></tr>
+    </tbody>
+  </table>
+  <div class="quote" style="margin-top:14px;padding:16px 24px">
+    <div class="q" style="font-size:18px">"오늘의집이 <span class="g">'우대'로 적은 증분성 검증을, 저는 이미 일하는 방식의 기본값</span>으로 갖고 있습니다."</div>
+  </div>
+  <div class="foot">
+    <span class="src"><b>매핑</b> JD 원문 자격·우대 항목과 본인 경험 1:1 대응. <span class="flag">iOS ATT 실전 경험·월 예산 규모는 면접에서 구체 보강.</span></span>
+    <span>오늘의집 UA · 이도형</span>
+  </div>
+</section>
+
+<!-- 14 첫 90일 로드맵 -->
+<section class="slide">
+  <div class="head">
+    <div><div class="kicker teal">FIRST 90 DAYS</div><h2>입사 후 첫 90일 — 무엇부터 할 것인가</h2></div>
+    <div class="logo"><span class="ic">⌂</span>오늘의집</div>
+  </div>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr);flex:1;align-content:start">
+    <div class="card out"><div class="num" style="color:var(--blue-d)">DAY 0–30 · 측정</div><h3>기준선부터 다시 세운다</h3><ul class="clean" style="margin-top:8px"><li>이벤트 택소노미·어트리뷰션 정합 점검</li><li>채널별 증분 베이스라인 측정 설계</li><li>SQL 대시보드로 현재 CAC·LTV 구조 가시화</li></ul></div>
+    <div class="card out"><div class="num" style="color:var(--blue-d)">DAY 31–60 · 유입</div><h3>잠긴 자산을 유입으로</h3><ul class="clean vio" style="margin-top:8px"><li>UGC 오가닉·GEO 구조화 파일럿</li><li>Web-to-App 퍼널 A/B 1차</li><li>증분성 실험으로 비효율 채널 컷</li></ul></div>
+    <div class="card out"><div class="num" style="color:var(--blue-d)">DAY 61–90 · 정당화</div><h3>리텐션으로 모객을 키운다</h3><ul class="clean teal" style="margin-top:8px"><li>이사 모멘트 세그먼트 타겟 캠페인</li><li>CRM 온보딩·레퍼럴 루프 1차</li><li>NSM(증분 활성 유저당 LTV) 리포팅 정착</li></ul></div>
+  </div>
+  <div class="callout" style="margin-top:14px">
+    <p style="font-size:15.5px">원칙 — <b style="color:#fff">먼저 측정으로 신뢰를 세우고</b>, 그 위에서 유입·리텐션을 실험합니다. 헛돈을 줄인 만큼을 검증된 모객에 재투자.</p>
+  </div>
+  <div class="foot">
+    <span class="src">실행 순서는 면접·온보딩 시 팀 우선순위와 합의해 조정.</span>
+    <span>오늘의집 UA · 이도형</span>
+  </div>
+</section>
+
+<!-- 15 지원동기 클로징 -->
+<section class="slide" style="justify-content:center;background:
+  radial-gradient(900px 520px at 86% -12%, var(--blue-soft) 0%, transparent 55%),
+  radial-gradient(720px 520px at -6% 112%, var(--rose-soft) 0%, transparent 55%), #fff">
+  <div class="logo" style="margin-bottom:22px"><span class="ic">⌂</span>오늘의집</div>
+  <div class="kicker vio">WHY OHOUSE · 마지막으로</div>
+  <h1 style="font-size:40px">한국에서 <span class="hl">'UGC × 1st party × 이사 데이터'</span><br>를 모두 가진 유일한 플레이어.</h1>
+  <p class="lead" style="margin-top:20px;max-width:960px">식은 모객 엔진을 다시 켜기에 이보다 좋은 조건은 없습니다. 저는 <b>측정으로 헛돈을 줄이고, 콘텐츠로 무료 유입을 늘리고, 리텐션으로 비싼 모객을 정당화하는 일</b>을 5년간 데이터로 해왔습니다. 오늘의집의 다음 곡선을, 입구에서부터 만들고 싶습니다.</p>
+  <div style="margin-top:30px;display:flex;gap:10px;align-items:center">
+    <span class="pill k">감사합니다</span>
+    <span class="pill blue">Growth Marketer (UA)</span>
+    <span class="pill vio">이도형</span>
+  </div>
+</section>
+
+</div></div>
+
+<div id="nav"><button id="prev">‹</button><span class="ct"><span id="cur">1</span> / <span id="tot">1</span></span><button id="next">›</button></div>
+<div class="hint">← → 또는 Space · F 전체화면</div>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let i=0;const tot=slides.length;
+document.getElementById('tot').textContent=tot;
+function show(n){i=Math.max(0,Math.min(tot-1,n));
+  slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+  document.getElementById('cur').textContent=i+1;
+  document.getElementById('bar').style.width=((i+1)/tot*100)+'%';}
+function next(){show(i+1)} function prev(){show(i-1)}
+document.getElementById('next').onclick=next;
+document.getElementById('prev').onclick=prev;
+addEventListener('keydown',e=>{
+  if(['ArrowRight',' ','PageDown'].includes(e.key)){next();e.preventDefault();}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){prev();e.preventDefault();}
+  else if(e.key==='Home')show(0); else if(e.key==='End')show(tot-1);
+  else if(e.key.toLowerCase()==='f'){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen();}
+});
+let tx=0;addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-tx;if(d<-50)next();else if(d>50)prev();});
+function fit(){const d=document.getElementById('deck');
+  const s=Math.min(innerWidth/1280,innerHeight/720);
+  d.style.transform='scale('+s+')';}
+addEventListener('resize',fit);fit();show(0);
+</script>
+</body>
+</html>
