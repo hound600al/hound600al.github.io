@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Ads 성과 추이</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fff; color: #1a1a1a; padding: 20px; }
+  .channel-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; padding: 12px 16px; background: #FFF3F0; border-left: 4px solid #EA4335; border-radius: 0 8px 8px 0; }
+  .channel-logo { width: 36px; height: 36px; background: linear-gradient(135deg,#4285F4 25%,#EA4335 50%,#FBBC05 75%,#34A853 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 13px; flex-shrink: 0; letter-spacing:-0.5px; }
+  .channel-name { font-size: 15px; font-weight: 600; color: #EA4335; }
+  .channel-period { font-size: 11px; color: #666; margin-top: 2px; }
+  .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px; }
+  .card { background: #f5f5f3; border-radius: 8px; padding: 12px 14px; }
+  .card-label { font-size: 11px; color: #6b6b6b; margin-bottom: 3px; }
+  .card-value { font-size: 20px; font-weight: 500; }
+  .card-sub { font-size: 10px; color: #999; margin-top: 2px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 8px; font-size: 11px; color: #6b6b6b; align-items: center; }
+  .legend-item { display: flex; align-items: center; gap: 4px; }
+  .sw-bar  { width: 11px; height: 11px; border-radius: 2px; background: #85B7EB; display: inline-block; }
+  .sw-line { width: 14px; height: 0; border-top: 2.5px solid #639922; display: inline-block; }
+  .sw-dash { width: 14px; height: 0; border-top: 2.5px dashed #BA7517; display: inline-block; }
+  .sw-dot  { width: 14px; height: 0; border-top: 2px dotted #7C3AED; display: inline-block; }
+  .sw-ev   { width: 1.5px; height: 13px; background: rgba(136,135,128,0.6); display: inline-block; }
+  .leg-sep { width: 0.5px; height: 13px; background: #ddd; margin: 0 3px; display: inline-block; }
+  .chart-wrap { position: relative; width: 100%; height: 320px; }
+  @media (max-width: 600px) { .cards { grid-template-columns: repeat(2,1fr); } }
+</style>
+</head>
+<body>
+<div class="channel-header">
+  <div class="channel-logo">G</div>
+  <div>
+    <div class="channel-name">Google Ads 월별 성과 추이</div>
+    <div class="channel-period">2024.07 ~ 2026.04 · 상대 지수(기준=100)</div>
+  </div>
+</div>
+<div class="cards">
+  <div class="card"><div class="card-label">인앱액션 CPA 최저점</div><div class="card-value">지수 67</div><div class="card-sub">2025-08 (기준=100)</div></div>
+  <div class="card"><div class="card-label">앱설치 최고점</div><div class="card-value">지수 1,259</div><div class="card-sub">2026-04 (기준=100)</div></div>
+  <div class="card"><div class="card-label">인앱액션 최고점</div><div class="card-value">지수 532</div><div class="card-sub">2025-10 (기준=100)</div></div>
+  <div class="card"><div class="card-label">인앱액션 CPA 최저점</div><div class="card-value">지수 67</div><div class="card-sub">2025-08 (기준=100)</div></div>
+</div>
+<div class="legend">
+  <span class="legend-item"><span class="sw-bar"></span>광고비 지수 (왼쪽 축)</span>
+  <span class="legend-item"><span class="sw-line"></span>앱설치 지수 (오른쪽 축)</span>
+  <span class="legend-item"><span class="sw-dash"></span>인앱액션 지수 (오른쪽 축)</span>
+  <span class="legend-item"><span class="sw-dot"></span>인앱액션 CPA 지수 (툴팁 확인)</span>
+  <span class="leg-sep"></span>
+  <span class="legend-item"><span class="sw-ev"></span>주요 이벤트</span>
+</div>
+<div class="chart-wrap">
+  <canvas id="gc" role="img" aria-label="구글애즈 월별 성과 추이 상대 지수, 2024.07~2026.04"></canvas>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const rows=[
+  {m:'24-07',s:13.6,i:11.1,a:6.1,c:100},
+  {m:'24-08',s:2.1,i:0.3,a:0,c:null},
+  {m:'24-09',s:0.3,i:0.5,a:0.2,c:72.3},
+  {m:'24-10',s:100,i:100,a:37.5,c:118.7},
+  {m:'24-11',s:92.2,i:100.5,a:34.1,c:120.1},
+  {m:'24-12',s:297,i:435.1,a:150.6,c:87.7},
+  {m:'25-01',s:219.3,i:188.7,a:75.4,c:129.4},
+  {m:'25-02',s:216.2,i:161,a:69.7,c:137.9},
+  {m:'25-03',s:369.9,i:315,a:101.4,c:162.3},
+  {m:'25-04',s:172,i:93.6,a:49.7,c:153.9},
+  {m:'25-05',s:245.2,i:142.6,a:69.8,c:156.3},
+  {m:'25-06',s:450.3,i:355.2,a:204.8,c:97.7},
+  {m:'25-07',s:999,i:546.5,a:290.2,c:153.1},
+  {m:'25-08',s:767.1,i:740.8,a:506.8,c:67.3},
+  {m:'25-09',s:819.8,i:672.4,a:479.2,c:76.1},
+  {m:'25-10',s:1310.3,i:855,a:532.4,c:109.4},
+  {m:'25-11',s:1197.4,i:476.4,a:236.7,c:225},
+  {m:'25-12',s:1776.5,i:589.3,a:170.9,c:462.2},
+  {m:'26-01',s:2172,i:1052.1,a:293.6,c:329},
+  {m:'26-02',s:2032.7,i:796.1,a:211.3,c:427.7},
+  {m:'26-03',s:3069.9,i:1162.6,a:272,c:502},
+  {m:'26-04',s:3592,i:1258.8,a:229.9,c:694.6},
+];
+const annos={2:'T-CAP 시작',5:'ACI 확장',12:'T-ROAS'};
+const vLinePlugin={id:'vl',afterDraw(chart){const{ctx,chartArea:ca,scales}=chart;Object.entries(annos).forEach(([i,lbl])=>{const x=scales.x.getPixelForValue(+i);ctx.save();ctx.strokeStyle='rgba(136,135,128,0.45)';ctx.lineWidth=1.5;ctx.setLineDash([4,3]);ctx.beginPath();ctx.moveTo(x,ca.top+20);ctx.lineTo(x,ca.bottom);ctx.stroke();ctx.font='10px sans-serif';ctx.fillStyle='rgba(100,100,100,0.85)';ctx.textAlign='center';ctx.fillText(lbl,x,ca.top+13);ctx.restore();});}};
+new Chart(document.getElementById('gc'),{
+  plugins:[vLinePlugin],
+  data:{labels:rows.map(r=>r.m),datasets:[
+    {type:'bar',label:'광고비 지수',data:rows.map(r=>r.s),backgroundColor:'#85B7EB',yAxisID:'yL',order:3,borderRadius:2},
+    {type:'line',label:'앱설치 지수',data:rows.map(r=>r.i),borderColor:'#639922',backgroundColor:'transparent',borderWidth:2.5,pointRadius:3,pointBackgroundColor:'#639922',yAxisID:'yR',order:2,tension:0.3},
+    {type:'line',label:'인앱액션 지수',data:rows.map(r=>r.a),borderColor:'#BA7517',backgroundColor:'transparent',borderWidth:2.5,borderDash:[6,3],pointRadius:3,pointBackgroundColor:'#BA7517',yAxisID:'yR',order:2,tension:0.3},
+    {type:'line',label:'인앱액션 CPA 지수',data:rows.map(r=>r.c),borderColor:'#7C3AED',backgroundColor:'transparent',borderWidth:2,borderDash:[2,2],pointRadius:2.5,pointBackgroundColor:'#7C3AED',yAxisID:'yCPA',order:1,tension:0.2,spanGaps:false}
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+    plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(255,255,255,0.97)',borderColor:'rgba(0,0,0,0.08)',borderWidth:1,titleColor:'#1a1a1a',bodyColor:'#444',padding:10,
+      callbacks:{title(i){return i[0].label;},label(ctx){const v=ctx.parsed.y;if(v===null||v===undefined)return null;
+        if(ctx.dataset.label==='광고비 지수')return '광고비 지수: '+v.toLocaleString();
+        if(ctx.dataset.label==='앱설치 지수')return '앱설치 지수: '+v.toLocaleString();
+        if(ctx.dataset.label==='인앱액션 지수')return '인앱액션 지수: '+v.toLocaleString();
+        return '인앱액션CPA 지수: '+v.toLocaleString();}}}},
+    scales:{
+      x:{grid:{display:false},ticks:{autoSkip:false,maxRotation:45,font:{size:9},color:'#888'}},
+      yL:{type:'linear',position:'left',title:{display:true,text:'광고비 지수 (기준=100)',font:{size:10},color:'#999'},ticks:{callback:v=>v.toLocaleString(),font:{size:9},color:'#888'},grid:{color:'rgba(0,0,0,0.05)'}},
+      yR:{type:'linear',position:'right',grid:{drawOnChartArea:false},title:{display:true,text:'앱설치·인앱액션 지수 (기준=100)',font:{size:10},color:'#999'},ticks:{callback:v=>v.toLocaleString(),font:{size:9},color:'#888'}},
+      yCPA:{type:'linear',position:'right',display:false}
+    }
+  }
+});
+</script>
+</body>
+</html>
