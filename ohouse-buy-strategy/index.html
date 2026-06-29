@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<!-- 오늘의집 구매심리 해부 × 풀펀널 마케팅 전략 발표덱 · 이도형 -->
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>왜 굳이 오늘의집인가 — 구매심리 × 풀펀널 전략 · 이도형</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+<style>
+:root{
+  --ink:#15171C; --navy:#1A1F2E; --black:#0E1118;
+  --gray:#8A8F99; --gray2:#5B6170;
+  --bg:#FFFFFF; --soft:#F4F6FA; --line:#E7EBF1;
+  --radius:20px; --shadow:0 12px 40px rgba(21,23,28,.10);
+  --font:"Pretendard","Noto Sans KR",-apple-system,system-ui,sans-serif;
+  /* 오늘의집 브랜드 톤 — 코발트 블루 + 따뜻한 코랄 */
+  --blue:#3E7BF6; --blue-d:#1B5FE0; --blue-soft:#E9F1FE;
+  --violet:#5A6CF0; --violet-d:#3A4BD6; --violet-soft:#EAECFE;
+  --teal:#0FB6A8; --teal-d:#079184; --teal-soft:#DBF5F1;
+  --amber:#F59E0B; --amber-soft:#FDF0D5; --amber-d:#b9770a;
+  --rose:#FF6F5E; --rose-soft:#FFE6E1;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:#22252C;font-family:var(--font);-webkit-font-smoothing:antialiased}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.deck{position:relative;width:1280px;height:720px;transform-origin:center center}
+.slide{position:absolute;inset:0;background:var(--bg);display:none;flex-direction:column;padding:44px 60px;overflow:hidden}
+.slide.active{display:flex;animation:fade .5s ease}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:700;letter-spacing:.04em;color:var(--blue-d);text-transform:uppercase;margin-bottom:10px}
+.kicker.vio{color:var(--violet-d)} .kicker.teal{color:var(--teal-d)} .kicker.amber{color:var(--amber-d)} .kicker.rose{color:#d8412e} .kicker.gray{color:var(--gray)}
+h1{font-size:49px;font-weight:800;line-height:1.16;color:var(--ink);letter-spacing:-.02em}
+h2{font-size:32px;font-weight:800;line-height:1.18;color:var(--ink);letter-spacing:-.02em}
+h3{font-size:19.5px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+p,li{font-size:16px;line-height:1.6;color:#2C313C}
+.lead{font-size:19.5px;line-height:1.62;color:var(--gray2);font-weight:500}
+.hl{background:linear-gradient(transparent 58%, var(--blue-soft) 58%);font-weight:800;color:var(--ink)}
+.hl.rose{background:linear-gradient(transparent 58%, var(--rose-soft) 58%)}
+.hl.teal{background:linear-gradient(transparent 58%, var(--teal-soft) 58%)}
+.hl.amber{background:linear-gradient(transparent 58%, var(--amber-soft) 58%)}
+b,strong{font-weight:800;color:var(--ink)}
+.mono{font-variant-numeric:tabular-nums}
+
+.head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:16px}
+.logo{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:16.5px;letter-spacing:-.01em;color:var(--ink)}
+.logo .ic{width:24px;height:24px;border-radius:7px;background:var(--blue);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px}
+
+.grid{display:grid;gap:14px}
+.card{background:var(--soft);border-radius:var(--radius);padding:18px 20px;border:1px solid transparent}
+.card.blue{background:var(--blue-soft)} .card.vio{background:var(--violet-soft)} .card.teal{background:var(--teal-soft)} .card.amber{background:var(--amber-soft)} .card.rose{background:var(--rose-soft)}
+.card.out{background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}
+.card.dark{background:var(--ink)} .card.dark h3{color:#fff} .card.dark p,.card.dark li{color:#D5D9E2}
+.card h3{margin-bottom:5px}
+.card .num{font-size:13px;font-weight:800;color:var(--gray);margin-bottom:5px}
+.card p{font-size:14.5px;line-height:1.55}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--gray2)}
+.pill{display:inline-block;font-size:13px;font-weight:800;padding:6px 13px;border-radius:999px}
+.pill.k{background:var(--ink);color:#fff}
+.pill.blue{background:var(--blue-soft);color:var(--blue-d)} .pill.vio{background:var(--violet-soft);color:var(--violet-d)} .pill.teal{background:var(--teal-soft);color:var(--teal-d)} .pill.rose{background:var(--rose-soft);color:#d8412e}
+
+.goal{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;border-radius:999px;padding:8px 16px;font-size:13.5px;font-weight:800;margin-bottom:12px}
+.goal b{color:#8FB6FF}
+
+.metric .big{font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1.05;color:var(--ink)}
+.metric .big.blue{color:var(--blue-d)} .metric .big.vio{color:var(--violet-d)} .metric .big.teal{color:var(--teal-d)} .metric .big.rose{color:var(--rose)} .metric .big.amber{color:var(--amber-d)}
+.metric .lab{font-size:13px;color:var(--gray2);margin-top:6px;font-weight:600;line-height:1.4}
+
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:8.5px 11px;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font-size:12px;color:var(--gray);font-weight:700;letter-spacing:.02em}
+td b{font-weight:800}
+tr.hi td{background:var(--blue-soft)}
+.chk{color:var(--teal-d);font-weight:800} .x{color:var(--rose);font-weight:800}
+
+.shot{border-radius:13px;border:1px solid var(--line);box-shadow:var(--shadow);width:100%;display:block}
+.cap{font-size:12px;color:var(--gray);margin-top:6px;text-align:center;line-height:1.4}
+.shotwrap{position:relative}
+.shotwrap .badge{position:absolute;left:10px;top:10px;background:var(--ink);color:#fff;font-size:11.5px;font-weight:800;padding:4px 10px;border-radius:999px}
+
+.callout{background:var(--ink);color:#fff;border-radius:var(--radius);padding:16px 22px}
+.callout h3{color:#fff} .callout p{color:#D5D9E2}
+.quote{background:linear-gradient(120deg,#172033,#1E2A4E);color:#fff;border-radius:var(--radius);padding:24px 28px}
+.quote .q{font-size:24px;font-weight:800;line-height:1.38;color:#fff}
+.quote .q .g{background:linear-gradient(90deg,#8FB6FF,#A6B4FF,#7FE6DA);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+.flag{font-size:12px;color:var(--gray);font-style:italic}
+.src{font-size:11px;color:var(--gray);line-height:1.5}
+.src b{color:var(--gray2);font-weight:700}
+.foot{position:absolute;left:60px;right:60px;bottom:16px;display:flex;justify-content:space-between;font-size:11px;color:var(--gray);border-top:1px solid var(--line);padding-top:8px;gap:20px}
+.foot .src{flex:1}
+
+ul.clean{list-style:none}
+ul.clean li{position:relative;padding-left:22px;margin-bottom:7px;font-size:15px}
+ul.clean li:before{content:"";position:absolute;left:4px;top:8px;width:7px;height:7px;border-radius:2px;background:var(--blue)}
+ul.clean.vio li:before{background:var(--violet)} ul.clean.teal li:before{background:var(--teal)} ul.clean.rose li:before{background:var(--rose)} ul.clean.amber li:before{background:var(--amber)}
+
+.flow{display:flex;align-items:stretch;gap:0}
+.flow .step{flex:1;background:var(--soft);border-radius:13px;padding:12px;text-align:center}
+.flow .arr{display:flex;align-items:center;padding:0 7px;font-size:19px;color:var(--gray);font-weight:800}
+
+.adcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 13px;box-shadow:var(--shadow)}
+.adcard .ad{font-size:9px;font-weight:800;color:var(--teal-d);border:1px solid var(--teal);border-radius:4px;padding:1px 5px;display:inline-block;margin-bottom:5px}
+.adcard .u{font-size:10px;color:var(--gray)}
+.adcard .ti{font-size:13px;font-weight:800;color:#1a0dab;line-height:1.3;margin:2px 0}
+.adcard .ds{font-size:10.5px;color:#4a4f5e;line-height:1.4}
+.stepbox{background:var(--soft);border-radius:12px;padding:12px 13px;flex:1}
+.stepbox .n{font-size:11px;font-weight:800;color:var(--blue-d)}
+.stepbox h4{font-size:13.5px;font-weight:800;color:var(--ink);margin:3px 0 4px}
+.stepbox p{font-size:12px;color:#4a4f5e;line-height:1.45}
+
+@media print{.slide{display:flex!important;page-break-after:always}#nav,#bar,.hint{display:none}}
+#nav{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;background:rgba(21,23,28,.62);backdrop-filter:blur(8px);padding:8px 16px;border-radius:999px;z-index:50}
+#nav button{background:none;border:none;color:#fff;font-size:17px;cursor:pointer;opacity:.85;line-height:1}
+#nav .ct{color:#fff;font-size:13px;font-weight:600;min-width:54px;text-align:center;font-variant-numeric:tabular-nums}
+#bar{position:fixed;top:0;left:0;height:3px;background:var(--blue);z-index:60;transition:width .3s}
+.hint{position:fixed;bottom:20px;right:22px;color:#8b8d94;font-size:12px;z-index:50}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="stage"><div class="deck" id="deck">
+
+<!-- 1 TITLE -->
+<section class="slide active" style="justify-content:center;background:
+  radial-gradient(900px 520px at 84% -10%, var(--blue-soft) 0%, transparent 55%),
+  radial-gradient(720px 520px at -5% 110%, var(--rose-soft) 0%, transparent 55%), #fff">
+  <div class="logo" style="margin-bottom:28px"><span class="ic">⌂</span>오늘의집</div>
+  <div class="kicker">소비자 구매심리 해부 × 풀펀널 전략</div>
+  <h1>왜 굳이, <span class="hl">오늘의집</span>에서 사는가.<br>그리고 그 심리를 어떻게 <span class="hl">매출</span>로 바꾸는가.</h1>
+  <p class="lead" style="margin-top:22px;max-width:960px">발견형 커머스의 '사는 이유'와 '안 사는 이유'를 분해하고 — <b>유입(Traffic) → 전환(Conversion)</b>까지 막힘없이 잇는 마케터의 풀펀널 처방</p>
+  <div style="margin-top:32px;display:flex;gap:10px">
+    <span class="pill k">버킷플레이스 · 오늘의집</span>
+    <span class="pill blue">Growth Marketer 지원</span>
+    <span class="pill vio">이도형</span>
+  </div>
+</section>
+
+<!-- 2 프레임 -->
+<section class="slide">
+  <div class="head">
+    <div><div class="kicker">FRAME · 발견형 커머스</div><h2>오늘의집은 '물건'이 아니라 '라이프스타일'을 판다</h2></div>
+    <div class="logo"><span class="ic">⌂</span>오늘의집</div>
+  </div>
+  <div class="quote" style="margin-bottom:16px">
+    <div class="q" style="font-size:21px">다른 곳은 <span style="color:#ffb4ab">살 물건을 "검색"</span>해서 들어가지만,<br>오늘의집은 <span class="g">"남들은 어떻게 살지?" 구경하다 홀린 듯 결제</span>하게 만든다.</div>
+  </div>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr);flex:1;align-content:start">
+    <div class="card blue"><div class="num">강점 · WHY BUY</div><h3 style="color:var(--blue-d)">사는 이유 4가지</h3><p style="margin-top:4px">발견-콘텐츠-구매-시공으로 이어지는 독보적 구매 여정. 대체 불가능한 락인의 원천.</p></div>
+    <div class="card rose"><div class="num">이면 · WHY NOT</div><h3 style="color:#d8412e">안 사는 이유 4가지</h3><p style="margin-top:4px">빛이 강할수록 그림자도 짙다. 같은 강점이 특정 유저에겐 강력한 이탈 요인이 된다.</p></div>
+    <div class="card teal"><div class="num">처방 · MARKETER</div><h3 style="color:var(--teal-d)">마케터의 풀펀널 전략</h3><p style="margin-top:4px">장점(콘텐츠 발견)은 극대화하고, 약점(가격비교·배송)은 차단해 유입→전환을 완성.</p></div>
+  </div>
+  <div class="callout" style="margin-top:14px">
+    <p style="font-size:15.5px">이 발표의 구조 — <b style="color:#fff">사는 이유(4) ↔ 안 사는 이유(4) ↔ 마케터 처방(3)</b>. 소비자 심리를 그대로 마케팅 레버로 번역합니다.</p>
+  </div>
+  <div class="foot">
+    <span class="src"><b>관점</b> 소비자·UX·마케팅 3중 렌즈로 오늘의집 구매 경험을 직접 분해한 분석.</span>
+    <span>오늘의집 구매전략 · 이도형</span>
+  </div>
+</section>
+
+<!-- 3 WHY BUY 4 -->
+<section class="slide">
+  <div class="head">
+    <div><div class="kicker">WHY BUY</div><h2>여기서 '사야만 하는' 네 가지 이유</h2></div>
+    <div class="logo"><span class="ic">⌂</span>오늘의집</div>
+  </div>
+  <div class="grid" style="grid-template-columns:1fr 1fr;flex:1;align-content:start">
+    <div class="card out"><div class="num">01 · 맥락 구매</div><h3>UGC 기반 '실제 남의 집' 구매</h3><p>뻔한 흰 배경 상세페이지가 아니라 <b>평수·구조가 비슷한 실제 집</b>을 보고 산다. 사진 속 가구의 <b>태그를 누르면 바로 구매</b> — "이 소파 어디 거지?"의 탐색비용을 0으로.</p></div>
+    <div class="card out"><div class="num">02 · 개인화 탐색</div><h3>내 공간에 맞춘 고도화 필터링</h3><p>주거형태(아파트·원룸)·평수·스타일(모던·내추럴·북유럽)·색상까지 세밀하게 거른다. <b>제품과 연출샷을 동시에</b> 보여줘 '우리 집에 맞나' 실패 확률을 줄인다.</p></div>
+    <div class="card out"><div class="num">03 · 리얼 리뷰</div><h3>'실패 없는' 공간정보 리뷰 생태계</h3><p>리뷰에 작성자의 <b>주거형태(원룸 7평·아파트 30평)</b>가 함께 표시. 스튜디오 연출컷이 아니라 <b>형광등 아래 진짜 발색·사이즈감</b>이 구매 확신을 준다.</p></div>
+    <div class="card out"><div class="num">04 · End-to-End 케어</div><h3>배송부터 시공까지 한 번에</h3><p>가구의 골칫거리 '배송일 맞추기'를 <b>지정일 배송·설치</b>로 해결. 도배·조명·커튼 시공까지 한 플랫폼에서 검증된 후기로 — 강력한 <b>락인(Lock-in)</b>.</p></div>
+  </div>
+  <div class="callout" style="margin-top:14px">
+    <p style="font-size:15.5px">네 이유의 공통점 — <b style="color:#fff">'발견 → 영감 → 구매 → 시공'</b>이 한 흐름. 제품이 아니라 구매 여정 자체가 경쟁우위.</p>
+  </div>
+  <div class="foot">
+    <span class="src"><b>참고</b> 집들이 UGC 1,200만건·앱 다운로드 3,000만+ [버킷플레이스 자사발표]. 분석은 본인 UX 관점.</span>
+    <span>오늘의집 구매전략 · 이도형</span>
+  </div>
+</section>
+
+<!-- 4 심화 — 탐색비용 0 -->
+<section class="slide">
+  <div class="head">
+    <div><div class="kicker blue">DEEP DIVE</div><h2>핵심 USP — '태그'가 만든 탐색비용 0</h2></div>
+    <div class="logo"><span class="ic">⌂</span>오늘의집</div>
+  </div>
+  <div class="grid" style="grid-template-columns:1.05fr 1fr;flex:1;align-content:start">
+    <div class="shotwrap">
+      <span class="badge">ohou.se · 집들이 피드</span>
+      <img class="shot" src="images/ohouse-service.png" alt="오늘의집 집들이 피드" />
+      <div class="cap">예쁜 집 사진 → 태그 클릭 → 구매 페이지. 발견과 구매 사이의 거리를 없앤 UX</div>
+    </div>
+    <div>
+      <div class="card blue" style="margin-bottom:12px">
+        <h3>왜 강력한가</h3>
+        <p style="margin-top:4px">일반 커머스는 <b>'욕구 → 검색 → 비교 → 구매'</b> 4단계. 오늘의집은 콘텐츠를 구경하다 <b>'발견 → 태그 → 구매'</b>로 단축 — 구매를 결심하기 <i>전에</i> 욕구가 먼저 생긴다.</p>
+      </div>
+      <div class="flow" style="margin-bottom:12px">
+        <div class="step"><div style="font-size:12px;font-weight:800;color:var(--blue-d)">남의 집 구경</div></div>
+        <div class="arr">→</div>
+        <div class="step"><div style="font-size:12px;font-weight:800;color:var(--blue-d)">태그 클릭</div></div>
+        <div class="arr">→</div>
+        <div class="step"><div style="font-size:12px;font-weight:800;color:var(--blue-d)">홀린 듯 결제</div></div>
+      </div>
+      <div class="card dark">
+        <h3>마케터에게 주는 의미</h3>
+        <p style="margin-top:4px">목적형 키워드 광고보다 <b style="color:#8FB6FF">'맥락 속에 제품을 녹이는 것'</b>이 유입의 본질. → 뒤의 유입 전략의 출발점.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <span class="src"><b>캡처</b> 오늘의집 서비스 화면 실측 [Playwright]. 퍼널 단계는 본인 분석.</span>
+    <span>오늘의집 구매전략 · 이도형</span>
+  </div>
+</section>
+
+<!-- 5 WHY NOT 4 -->
+<section class="slide">
+  <div class="head">
+    <div><div class="kicker rose">WHY NOT</div><h2>반대로, '안 사게 되는' 네 가지 이유</h2></div>
+    <div class="logo"><span class="ic">⌂</span>오늘의집</div>
+  </div>
+  <div class="grid" style="grid-template-columns:1fr 1fr;flex:1;align-content:start">
+    <div class="card rose"><div class="num">이탈 01 · 취향 하향 평준화</div><h3>'모나미 인테리어'의 늪</h3><p>트렌드를 따라 사다 보면 <b>'어디서 많이 본 집'</b>이 된다. 화이트&우드 미니멀에 갇혀, 빈티지·하이엔드·독창적 취향을 찾는 유저에겐 매력도 하락.</p></div>
+    <div class="card rose"><div class="num">이탈 02 · UGC의 함정</div><h3>보정 필터와 '감성 왜곡'</h3><p>베스트컷은 완벽한 채광에 보정된 사진. 좁고 어두운 내 방에선 그 느낌이 안 산다. <b>마감·내구성 등 하드웨어 퀄리티</b>는 감성 사진으로 파악 불가.</p></div>
+    <div class="card rose"><div class="num">이탈 03 · 최저가 메리트 부족</div><h3>"오늘의집이 제일 싸진 않다"</h3><p>발견형 커머스라 <b>발견 후 네이버·쿠팡에서 모델명 검색 → 최저가 이탈</b>이 빈번. 입점 수수료 구조상 가격이 높게 책정되기도. 영감만 얻는 <b>체리피커</b> 발생.</p></div>
+    <div class="card rose"><div class="num">이탈 04 · 파편화된 배송·CS</div><h3>익일 배송에 길들여진 눈높이</h3><p>직배송 외엔 <b>브랜드별 개별 배송비·제각각 배송일</b>. 로켓·샛별배송에 익숙한 유저에겐 느린 배송이 피로. 중개 특성상 <b>CS가 즉각적이지 않다</b>는 불만.</p></div>
+  </div>
+  <div class="callout" style="margin-top:14px">
+    <p style="font-size:15.5px">한 줄 요약 — <b style="color:#fff">최저가·빠른 배송이 최우선이거나, '양산형 감성'을 거부하는 유저</b>에게 오늘의집은 매력적이지 않다. ← 바로 이 지점이 마케터의 공략 과제.</p>
+  </div>
+  <div class="foot">
+    <span class="src"><b>관점</b> 소비자 이탈 패턴에 대한 본인 분석. 일부는 발견형 커머스의 구조적 특성에서 도출.</span>
+    <span>오늘의집 구매전략 · 이도형</span>
+  </div>
+</section>
+
+<!-- 6 빛과 그림자 대칭표 -->
+<section class="slide">
+  <div class="head">
+    <div><div class="kicker amber">LIGHT & SHADOW</div><h2>강점이 곧 약점이 된다 — 빛과 그림자의 대칭</h2></div>
+    <div class="logo"><span class="ic">⌂</span>오늘의집</div>
+  </div>
+  <table style="margin-top:2px">
+    <thead><tr><th style="width:24%">강점 (사는 이유)</th><th style="width:32%">그 이면의 그림자 (안 사는 이유)</th><th style="width:44%">→ 마케터의 과제</th></tr></thead>
+    <tbody>
+      <tr><td><b>UGC 맥락 구매</b></td><td><span class="x">취향 하향 평준화 · 클론 디자인</span></td><td>자연스러운 '온기 있는' 콘텐츠로 차별화, 양산형 인상 탈피</td></tr>
+      <tr><td><b>감성적 연출 콘텐츠</b></td><td><span class="x">보정 왜곡 · 디테일 확인 어려움</span></td><td>상세페이지에 보정 없는 릴스·클로즈업으로 '현실감' 보완</td></tr>
+      <tr><td><b>발견형 커머스</b></td><td><span class="x">최저가 아님 · 타 플랫폼 이탈</span></td><td>단독 혜택·포인트로 "여기가 제일 이득" 인식, 이탈 차단</td></tr>
+      <tr><td><b>입점 브랜드 다양성</b></td><td><span class="x">파편 배송 · 느린 CS</span></td><td>지정일 배송 강점 부각, 첫 구매는 소품으로 허들 낮추기</td></tr>
+      <tr class="hi"><td colspan="2"><b>핵심 통찰</b></td><td><b class="chk">약점은 '버그'가 아니라 강점의 그림자 → 없애는 게 아니라 가리고 우회시키는 게 마케터의 일</b></td></tr>
+    </tbody>
+  </table>
+  <div class="callout" style="margin-top:14px">
+    <p style="font-size:15.5px">이 대칭표가 다음 풀펀널 전략의 설계도입니다 — <b style="color:#fff">강점은 유입에서 키우고, 그림자는 전환에서 가린다.</b></p>
+  </div>
+  <div class="foot">
+    <span class="src"><b>설계</b> 사는 이유 4 ↔ 안 사는 이유 4를 1:1로 대응시켜 마케팅 과제로 환산.</span>
+    <span>오늘의집 구매전략 · 이도형</span>
+  </div>
+</section>
+
+<!-- 7 마케터 처방 개요 -->
+<section class="slide">
+  <div class="head">
+    <div><div class="kicker teal">MARKETER'S PLAY</div><h2>마케터의 처방 — 풀펀널(Full-Funnel) 전략</h2></div>
+    <div class="logo"><span class="ic">⌂</span>오늘의집</div>
+  </div>
+  <p class="lead" style="font-size:16px;margin-bottom:14px">오늘의집 생태계에서 '먹히는' 유입과 전환의 구조 — 강점은 극대화, 약점은 차단</p>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr);flex:1;align-content:start">
+    <div class="card blue">
+      <div class="num">레버 1 · TRAFFIC</div>
+      <h3 style="color:var(--blue-d)">상품이 아닌 '상황·맥락'을 판다</h3>
+      <p style="margin-top:6px">유저는 '서랍장'이 아니라 '원룸 인테리어'를 구경하러 온다. 맥락에 제품을 녹여 태그 클릭(유입)을 만든다.</p>
+      <div style="margin-top:8px"><span class="tag">강점 '발견' 극대화</span></div>
+    </div>
+    <div class="card teal">
+      <div class="num">레버 2 · CONVERSION</div>
+      <h3 style="color:var(--teal-d)">플랫폼 이탈 요인을 차단한다</h3>
+      <p style="margin-top:6px">"발견하고 네이버에서 최저가 검색"하는 패턴을 끊고, 오늘의집 안에서 즉시 결제하게 만든다.</p>
+      <div style="margin-top:8px"><span class="tag">약점 '이탈' 차단</span></div>
+    </div>
+    <div class="card amber">
+      <div class="num">레버 3 · CHEAT KEY</div>
+      <h3 style="color:var(--amber-d)">유입과 전환을 잇는 치트키</h3>
+      <p style="margin-top:6px">메인 구좌(오하특·기획전) 확보 + 소품 레이어링으로 첫 구매 허들을 낮춰 둘을 연결한다.</p>
+      <div style="margin-top:8px"><span class="tag">유입↔전환 연결</span></div>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:14px">
+    <p style="font-size:15.5px">관통하는 원칙 — <b style="color:#fff">"유저가 내 제품을 '광고'로 보게 했나, '영감'으로 보게 했나"</b>. 후자면 유입·전환은 따라온다.</p>
+  </div>
+  <div class="foot">
+    <span class="src"><b>구조</b> 3개 레버는 앞의 강점·약점 대칭표에서 직접 도출.</span>
+    <span>오늘의집 구매전략 · 이도형</span>
+  </div>
+</section>
+
+<!-- 8 TRAFFIC -->
+<section class="slide">
+  <div class="head">
+    <div><div class="kicker blue">LEVER 1 · TRAFFIC</div><h2>유입 — 상품이 아닌 '상황·맥락'을 판다</h2></div>
+    <div class="logo"><span class="ic">⌂</span>오늘의집</div>
+  </div>
+  <div class="grid" style="grid-template-columns:1.1fr 1fr;flex:1;align-content:start">
+    <div>
+      <div class="card blue" style="margin-bottom:12px">
+        <div class="num">① UGC 자산화 (가장 중요)</div>
+        <h3>"따라 하고 싶은" 콘텐츠를 발행</h3>
+        <p style="margin-top:4px">인플루언서·서포터즈로 고퀄 집들이/노하우 콘텐츠를. 칼각 레이아웃보다 <b>'실제 사람이 사는 온기 있는 톤앤매너'</b>가 탐색 본능을 자극해 태그 클릭으로 이어진다.</p>
+      </div>
+      <div class="card out" style="margin-bottom:12px">
+        <div class="num">② 페인포인트 중심 키워드 설계</div>
+        <p style="margin-top:2px">'소파'가 아니라 유저의 <b>상황·문제</b>를 키워드로:</p>
+        <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:6px">
+          <span class="pill blue">#좁은거실</span><span class="pill blue">#고양이키우는집</span><span class="pill blue">#먼지없는</span><span class="pill blue">#모듈형</span><span class="pill blue">#원룸</span>
+        </div>
+      </div>
+      <div class="card out">
+        <div class="num">③ 비주얼 썸네일 최적화</div>
+        <p style="margin-top:2px">스튜디오 연출컷은 광고 느낌 → 스크롤 패스. <b>자연 채광이 든 실제 주거공간 형태</b>의 썸네일로 CTR을 높인다.</p>
+      </div>
+    </div>
+    <div>
+      <div class="adcard" style="margin-bottom:12px">
+        <span class="ad">집들이 피드</span>
+        <div class="u">ohou.se › 집들이 › 6평 원룸 신혼</div>
+        <div class="ti">좁아도 포기 안 했어요 — 6평 신혼집 거실 완성기</div>
+        <div class="ds">실거주자가 올린 자연광 사진 속 가구에 태그. "광고"가 아니라 "영감"으로 소비되며 유입을 만든다.</div>
+      </div>
+      <div class="card dark">
+        <h3>핵심 원리</h3>
+        <ul class="clean" style="margin-top:6px">
+          <li style="color:#D5D9E2"><b style="color:#fff">목적형 키워드 광고 ＜ 맥락형 콘텐츠</b> — 발견형 커머스에선 맥락이 곧 트래픽</li>
+          <li style="color:#D5D9E2"><b style="color:#fff">강점(UGC 발견)을 그대로 유입 엔진으로</b> 전환</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <span class="src"><b>전략</b> 오늘의집 콘텐츠 소비 패턴에 맞춘 유입 설계. 예시 광고 카드는 개념 시안.</span>
+    <span>오늘의집 구매전략 · 이도형</span>
+  </div>
+</section>
+
+<!-- 9 CONVERSION -->
+<section class="slide">
+  <div class="head">
+    <div><div class="kicker teal">LEVER 2 · CONVERSION</div><h2>전환 — '네이버 최저가 이탈'을 차단한다</h2></div>
+    <div class="logo"><span class="ic">⌂</span>오늘의집</div>
+  </div>
+  <p class="lead" style="font-size:15.5px;margin-bottom:13px">가장 큰 이탈 패턴 = "여기서 발견하고, 네이버에서 최저가 검색해 구매". 오늘의집 안에서 <b>즉시 결제</b>하게 만든다.</p>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr);flex:1;align-content:start">
+    <div class="card teal">
+      <div class="num">① 가격 비교 차단</div>
+      <h3 style="color:var(--teal-d)">전용 '독점 혜택' 명시</h3>
+      <p style="margin-top:6px">상세 최상단에 <b>[오늘의집 단독특가]·[단독 구성/컬러]·[리뷰 작성 시 포인트 100%]</b>. "굳이 다른 데 검색해도 여기가 제일 이득"을 각인.</p>
+    </div>
+    <div class="card teal">
+      <div class="num">② 반품 두려움 제거</div>
+      <h3 style="color:var(--teal-d)">상세페이지에 '현실감' 보완</h3>
+      <p style="margin-top:6px">"우리 집에도 어울릴까?"의 불안 → <b>보정 없는 자연광·형광등 릴스/움짤</b>, 마감·질감 클로즈업. 약점(보정 왜곡)을 정면 보완해 전환율 급상승.</p>
+    </div>
+    <div class="card teal">
+      <div class="num">③ 확신 부여</div>
+      <h3 style="color:var(--teal-d)">스토리텔링형 리뷰 레이어링</h3>
+      <p style="margin-top:6px">단순 "좋아요"가 아니라 <b>구체적 주거환경(24평 확장형 거실)·사용기간별 만족도</b>가 담긴 스토리형 리뷰를 상단 배치.</p>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:14px">
+    <p style="font-size:15.5px">세 액션의 공통점 — 모두 앞에서 짚은 <b style="color:#fff">'안 사는 이유(보정 왜곡·최저가 이탈)'를 상세페이지에서 직접 무력화</b>한다.</p>
+  </div>
+  <div class="foot">
+    <span class="src"><b>전략</b> 이탈 요인 역설계 → 전환 액션으로 변환.</span>
+    <span>오늘의집 구매전략 · 이도형</span>
+  </div>
+</section>
+
+<!-- 10 치트키 -->
+<section class="slide">
+  <div class="head">
+    <div><div class="kicker amber">LEVER 3 · CHEAT KEY</div><h2>유입과 전환을 잇는 마케터의 치트키</h2></div>
+    <div class="logo"><span class="ic">⌂</span>오늘의집</div>
+  </div>
+  <div class="grid" style="grid-template-columns:1fr 1fr;flex:1;align-content:start">
+    <div class="card amber">
+      <div class="num">치트키 1 · 폭발적 유입</div>
+      <h3>기획전 · '오하특' 메인 구좌 확보</h3>
+      <p style="margin-top:6px">MD와의 긴밀한 커뮤니케이션으로 메인 구좌(오하특·주말특가)를 확보하는 것이 가장 폭발적인 유입. 단 유입된 트래픽이 새지 않게 <b>한정 수량 타임세일</b>로 <b>'지금 안 사면 손해' FOMO</b>를 건다.</p>
+    </div>
+    <div class="card amber">
+      <div class="num">치트키 2 · 첫 구매 허들 낮추기</div>
+      <h3>소품 레이어링 → 메인 가구 리타게팅</h3>
+      <p style="margin-top:6px">고가 가구는 전환 주기가 길다. 연출컷에 쓰인 <b>저렴한 소품(쿠션·매트·오브제)을 함께 구성</b>해 첫 구매 진입장벽을 낮추고, 만족한 유저에게 <b>메인 가구를 리타게팅</b>.</p>
+    </div>
+  </div>
+  <div class="flow" style="margin-top:14px">
+    <div class="step"><div style="font-size:12.5px;font-weight:800;color:var(--amber-d)">맥락 콘텐츠 유입</div><div style="font-size:11.5px;color:var(--gray2);margin-top:3px">레버1</div></div>
+    <div class="arr">→</div>
+    <div class="step"><div style="font-size:12.5px;font-weight:800;color:var(--amber-d)">소품 첫 구매</div><div style="font-size:11.5px;color:var(--gray2);margin-top:3px">허들↓</div></div>
+    <div class="arr">→</div>
+    <div class="step"><div style="font-size:12.5px;font-weight:800;color:var(--amber-d)">메인 가구 리타게팅</div><div style="font-size:11.5px;color:var(--gray2);margin-top:3px">객단가↑</div></div>
+    <div class="arr">→</div>
+    <div class="step"><div style="font-size:12.5px;font-weight:800;color:var(--amber-d)">단독혜택 전환</div><div style="font-size:11.5px;color:var(--gray2);margin-top:3px">레버2</div></div>
+  </div>
+  <div class="foot">
+    <span class="src"><b>전략</b> 유입(레버1)과 전환(레버2)을 실제로 연결하는 실행 레버.</span>
+    <span>오늘의집 구매전략 · 이도형</span>
+  </div>
+</section>
+
+<!-- 11 why me -->
+<section class="slide">
+  <div class="head">
+    <div><div class="kicker vio">WHY ME</div><h2>이 분석을 실행으로 옮길 사람</h2></div>
+    <div class="logo"><span class="ic">⌂</span>오늘의집</div>
+  </div>
+  <div class="grid" style="grid-template-columns:1fr 1fr;flex:1;align-content:start">
+    <div class="card out"><h3 style="color:var(--blue-d)">발견형 커머스 퍼널을 이해한다</h3><p style="margin-top:4px">'영감 → 발견 → 전환'으로 이어지는 콘텐츠 커머스 구조를 소비자·마케터 양쪽 시선으로 분해 — 이 발표가 그 증거.</p></div>
+    <div class="card out"><h3 style="color:var(--blue-d)">데이터로 이탈을 잡아본 5년차</h3><p style="margin-top:4px">퍼포먼스·CRM 운영으로 유입→전환 퍼널의 누수 지점을 SQL·코호트로 찾아 액션으로 닫아온 경험.</p></div>
+    <div class="card out"><h3 style="color:var(--blue-d)">콘텐츠를 '광고' 아닌 '영감'으로</h3><p style="margin-top:4px">맥락형 UGC·썸네일 최적화로 광고 피로 없이 유입을 만드는 접근에 익숙.</p></div>
+    <div class="card out"><h3 style="color:var(--blue-d)">전환을 가로막는 불안을 제거</h3><p style="margin-top:4px">단독 혜택·현실감 보완·스토리 리뷰로 '안 사는 이유'를 상세페이지에서 무력화하는 전환 설계.</p></div>
+  </div>
+  <div class="quote" style="margin-top:14px;padding:16px 24px">
+    <div class="q" style="font-size:18px">"저는 오늘의집을 이미 <span class="g">소비자이자 마케터의 눈으로 분해</span>했습니다. 입사 후엔 이 분석을 데이터로 검증하고 실행하겠습니다."</div>
+  </div>
+  <div class="foot">
+    <span class="src"><b>매핑</b> 구매심리 분석 → 마케터 역량으로 연결. 구체 실적은 면접에서 보강.</span>
+    <span>오늘의집 구매전략 · 이도형</span>
+  </div>
+</section>
+
+<!-- 12 closing -->
+<section class="slide" style="justify-content:center;background:
+  radial-gradient(900px 520px at 86% -12%, var(--blue-soft) 0%, transparent 55%),
+  radial-gradient(720px 520px at -6% 112%, var(--rose-soft) 0%, transparent 55%), #fff">
+  <div class="logo" style="margin-bottom:22px"><span class="ic">⌂</span>오늘의집</div>
+  <div class="kicker vio">CHECKLIST · 마지막으로</div>
+  <h1 style="font-size:40px">유저가 내 제품을 <span class="hl rose">'광고'</span>로 봤는가,<br>아니면 <span class="hl">'영감'</span>으로 봤는가.</h1>
+  <p class="lead" style="margin-top:20px;max-width:960px">오늘의집의 강점은 '발견'이고, 약점은 그 발견의 그림자입니다. <b>강점은 유입에서 키우고, 그림자는 전환에서 가리면</b> — 유입과 전환은 자연스럽게 따라옵니다. 그 일을 데이터로 하고 싶습니다.</p>
+  <div style="margin-top:30px;display:flex;gap:10px;align-items:center">
+    <span class="pill k">감사합니다</span>
+    <span class="pill blue">Growth Marketer</span>
+    <span class="pill vio">이도형</span>
+  </div>
+</section>
+
+</div></div>
+
+<div id="nav"><button id="prev">‹</button><span class="ct"><span id="cur">1</span> / <span id="tot">1</span></span><button id="next">›</button></div>
+<div class="hint">← → 또는 Space · F 전체화면</div>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let i=0;const tot=slides.length;
+document.getElementById('tot').textContent=tot;
+function show(n){i=Math.max(0,Math.min(tot-1,n));
+  slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+  document.getElementById('cur').textContent=i+1;
+  document.getElementById('bar').style.width=((i+1)/tot*100)+'%';}
+function next(){show(i+1)} function prev(){show(i-1)}
+document.getElementById('next').onclick=next;
+document.getElementById('prev').onclick=prev;
+addEventListener('keydown',e=>{
+  if(['ArrowRight',' ','PageDown'].includes(e.key)){next();e.preventDefault();}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){prev();e.preventDefault();}
+  else if(e.key==='Home')show(0); else if(e.key==='End')show(tot-1);
+  else if(e.key.toLowerCase()==='f'){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen();}
+});
+let tx=0;addEventListener('touchstart',e=>tx=e.touches[0].clientX);
+addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-tx;if(d<-50)next();else if(d>50)prev();});
+function fit(){const d=document.getElementById('deck');
+  const s=Math.min(innerWidth/1280,innerHeight/720);
+  d.style.transform='scale('+s+')';}
+addEventListener('resize',fit);fit();show(0);
+</script>
+</body>
+</html>
